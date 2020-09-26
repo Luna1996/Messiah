@@ -1,0 +1,23 @@
+{
+    "name": "EditMode",
+    "references": [
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:65dbb6bc013bc2b409e056e2b0cddf79",
+        "GUID:0a531cf16eeb7ad4ca16a9159b5da2b2",
+        "GUID:3753afbad1f313a44a937c4dad0b658c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

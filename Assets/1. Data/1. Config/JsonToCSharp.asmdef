@@ -1,11 +1,7 @@
 {
-    "name": "Editor",
-    "references": [
-        "GUID:a186ad9fb82729d4499f832c9b43b22a"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "JsonToCSharp",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
@@ -13,5 +9,5 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
-    "noEngineReferences": false
+    "noEngineReferences": true
 }
