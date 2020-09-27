@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 4381ba90d1e31c44d864f92f67d43996
+    m_Address: Assets/1. Data/1. Config/1. Json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1bbad7d6c7620f14fa00fca7a671286a, type: 2}
   m_SchemaSet:

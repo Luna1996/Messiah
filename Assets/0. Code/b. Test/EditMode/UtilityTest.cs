@@ -4,6 +4,7 @@ using Messiah.Editor;
 using UnityEngine;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 static class UtilityTest {
   [Test]
@@ -29,5 +30,18 @@ static class UtilityTest {
       });
     });
     Debug.Log("!!!!");
+  }
+
+  [Test]
+  public static void JsonTest() {
+    var d = JsonUtility.FromJson<Dictionary<string, string>>("{\"a\":\"1\", \"b\": \"2\"}");
+    Debug.Log(d.Count);
+  }
+
+  [Test]
+  public static void CSGeneratorTest() {
+    Utility.ModifyCSharpFile(
+      "C:/Users/yifuwang.TENCENT/Documents/GitHub/Messiah/Assets/1. Data/1. Config/2. CSharp/you.cs",
+    "C:/Users/yifuwang.TENCENT/Documents/GitHub/Messiah/Assets/1. Data/1. Config/1. Json/you.json");
   }
 }
