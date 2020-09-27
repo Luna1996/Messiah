@@ -37,7 +37,8 @@ namespace Messiah.Utility {
         lines[i] = "  " + lines[i];
         if (lines[i].StartsWith("  public class")) {
           var words = lines[i].Split(' ');
-          types.Add(words[words.Length - 1]);
+          if (lines[i + 2].Contains("public int ID;"))
+            types.Add(words[words.Length - 1]);
           lines[i + 1] = lines[i] + " {";
           lines[i] = "  [Serializable]";
           i++;
