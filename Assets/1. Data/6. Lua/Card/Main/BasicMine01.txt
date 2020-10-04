@@ -1,0 +1,8 @@
+BasicMine01 = class(CardBase)
+local this = BasicMine01
+
+function this:new()
+  self.name = "基础采矿"
+  self.ID = "100101"
+end
+

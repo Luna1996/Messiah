@@ -1,0 +1,15 @@
+function ResourceModifier(resourceName, num)
+  temp = GDB.Resource[resourceName]
+  if(temp~=nil)
+    then
+    result = temp + num
+    sufficient = true
+    if (result<0)
+    then
+      sufficient = false
+    else
+      GDB.Resource[resourceName] = result
+    end
+  end
+  return sufficient
+end
