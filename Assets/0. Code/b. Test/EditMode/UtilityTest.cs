@@ -8,6 +8,12 @@ using System.Collections.Generic;
 
 static class UtilityTest {
   [Test]
+  public static void PlayerPrefTest() {
+    PlayerPrefs.DeleteAll();
+    Debug.Log(PlayerPrefs.GetString("FUCKYOU") == "");
+  }
+
+  [Test]
   public static void RunCmdTest() {
     Utility.RunCmd(Constant.ExcelToJsonExe);
   }
@@ -43,5 +49,12 @@ static class UtilityTest {
     Utility.ModifyCSharpFile(
       "C:/Users/yifuwang.TENCENT/Documents/GitHub/Messiah/Assets/1. Data/1. Config/2. CSharp/you.cs",
     "C:/Users/yifuwang.TENCENT/Documents/GitHub/Messiah/Assets/1. Data/1. Config/1. Json/you.json");
+  }
+
+  [Test]
+  public static void ByteSerializationTest() {
+    Messiah.Logic.UserData t = new Messiah.Logic.UserData();
+    var str = ByteConverter.Serialize(t);
+    var f = ByteConverter.Deserialize<Messiah.Logic.UserData>(str);
   }
 }

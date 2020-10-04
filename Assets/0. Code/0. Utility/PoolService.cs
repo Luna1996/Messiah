@@ -2,21 +2,18 @@ namespace Messiah.Utility {
   using System;
   using System.Collections.Generic;
 
-  public class PoolService {
-    public static PoolService INSTANCE = new PoolService();
-    private PoolService() { }
+  public static class PoolService {
 
+    private static Dictionary<Type, object> pools = new Dictionary<Type, object>();
 
-    private Dictionary<Type, object> pools = new Dictionary<Type, object>();
-
-    public void With<Item>(Action<Item> proc)
+    public static void With<Item>(Action<Item> proc)
     where Item : class, new() {
       var item = Borrow<Item>();
       proc?.Invoke(item);
       Return(item);
     }
 
-    public Item Borrow<Item>()
+    public static Item Borrow<Item>()
     where Item : class, new() {
       var type = typeof(Item);
 
@@ -39,7 +36,7 @@ namespace Messiah.Utility {
       return item;
     }
 
-    public void Return<Item>(Item item)
+    public static void Return<Item>(Item item)
     where Item : class, new() {
       var type = typeof(Item);
       if (pools.ContainsKey(type)) {
@@ -56,14 +53,6 @@ namespace Messiah.Utility {
           throw new ItemNotInRecordException(pool.borrowed.Count.ToString());
       } else
         throw new ItemNotInRecordException(type.ToString());
-    }
-
-    ~PoolService() {
-      foreach (var type in pools.Keys)
-        typeof(PoolService)
-          .GetMethod(nameof(PoolService.Return))
-          .MakeGenericMethod(type)
-          .Invoke(this, null);
     }
 
     private class Pool<Item> {

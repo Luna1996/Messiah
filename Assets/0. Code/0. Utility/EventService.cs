@@ -2,20 +2,17 @@ namespace Messiah.Utility {
   using System;
   using System.Collections.Generic;
 
-  public class EventService {
-    public static EventService INSTANCE = new EventService();
-    private EventService() { }
-
-    private Dictionary<Enum, Delegate> actions = new Dictionary<Enum, Delegate>();
+  public static class EventService {
+    private static Dictionary<Enum, Delegate> actions = new Dictionary<Enum, Delegate>();
 
     #region 零
-    public void Notify(Enum id) {
+    public static void Notify(Enum id) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks))
         (callbacks as Action).Invoke();
     }
 
-    public void Listen(Enum id, Action callback) {
+    public static void Listen(Enum id, Action callback) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         var action = callbacks as Action;
@@ -24,7 +21,7 @@ namespace Messiah.Utility {
         actions.Add(id, callback);
     }
 
-    public void Ignore(Enum id, Action callback = null) {
+    public static void Ignore(Enum id, Action callback = null) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
 
@@ -35,7 +32,7 @@ namespace Messiah.Utility {
 
         var action = (callbacks as Action);
         action -= callback;
-        if (action.GetInvocationList().Length == 0) {
+        if (action == null) {
           actions.Remove(id);
         }
       }
@@ -43,13 +40,13 @@ namespace Messiah.Utility {
     #endregion
 
     #region 一
-    public void Notify<A>(Enum id, A a) {
+    public static void Notify<A>(Enum id, A a) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks))
         (callbacks as Action<A>)(a);
     }
 
-    public void Listen<A>(Enum id, Action<A> callback) {
+    public static void Listen<A>(Enum id, Action<A> callback) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         var action = callbacks as Action<A>;
@@ -58,7 +55,7 @@ namespace Messiah.Utility {
         actions.Add(id, callback);
     }
 
-    public void Ignore<A>(Enum id, Action<A> callback = null) {
+    public static void Ignore<A>(Enum id, Action<A> callback = null) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         if (callback == null) {
@@ -73,7 +70,5 @@ namespace Messiah.Utility {
       }
     }
     #endregion
-
-    ~EventService() => actions.Clear();
   }
 }

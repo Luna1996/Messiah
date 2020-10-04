@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 66dc5930030ebd24690b5d5a26aa712a
+  m_SerializeEntries:
+  - m_GUID: 4381ba90d1e31c44d864f92f67d43996
+    m_Address: Assets/1. Data/1. Config/1. Json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Json
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bd0d07c13e247ce41a8376e56cc4cc7a
+    m_Address: Assets/1. Data/6. Lua
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Lua
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ec90e902c2229b84a8c335d0fb602d8b
+    m_Address: Assets/1. Data/3. Prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: efd8f943606780a45a016381ed311633
+    m_Address: Assets/1. Data/4. Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e3ce88abbdfaade41b850cb39edf24f4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0b2a8598a8e608c40853d9970da84609, type: 2}
+    - {fileID: 11400000, guid: 24477063c84703c4b86984f425f8183e, type: 2}

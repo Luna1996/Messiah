@@ -1,0 +1,6 @@
+if LUA_DEBUG then
+  require("Base/LuaPanda").start("127.0.0.1", 8818)
+end
+
+require("Base/Class")
+require("Base/GlobalDefine")

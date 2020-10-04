@@ -1,0 +1,22 @@
+local new = function(cls, ...)
+  local ins = {}
+  setmetatable(ins, cls)
+  if cls.new then
+    cls.new(ins, ...)
+  end
+  return ins
+end
+
+Object = {}
+Object.__index = Object
+Object.__call = new
+
+function class(base)
+  base = base or Object
+  local cls = {}
+  setmetatable(cls, base)
+  cls.base = base
+  cls.__index = cls
+  cls.__call = new
+  return cls
+end
