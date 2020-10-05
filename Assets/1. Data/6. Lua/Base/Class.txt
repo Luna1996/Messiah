@@ -20,3 +20,9 @@ function class(base)
   cls.__call = new
   return cls
 end
+
+function slot(caller, func)
+  return function ()
+    func(caller)
+  end
+end

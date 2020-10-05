@@ -1,1 +1,6 @@
 LoginCard = class(CardBase)
+local this = LoginCard
+
+function this:new()
+  self.name = "登录"
+end

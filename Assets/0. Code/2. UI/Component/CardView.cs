@@ -5,29 +5,30 @@ namespace Messiah.UI {
   using UnityEngine.UI;
   using UnityEngine.EventSystems;
   using XLua;
-  using Utility;
+  using Logic;
 
   public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
     static int dissolveRate_id = 0;
     public HandView hands;
     public bool canPlay;
 
-    public LuaTable luacard;
+    public Card luacard;
 
     Material material;
     void Start() {
       if (dissolveRate_id == 0) {
         dissolveRate_id = Shader.PropertyToID("_DissolveRate");
       }
-      var rawImage = GetComponent<RawImage>();
-      var originMaterial = rawImage.material;
-      material = Instantiate(originMaterial);
-      material.CopyPropertiesFromMaterial(originMaterial);
-      rawImage.material = material;
+      // var rawImage = GetComponent<RawImage>();
+      // var originMaterial = rawImage.material;
+      // material = Instantiate(originMaterial);
+      // material.CopyPropertiesFromMaterial(originMaterial);
+      // rawImage.material = material;
     }
 
     public void SetLuaCard(string card) {
-
+      luacard = LuaManager.CreateLuaObject(card).Cast<Card>();
+      Debug.Log(luacard.name);
     }
 
     public void Burn() {

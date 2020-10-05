@@ -1,0 +1,7 @@
+Resource = class()
+local this = Resource
+
+function this:new()
+  self.max = nil
+  self.value = 0
+end

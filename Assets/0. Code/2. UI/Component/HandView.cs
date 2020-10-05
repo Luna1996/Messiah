@@ -97,7 +97,7 @@ namespace Messiah.UI {
         dir = rotateStep * dir;
         if (cardui == null) continue;
         cardui.transform.SetSiblingIndex(index - 1);
-        cardui.gameObject.name = $"{index}";
+        cardui.gameObject.name = $"{index - 1}";
         var pos = arcData.center + dir * arcData.radius;
         var rot = Quaternion.FromToRotation(transform.up, dir);
         cardui.transform.DOMove(pos, duration);

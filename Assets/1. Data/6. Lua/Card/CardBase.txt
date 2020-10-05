@@ -1,6 +1,2 @@
 CardBase = class()
 local this = CardBase
-
-function this:new()
-  self.name = nil
-end

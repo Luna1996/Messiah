@@ -32,11 +32,4 @@ namespace Messiah.UI {
 
 
   }
-
-  [XLua.CSharpCallLua]
-  public interface T {
-    string k { get; set; }
-    int number { get; set; }
-    void log();
-  }
 }
