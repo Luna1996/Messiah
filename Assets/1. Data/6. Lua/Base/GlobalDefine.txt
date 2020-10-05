@@ -1,0 +1,22 @@
+GameDataBase = class()
+local this = GameDataBase
+
+function this:new()
+  self.Resource = {}
+  self.Resource.Mine  = 0
+  self.Resource.Iron = 0
+  self.Resource.Wood = 0
+  self.Resource.Food = 0
+  self.Resource.TechPoint = 0
+  self.Resource.FaithPoint = 0
+  self.Resource.Pressure = 0
+  self.Resource.Insight = 0
+  self.Resource.DrawNum = 3
+  self.Resource.Population = 20
+  self.Resource.Labor = 20
+  self.Resource.LaborAvailable = 20
+  self.Resource.Residence = 0
+
+end
+
+

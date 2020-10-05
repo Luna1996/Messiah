@@ -1,0 +1,12 @@
+ResourceReviser = class()
+local this = ResourceReviser
+
+function this:new(resourceName,mode,num)
+  self.resourceName = resourceName
+  self.mode = mode
+  self.num = num
+end
+
+function this:apply()
+
+end

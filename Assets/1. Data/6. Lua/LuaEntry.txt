@@ -4,3 +4,6 @@ end
 
 require("Base/Class")
 require("Base/GlobalDefine")
+
+GDB = GameDataBase.new()
+
