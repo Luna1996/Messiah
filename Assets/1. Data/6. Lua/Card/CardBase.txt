@@ -1,6 +1,28 @@
 CardBase = class()
 local this = CardBase
 
-function this:new()
+function this:new(id)
   self.name = nil
+  self.id=id
+  self.inHand = false
+  
 end
+
+function this:draw()
+
+end
+
+function this:spell()
+
+end
+
+
+
+function this:remove()
+
+end
+
+function this:burn()
+
+end
+

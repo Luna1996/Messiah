@@ -2,20 +2,20 @@ GameDataBase = class()
 local this = GameDataBase
 
 function this:new()
-  this.Resource = {}
-  this.Resource.Mine  = 0
-  this.Resource.Iron = 0
-  this.Resource.Wood = 0
-  this.Resource.Food = 0
-  this.Resource.TechPoint = 0
-  this.Resource.FaithPoint = 0
-  this.Resource.Pressure = 0
-  this.Resource.Insight = 0
-  this.Resource.DrawNum = 3
-  this.Resource.Population = 20
-  this.Resource.Labor = 20
-  this.Resource.LaborAvailable = 20
-  this.Resource.Residence = 0
+  self.Resource = {}
+  self.Resource.Mine  = 0
+  self.Resource.Iron = 0
+  self.Resource.Wood = 0
+  self.Resource.Food = 0
+  self.Resource.TechPoint = 0
+  self.Resource.FaithPoint = 0
+  self.Resource.Pressure = 0
+  self.Resource.Insight = 0
+  self.Resource.DrawNum = 3
+  self.Resource.Population = 20
+  self.Resource.Labor = 20
+  self.Resource.LaborAvailable = 20
+  self.Resource.Residence = 0
 
 end
 

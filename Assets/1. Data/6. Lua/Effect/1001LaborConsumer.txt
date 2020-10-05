@@ -1,0 +1,5 @@
+function LaborConsumer(labor,rounds)
+  for i = 1,rounds do
+    GDB.inGame.LaborManager[i] =  GDB.inGame.LaborManager[i] + labor
+  end
+end
