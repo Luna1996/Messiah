@@ -5,15 +5,4 @@ end
 require("Base/Class")
 require("Base/GlobalDefine")
 
-Blackboard = {}
-
-local id = CS.Messiah.Logic.GameCoreNS.GameEvent.ExitEndingPhase
-local func = function ()
-  CS.UnityEngine.Debug.Log("成功")
-end
-local es = CS.Messiah.Utility.EventService
-
-es.Listen(id, func)
-es.Notify(id)
-es.Ignore(id, func)
-es.Notify(id)
+GDB = GameDataBase.new()

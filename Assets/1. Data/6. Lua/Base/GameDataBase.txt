@@ -1,0 +1,89 @@
+GameDataBase = class()
+local this = GameDataBase
+
+function this:new()
+  self.Resource = {}
+  self.Resource.Mine  = 0
+  self.Resource.Iron = 0
+  self.Resource.Wood = 0
+  self.Resource.Food = 0
+  self.Resource.TechPoint = 0
+  self.Resource.FaithPoint = 0
+  self.Resource.Pressure = 0
+  self.Resource.Insight = 0
+  self.Resource.DrawNum = 3
+  self.Resource.Population = 20
+  self.Resource.Labor = 20
+  self.Resource.LaborAvailable = 20
+  self.Resource.Residence = 0
+  
+  self.Build={}
+  self.Build.Deck={}
+  self.Build.Relic={}
+  self.Build.BuildingDeck={}
+  self.Build.Heros={}
+
+  self.EventDeck={}
+
+  self.inGame={}
+  self.inGame.Hands={}
+  self.inGame.DrawDeck={}
+  self.inGame.RecycleDeck={}
+  self.inGame.Buff={}
+  self.inGame.LaborManager={}
+  self.inGame.CurrentRound=0
+  self.inGame.BDrawDeck={}
+  self.inGame.BRecycleDeck={}
+  self.inGame.BHands={}
+
+  self.BuffTrigger={}
+  self.BuffTrigger.BattleBegin={}
+  self.BuffTrigger.RoundBegin={}
+  self.BuffTrigger.RoundEnd={}
+
+
+
+end
+
+-----乱序数组-----
+function shuffle(t)
+  if type(t)~="table" then
+    return nil
+  end
+  local tab = {}
+  local index = 1
+  while #t ~= 0 do
+    local n = math.random(0,#t)
+    if t[n]~=nil then
+      tab[index] = t[n]
+      table.remove(t,n)
+      index = index +1
+    end
+  end
+  return tab
+end
+------------------
+
+function this:MineNFoodConsume()
+  return  -----待修改 回合开始进行矿石和食物的消耗
+end
+
+function this:RenewDrawDeck() --回合开始 抽牌堆被抽空时 把弃牌堆洗牌后加入到抽牌堆 清空弃牌堆
+  self.inGame.DrawDeck = shuffle(self.inGame.RecycleDeck)
+  self.inGame.RecycleDeck={}
+end
+
+function this:NewBattle() --一场战斗开始
+  self.inGame.DrawDeck = self.Build.Deck
+  self.inGame.BDrawDeck = self.Build.BuildingDeck
+  for i = 1,#self.BuffTrigger.BattleBegin do
+    self.BuffTrigger.BattleBegin[i].apply()
+  end
+end
+
+function this:NewRound() --一回合开始
+  for i = 1,#self.BuffTrigger.RoundBegin do
+    self.BuffTrigger.RoundBegin[i].apply()
+  end
+  DrawCard(self.DrawNum, true)
+end

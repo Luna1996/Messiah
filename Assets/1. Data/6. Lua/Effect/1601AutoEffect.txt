@@ -1,0 +1,54 @@
+AutoEffect = class() --触发你携带的xx张xxx牌的效果（从牌组中直接打出or单纯只是触发效果）
+local this = AutoEffect
+
+function this:new(num,card_type,use)  --type这里先默认只有资源卡 其他的卡暂时不考虑 use默认为false,即只是触发效果（旋风斧），use为true时，效果变成从牌组中打出这些牌
+  if use==nil then
+    use = false
+  end
+  self.num = num
+  self.card_type = card_type
+  self.use = use
+end
+
+function in_list(b,list)  --判断一个元素是否在一个列表中
+  if not list then
+    return false
+  end
+  for k,v in pairs(list) do
+    if v == b then
+      return true
+    end
+  end
+  return false
+end
+
+function this:apply()
+  local waitList = {}   ---生成卡组中符合条件的候选列表，然后从候选列表中挑选指定数量的卡牌进行效果触发（打出）
+  if self.use then ---从卡组中打出
+    for k,v in pairs(GDB.inGame.DrawDeck) do
+      if in_list(v,self.card_type) then
+        table.insert(waitList,v)
+      end
+    end
+    waitList = shuffle(waitList)
+    if self.num>#waitList then
+      self.num = #waitList
+    end
+    for i=1,self.num do
+      waitList[i].spell()
+    end
+  else --从Build中携带的卡中触发（无消耗）
+    for k,v in pairs(GDB.Build.Deck) do
+      if in_list(v,self.card_type) then
+        table.insert(waitList,v)
+      end
+    end
+    waitList = shuffle(waitList)
+    if self.num>#waitList then
+      self.num = #waitList
+    end
+    for i=1,self.num do
+      waitList[i].effect.apply()
+    end
+  end
+end

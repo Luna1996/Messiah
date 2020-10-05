@@ -1,0 +1,18 @@
+ResourceReviser = class()
+local this = ResourceReviser
+
+function this:new(resourceName,mode,num)
+  self.resourceName = resourceName
+  self.mode = mode
+  self.num = num
+end
+
+function this:apply(ResourceModifier)
+  if self.resourceName==ResourceModifier.resourceName then
+    if self.mode=="plus" then
+      ResourceModifier.num = ResourceModifier.num + self.num
+    elseif self.mode=='mul' then
+      ResourceModifier.num = math.floor(ResourceModifier.num * self.num)
+    end
+  end
+end
