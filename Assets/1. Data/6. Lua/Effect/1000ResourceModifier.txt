@@ -11,16 +11,22 @@ function this:apply()
   local num = self.num
   local temp = GDB.Resource[resourceName]
   local sufficient = nil
-  if(temp~=nil)
-    then
+  if(temp~=nil) then
+    GDB.currentChange = {}
+    GDB.currentChange.resource = resourceName
+    GDB.currentChange.amount = num
+    if num >0 then
+      EventService.Notify(GameEvent.ResourceModify)
+    end
     local result = temp + num
     sufficient = true
     if (result<0) then
       sufficient = false
     else
-      GDB.Resource[resourceName] = result
+      GDB.Resource[resourceName] = GDB.Resource[resourceName] + GDB.currentChange.num
     end
   end
+  --EventService.Notify(GameEvent.ResourceModify)
   return sufficient
 end
 

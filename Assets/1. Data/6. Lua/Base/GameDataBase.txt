@@ -46,7 +46,7 @@ function this:new()
 end
 
 -----乱序数组-----
-function shuffle(t)
+function this:shuffle(t)
   if type(t)~="table" then
     return nil
   end
@@ -69,7 +69,7 @@ function this:MineNFoodConsume()
 end
 
 function this:RenewDrawDeck() --回合开始 抽牌堆被抽空时 把弃牌堆洗牌后加入到抽牌堆 清空弃牌堆
-  self.inGame.DrawDeck = shuffle(self.inGame.RecycleDeck)
+  self.inGame.DrawDeck = self.shuffle(self.inGame.RecycleDeck)
   self.inGame.RecycleDeck={}
 end
 

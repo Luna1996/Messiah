@@ -4,8 +4,8 @@ local this = BasicMine01
 function this:new()
   self.name = "基础采矿"
   self.ID = "100101"
-  self.effect = ResourceModifier.new('Mine', 2)
-  self.cost = LaborConsumer.new(1,1)
+  self.effect = ResourceModifier('Mine', 2)
+  self.cost = LaborConsumer(1,1)
 end
 
 function this:spell()

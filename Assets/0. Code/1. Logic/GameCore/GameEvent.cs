@@ -12,5 +12,7 @@ namespace Messiah.Logic.GameCoreNS {
     ExitMainPhase,
     EnterEndingPhase,
     ExitEndingPhase,
+
+    ResourceModify, 
   }
 }
