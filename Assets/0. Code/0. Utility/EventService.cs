@@ -16,7 +16,7 @@ namespace Messiah.Utility {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         var action = callbacks as Action;
-        action += callback;
+        action += (Action)(callback as Delegate);
       } else
         actions.Add(id, callback);
     }

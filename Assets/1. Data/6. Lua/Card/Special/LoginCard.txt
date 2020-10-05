@@ -1,1 +1,5 @@
-LoginCard = class(CardBase)
+LoginCard = class(CardBase, "LoginCard")
+local this = LoginCard
+
+function this:new()
+end

@@ -8,7 +8,8 @@ namespace Messiah.Editor {
     public static readonly string XLuaGenPath = "Assets/2. Plugin/XLua/Gen";
     [CSharpCallLua]
     public static List<Type> CSharpCallLua = new List<Type>() {
-      typeof(UI.T)
+      typeof(Messiah.Logic.Card),
+      typeof(System.Action)
     };
   }
 }

@@ -28,6 +28,7 @@ namespace Messiah.Editor {
         trans.localScale = script.igscale;
       }
       GUILayout.EndHorizontal();
+      serializedObject.ApplyModifiedProperties();
     }
   }
 }

@@ -1,0 +1,15 @@
+BaseModifiter = class()
+local this = BaseModifiter
+local mod = {}
+
+function this:Add()
+  self.index = #mod + 1
+  mod[self.index] = self
+end
+
+function this:Remove()
+  mod[self.index] = nil
+  self.index = nil
+end
+
+Blackboard.mod = mod

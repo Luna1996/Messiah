@@ -27,7 +27,7 @@ namespace XLua.CSObjectWrap
         {
             
             
-            translator.AddInterfaceBridgeCreator(typeof(Messiah.UI.T), MessiahUITBridge.__Create);
+            translator.AddInterfaceBridgeCreator(typeof(Messiah.Logic.Card), MessiahLogicCardBridge.__Create);
             
         }
         

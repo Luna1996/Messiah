@@ -1,22 +1,37 @@
-local new = function(cls, ...)
-  local ins = {}
-  setmetatable(ins, cls)
+local function newstep(ins, cls, ...)
+  if cls.base then
+    newstep(ins, cls.base, ...)
+  end
   if cls.new then
     cls.new(ins, ...)
   end
+end
+
+local function new(cls, ...)
+  local ins = {}
+  setmetatable(ins, cls)
+  newstep(ins, cls, ...)
   return ins
 end
 
 Object = {}
+Object.className = "Object"
 Object.__index = Object
 Object.__call = new
 
-function class(base)
+function class(base, clsname)
   base = base or Object
   local cls = {}
   setmetatable(cls, base)
+  cls.className = clsname
   cls.base = base
   cls.__index = cls
   cls.__call = new
   return cls
+end
+
+function slot(caller, func)
+  return function ()
+    func(caller)
+  end
 end

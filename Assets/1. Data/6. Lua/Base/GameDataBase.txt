@@ -76,7 +76,7 @@ end
 function this:NewBattle() --一场战斗开始
   self.inGame.DrawDeck = self.Build.Deck
   self.inGame.BDrawDeck = self.Build.BuildingDeck
-  for i = 1,#self.BuffTrigger.BattleBegin do
+  for i = 1, #self.BuffTrigger.BattleBegin do
     self.BuffTrigger.BattleBegin[i].apply()
   end
 end

@@ -68,6 +68,7 @@ MonoBehaviour:
     - Json
     - Lua
     - Prefab
+    - Atlas
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2b9a4bb3095394441bfefe12dc5b071a, type: 2}

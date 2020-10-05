@@ -1,11 +1,29 @@
-CardBase = class()
+CardBase = class(Object, "CardBase")
 local this = CardBase
 
 function this:new()
-  self.name = nil
+  self.name = "卡 名"
+  self.frame = "CardFrame_1"
+  self.image = "placeholder"
+  self.desc = "<color=red>规</color><b><color=green>则</color><color=blue>说</color></b>明"
+
   self.inHand = false
-  --self.usageAmount = nil
-  --self.countable = false
+end
+
+function this:setCardView()
+end
+
+function this:onPlay()
+  self.cardView.hands:AddToHand(self.cardView)
+end
+
+function this:canPlay()
+end
+    
+function this:addToHand()
+end
+    
+function this:rmvFrHand()
 end
 
 function this:draw()
@@ -32,4 +50,3 @@ function this:addUsage(num)
     self.usageAmount = self.usageAmount + num
   end
 end
-
