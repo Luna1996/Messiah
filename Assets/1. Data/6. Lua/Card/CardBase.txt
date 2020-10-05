@@ -1,15 +1,16 @@
 CardBase = class()
 local this = CardBase
 
-function this:new(id)
+function this:new()
   self.name = nil
-  self.id=id
   self.inHand = false
-  
+  --self.usageAmount = nil
+  --self.countable = false
 end
 
 function this:draw()
-
+  self.inHand=true
+  table.insert(GDB.inGame.Hands,self.id)
 end
 
 function this:spell()
@@ -24,5 +25,11 @@ end
 
 function this:burn()
 
+end
+
+function this:addUsage(num)
+  if self.countable then
+    self.usageAmount = self.usageAmount + num
+  end
 end
 

@@ -1,11 +1,21 @@
-function ResourceModifier(resourceName, num)
-  temp = GDB.Resource[resourceName]
+ResourceModifier = class()
+local this = ResourceModifier
+
+function this:new(resourceName,num)
+  self.resourceName = resourceName
+  self.num = num
+end
+
+function this:apply()
+  local resourceName = self.resourceName
+  local num = self.num
+  local temp = GDB.Resource[resourceName]
+  local sufficient = nil
   if(temp~=nil)
     then
-    result = temp + num
+    local result = temp + num
     sufficient = true
-    if (result<0)
-    then
+    if (result<0) then
       sufficient = false
     else
       GDB.Resource[resourceName] = result
@@ -13,3 +23,4 @@ function ResourceModifier(resourceName, num)
   end
   return sufficient
 end
+

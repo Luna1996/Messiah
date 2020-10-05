@@ -45,6 +45,7 @@ function this:new()
 
 end
 
+-----乱序数组-----
 function shuffle(t)
   if type(t)~="table" then
     return nil
@@ -61,17 +62,28 @@ function shuffle(t)
   end
   return tab
 end
+------------------
 
+function this:MineNFoodConsume()
+  return  -----待修改 回合开始进行矿石和食物的消耗
+end
 
-function this:RenewDrawDeck()
+function this:RenewDrawDeck() --回合开始 抽牌堆被抽空时 把弃牌堆洗牌后加入到抽牌堆 清空弃牌堆
   self.inGame.DrawDeck = shuffle(self.inGame.RecycleDeck)
   self.inGame.RecycleDeck={}
 end
 
-function this:NewBattle() --
+function this:NewBattle() --一场战斗开始
   self.inGame.DrawDeck = self.Build.Deck
   self.inGame.BDrawDeck = self.Build.BuildingDeck
   for i = 1,#self.BuffTrigger.BattleBegin do
     self.BuffTrigger.BattleBegin[i].apply()
   end
+end
+
+function this:NewRound() --一回合开始
+  for i = 1,#self.BuffTrigger.RoundBegin do
+    self.BuffTrigger.RoundBegin[i].apply()
+  end
+  DrawCard(self.DrawNum, true)
 end
