@@ -16,7 +16,6 @@ function this:new()
   self.Resource.Labor = 20
   self.Resource.LaborAvailable = 20
   self.Resource.Residence = 0
-
 end
 
 

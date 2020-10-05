@@ -17,6 +17,7 @@ namespace Messiah.UI {
 
       GameCore.Init();
       await LuaManager.Init();
+      await AtlasManager.Init();
       await viewManager.Init();
 
       AutoLogin();

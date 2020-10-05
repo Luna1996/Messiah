@@ -1,4 +1,5 @@
 namespace Messiah.UI {
+  using System;
   using System.Collections;
   using UnityEngine;
   using DG.Tweening;
@@ -9,9 +10,20 @@ namespace Messiah.UI {
 
   public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
     static int dissolveRate_id = 0;
+    [NonSerialized]
     public HandView hands;
+    [NonSerialized]
     public bool canPlay;
 
+    public RawImage image;
+    public RawImage frame;
+    public Text mainCost;
+    public Text subCost;
+    public Text cardName;
+    public Text ruleText;
+    public Text subType;
+
+    [NonSerialized]
     public Card luacard;
 
     Material material;
@@ -28,7 +40,8 @@ namespace Messiah.UI {
 
     public void SetLuaCard(string card) {
       luacard = LuaManager.CreateLuaObject(card).Cast<Card>();
-      Debug.Log(luacard.name);
+      cardName.text = luacard.name;
+      cardName.text = luacard.desc;
     }
 
     public void Burn() {
