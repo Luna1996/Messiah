@@ -20,8 +20,9 @@ end
 function this:apply()
   self.slot1 = slot(self, self.currentChangeRevise)
   EventService.Listen(GameEvent.ResourceModify, self.slot1)
+end
 
-  
+function this:destroy()
+  self.slot1 = slot(self, self.currentChangeRevise)
   EventService.Ignore(GameEvent.ResourceModify, self.slot1)
-  EventService.Listen(GameEvent.ResourceModify,self.currentChangeRevise())
 end
