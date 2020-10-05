@@ -4,5 +4,6 @@ end
 
 require("Base/Class")
 require("Base/GlobalDefine")
+require("Card/CardBase")
 
 GDB = GameDataBase()

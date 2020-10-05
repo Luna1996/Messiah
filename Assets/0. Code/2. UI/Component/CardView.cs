@@ -40,16 +40,21 @@ namespace Messiah.UI {
 
     public void SetLuaCard(string card) {
       luacard = LuaManager.CreateLuaObject(card).Cast<Card>();
+      luacard.cardView = this;
+      image.texture = AtlasManager.GetTextrue(luacard.image);
+      frame.texture = AtlasManager.GetTextrue(luacard.frame);
       cardName.text = luacard.name;
-      cardName.text = luacard.desc;
+      ruleText.text = luacard.desc;
+      luacard.setCardView();
     }
 
     public void Burn() {
-      canPlay = false;
-      transform.SetAsLastSibling();
-      DOTween.To((dissolveRate) => {
-        material.SetFloat(dissolveRate_id, dissolveRate);
-      }, 1, 0, 1).OnComplete(() => Destroy(gameObject));
+      // canPlay = false;
+      // transform.SetAsLastSibling();
+      // DOTween.To((dissolveRate) => {
+      //   material.SetFloat(dissolveRate_id, dissolveRate);
+      // }, 1, 0, 1).OnComplete(() => Destroy(gameObject));
+      Destroy(gameObject);
     }
 
     static Vector3 focusScal = new Vector3(1.5f, 1.5f, 1);
@@ -68,8 +73,7 @@ namespace Messiah.UI {
     public void OnEndDrag(PointerEventData p) {
       if (!canPlay) return;
       if (p.pointerCurrentRaycast.worldPosition.y > 0) {
-        StartCoroutine(hands.DoRandomEfect());
-        Burn();
+        luacard.onPlay();
       } else
         hands.AddToHand(this);
     }

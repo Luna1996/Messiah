@@ -8,9 +8,10 @@ namespace Messiah.Logic {
     string frame { get; set; }
     string image { get; set; }
     string desc { get; set; }
-    Action onPlay { get; set; }
-    Action<int> canPlay { get; set; }
-    Action addToHand { get; set; }
-    Action rmvFrHand { get; set; }
+    void setCardView();
+    int onPlay();
+    int canPlay();
+    void addToHand();
+    void rmvFrHand();
   }
 }
