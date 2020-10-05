@@ -803,8 +803,9 @@ GameObject:
   - component: {fileID: 3978163887399924684}
   - component: {fileID: 3499160930996414736}
   - component: {fileID: 5938247356612976912}
+  - component: {fileID: -795460055486080993}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Messiah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,6 +899,22 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &-795460055486080993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809582071650098238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4062154b0412846bc5e5f8372a10d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ogpos: {x: 0, y: 0}
+  ogscale: {x: 0, y: 0, z: 0}
+  igpos: {x: 0, y: 0}
+  igscale: {x: 0, y: 0, z: 0}
 --- !u!1 &4544009203464165351
 GameObject:
   m_ObjectHideFlags: 0

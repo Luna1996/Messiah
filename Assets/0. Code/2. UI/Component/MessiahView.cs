@@ -4,14 +4,14 @@ namespace Messiah.UI {
   using Messiah.Logic.GameCoreNS;
 
   public class MessiahView : MonoBehaviour {
+    [SerializeField]
     public Vector2 ogpos;
+    [SerializeField]
     public Vector3 ogscale;
+    [SerializeField]
     public Vector2 igpos;
+    [SerializeField]
     public Vector3 igscale;
-
-
-    void Start() {
-    }
 
     public void SwitchState(GameState gs) {
       var trans = (RectTransform)transform;
