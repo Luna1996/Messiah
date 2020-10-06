@@ -1,9 +1,14 @@
 if LUA_DEBUG then
-  require("Base/LuaPanda").start("127.0.0.1", 8818)
+  require("LuaPanda").start("127.0.0.1", 8818)
 end
 
-require("Base/Class")
-require("Base/GlobalDefine")
-require("Card/CardBase")
+require("Class")
+require("GlobalDefine")
+require("CardBase")
+require("GameDataBase")
 
-GDB = GameDataBase()
+local function t(a)
+  CS.UnityEngine.Debug.Log(a)
+end
+
+EventService.Listen(GameEvent.ResourceModify, t)

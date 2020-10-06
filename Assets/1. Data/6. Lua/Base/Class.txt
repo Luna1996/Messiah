@@ -31,7 +31,7 @@ function class(base, clsname)
 end
 
 function slot(caller, func)
-  return function ()
-    func(caller)
+  return function (...)
+    func(caller, ...)
   end
 end

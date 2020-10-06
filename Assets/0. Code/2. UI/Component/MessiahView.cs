@@ -13,18 +13,28 @@ namespace Messiah.UI {
     [SerializeField]
     public Vector3 igscale;
 
-    public void SwitchState(GameState gs) {
+    public async System.Threading.Tasks.Task SwitchState(GameState gs) {
       var trans = (RectTransform)transform;
       switch (gs) {
         case GameState.OutGameState:
-          trans.DOAnchorPos(ogpos, 2);
-          trans.DOScale(ogscale, 2);
+          if (trans.anchoredPosition != ogpos) {
+            trans.DOAnchorPos(ogpos, 2);
+            trans.DOScale(ogscale, 2);
+            await System.Threading.Tasks.Task.Delay(2000);
+          }
           break;
         case GameState.InGameState:
-          trans.DOAnchorPos(igpos, 2);
-          trans.DOScale(igscale, 2);
+          if (trans.anchoredPosition != igpos) {
+            trans.DOAnchorPos(igpos, 2);
+            trans.DOScale(igscale, 2);
+            await System.Threading.Tasks.Task.Delay(2000);
+          }
           break;
       }
+    }
+
+    public void SetBuildingVisibility(string buildingname, bool flag) {
+      transform.Find(buildingname).gameObject.SetActive(flag);
     }
   }
 }

@@ -6,7 +6,7 @@ namespace Messiah.Logic {
   using System.Collections.Generic;
 
   public static class PrefabManager {
-    
+
     public static Dictionary<string, GameObject> cache;
 
     public static async Task Init() {
@@ -22,8 +22,8 @@ namespace Messiah.Logic {
 #endif
     }
 
-    public static GameObject Instanciate(string name) {
-      return GameObject.Instantiate(cache[name]);
+    public static GameObject Instanciate(string name, UnityEngine.Transform parent) {
+      return GameObject.Instantiate(cache[name], parent);
     }
 
   }

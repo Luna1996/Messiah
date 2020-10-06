@@ -1,4 +1,11 @@
-
+-- static class
+GameCore = CS.Messiah.Logic.GameCoreNS.GameCore
 EventService = CS.Messiah.Utility.EventService
 GameEvent = CS.Messiah.Logic.GameCoreNS.GameEvent
+PrefabManager = CS.Messiah.Logic.PrefabManager
 
+-- instance class, set by csharp
+AppRoot = nil
+ViewManager = nil
+MessiahView = nil
+HandView = nil

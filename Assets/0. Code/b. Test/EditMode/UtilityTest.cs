@@ -57,4 +57,11 @@ static class UtilityTest {
     var str = ByteConverter.Serialize(t);
     var f = ByteConverter.Deserialize<Messiah.Logic.UserData>(str);
   }
+
+  [Test]
+  public static void LocalLoginTest() {
+    Messiah.Logic.UserData.CreateLocalUser("草泥马");
+    var data = Messiah.Logic.UserData.GetUserData("草泥马");
+    Debug.Log(data.username);
+  }
 }

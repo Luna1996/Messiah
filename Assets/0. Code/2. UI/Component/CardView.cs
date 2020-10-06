@@ -7,9 +7,9 @@ namespace Messiah.UI {
   using UnityEngine.EventSystems;
   using XLua;
   using Logic;
+  using Coffee.UIExtensions;
 
   public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-    static int dissolveRate_id = 0;
     [NonSerialized]
     public HandView hands;
     [NonSerialized]
@@ -26,16 +26,9 @@ namespace Messiah.UI {
     [NonSerialized]
     public Card luacard;
 
-    Material material;
+    UIDissolve effect;
     void Start() {
-      if (dissolveRate_id == 0) {
-        dissolveRate_id = Shader.PropertyToID("_DissolveRate");
-      }
-      // var rawImage = GetComponent<RawImage>();
-      // var originMaterial = rawImage.material;
-      // material = Instantiate(originMaterial);
-      // material.CopyPropertiesFromMaterial(originMaterial);
-      // rawImage.material = material;
+      effect = GetComponent<UIDissolve>();
     }
 
     public void SetLuaCard(string card) {
@@ -48,12 +41,10 @@ namespace Messiah.UI {
       luacard.setCardView();
     }
 
-    public void Burn() {
-      // canPlay = false;
-      // transform.SetAsLastSibling();
-      // DOTween.To((dissolveRate) => {
-      //   material.SetFloat(dissolveRate_id, dissolveRate);
-      // }, 1, 0, 1).OnComplete(() => Destroy(gameObject));
+    public async void Dissolve() {
+      effect.enabled = true;
+      effect.Play();
+      await System.Threading.Tasks.Task.Delay((int)(effect.duration * 1000));
       Destroy(gameObject);
     }
 

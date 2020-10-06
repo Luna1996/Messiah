@@ -17,14 +17,17 @@ namespace Messiah.UI {
       // 近镜头 聚焦灯塔。
       hand = GetComponentInChildren<HandView>();
       messiah = GetComponentInChildren<MessiahView>();
+      Logic.LuaManager.lua.Global.Set("ViewManager", this);
+      Logic.LuaManager.lua.Global.Set("MessiahView", messiah);
+      Logic.LuaManager.lua.Global.Set("HandView", hand);
       await Task.Delay(0);
     }
 
     public async void SwitchToOutGameView() {
       // 生成手牌
-      messiah.SwitchState(GameState.OutGameState);
+      await messiah.SwitchState(GameState.OutGameState);
       List<string> cards = new List<string>();
-      if (string.IsNullOrEmpty(GameCore.userData.username))
+      if (GameCore.userData == null)
         cards.Add("LoginCard");
       else {
         cards.Add("LogoutCard");
@@ -38,8 +41,12 @@ namespace Messiah.UI {
 
     public async void SwitchToInGameView() {
       // 收起手牌 -> 拉近镜头 -> 生成手牌
-      messiah.SwitchState(GameState.InGameState);
-      await hand.SetHands(null);
+      await messiah.SwitchState(GameState.InGameState);
+      LoadPrefab("InGameView");
+    }
+
+    public void LoadPrefab(string name) {
+      Logic.PrefabManager.Instanciate(name, transform);
     }
 
 #if DEVELOPMENT_BUILD

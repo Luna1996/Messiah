@@ -61,7 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveCurveSize: 0.08
     - _DissolveEdgeWidth: 0.02
-    - _DissolveRate: 1
+    - _DissolveRate: 0.919
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5

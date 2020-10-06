@@ -87,3 +87,5 @@ function this:NewRound() --一回合开始
   end
   DrawCard(self.DrawNum, true)
 end
+
+GDB = GameDataBase()

@@ -1,5 +1,6 @@
 namespace Messiah {
   using UnityEngine;
+  using DG.Tweening;
   public static class RectTransformEx {
     static Vector3[] rect = new Vector3[4];
     public static Vector2 GetLocalSize(this RectTransform self) {

@@ -33,5 +33,10 @@ namespace Messiah.Editor {
         }
       });
     }
+
+    [MenuItem("弥赛亚/清除本地存档")]
+    static void ClearAllSaves() {
+      UnityEngine.PlayerPrefs.DeleteAll();
+    }
   }
 }

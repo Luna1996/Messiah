@@ -1,1 +1,18 @@
 NewGameCard = class(CardBase)
+local this = NewGameCard
+
+function this:new()
+  self.cardView = nil
+  self.name = "新的开始"
+  self.frame = "CardFrame_0"
+  self.image = "placeholder"
+  self.desc = "<size=12><i>\n\n“雾中无日夜，\n 明灯为始终。”\n                 ——《雾中圣典·诘》</i></size>"
+
+  self.inHand = false
+end
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  HandView:RemoveHands()
+  ViewManager:SwitchToInGameView()
+end

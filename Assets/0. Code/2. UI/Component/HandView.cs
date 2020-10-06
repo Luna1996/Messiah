@@ -23,7 +23,7 @@ namespace Messiah.UI {
     GameObject cardPrefab;
 
     [NonSerialized]
-    List<CardView> hands;
+    public List<CardView> hands;
 
     void Reset() {
       UpdateArcData();
@@ -37,10 +37,7 @@ namespace Messiah.UI {
     }
 
     public async Task SetHands(List<string> cards) {
-      foreach (var cardview in hands) {
-        RemoveCard(0);
-        await Task.Delay(100);
-      }
+      await RemoveHands();
 
       foreach (var card in cards) {
         if (string.IsNullOrEmpty(card))
@@ -49,6 +46,13 @@ namespace Messiah.UI {
           AddCard(card);
           await Task.Delay(100);
         }
+      }
+    }
+
+    public async Task RemoveHands() {
+      while (hands.Count > 0) {
+        RemoveCard(0);
+        await Task.Delay(100);
       }
     }
 
@@ -108,8 +112,8 @@ namespace Messiah.UI {
 
     public void ReleaseFromHand(CardView ui) {
       hands.Remove(ui);
-      ui.transform.SetAsLastSibling();
       RestoreCardPosition(0.2f);
+      ui.transform.SetAsLastSibling();
     }
 
     public void AddToHand(CardView ui) {
