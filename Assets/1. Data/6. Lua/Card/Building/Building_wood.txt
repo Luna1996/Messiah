@@ -1,0 +1,21 @@
+Building_wood= class(CardBase,"Building_wood")
+local this = Building_wood
+
+function this:new()
+  self.cardView = nil
+  self.name = "采石场"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "开采石材的场所"
+  self.boundingCard={"BasicWood01","BasicWood01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={2,0,2,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

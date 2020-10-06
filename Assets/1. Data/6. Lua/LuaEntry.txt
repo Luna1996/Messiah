@@ -6,3 +6,5 @@ require("Class")
 require("GlobalDefine")
 require("CardBase")
 require("GameDataBase")
+
+require('effect/ResourceModifier')

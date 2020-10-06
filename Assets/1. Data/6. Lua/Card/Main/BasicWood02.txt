@@ -1,0 +1,19 @@
+BasicWood02 = class(CardBase,'BasicWood02')
+local this = BasicWood02
+
+function this:new()
+  self.cardView = nil
+  self.name = "采石2"
+  --self.frame = "CardFrame_0"
+  self.image = "采石2"
+  self.desc = "消耗2点人力 获得3点石材"
+
+  self.inHand = false
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

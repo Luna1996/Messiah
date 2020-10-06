@@ -1,0 +1,20 @@
+Building_weather= class(CardBase,"Building_weather")
+local this = Building_weather
+
+function this:new()
+  self.cardView = nil
+  self.name = "气象站"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "可以查看下一次事件" ---
+  self.boundingBuff={} --可以点击事件牌组查看下一次事件
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={10,5,8,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

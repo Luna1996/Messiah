@@ -9,8 +9,8 @@ namespace Messiah.Logic {
     public List<string> graveyardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 3;
-    public int keepNum = 3;
+    public int drawNum = 6;
+    public int keepNum = 10;
 
     public List<string> buildingDeck = new List<string>();
     public List<string> buildingAvaliable = new List<string>();
@@ -26,7 +26,10 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      for (int i = 0; i < 20; i++) gd.build.Add("CardBase");
+      string[] InitBuild = {"BasicMine01","BasicMine01","BasicMine01","BasicWood01","BasicWood01"};
+      foreach (string element in InitBuild){
+        gd.build.Add(element);
+      }
       Shuffle(gd.build, gd.drawPile);
       return gd;
     }

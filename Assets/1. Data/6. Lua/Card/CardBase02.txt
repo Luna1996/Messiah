@@ -1,5 +1,5 @@
-CardBase02 = class(Object, "CardBase02")
-local this = CardBase
+CardBase02 = class(CardBase, "CardBase02")
+local this = CardBase02
 
 function this:new()
   self.cardView = nil

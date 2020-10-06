@@ -1,0 +1,28 @@
+ResourceReviser = class()
+local this = ResourceReviser
+
+function this:new(resourceName,mode,num)
+  self.resourceName = resourceName
+  self.mode = mode
+  self.num = num
+end
+
+function this:currentChangeRevise()
+  if self.resourceName==LuaGameData.currentChange.resourceName then
+    if self.mode=="plus" then
+      LuaGameData.currentChange.num = LuaGameData.currentChange.num + self.num
+    elseif self.mode=='mul' then
+      LuaGameData.currentChange.num = math.floor(LuaGameData.currentChange.num * self.num)
+    end
+  end
+end
+
+function this:apply()
+  self.slot1 = slot(self, self.currentChangeRevise)
+  EventService.Listen(GameEvent.ResourceModify, self.slot1)
+end
+
+function this:destroy()
+  self.slot1 = slot(self, self.currentChangeRevise)
+  EventService.Ignore(GameEvent.ResourceModify, self.slot1)
+end

@@ -1,0 +1,20 @@
+Building_mine_21 = class(CardBase,"Building_mine_21")
+local this = Building_mine_21
+
+function this:new()
+  self.cardView = nil
+  self.name = "连轴运转"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "所有资源卡获得装填" --装填：打出时再抽一张牌
+  self.inHand = false
+  self.boundingBuff={} --即时生效 使build内所有资源卡获得装填
+  self.buildingConsumption={8,10,6,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

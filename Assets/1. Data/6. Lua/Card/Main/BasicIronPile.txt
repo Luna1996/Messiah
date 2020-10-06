@@ -1,0 +1,19 @@
+BasicIronPile = class(CardBase,'BasicIronPile')
+local this = BasicIronPile
+
+function this:new()
+  self.cardView = nil
+  self.name = "废铁堆"
+  --self.frame = "CardFrame_0"
+  self.image = "废铁堆1"
+  self.desc = "消耗1点人力 获得1点钢铁 可以使用5次"
+  self.usageAmount = 5
+  self.inHand = false
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

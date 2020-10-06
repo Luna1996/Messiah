@@ -1,0 +1,19 @@
+BasicWoodPile = class(CardBase,'BasicWoodPile')
+local this = BasicWoodPile
+
+function this:new()
+  self.cardView = nil
+  self.name = "石头堆"
+  --self.frame = "CardFrame_0"
+  self.image = "乱石堆1"
+  self.desc = "消耗1点人力 获得1点石材 可以使用3次"
+  self.usageAmount = 3
+  self.inHand = false
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

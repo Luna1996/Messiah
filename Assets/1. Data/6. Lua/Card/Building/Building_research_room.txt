@@ -1,0 +1,20 @@
+Building_research_room= class(CardBase,"Building_research_room")
+local this = Building_research_room
+
+function this:new()
+  self.cardView = nil
+  self.name = "研究室"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "增加1张科研牌" ---卡组中加入1张研究卡
+  self.boundingCard={"Research"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={3,3,2,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

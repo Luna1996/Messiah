@@ -1,0 +1,20 @@
+Building_mine= class(CardBase,"Building_mine")
+local this = Building_mine
+
+function this:new()
+  self.cardView = nil
+  self.name = "矿场"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "开采矿石的场所"
+  self.boundingCard={"BasicMine01","BasicMine01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={3,2,3,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

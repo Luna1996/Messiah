@@ -1,15 +1,15 @@
-BasicMine01 = class(CardBase,'BasicMine01')
-local this = BasicMine01
+BasicIron01 = class(CardBase,'BasicIron01')
+local this = BasicIron01
 
 function this:new()
   self.cardView = nil
-  self.name = "采矿1"
+  self.name = "炼钢1"
   --self.frame = "CardFrame_0"
-  self.image = "采矿1"
-  self.desc = "消耗1点人力 获得1点矿石"
+  self.image = "炼钢1"
+  self.desc = "消耗1点人力 获得1点钢铁"
 
   self.inHand = false
-  self.e1 = ResourceModifier("Mine",2)
+  self.e1 = ResourceModifier("Iron",2)
   self.cost = LaborConsumer
 end
 
@@ -19,7 +19,7 @@ function this:onPlay()
   --Debug.Log(GameData.drawPile.Count)
   --Debug.Log(LuaGameData.Resource.Mine)
   --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1:apply()
+  self.e1.apply()
   Debug.Log(LuaGameData.Resource.Mine)
 end
 

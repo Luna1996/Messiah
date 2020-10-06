@@ -1,0 +1,20 @@
+Building_lighthouse_12 = class(CardBase,"Building_lighthouse_12")
+local this = Building_lighthouse_12
+
+function this:new()
+  self.cardView = nil
+  self.name = "超导管线"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "降低灯塔的矿石消耗"
+  self.inHand = false
+  self.boundingBuff={} --灯塔矿石消耗-30%
+  self.buildingConsumption={5,5,5,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

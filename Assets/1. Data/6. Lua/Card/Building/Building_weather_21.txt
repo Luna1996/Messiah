@@ -1,0 +1,20 @@
+Building_weather_21= class(CardBase,"Building_weather_21")
+local this = Building_weather_21
+
+function this:new()
+  self.cardView = nil
+  self.name = "天气控制"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "可以查看下3张事件卡 并更改顺序" ---
+  self.boundingBuff={} --可以点击事件牌组查看下一次事件
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={6,18,5,4}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

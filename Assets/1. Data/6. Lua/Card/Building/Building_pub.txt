@@ -1,0 +1,20 @@
+Building_pub= class(CardBase,"Building_pub")
+local this = Building_pub
+
+function this:new()
+  self.cardView = nil
+  self.name = "酒吧"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "喝喝小酒 释放压力"
+  self.boundingBuff={}  --每回合降低3点压力值
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={20,0,10,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

@@ -1,0 +1,19 @@
+Curse_creed = class(CardBase,'Curse_creed')
+local this = Curse_creed
+
+function this:new()
+  self.cardView = nil
+  self.name = "诅咒-贪婪"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "此卡在手牌中时，打出的每张资源牌将复制上一张的效果"
+  --self.usageAmount = 1
+  self.inHand = false
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

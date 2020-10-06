@@ -1,0 +1,21 @@
+Building_lighthouse_02 = class(CardBase,"Building_lighthouse_02")
+local this = Building_lighthouse_02
+
+function this:new()
+  self.cardView = nil
+  self.name = "激光器过载"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "可以让灯塔暂时过载 增加亮度"
+  self.inHand = false
+  --self.boundingBuff={} --提高灯塔亮度上限的buff
+  self.boundingCard={"Lighthouse_overload"}
+  self.buildingConsumption={6,6,4,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

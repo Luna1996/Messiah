@@ -1,0 +1,19 @@
+Building_mush_11= class(CardBase,"Building_mush_11")
+local this = Building_mush_11
+
+function this:new()
+  self.cardView = nil
+  self.name = "孢子克隆实验室"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "可以培植巨型真菌"
+  self.inHand = false
+  self.boundingCard={"Mush_02","Mush_02"}
+  self.buildingConsumption={6,2,2,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

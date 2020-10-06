@@ -1,17 +1,41 @@
 GameDataBase = class()
 local this = GameDataBase
 
-local function DrawCard()
+local function InitDrawCard()
   local drawNum = GameData.drawNum
   -- 处理
+  Debug.Log(drawNum)
+  this:DrawCard(drawNum,true)
+end
 
-  for i = 0, drawNum - 1 do
-    HandView:AddCard(GameData.drawPile[i])
-    GameData.drawPile:RemoveAt(0)
+function this:DrawCard(num,init)
+  if init==nil then
+    init=false
+  end
+  --Debug.Log(num)
+  local pileLen = GameData.drawPile.Count
+  --Debug.Log(num)
+  if num> pileLen then
+    --Debug.Log('11111111')
+    self:DrawCard(pileLen,false)
+    if init then
+      while GameData.graveyardPile.Count >0 do
+        local n = math.random(0,GameData.graveyardPile.Count-1)
+        GameData.drawPile.Add(GameData.graveyardPile[n])
+        GameData.graveyardPile:RemoveAt(n)
+      end
+      self:DrawCard(num-pileLen,false)
+    end
+  else
+    for i=0,num-1 do
+      HandView:AddCard(GameData.drawPile[0])
+      GameData.drawPile:RemoveAt(0)
+    end
   end
 end
 
 function this:new()
+  self.CurrentRound = 0
   self.Resource = {}
   self.Resource.Mine  = 0
   self.Resource.Iron = 0
@@ -51,36 +75,13 @@ function this:new()
   self.BuffTrigger.RoundBegin={}
   self.BuffTrigger.RoundEnd={}
 
-  EventService.Listen(GameEvent.EnterMainPhase, DrawCard)
+  EventService.Listen(GameEvent.EnterMainPhase, InitDrawCard)
 end
-
------乱序数组-----
-function this:shuffle(t)
-  if type(t)~="table" then
-    return nil
-  end
-  local tab = {}
-  local index = 1
-  while #t ~= 0 do
-    local n = math.random(0,#t)
-    if t[n]~=nil then
-      tab[index] = t[n]
-      table.remove(t,n)
-      index = index +1
-    end
-  end
-  return tab
-end
-------------------
 
 function this:MineNFoodConsume()
   return  -----待修改 回合开始进行矿石和食物的消耗
 end
 
-function this:RenewDrawDeck() --回合开始 抽牌堆被抽空时 把弃牌堆洗牌后加入到抽牌堆 清空弃牌堆
-  self.inGame.DrawDeck = self.shuffle(self.inGame.RecycleDeck)
-  self.inGame.RecycleDeck={}
-end
 
 function this:NewBattle() --一场战斗开始
   self.inGame.DrawDeck = self.Build.Deck

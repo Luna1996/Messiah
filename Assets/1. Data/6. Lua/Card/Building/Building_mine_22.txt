@@ -1,0 +1,20 @@
+Building_mine_22 = class(CardBase,"Building_mine_22")
+local this = Building_mine_22
+
+function this:new()
+  self.cardView = nil
+  self.name = "源能切割"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "每打出1张资源卡额外消耗1点矿石，所有资源卡产量+2"
+  self.inHand = false
+  self.boundingBuff={} --即时生效 为牌组内所有资源卡增加上述效果
+  self.buildingConsumption={12,10,5,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

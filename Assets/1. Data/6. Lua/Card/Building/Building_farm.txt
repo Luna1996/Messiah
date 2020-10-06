@@ -1,0 +1,21 @@
+Building_farm= class(CardBase,"Building_farm")
+local this = Building_farm
+
+function this:new()
+  self.cardView = nil
+  self.name = "温室"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "更高质量的食物来源"
+  self.boundingCard={"BasicFarm01","BasicFarm01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={20,20,10,4}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

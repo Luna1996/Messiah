@@ -1,0 +1,21 @@
+Building_iron = class(CardBase,"Building_iron")
+local this = Building_iron
+
+function this:new()
+  self.cardView = nil
+  self.name = "钢铁厂"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "获取钢材的生产场所"
+  self.boundingCard={"BasicIron01","BasicIron01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={2,3,5,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

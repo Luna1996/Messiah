@@ -1,0 +1,20 @@
+Building_mine_11 = class(CardBase,"Building_mine_11")
+local this = Building_mine_11
+
+function this:new()
+  self.cardView = nil
+  self.name = "高炉升级"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "所有炼钢卡的资源产出+2"
+  self.inHand = false
+  self.boundingBuff={} --炼钢卡资源产出+2
+  self.buildingConsumption={4,8,5,3}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

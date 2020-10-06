@@ -1,0 +1,20 @@
+Building_house_11= class(CardBase,"Building_house_11")
+local this = Building_house_11
+
+function this:new()
+  self.cardView = nil
+  self.name = "房舍升级"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "住宅可容纳的人口上限+2"
+  --self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.inHand = false
+  self.boundingBuff={} ---住宅增加的人口上限数+2
+  self.buildingConsumption={4,1,2,1}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

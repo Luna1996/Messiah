@@ -1,0 +1,21 @@
+Building_house= class(CardBase,"Building_house")
+local this = Building_house
+
+function this:new()
+  self.cardView = nil
+  self.name = "民宅"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "普通的民宅，最多为5个居民提供庇护"
+  --self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.inHand = false
+  self.boundingBuff={}
+  self.buildingConsumption={2,0,2,1}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

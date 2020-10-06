@@ -1,25 +1,26 @@
-BasicMine01 = class(CardBase,'BasicMine01')
-local this = BasicMine01
+Mush_02 = class(CardBase,'Mush_02')
+local this = Mush_02
 
 function this:new()
   self.cardView = nil
-  self.name = "采矿1"
+  self.name = "巨型真菌"
   --self.frame = "CardFrame_0"
-  self.image = "采矿1"
-  self.desc = "消耗1点人力 获得1点矿石"
+  self.image = "巨型真菌"
+  self.desc = "消耗1点人力4回合 1点矿石，获得60点食物"
 
   self.inHand = false
-  self.e1 = ResourceModifier("Mine",2)
-  self.cost = LaborConsumer
+  --self.e1 = ResourceModifier("Iron",2)
+  --self.cost = LaborConsumer
 end
 
 
 function this:onPlay()
   self.cardView:Dissolve()
+  ---额外抽一张卡
   --Debug.Log(GameData.drawPile.Count)
   --Debug.Log(LuaGameData.Resource.Mine)
   --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1:apply()
+  self.e1.apply()
   Debug.Log(LuaGameData.Resource.Mine)
 end
 

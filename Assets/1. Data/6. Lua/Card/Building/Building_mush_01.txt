@@ -1,0 +1,19 @@
+Building_mush_01= class(CardBase,"Building_mush_01")
+local this = Building_mush_01
+
+function this:new()
+  self.cardView = nil
+  self.name = "蘑菇水培池"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "提高蘑菇农场的蘑菇卡等级"
+  self.inHand = false
+  self.boundingBuff={}  --Build内的所有的BasicMush01替换成BasicMush02
+  self.buildingConsumption={5,2,2,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end

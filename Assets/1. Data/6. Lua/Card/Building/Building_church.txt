@@ -1,0 +1,20 @@
+Building_church = class(CardBase,"Building_church")
+local this = Building_church
+
+function this:new()
+  self.cardView = nil
+  self.name = "教堂"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "建造教堂 收集居民信仰的力量 每回合每名居民提供1点信仰值"
+  self.usageAmount = 1
+  self.inHand = false
+  self.buildingConsumption = {10,0,5,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

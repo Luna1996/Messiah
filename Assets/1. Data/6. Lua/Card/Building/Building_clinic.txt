@@ -1,0 +1,22 @@
+Building_clinic = class(CardBase,"Building_clinic")
+local this = Building_clinic
+
+function this:new()
+  self.cardView = nil
+  self.name = "诊所"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "回合开始时，如果存在患者，则将1张临时的【看护】置入手牌，牌组中存在此卡时不会重复置入"
+  --self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.usageAmount = 1
+  self.inHand = false
+  self.boudingBuff={}
+  self.buildingConsumption={8,3,5,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

@@ -1,0 +1,20 @@
+Building_mine_23 = class(CardBase,"Building_mine_23")
+local this = Building_mine_22
+
+function this:new()
+  self.cardView = nil
+  self.name = "应急仓库"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "获得战时动员卡"
+  self.inHand = false
+  self.boundingCard={"Wartime"}
+  self.buildingConsumption={8,10,4,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+
