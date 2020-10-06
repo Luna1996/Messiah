@@ -1,0 +1,17 @@
+BasicMine01 = class(CardBase)
+local this = BasicMine01
+
+function this:new()
+  self.cardView = nil
+  self.name = "采矿1111"
+  self.frame = "CardFrame_0"
+  self.image = "placeholder"
+  self.desc = "采矿卡test"
+
+  self.inHand = false
+end
+
+function this:spell()
+  self.cost.apply()
+  self.effect.apply()
+end
