@@ -23,6 +23,8 @@ namespace Messiah.UI {
       await System.Threading.Tasks.Task.Delay(500);
       if (GameCore.userData.currentGameData == null)
         GameCore.userData.currentGameData = GameData.NewGameData();
+      LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
+      GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
   }
 }

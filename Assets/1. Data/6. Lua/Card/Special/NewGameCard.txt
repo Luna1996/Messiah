@@ -14,5 +14,5 @@ end
 function this:onPlay()
   self.cardView:Dissolve()
   HandView:RemoveHands()
-  ViewManager:SwitchToInGameView()
+  GameCore.FAM:Fire(GameStateTrigger.Login);
 end

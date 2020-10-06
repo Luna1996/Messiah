@@ -6,9 +6,3 @@ require("Class")
 require("GlobalDefine")
 require("CardBase")
 require("GameDataBase")
-
-local function t(a)
-  CS.UnityEngine.Debug.Log(a)
-end
-
-EventService.Listen(GameEvent.ResourceModify, t)

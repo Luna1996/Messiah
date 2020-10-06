@@ -17,6 +17,7 @@ namespace Messiah.Utility {
       if (actions.TryGetValue(id, out callbacks)) {
         var action = callbacks as Action;
         action += (Action)(callback as Delegate);
+        actions[id] = action;
       } else
         actions.Add(id, callback);
     }
@@ -34,7 +35,7 @@ namespace Messiah.Utility {
         action -= callback;
         if (action == null) {
           actions.Remove(id);
-        }
+        } else { actions[id] = action; }
       }
     }
     #endregion
@@ -51,6 +52,7 @@ namespace Messiah.Utility {
       if (actions.TryGetValue(id, out callbacks)) {
         var action = callbacks as Action<A>;
         action += callback;
+        actions[id] = action;
       } else
         actions.Add(id, callback);
     }
@@ -67,6 +69,7 @@ namespace Messiah.Utility {
         action -= callback;
         if (action == null)
           actions.Remove(id);
+        else actions[id] = action;
       }
     }
     #endregion

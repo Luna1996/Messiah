@@ -57,6 +57,8 @@ namespace Messiah.UI {
     }
 
     public void AddCard(string card) {
+      if (Logic.GameCoreNS.GameCore.userData.currentGameData != null)
+        Logic.GameCoreNS.GameCore.userData.currentGameData.hands.Add(card);
       var clone = Instantiate(cardPrefab, transData.cardgen, Quaternion.identity, transform);
       clone.name = hands.Count.ToString();
       var cardui = clone.GetComponent<CardView>();
@@ -77,6 +79,8 @@ namespace Messiah.UI {
 
       var cardui = hands[i];
       hands.RemoveAt(i);
+      if (Logic.GameCoreNS.GameCore.userData.currentGameData != null)
+        Logic.GameCoreNS.GameCore.userData.currentGameData.hands.RemoveAt(i);
 
       if (cardui != null) {
         cardui.canPlay = false;

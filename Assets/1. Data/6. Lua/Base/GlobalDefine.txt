@@ -3,9 +3,13 @@ GameCore = CS.Messiah.Logic.GameCoreNS.GameCore
 EventService = CS.Messiah.Utility.EventService
 GameEvent = CS.Messiah.Logic.GameCoreNS.GameEvent
 PrefabManager = CS.Messiah.Logic.PrefabManager
+GameStateTrigger = CS.Messiah.Logic.GameCoreNS.GameStateTrigger
+Debug = CS.UnityEngine.Debug
 
 -- instance class, set by csharp
 AppRoot = nil
 ViewManager = nil
 MessiahView = nil
 HandView = nil
+GameData = nil
+LuaGameData = nil

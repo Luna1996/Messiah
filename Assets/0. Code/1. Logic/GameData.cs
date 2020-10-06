@@ -4,28 +4,43 @@ namespace Messiah.Logic {
 
   [Serializable]
   public class GameData {
-    public List<string> build;
-    public List<string> drawPile;
-    public List<string> graveyardPile;
-    public List<string> exilePile;
-    public List<string> hands;
+    public List<string> build = new List<string>();
+    public List<string> drawPile = new List<string>();
+    public List<string> graveyardPile = new List<string>();
+    public List<string> exilePile = new List<string>();
+    public List<string> hands = new List<string>();
+    public int drawNum = 3;
+    public int keepNum = 3;
 
-    public List<string> buildingDeck;
-    public List<string> buildingAvaliable;
-    public List<string> buildingAcquired;
+    public List<string> buildingDeck = new List<string>();
+    public List<string> buildingAvaliable = new List<string>();
+    public List<string> buildingAcquired = new List<string>();
 
-    public string phase;
-    public List<string> eventDeck;
-    public List<string> eventStack;
+    public string phase = "start";
+    public List<string> eventDeck = new List<string>();
+    public List<string> eventStack = new List<string>();
 
-    public List<string> buf;
-    public List<string> relic;
-    public List<int> resources;
+    public List<string> buf = new List<string>();
+    public List<string> relic = new List<string>();
+    public List<int> resources = new List<int>();
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      gd.build = new List<string>();
+      for (int i = 0; i < 20; i++) gd.build.Add("CardBase");
+      Shuffle(gd.build, gd.drawPile);
       return gd;
     }
+
+    public static void Shuffle<T>(List<T> src, List<T> dist) {
+      dist.Clear();
+      dist.AddRange(src);
+      for (int i = dist.Count - 1; i >= 1; i--) {
+        var j = UnityEngine.Random.Range(0, i + 1);
+        var t = dist[j];
+        dist[j] = dist[i];
+        dist[i] = t;
+      }
+    }
+
   }
 }

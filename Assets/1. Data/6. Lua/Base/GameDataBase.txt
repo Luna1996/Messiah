@@ -1,6 +1,16 @@
 GameDataBase = class()
 local this = GameDataBase
 
+local function DrawCard()
+  local drawNum = GameData.drawNum
+  -- 处理
+
+  for i = 0, drawNum - 1 do
+    HandView:AddCard(GameData.drawPile[i])
+    GameData.drawPile:RemoveAt(0)
+  end
+end
+
 function this:new()
   self.Resource = {}
   self.Resource.Mine  = 0
@@ -41,8 +51,7 @@ function this:new()
   self.BuffTrigger.RoundBegin={}
   self.BuffTrigger.RoundEnd={}
 
-
-
+  EventService.Listen(GameEvent.EnterMainPhase, DrawCard)
 end
 
 -----乱序数组-----
@@ -88,4 +97,5 @@ function this:NewRound() --一回合开始
   DrawCard(self.DrawNum, true)
 end
 
-GDB = GameDataBase()
+local function SwitchInGame()LuaGameData = GameDataBase()end
+EventService.Listen(GameEvent.EnterInGameState, SwitchInGame)
