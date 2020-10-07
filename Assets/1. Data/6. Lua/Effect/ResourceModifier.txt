@@ -23,7 +23,7 @@ function this:apply()
     if (result<0) then
       sufficient = false
     else
-      LuaGameData.Resource[resourceName] = LuaGameData.Resource[resourceName] + LuaGameData.currentChange.num
+      LuaGameData.Resource[resourceName] = LuaGameData.Resource[resourceName] + LuaGameData.currentChange.amount
     end
   end
   --EventService.Notify(GameEvent.ResourceModify)
