@@ -1,0 +1,12 @@
+Relic307 = Relic()
+local this = Relic307
+this.ID=307
+this.name='暴食之拥'
+this.desc='食物产出翻倍，其他种类资源产出-30%'
+this.rare='pandora'
+this.icon=nil
+
+function this.apply()
+  --食物产出翻倍，其他种类资源产出-30%
+end
+

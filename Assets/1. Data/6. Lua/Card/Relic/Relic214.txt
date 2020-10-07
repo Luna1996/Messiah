@@ -1,0 +1,13 @@
+Relic214 = Relic()
+local this = Relic214
+this.ID=214
+this.name='晨会制度'
+this.desc='抽牌数和手牌保留上限+1'
+this.rare='rare'
+this.icon=nil
+
+function this.apply()
+  --抽牌数和手牌保留上限+1
+
+end
+

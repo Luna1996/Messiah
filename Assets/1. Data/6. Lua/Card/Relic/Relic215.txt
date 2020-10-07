@@ -1,0 +1,13 @@
+Relic215 = Relic()
+local this = Relic215
+this.ID=215
+this.name='工作号角'
+this.desc='抽牌数+2 手牌保留上限变为0'
+this.rare='rare'
+this.icon=nil
+
+function this.apply()
+  --抽牌数+2 手牌保留上限变为0
+
+end
+

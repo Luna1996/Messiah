@@ -1,0 +1,13 @@
+Relic211 = Relic()
+local this = Relic211
+this.ID=211
+this.name='技术使用主义'
+this.desc='使用科技卡时，从牌组中使用1张资源卡'
+this.rare='rare'
+this.icon=nil
+
+function this.apply()
+  --使用科技卡时，从牌组中使用1张资源卡
+
+end
+

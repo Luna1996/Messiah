@@ -1,0 +1,11 @@
+Relic311 = Relic()
+local this = Relic311
+this.ID=311
+this.name='深渊赠礼'
+this.desc='随机获得3张手牌'
+this.rare='pandora'
+this.icon=nil
+
+function this.apply()
+  --随机获得3张手牌
+end
