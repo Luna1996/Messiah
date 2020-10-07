@@ -1,0 +1,73 @@
+-------------------------------------------
+-- Event1401
+
+
+local states ={}
+
+states.a = {
+  name = "活体实验1",
+  desc = "我要做实验，需要资源",
+  choices = {"给你","不给"},
+  }
+
+states.b  = {
+  name = "活体实验2",
+  desc = "我还要做实验，需要资源"
+  choices = {"给你","不给"},
+}
+
+states.c  = {
+  name = "活体实验3",
+  desc = "受到抵制，继续吗",
+  choices = {"继续","不继续"},
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --判断资源满足 
+        --调用给奖励的菜单接口 奖励池子11111
+        --return states.b
+      --判断资源不满足
+        --调用弹对话的接口 text= “你坏坏！“
+      return nil
+
+    elseif choice==self.choices[2] then
+      --调用弹对话的接口 text= "你坏坏！"
+      return nil
+    end
+end
+
+
+function states.b:choose(choice)
+  if choice == self.choices[1] then
+    --判断资源满足 
+      --调用给奖励的菜单接口 奖励池子11111
+      --return states.c
+    --判断资源不满足
+      --调用弹对话的接口 text= “你坏坏！“
+    return nil
+
+  elseif choice==self.choices[2] then
+    --调用弹对话的接口 text= "你坏坏！"
+    return nil
+  end
+end
+
+function states.c:choose(choice)
+  if choice == self.choices[1] then
+    --判断资源满足 
+      --调用给奖励的菜单接口 奖励池子11111
+    --判断资源不满足
+      --调用弹对话的接口 text= “你坏坏！“
+    return nil
+
+  elseif choice==self.choices[2] then
+    --调用弹对话的接口 text= "你坏坏！"
+    return nil
+  end
+end
+
+
+EventExample = Event(states.a)
+EventExample.states = {}
+-------------------------------------
