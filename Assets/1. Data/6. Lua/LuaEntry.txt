@@ -7,4 +7,5 @@ require("GlobalDefine")
 require("CardBase")
 require("GameDataBase")
 
-require('effect/ResourceModifier')
+require('Effect/ResourceModifier')
+require('Event/Event')
