@@ -1,0 +1,15 @@
+DrawCard = class(CardBase, "DrawCard")
+Debug.Log("FUCK")
+local this = DrawCard
+local i = 0
+
+function this:new()
+  i = i + 1 
+  self.name = i
+  self.desc = "抽一张牌"
+end
+
+function this:onPlay()
+  GameManager.DrawCard()
+  GameManager.Discard(self)
+end

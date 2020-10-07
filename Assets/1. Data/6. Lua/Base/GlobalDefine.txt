@@ -4,6 +4,7 @@ EventService = CS.Messiah.Utility.EventService
 GameEvent = CS.Messiah.Logic.GameCoreNS.GameEvent
 PrefabManager = CS.Messiah.Logic.PrefabManager
 GameStateTrigger = CS.Messiah.Logic.GameCoreNS.GameStateTrigger
+GameManager = CS.Messiah.Logic.GameManager
 Debug = CS.UnityEngine.Debug
 
 -- instance class, set by csharp

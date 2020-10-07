@@ -8,6 +8,7 @@ namespace Messiah.UI {
 
     async void Start() {
       DontDestroyOnLoad(gameObject);
+      AutoLogin();
 
 #if UNITY_EDITOR
       gameObject.ToggleSiblings(false);
@@ -22,16 +23,12 @@ namespace Messiah.UI {
       await viewManager.Init();
 
       LuaManager.lua.Global.Set("AppRoot", this);
-
-      AutoLogin();
-      // if (GameCore.userData != null && GameCore.userData.currentGameData != null)
-      //   GameCore.FAM.Fire(GameStateTrigger.FoundLastGameData);
-      // else
-      //   GameCore.FAM.Fire(GameStateTrigger.NoLastGameData);
     }
 
     void AutoLogin() {
       GameCore.userData = UserData.GetLastUserData();
+      if (GameCore.userData == null)
+        UserData.LocalLogin("localuser");
     }
 
 

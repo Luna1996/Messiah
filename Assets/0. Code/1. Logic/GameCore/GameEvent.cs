@@ -13,6 +13,12 @@ namespace Messiah.Logic.GameCoreNS {
     EnterEndingPhase,
     ExitEndingPhase,
 
-    ResourceModify, 
+    ResourceModify,
+
+    Game_DrawCard,
+    Game_MaxWorkerChanged,
+    Game_IdleWorkerChanged,
+    Game_OccupiedWorkerChanged,
+    Game_SickWorkerChanged,
   }
 }

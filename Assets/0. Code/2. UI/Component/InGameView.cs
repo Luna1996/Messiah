@@ -16,6 +16,12 @@ namespace Messiah.UI {
     HandView handView;
 
     void Awake() {
+      if (GameCore.userData.currentGameData == null) {
+        var gameData = GameData.NewGameData();
+        GameCore.userData.currentGameData = gameData;
+        Logic.GameManager.gameData = gameData;
+      }
+      LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
       handView = GetComponentInChildren<HandView>();
       top = (RectTransform)transform.Find("TopBar");
       topY = top.anchoredPosition.y;
@@ -29,9 +35,6 @@ namespace Messiah.UI {
       top.DOAnchorPosY(0, 0.5f);
       bottom.DOAnchorPosY(0, 0.5f);
       await System.Threading.Tasks.Task.Delay(500);
-      if (GameCore.userData.currentGameData == null)
-        GameCore.userData.currentGameData = GameData.NewGameData();
-      LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
 
@@ -42,6 +45,10 @@ namespace Messiah.UI {
       bottom.DOAnchorPosY(bottomY, 0.5f);
       await System.Threading.Tasks.Task.Delay(500);
       Destroy(gameObject);
+    }
+
+    public void NextTurn() {
+      GameManager.NextTurn();
     }
   }
 }

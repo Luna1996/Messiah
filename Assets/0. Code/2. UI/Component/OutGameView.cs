@@ -10,9 +10,10 @@ namespace Messiah.UI {
 
     AlphaEffect effect;
 
-    void Start() {
+    public void Init() {
       effect = GetComponent<AlphaEffect>();
-      if (GameCore.userData?.currentGameData != null)
+      newGame.SetActive(true);
+      if (GameCore.userData.currentGameData != null)
         oldGame.SetActive(true);
     }
 

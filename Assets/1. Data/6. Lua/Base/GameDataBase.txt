@@ -4,34 +4,7 @@ local this = GameDataBase
 local function InitDrawCard()
   local drawNum = GameData.drawNum
   -- 处理
-  Debug.Log(drawNum)
-  this:DrawCard(drawNum,true)
-end
-
-function this:DrawCard(num,init)
-  if init==nil then
-    init=false
-  end
-  --Debug.Log(num)
-  local pileLen = GameData.drawPile.Count
-  --Debug.Log(num)
-  if num> pileLen then
-    --Debug.Log('11111111')
-    self:DrawCard(pileLen,false)
-    if init then
-      while GameData.graveyardPile.Count >0 do
-        local n = math.random(0,GameData.graveyardPile.Count-1)
-        GameData.drawPile.Add(GameData.graveyardPile[n])
-        GameData.graveyardPile:RemoveAt(n)
-      end
-      self:DrawCard(num-pileLen,false)
-    end
-  else
-    for i=0,num-1 do
-      HandView:AddCard(GameData.drawPile[0])
-      GameData.drawPile:RemoveAt(0)
-    end
-  end
+  GameManager.DrawCard(drawNum)
 end
 
 function this:new()

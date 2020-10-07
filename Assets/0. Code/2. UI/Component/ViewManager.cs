@@ -19,8 +19,11 @@ namespace Messiah.UI {
       EventService.Listen(GameEvent.EnterOutGameState, SwitchToOutGameView);
       messiah = GetComponentInChildren<MessiahView>();
       outGameView = GetComponentInChildren<OutGameView>();
+      Logic.GameManager.viewManager = this;
+      Logic.GameManager.messiahView = messiah;
       Logic.LuaManager.lua.Global.Set("ViewManager", this);
       Logic.LuaManager.lua.Global.Set("MessiahView", messiah);
+      outGameView.Init();
       await Task.Delay(0);
     }
 

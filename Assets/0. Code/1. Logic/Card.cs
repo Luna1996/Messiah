@@ -4,6 +4,7 @@ namespace Messiah.Logic {
 
   public interface Card {
     CardView cardView { get; set; }
+    string className { get; set; }
     string name { get; set; }
     string frame { get; set; }
     string image { get; set; }

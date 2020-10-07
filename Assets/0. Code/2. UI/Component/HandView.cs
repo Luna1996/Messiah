@@ -20,33 +20,19 @@ namespace Messiah.UI {
     public FillBar[] fillBar;
 
     [NonSerialized]
-    GameObject cardPrefab;
-
-    [NonSerialized]
     public List<CardView> hands;
+
+    GameData gameData;
 
     void Reset() {
       UpdateArcData();
     }
 
-    async void Start() {
+    void Start() {
+      Logic.GameManager.handView = this;
       UpdateArcData();
       hands = new List<CardView>();
-      cardPrefab = await Addressables.LoadAssetAsync<GameObject>("Assets/1. Data/3. Prefab/Card.prefab").Task;
-      // DrawFiveCard();
-    }
-
-    public async Task SetHands(List<string> cards) {
-      await RemoveHands();
-
-      foreach (var card in cards) {
-        if (string.IsNullOrEmpty(card))
-          AddEmpty();
-        else {
-          AddCard(card);
-          await Task.Delay(100);
-        }
-      }
+      gameData = Logic.GameCoreNS.GameCore.userData.currentGameData;
     }
 
     public async Task RemoveHands() {
@@ -56,10 +42,14 @@ namespace Messiah.UI {
       }
     }
 
-    public void AddCard(string card) {
-      if (Logic.GameCoreNS.GameCore.userData?.currentGameData != null)
-        Logic.GameCoreNS.GameCore.userData.currentGameData.hands.Add(card);
-      var clone = Instantiate(cardPrefab, transData.cardgen, Quaternion.identity, transform);
+    public void AddCard(string card, CardLocation from = CardLocation.DrawPile) {
+      Logic.GameCoreNS.GameCore.userData.currentGameData.hands.Add(card);
+      var clone = Logic.PrefabManager.Instanciate("Card", transform);
+      Vector3 pos, scale;
+      Quaternion quat;
+      GameManager.cardOnFly.GetLoc(from, out pos, out scale, out quat);
+      clone.transform.position = pos;
+      clone.transform.rotation = quat;
       clone.name = hands.Count.ToString();
       var cardui = clone.GetComponent<CardView>();
       cardui.canPlay = false;
@@ -69,31 +59,24 @@ namespace Messiah.UI {
       RestoreCardPosition();
     }
 
-    public void AddEmpty() {
-      hands.Add(null);
-      RestoreCardPosition();
-    }
-
     public void RemoveCard(int i) {
       if (hands.Count == 0) return;
 
       var cardui = hands[i];
       hands.RemoveAt(i);
-      if (Logic.GameCoreNS.GameCore.userData?.currentGameData != null)
-        Logic.GameCoreNS.GameCore.userData.currentGameData.hands.RemoveAt(i);
-
-      if (cardui != null) {
-        cardui.canPlay = false;
-
-        cardui.gameObject.name = "-";
-        cardui.transform.SetAsFirstSibling();
-        cardui.transform.DOMove(transData.cardgen + 2 * transform.forward - 1.5f * transform.up, 0.5f);
-        cardui.transform.DORotateQuaternion(Quaternion.identity, 0.5f).OnComplete(() => {
-          Destroy(cardui.gameObject);
-        });
-      }
-
+      Logic.GameCoreNS.GameCore.userData.currentGameData.hands.RemoveAt(i);
       if (hands.Count > 0) RestoreCardPosition();
+    }
+
+    public void RemoveCard(Card card) {
+      int i = 0;
+      while (i < hands.Count) {
+        if (hands[i] == card.cardView) {
+          RemoveCard(i);
+          return;
+        }
+        i++;
+      }
     }
 
     public void RestoreCardPosition(float duration = 0.5f) {
