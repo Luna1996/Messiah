@@ -1,6 +1,5 @@
 namespace Messiah.UI {
   using System;
-  using System.Collections;
   using UnityEngine;
   using DG.Tweening;
   using UnityEngine.UI;

@@ -27,6 +27,7 @@ namespace Messiah.UI {
       topY = top.anchoredPosition.y;
       bottom = (RectTransform)transform.Find("BottomBar");
       bottomY = bottom.anchoredPosition.y;
+      
     }
 
     public async Task Show() {

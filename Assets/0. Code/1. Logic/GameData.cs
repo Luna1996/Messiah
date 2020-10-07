@@ -6,6 +6,8 @@ namespace Messiah.Logic {
 
   [Serializable]
   public class GameData {
+    public int numberOfTurn = 1;
+
     public List<string> build;
     public List<string> drawPile;
     public List<string> discardPile = new List<string>();

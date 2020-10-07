@@ -30,7 +30,5 @@ namespace Messiah.UI {
       if (GameCore.userData == null)
         UserData.LocalLogin("localuser");
     }
-
-
   }
 }

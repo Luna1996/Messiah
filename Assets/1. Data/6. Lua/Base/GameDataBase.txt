@@ -4,7 +4,7 @@ local this = GameDataBase
 local function InitDrawCard()
   local drawNum = GameData.drawNum
   -- 处理
-  GameManager.DrawCard(drawNum)
+  return GameManager.DrawCard(drawNum)
 end
 
 function this:new()
@@ -48,7 +48,7 @@ function this:new()
   self.BuffTrigger.RoundBegin={}
   self.BuffTrigger.RoundEnd={}
 
-  EventService.Listen(GameEvent.EnterMainPhase, InitDrawCard)
+  EventService.ListenAsync(GameEvent.EnterMainPhase, InitDrawCard)
 end
 
 function this:MineNFoodConsume()

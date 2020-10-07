@@ -1,5 +1,4 @@
 DrawCard = class(CardBase, "DrawCard")
-Debug.Log("FUCK")
 local this = DrawCard
 local i = 0
 

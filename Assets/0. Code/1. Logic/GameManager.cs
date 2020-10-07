@@ -30,9 +30,13 @@ namespace Messiah.Logic {
       SendCardTo(card.cardView, CardLocation.ExilePile);
     }
 
-    public static async void DrawCard(int num = 1) {
-      if (num != 1) for (int i = 0; i < num; i++) DrawCard();
-      else {
+    public static async Task DrawCard(int num = 1) {
+      if (num != 1) {
+        for (int i = 0; i < num; i++) {
+          await DrawCard();
+          await Task.Delay(100);
+        }
+      } else {
         if (gameData.drawPile.Count == 0) {
           await RecycleDiscardPile();
         }
@@ -40,7 +44,6 @@ namespace Messiah.Logic {
           var card = gameData.drawPile[0];
           handView.AddCard(card);
           gameData.drawPile.RemoveAt(0);
-          await Task.Delay(200);
         }
       }
     }
