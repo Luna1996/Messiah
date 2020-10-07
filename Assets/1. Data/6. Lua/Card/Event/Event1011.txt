@@ -11,7 +11,8 @@ states.a = {
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --调用给奖励的菜单接口 奖励池子11111
+      --if GameData..food>10 then
+      --调用给奖励的菜单接口 奖励池子待定
       return nil
     elseif choice==self.choices[2] then
       --调用弹对话的接口 text= "你个辣鸡！"
@@ -19,6 +20,6 @@ function states.a:choose(choice)
     end
 end
 
-EventExample = Event(states.a)
-EventExample.states = {}
+Event1011 = Event(states.a)
+Event1011.states = {}
 -------------------------------------
