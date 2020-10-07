@@ -4,7 +4,7 @@ local this = Building_mush
 function this:new()
   self.cardView = nil
   self.name = "蘑菇农场"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "种植蘑菇 产出基本食物"
   self.boundingCard={"BasicMush01","BasicMush01"}

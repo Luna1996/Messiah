@@ -4,7 +4,7 @@ local this = Building_weather_21
 function this:new()
   self.cardView = nil
   self.name = "天气控制"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "可以查看下3张事件卡 并更改顺序" ---
   self.boundingBuff={} --可以点击事件牌组查看下一次事件

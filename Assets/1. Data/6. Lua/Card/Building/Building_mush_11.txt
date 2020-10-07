@@ -4,7 +4,7 @@ local this = Building_mush_11
 function this:new()
   self.cardView = nil
   self.name = "孢子克隆实验室"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "可以培植巨型真菌"
   self.inHand = false

@@ -4,8 +4,8 @@ local this = Tech_build_1
 function this:new()
   self.cardView = nil
   self.name = "中级建造"
-  --self.frame = "CardFrame_0"
-  --self.image = "残损义骸"
+  self.frame = "科技牌面"
+  self.image = "中级建造科技"
   self.desc = "消耗6科技点数 将【气象站】【预制构件房屋】【孢子克隆实验室】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_weather","Building_house_11","Building_mush_11"}
   self.inHand = false

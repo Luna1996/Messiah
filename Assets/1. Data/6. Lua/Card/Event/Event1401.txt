@@ -24,7 +24,7 @@ states.c  = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --判断资源满足 
+      --判断资源满足
         --调用给奖励的菜单接口 奖励池子11111
         --return states.b
       --判断资源不满足
@@ -40,7 +40,7 @@ end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
-    --判断资源满足 
+    --判断资源满足
       --调用给奖励的菜单接口 奖励池子11111
       --return states.c
     --判断资源不满足
@@ -55,7 +55,7 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    --判断资源满足 
+    --判断资源满足
       --调用给奖励的菜单接口 奖励池子11111
     --判断资源不满足
       --调用弹对话的接口 text= “你坏坏！“

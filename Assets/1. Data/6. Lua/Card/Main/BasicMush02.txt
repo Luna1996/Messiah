@@ -5,7 +5,7 @@ function this:new()
   self.cardView = nil
   self.name = "蘑菇培植2"
   --self.frame = "CardFrame_0"
-  self.image = "蘑菇培植1"
+  self.image = "蘑菇培植2"
   self.desc = "消耗2点人力2回合 获得30点食物"
 
   self.inHand = false

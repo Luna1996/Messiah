@@ -4,7 +4,7 @@ local this = Curse_sloth
 function this:new()
   self.cardView = nil
   self.name = "诅咒-怠惰"
-  --self.frame = "CardFrame_0"
+  self.frame = "诅咒牌面"
   self.image = "残损义骸"
   self.desc = "移除，自动打出，本回合你每打出1张手牌则随机丢弃1张手牌"
   --self.usageAmount = 1

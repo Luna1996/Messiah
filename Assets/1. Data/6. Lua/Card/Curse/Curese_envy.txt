@@ -4,7 +4,7 @@ local this = Curse_envy
 function this:new()
   self.cardView = nil
   self.name = "诅咒-嫉妒"
-  --self.frame = "CardFrame_0"
+  self.frame = "诅咒牌面"
   self.image = "残损义骸"
   self.desc = "无法被打出，此卡在手牌中时，无法连续打出相同类型的牌"
   --self.usageAmount = 1

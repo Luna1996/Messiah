@@ -4,7 +4,7 @@ local this = Curse_gluttony
 function this:new()
   self.cardView = nil
   self.name = "诅咒-暴食"
-  --self.frame = "CardFrame_0"
+  self.frame = "诅咒牌面"
   self.image = "残损义骸"
   self.desc = "消耗10点食物，抽1张牌"
   --self.usageAmount = 1

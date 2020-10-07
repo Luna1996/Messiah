@@ -4,7 +4,7 @@ local this = Curse_wrath
 function this:new()
   self.cardView = nil
   self.name = "诅咒-愤怒"
-  --self.frame = "CardFrame_0"
+  self.frame = "诅咒牌面"
   self.image = "残损义骸"
   self.desc = "无效果，无法打出，无能狂怒"
   --self.usageAmount = 1

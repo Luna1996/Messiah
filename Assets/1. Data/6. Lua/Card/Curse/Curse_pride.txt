@@ -4,7 +4,7 @@ local this = Curse_pride
 function this:new()
   self.cardView = nil
   self.name = "诅咒-傲慢"
-  --self.frame = "CardFrame_0"
+  self.frame = "诅咒牌面"
   self.image = "残损义骸"
   self.desc = "移除，自动打出，你的下2张资源卡失去效果"
   --self.usageAmount = 1

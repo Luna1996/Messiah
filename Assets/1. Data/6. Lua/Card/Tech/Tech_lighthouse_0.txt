@@ -3,9 +3,9 @@ local this = Tech_lighthouse_0
 
 function this:new()
   self.cardView = nil
-  self.name = "初级照明科技"
-  --self.frame = "CardFrame_0"
-  --self.image = "残损义骸"
+  self.name = "初级照明"
+  self.frame = "科技牌面"
+  self.image = "初级照明研究"
   self.desc = "消耗2科技点数 将【大功率激光器】【激光器过载】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_lighthouse_01","Building_lighthouse_02"}
   self.inHand = false

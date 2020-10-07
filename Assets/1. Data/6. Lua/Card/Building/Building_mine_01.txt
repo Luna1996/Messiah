@@ -4,7 +4,7 @@ local this = Building_mine_01
 function this:new()
   self.cardView = nil
   self.name = "改进矿机"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   self.image = "残损义骸"
   self.desc = "抉择：将牌组内的采矿/采石/炼钢卡提升1级" --从Basicxx01提升到Basicxx02
   self.inHand = false

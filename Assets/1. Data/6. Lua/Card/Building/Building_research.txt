@@ -4,7 +4,7 @@ local this = Building_research
 function this:new()
   self.cardView = nil
   self.name = "研究站"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "研究站 获得科技点数" ---卡组中加入2张研究卡和1张初始科技卡
   self.boundingCard={"Research","Research","TechTable"}

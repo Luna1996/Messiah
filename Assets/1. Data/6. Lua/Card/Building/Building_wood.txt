@@ -4,7 +4,7 @@ local this = Building_wood
 function this:new()
   self.cardView = nil
   self.name = "采石场"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "开采石材的场所"
   self.boundingCard={"BasicWood01","BasicWood01"}

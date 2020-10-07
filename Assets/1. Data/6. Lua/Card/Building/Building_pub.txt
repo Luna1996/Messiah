@@ -4,7 +4,7 @@ local this = Building_pub
 function this:new()
   self.cardView = nil
   self.name = "酒吧"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   --self.image = "残损义骸"
   self.desc = "喝喝小酒 释放压力"
   self.boundingBuff={}  --每回合降低3点压力值
