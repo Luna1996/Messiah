@@ -9,14 +9,10 @@ namespace Messiah.Logic.GameCoreNS {
     public static UserData userData;
 
     public static void Init() {
-      FAM = new StateMachine<GameState, GameStateTrigger>(GameState.InitState);
-
-      FAM.Configure(GameState.InitState)
-        .Permit(GameStateTrigger.NoLastGameData, GameState.OutGameState)
-        .Permit(GameStateTrigger.FoundLastGameData, GameState.InGameState);
+      FAM = new StateMachine<GameState, GameStateTrigger>(GameState.OutGameState);
 
       FAM.Configure(GameState.OutGameState)
-        .Permit(GameStateTrigger.Login, GameState.InGameState)
+        .Permit(GameStateTrigger.GameStart, GameState.InGameState)
         .OnEntry(() => EventService.Notify(GameEvent.EnterOutGameState))
         .OnExit(() => EventService.Notify(GameEvent.ExitOutGameState));
 

@@ -41,23 +41,23 @@ namespace Messiah.Utility {
     #endregion
 
     #region 一
-    public static void Notify<A>(Enum id, A a) {
+    public static void NotifyWithArg(Enum id, object a) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks))
-        (callbacks as Action<A>)(a);
+        (callbacks as Action<object>)(a);
     }
 
-    public static void Listen<A>(Enum id, Action<A> callback) {
+    public static void ListenWithArg(Enum id, Action<object> callback) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
-        var action = callbacks as Action<A>;
+        var action = callbacks as Action<object>;
         action += callback;
         actions[id] = action;
       } else
         actions.Add(id, callback);
     }
 
-    public static void Ignore<A>(Enum id, Action<A> callback = null) {
+    public static void IgnoreWithArg(Enum id, Action<object> callback = null) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         if (callback == null) {
@@ -65,7 +65,7 @@ namespace Messiah.Utility {
           return;
         }
 
-        var action = callbacks as Action<A>;
+        var action = callbacks as Action<object>;
         action -= callback;
         if (action == null)
           actions.Remove(id);

@@ -2,59 +2,50 @@ namespace Messiah.UI {
   using Logic.GameCoreNS;
   using System.Collections.Generic;
   using System.Threading.Tasks;
-  using TMPro;
   using UnityEngine;
+  using UnityEngine.UI;
   using UnityEngine.AddressableAssets;
   using Utility;
 
   public class ViewManager : MonoBehaviour {
-    HandView hand;
     MessiahView messiah;
+    OutGameView outGameView;
+    InGameView inGameView;
+
+    Text debugPanelText;
 
     public async Task Init() {
       EventService.Listen(GameEvent.EnterInGameState, SwitchToInGameView);
       EventService.Listen(GameEvent.EnterOutGameState, SwitchToOutGameView);
-      // 近镜头 聚焦灯塔。
-      hand = GetComponentInChildren<HandView>();
       messiah = GetComponentInChildren<MessiahView>();
+      outGameView = GetComponentInChildren<OutGameView>();
       Logic.LuaManager.lua.Global.Set("ViewManager", this);
       Logic.LuaManager.lua.Global.Set("MessiahView", messiah);
-      Logic.LuaManager.lua.Global.Set("HandView", hand);
       await Task.Delay(0);
     }
 
     public async void SwitchToOutGameView() {
-      // 生成手牌
+      await inGameView.Hide();
       await messiah.SwitchState(GameState.OutGameState);
-      List<string> cards = new List<string>();
-      if (GameCore.userData == null)
-        cards.Add("LoginCard");
-      else {
-        cards.Add("LogoutCard");
-        cards.Add(null);
-        cards.Add("NewGameCard");
-        if (GameCore.userData.currentGameData != null)
-          cards.Add("ContinueCard");
-      }
-      await hand.SetHands(cards);
+      outGameView = LoadPrefab("OutGameView").GetComponent<OutGameView>();
+      await outGameView.Show();
     }
 
     public async void SwitchToInGameView() {
-      // 收起手牌 -> 拉近镜头 -> 生成手牌
+      await outGameView.Hide();
       await messiah.SwitchState(GameState.InGameState);
-      LoadPrefab("InGameView");
+      inGameView = LoadPrefab("InGameView").GetComponent<InGameView>();
+      await inGameView.Show();
     }
 
-    public void LoadPrefab(string name) {
-      Logic.PrefabManager.Instanciate(name, transform);
+    public GameObject LoadPrefab(string name) {
+      return Logic.PrefabManager.Instanciate(name, transform);
     }
 
 #if DEVELOPMENT_BUILD
-    private TextMeshProUGUI debugPanelText;
-
     public async Task SetupDebugPanel() {
       var debugPanelPrefab = await Addressables.LoadAssetAsync<GameObject>("Assets/1. Data/3. Prefab/DebugPanel.prefab").Task;
-      debugPanelText = Instantiate(debugPanelPrefab, transform).GetComponent<TextMeshProUGUI>();
+      debugPanelText = Instantiate(debugPanelPrefab, transform).GetComponent<Text>();
       debugPanelText.name = "DebubPanel";
       Application.logMessageReceived += LogHook;
       gameObject.ToggleSiblings(false);

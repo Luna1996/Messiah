@@ -1,6 +1,5 @@
 namespace Messiah.Logic.GameCoreNS {
   public enum GameState {
-    InitState,
     OutGameState,
     InGameState,
     ConsumePhase,
@@ -10,10 +9,6 @@ namespace Messiah.Logic.GameCoreNS {
   }
 
   public enum GameStateTrigger {
-    NoLastGameData,
-    FoundLastGameData,
-    Login,
-    Logout,
     GameStart,
     NextPhase,
     GameEnd,

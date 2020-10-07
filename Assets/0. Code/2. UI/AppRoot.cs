@@ -24,10 +24,10 @@ namespace Messiah.UI {
       LuaManager.lua.Global.Set("AppRoot", this);
 
       AutoLogin();
-      if (GameCore.userData != null && GameCore.userData.currentGameData != null)
-        GameCore.FAM.Fire(GameStateTrigger.FoundLastGameData);
-      else
-        GameCore.FAM.Fire(GameStateTrigger.NoLastGameData);
+      // if (GameCore.userData != null && GameCore.userData.currentGameData != null)
+      //   GameCore.FAM.Fire(GameStateTrigger.FoundLastGameData);
+      // else
+      //   GameCore.FAM.Fire(GameStateTrigger.NoLastGameData);
     }
 
     void AutoLogin() {
