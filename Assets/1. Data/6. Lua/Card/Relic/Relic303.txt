@@ -1,0 +1,13 @@
+Relic303 = Relic()
+local this = Relic303
+this.ID=303
+this.name='知识的代价'
+this.desc='获得5点科技值，5回合后失去所有的科技值'
+this.rare='pandora'
+this.icon=nil
+
+function this.apply()
+  --获得5点科技值，5回合后失去所有的科技值
+  --获得5点科技值，5回合后失去所有的科技值
+end
+

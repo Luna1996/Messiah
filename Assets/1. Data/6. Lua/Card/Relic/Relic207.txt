@@ -1,0 +1,12 @@
+Relic207 = Relic()
+local this = Relic207
+this.ID=207
+this.name='钢铁大亨'
+this.desc='钢铁资源的产量翻倍'
+this.rare='rare'
+this.icon=nil
+
+function this.apply()
+  --钢铁资源的产量翻倍
+end
+

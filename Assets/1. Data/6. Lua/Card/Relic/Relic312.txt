@@ -1,0 +1,11 @@
+Relic312 = Relic()
+local this = Relic312
+this.ID=312
+this.name='神秘仪式'
+this.desc='每回合抽牌数+1，人口数量-8'
+this.rare='pandora'
+this.icon=nil
+
+function this.apply()
+  --每回合抽牌数+1，人口数量-8
+end

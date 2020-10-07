@@ -1,0 +1,12 @@
+Relic306 = Relic()
+local this = Relic306
+this.ID=306
+this.name='贪婪之手'
+this.desc='选择复制牌组的一张卡，每回合额外失去5点能量'
+this.rare='pandora'
+this.icon=nil
+
+function this.apply()
+  --复制牌组的一张卡，每回合额外失去5点能量
+end
+

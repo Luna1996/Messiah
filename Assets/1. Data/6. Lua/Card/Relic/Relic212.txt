@@ -1,0 +1,13 @@
+Relic212 = Relic()
+local this = Relic212
+this.ID=212
+this.name='激进主义'
+this.desc='抽牌数-2，回合开始时获得所有手牌的临时复制'
+this.rare='rare'
+this.icon=nil
+
+function this.apply()
+  --抽牌数-2，回合开始时获得所有手牌的临时复制
+
+end
+
