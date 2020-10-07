@@ -1,9 +1,25 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< Updated upstream:Assets/1. Data/4. Atlas/ui.meta
 guid: aacf27c695f93874ca3a7cf7468de62f
 =======
 guid: 88e79d334281b4267b51c83bce8cf458
 >>>>>>> Stashed changes:Assets/1. Data/8. Scripts.meta
+=======
+<<<<<<<< HEAD:Assets/1. Data/8. Scripts.meta
+guid: 88e79d334281b4267b51c83bce8cf458
+========
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/1. Data/4. Atlas/ui.meta
+guid: 95fbdd60140fe1049801c7b18e8caae1
+=======
+guid: 88e79d334281b4267b51c83bce8cf458
+>>>>>>> Stashed changes:Assets/1. Data/8. Scripts.meta
+=======
+guid: 95fbdd60140fe1049801c7b18e8caae1
+>>>>>>> Stashed changes
+>>>>>>>> 2ef3bd7a5ec56fd582c50b3a52b03f765b1300d7:Assets/1. Data/4. Atlas/ui.meta
+>>>>>>> 2ef3bd7a5ec56fd582c50b3a52b03f765b1300d7
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
