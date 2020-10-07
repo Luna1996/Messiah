@@ -40,8 +40,12 @@ namespace Messiah.Logic {
         return cache[path].bytes;
     }
 
-    public static LuaTable CreateLuaObject(string path, params object[] args) {
-      return (LuaTable)lua.DoString($"require('{path}') return {path}()")[0];
+    public static LuaTable CreateLuaObject(string path) {
+      var args = path.Split(' ');
+      if (args.Length == 1)
+        return (LuaTable)lua.DoString($"require('{path}') return {path}()")[0];
+      else
+        return (LuaTable)lua.DoString($"require('{args[0]}') return {args[0]}('{args[1]}')")[0];
     }
   }
 }

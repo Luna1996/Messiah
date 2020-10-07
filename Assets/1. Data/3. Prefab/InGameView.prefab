@@ -581,7 +581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2550518962015449512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fbde10667a99b49917e114a69adc83, type: 3}
+  m_Script: {fileID: 11500000, guid: f96836879b5bf284286802adcdbce9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   drawPile: {fileID: 1713039931849963871}

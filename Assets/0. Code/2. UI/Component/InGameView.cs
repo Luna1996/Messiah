@@ -90,7 +90,7 @@ namespace Messiah.UI {
     }
 
     static int[] count = { 0, 0, 0, 0, 0, 0 };
-    static Vector3 bigscale = new Vector3(1.5f, 1.5f, 1);
+    static Vector3 bigscale = new Vector3(1.3f, 1.3f, 1);
     public async void OnResourceChanged(int i) {
       var newvalue = GameManager.gameData.resources[i];
 

@@ -14,5 +14,6 @@ namespace Messiah.Logic {
     int canPlay();
     void addToHand();
     void rmvFrHand();
+    string getCardFullName();
   }
 }

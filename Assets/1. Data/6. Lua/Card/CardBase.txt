@@ -1,7 +1,7 @@
 CardBase = class(Object, "CardBase")
 local this = CardBase
 
-function this:new()
+function this:new(arg)
   self.cardView = nil
   self.name = "卡 名"
   self.frame = "CardFrame_1"
@@ -19,10 +19,15 @@ function this:onPlay()
 end
 
 function this:canPlay()
+  return true
 end
     
 function this:addToHand()
 end
     
 function this:rmvFrHand()
+end
+
+function this:getCardFullName()
+  return this.className
 end

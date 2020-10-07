@@ -1,15 +1,19 @@
 DrawCard = class(CardBase, "DrawCard")
 local this = DrawCard
-local i = 0
 
-function this:new()
-  i = i + 1 
-  self.name = i
+function this:new(arg)
+  self.time = arg
+  self.name = "抽牌"
   self.desc = "抽一张牌"
 end
 
 function this:onPlay()
+  self.time = self.time - 1 
   GameManager.DrawCard()
   GameManager.Discard(self)
   GameManager.AddResource(ResourceType.Food, 10)
+end
+
+function this:getCardFullName()
+  return this.className..self.time
 end

@@ -29,14 +29,14 @@ namespace Messiah.Logic {
 
     public static void Discard(Card card) {
       handView.RemoveCard(card);
-      gameData.discardPile.Add(card.className);
+      gameData.discardPile.Add(card.getCardFullName());
       SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
     }
 
     public static void Exile(Card card) {
       handView.RemoveCard(card);
       card.cardView.Dissolve();
-      gameData.exilePile.Add(card.className);
+      gameData.exilePile.Add(card.getCardFullName());
       SendCardTo(card.cardView, CardLocation.ExilePile);
     }
 
