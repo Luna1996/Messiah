@@ -1,5 +1,5 @@
 Building_mine_23 = class(CardBase,"Building_mine_23")
-local this = Building_mine_22
+local this = Building_mine_23
 
 function this:new()
   self.cardView = nil

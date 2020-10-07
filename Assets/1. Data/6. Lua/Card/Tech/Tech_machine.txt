@@ -1,0 +1,21 @@
+Tech_machine= class(CardBase,"Tech_machine")
+local this = Tech_machine
+
+function this:new()
+  self.cardView = nil
+  self.name = "机械自动化"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "消耗8科技点数 将【中级采矿】【中级照明】【中级建造】【能量自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.boundingCard={"Tech_mine_1","Tech_lighthouse_1","Tech_build_1","Tech_energy"}
+  self.inHand = false
+  --self.boundingBuff={}
+
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

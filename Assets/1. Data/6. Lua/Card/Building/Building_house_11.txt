@@ -3,14 +3,14 @@ local this = Building_house_11
 
 function this:new()
   self.cardView = nil
-  self.name = "房舍升级"
+  self.name = "预制构件房屋"
   --self.frame = "CardFrame_0"
   self.image = "残损义骸"
-  self.desc = "住宅可容纳的人口上限+2"
+  self.desc = "住宅的建造回合数减半"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
-  self.boundingBuff={} ---住宅增加的人口上限数+2
-  self.buildingConsumption={4,1,2,1}
+  self.boundingBuff={} ---减半住宅建造回合数
+  self.buildingConsumption={2,8,2,2}
 end
 
 
@@ -18,3 +18,4 @@ function this:onPlay()
   self.cardView:Dissolve()
   --Debug.Log(GameData.drawPile)
 end
+

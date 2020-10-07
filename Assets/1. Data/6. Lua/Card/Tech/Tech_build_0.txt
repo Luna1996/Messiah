@@ -1,0 +1,21 @@
+Tech_build_0= class(CardBase,"Tech_build_0")
+local this = Tech_build_0
+
+function this:new()
+  self.cardView = nil
+  self.name = "初级建造"
+  --self.frame = "CardFrame_0"
+  --self.image = "残损义骸"
+  self.desc = "消耗2科技点数 将【房舍升级】【蘑菇水培池】【教堂修缮】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.boundingCard={"Building_church_01","Building_house_01","Building_mush_01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  --self.buildingConsumption={2,0,2,2}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

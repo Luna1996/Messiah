@@ -1,0 +1,21 @@
+Building_farm_21 = class(CardBase,"Building_farm_21")
+local this = Building_farm_21
+
+function this:new()
+  self.cardView = nil
+  self.name = "温室升级"
+  --self.frame = "CardFrame_0"
+  self.image = "残损义骸"
+  self.desc = "提高温室的工作产出"
+  self.boundingBuff={}   --把牌组内所有的BasicFarm01替换成BasicFarm02
+  self.inHand = false
+  --self.boundingBuff={}
+  self.buildingConsumption={20,20,10,4}
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+
