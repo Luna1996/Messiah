@@ -75,7 +75,7 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      gd.build = new List<string> { "DrawCard A", "DrawCard B", "DrawCard C", "Tech_build_0", "Tech_build_1", "Curse_lust", "DrawCard D", "DrawCard E" };
+      gd.build = new List<string> { "DrawCard", "DrawCard", "DrawCard", "Tech_build_0", "Tech_build_1", "Curse_lust", "DrawCard", "DrawCard" };
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       return gd;

@@ -35,9 +35,8 @@ namespace Messiah.Logic {
 
     public static void Exile(Card card) {
       handView.RemoveCard(card);
-      card.cardView.Dissolve();
       gameData.exilePile.Add(card.getCardFullName());
-      SendCardTo(card.cardView, CardLocation.ExilePile);
+      card.cardView.Dissolve();
     }
 
     public static async Task DrawCard(int num = 1) {
