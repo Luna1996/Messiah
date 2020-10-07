@@ -1,0 +1,11 @@
+Relic202 = Relic()
+local this = Relic202
+
+this.ID=202
+this.name='天降神兵'
+this.desc='每个回合获得1张临时资源卡'
+this.rare='rare'
+
+function this.apply()
+  --每个回合获得1张临时资源卡
+end

@@ -1,0 +1,11 @@
+Relic106 = Relic()
+local this = Relic10
+
+this.ID=105
+this.name='矿石祝福'
+this.desc='每次事件打出的第一张资源牌不消耗劳动力'
+this.rare='normal'
+
+function this.apply()
+  --每次事件打出的第一张资源牌不消耗劳动力
+end

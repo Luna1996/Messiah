@@ -1,0 +1,11 @@
+Relic113 = Relic()
+local this = Relic113
+
+this.ID=113
+this.name='信仰之力'
+this.desc='获得的信仰值产出+25%'
+this.rare='normal'
+
+function this.apply()
+  --获得的信仰值产出+25%
+end

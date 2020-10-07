@@ -1,0 +1,11 @@
+Relic112 = Relic()
+local this = Relic112
+
+this.ID=111
+this.name='钢石之力'
+this.desc='石材和钢铁的资源卡产量+1'
+this.rare='normal'
+
+function this.apply()
+  --石材和钢铁的资源卡产量+1
+end

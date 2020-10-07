@@ -1,0 +1,11 @@
+Relic104 = Relic()
+local this = Relic104
+
+this.ID=104
+this.name='资源再生'
+this.desc='牌组里所有资源牌的使用次数+1'
+this.rare='normal'
+
+function this.apply()
+  --牌组里所有资源牌的使用次数+1
+end

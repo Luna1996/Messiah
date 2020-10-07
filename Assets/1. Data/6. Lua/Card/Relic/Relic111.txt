@@ -1,0 +1,11 @@
+Relic110 = Relic()
+local this = Relic110
+
+this.ID=110
+this.name='矿石源泉'
+this.desc='回合开始时获得1点矿石'
+this.rare='normal'
+
+function this.apply()
+  --回合开始时获得1点矿石
+end
