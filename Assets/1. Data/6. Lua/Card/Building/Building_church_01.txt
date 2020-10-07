@@ -4,7 +4,7 @@ local this = Building_church_01
 function this:new()
   self.cardView = nil
   self.name = "教堂修缮"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   self.image = "残损义骸"
   self.desc = "进一步修缮教堂，为大家提供祷告的场所（牌组中加入1张【晚祷】、1张【祈愿】）"
   self.boundingCard={"Pray01","Pray02","Pray02"}

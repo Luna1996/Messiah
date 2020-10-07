@@ -1,0 +1,10 @@
+Relic = class()
+local this = Relic
+
+function this:new()
+  self.name=nil
+  self.ID=nil
+  self.desc=nil
+  self.icon=nil
+  self.rare=nil
+end

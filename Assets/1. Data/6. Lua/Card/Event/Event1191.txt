@@ -5,7 +5,7 @@
 local states ={}
 
 states.a = {
-  name = "发现文明1",
+  name = "发现文明A1",
   desc = "是否进行探索",
   choices = {"探索","不探索"},
 }
@@ -21,5 +21,5 @@ function states.a:choose(choice)
     end
 end
 
-Event1121 = Event(states.a)
+Event1191 = Event(states.a)
 -------------------------------------

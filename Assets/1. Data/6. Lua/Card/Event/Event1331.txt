@@ -20,5 +20,5 @@ function states.a:choose(choice)
     end
 end
 
-EventExample = Event(states.a)
+Event1331 = Event(states.a)
 -------------------------------------

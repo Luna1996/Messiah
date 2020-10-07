@@ -9,3 +9,4 @@ require("GameDataBase")
 
 require('Effect/ResourceModifier')
 require('Event/Event')
+require('Relic')

@@ -5,7 +5,7 @@ function Event:new(state)
 end
 
 function Event:choices()
-  return self.currentState.choises
+  return self.currentState.choices
 end
 
 function Event:choose(choice)

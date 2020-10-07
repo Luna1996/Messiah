@@ -4,7 +4,7 @@ local this = Building_house
 function this:new()
   self.cardView = nil
   self.name = "民宅"
-  --self.frame = "CardFrame_0"
+  self.frame = "建筑牌面"
   self.image = "残损义骸"
   self.desc = "普通的民宅，最多为5个居民提供庇护"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
