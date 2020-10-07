@@ -20,6 +20,6 @@ function this:onPlay()
   --Debug.Log(LuaGameData.Resource.Mine)
   --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
   self.e1:apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+  Debug.Log('CurrentMine:'..LuaGameData.Resource.Mine)
 end
 
