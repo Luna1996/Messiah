@@ -12,7 +12,7 @@ states.a = {
 
 states.b  = {
   name = "活体实验2",
-  desc = "我还要做实验，需要资源"
+  desc = "我还要做实验，需要资源",
   choices = {"给你","不给"},
 }
 
