@@ -1,3 +1,4 @@
+#pragma warning disable 4014
 namespace Messiah.Logic {
   using GameCoreNS;
   using System.Collections.Generic;
@@ -5,6 +6,15 @@ namespace Messiah.Logic {
   using UI;
   using UnityEngine;
   using Utility;
+
+  public enum ResourceType {
+    Energy = 0,
+    Food = 1,
+    Ston = 2,
+    Iron = 3,
+    Tech = 4,
+    Faith = 5,
+  }
 
   public static class GameManager {
     public static ViewManager viewManager;
@@ -59,8 +69,30 @@ namespace Messiah.Logic {
       GameData.Shuffle(gameData.drawPile);
     }
 
-    public static void NextTurn() {
+    public static void NextPhase() {
+      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
+    }
 
+    public static int GetResource(ResourceType rt) {
+      return gameData.resources[(int)rt];
+    }
+
+    public static void SetResource(ResourceType rt, int v) {
+      var ov = GetResource(rt);
+      if (ov != v) {
+        gameData.resources[(int)rt] = v;
+        EventService.NotifyWithArg(GameEvent.IG_ResourceModify, (int)rt);
+      }
+    }
+
+    public static void AddResource(ResourceType rt, int v) {
+      var ov = GetResource(rt);
+      SetResource(rt, v + ov);
+    }
+
+    public static void SubResource(ResourceType rt, int v) {
+      var ov = GetResource(rt);
+      SetResource(rt, v > ov ? 0 : (ov - v));
     }
 
     static void SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {

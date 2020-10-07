@@ -6,7 +6,7 @@ namespace Messiah.Logic {
 
   [Serializable]
   public class GameData {
-    public int numberOfTurn = 1;
+    public int numberOfTurn = 0;
 
     public List<string> build;
     public List<string> drawPile;
@@ -22,7 +22,7 @@ namespace Messiah.Logic {
       set {
         if (value != _maxWorker) {
           value = _maxWorker;
-          EventService.Notify(GameEvent.Game_MaxWorkerChanged);
+          EventService.Notify(GameEvent.IG_MaxWorkerChanged);
         }
       }
     }
@@ -33,7 +33,7 @@ namespace Messiah.Logic {
       set {
         if (value != _idleWorker) {
           value = _idleWorker;
-          EventService.Notify(GameEvent.Game_IdleWorkerChanged);
+          EventService.Notify(GameEvent.IG_IdleWorkerChanged);
         }
       }
     }
@@ -44,7 +44,7 @@ namespace Messiah.Logic {
       set {
         if (value != _occupiedWorker) {
           value = _occupiedWorker;
-          EventService.Notify(GameEvent.Game_OccupiedWorkerChanged);
+          EventService.Notify(GameEvent.IG_OccupiedWorkerChanged);
         }
       }
     }
@@ -55,7 +55,7 @@ namespace Messiah.Logic {
       set {
         if (value != _idleWorker) {
           value = _idleWorker;
-          EventService.Notify(GameEvent.Game_SickWorkerChanged);
+          EventService.Notify(GameEvent.IG_SickWorkerChanged);
         }
       }
     }
@@ -70,15 +70,13 @@ namespace Messiah.Logic {
 
     public List<string> buf = new List<string>();
     public List<string> relic = new List<string>();
-    public List<int> resources;
-    public List<int> resourcesMaxLimit;
+
+    public int[] resources = { 0, 0, 0, 0, 0, 0 };
 
     public static GameData NewGameData() {
       var gd = new GameData();
       gd.build = new List<string> { "DrawCard", "DrawCard", "DrawCard", "Tech_build_0", "Tech_build_1", "Curse_lust", "DrawCard", "DrawCard" };
       gd.drawPile = new List<string>(gd.build);
-      gd.resources = new List<int> { 10, 100, 0, 0, 0, 0, 0 };
-      gd.resourcesMaxLimit = new List<int> { 10, 100, 0, 0, 0, 0, 0 };
       Shuffle(gd.drawPile);
       return gd;
     }

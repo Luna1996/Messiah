@@ -11,4 +11,5 @@ end
 function this:onPlay()
   GameManager.DrawCard()
   GameManager.Discard(self)
+  GameManager.AddResource(ResourceType.Food, 10)
 end

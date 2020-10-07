@@ -73,23 +73,25 @@ namespace Messiah.Utility {
     #endregion
 
     #region 一
-    public static void NotifyWithArg(Enum id, object a) {
+    public static async Task NotifyWithArg<A>(Enum id, A a) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks))
-        (callbacks as Action<object>)(a);
+        (callbacks as Action<A>)(a);
+      if (asyncactions.TryGetValue(id, out callbacks))
+        await ((Func<A, Task>)callbacks)(a);
     }
 
-    public static void ListenWithArg(Enum id, Action<object> callback) {
+    public static void ListenWithArg<A>(Enum id, Action<A> callback) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
-        var action = callbacks as Action<object>;
+        var action = callbacks as Action<A>;
         action += callback;
         actions[id] = action;
       } else
         actions.Add(id, callback);
     }
 
-    public static void IgnoreWithArg(Enum id, Action<object> callback = null) {
+    public static void IgnoreWithArg<A>(Enum id, Action<A> callback = null) {
       Delegate callbacks;
       if (actions.TryGetValue(id, out callbacks)) {
         if (callback == null) {
@@ -97,11 +99,37 @@ namespace Messiah.Utility {
           return;
         }
 
-        var action = callbacks as Action<object>;
+        var action = callbacks as Action<A>;
         action -= callback;
         if (action == null)
           actions.Remove(id);
         else actions[id] = action;
+      }
+    }
+
+    public static void ListenWithArgAsync<A>(Enum id, Func<A, Task> callback) {
+      Delegate callbacks;
+      if (asyncactions.TryGetValue(id, out callbacks)) {
+        var action = callbacks as Func<A, Task>;
+        action += callback;
+        asyncactions[id] = action;
+      } else
+        asyncactions.Add(id, callback);
+    }
+
+    public static void IgnoreWithArgAsync<A>(Enum id, Func<A, Task> callback = null) {
+      Delegate callbacks;
+      if (asyncactions.TryGetValue(id, out callbacks)) {
+        if (callback == null) {
+          asyncactions.Remove(id);
+          return;
+        }
+
+        var action = callbacks as Func<A, Task>;
+        action -= callback;
+        if (action == null)
+          asyncactions.Remove(id);
+        else asyncactions[id] = action;
       }
     }
     #endregion
