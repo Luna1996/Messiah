@@ -75,7 +75,7 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      gd.build = new List<string> { "DrawCard", "DrawCard", "DrawCard", "DrawCard", "DrawCard", "DrawCard", "DrawCard", "DrawCard" };
+      gd.build = new List<string> { "DrawCard", "DrawCard", "DrawCard", "Tech_build_0", "Tech_build_1", "Curse_lust", "DrawCard", "DrawCard" };
       gd.drawPile = new List<string>(gd.build);
       gd.resources = new List<int> { 10, 100, 0, 0, 0, 0, 0 };
       gd.resourcesMaxLimit = new List<int> { 10, 100, 0, 0, 0, 0, 0 };
