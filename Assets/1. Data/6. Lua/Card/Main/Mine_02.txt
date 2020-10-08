@@ -6,17 +6,26 @@ function this:new()
   self.name = "集中采矿"
   --self.frame = "CardFrame_0"
   self.image = "采矿1"
-  self.desc = "消耗3人力2回合，获得15点矿石"
+  self.desc = "占用3点人力,持续2回合; 第2回合,获得15点矿石"
   --self.usageAmount = 1
   --self.temp = true
   self.inHand = false
 end
 
 function this:onPlay()
-  --self.usageAmount = self.usageAmount - 1
-  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2,
-  function ()
-    GameManager.AddResource(ResourceType.Mine, 15)
-  end)
-  GameManager.Discard(self)
+  if (GameManager.gameData.idleWorker >= 3)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 3
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.AddResource(ResourceType.Mine, 15)
+    end)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 3
+    end)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end

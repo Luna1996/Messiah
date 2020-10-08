@@ -6,14 +6,22 @@ function this:new()
   self.name = "采石1"
   --self.frame = "CardFrame_0"
   self.image = "采石1"
-  self.desc = "消耗1点人力 获得1点石材"
+  self.desc = "占用1点人力,获得1点石材"
 
   self.inHand = false
 end
 
-
 function this:onPlay()
-  --self.usageAmount = self.usageAmount - 1
-  GameManager.AddResource(ResourceType.Food, 1)
-  GameManager.Discard(self)
+  if (GameManager.gameData.idleWorker >= 1)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
+    GameManager.AddResource(ResourceType.Wood, 1)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end

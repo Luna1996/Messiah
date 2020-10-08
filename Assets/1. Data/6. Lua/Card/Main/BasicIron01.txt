@@ -6,7 +6,7 @@ function this:new()
   self.name = "炼钢1"
   --self.frame = "CardFrame_0"
   self.image = "炼钢1"
-  self.desc = "消耗1点人力，获得1点钢铁"
+  self.desc = "占用1点人力，获得1点钢铁"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
