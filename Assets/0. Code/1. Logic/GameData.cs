@@ -13,7 +13,7 @@ namespace Messiah.Logic {
     public List<string> discardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 6;
+    public int drawNum = 7;
     public int keepNum = 3;
 
     int _maxWorker = 10;
@@ -75,7 +75,8 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      gd.build = new List<string> { "BasicMine01", "DrawCard", "Tech_build_0", "Mine_02", "Tech_build_1", "BasicMinePile", "BasicIronPile", "DrawCard","Wood_02" };
+      //gd.build = new List<string> { "BasicMine01", "DrawCard", "Tech_build_0", "Mine_02", "Tech_build_1", "BasicMinePile", "BasicIronPile", "DrawCard","Wood_02" };
+      gd.build = new List<string> { "Curse_creed","Curse_gluttony","Curse_envy","Curse_lust","Curse_sloth","Curse_wrath","Curse_pride" };
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       return gd;

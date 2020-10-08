@@ -15,7 +15,9 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  GameManager.Exile(self)
+  for i,v in ipairs(self.boundingCard) do
+    GameData.buildingDeck.Add(v)
+  end
 end
 

@@ -13,9 +13,9 @@ function this:new()
   self.buildingConsumption={20,20,10,4}
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  GameManager.Exile(self)
+  for i,v in ipairs(self.boundingCard) do
+    GameData.drawPile.Add(v)
+  end
 end
-
