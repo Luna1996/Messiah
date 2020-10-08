@@ -61,6 +61,7 @@ namespace Messiah.Logic {
         }
         if (gameData.drawPile.Count > 0) {
           var card = gameData.drawPile[0];
+          gameData.hands.Add(card);
           handView.AddCard(card);
           gameData.drawPile.RemoveAt(0);
         }

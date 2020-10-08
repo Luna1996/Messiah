@@ -37,9 +37,14 @@ namespace Messiah.Logic {
     public static UserData CreateLocalUser(string username) {
       var newData = new UserData();
       newData.username = username;
-      var base64 = ByteConverter.Serialize(newData);
-      PlayerPrefs.SetString(Constant.Pref_UserDataPrefix + username, base64);
+      // var base64 = ByteConverter.Serialize(newData);
+      // PlayerPrefs.SetString(Constant.Pref_UserDataPrefix + username, base64);
       return newData;
+    }
+
+    public static void Save() {
+      var base64 = ByteConverter.Serialize(GameCoreNS.GameCore.userData);
+      PlayerPrefs.SetString(Constant.Pref_UserDataPrefix + GameCoreNS.GameCore.userData.username, base64);
     }
   }
 }

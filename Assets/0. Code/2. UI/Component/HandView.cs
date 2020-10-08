@@ -43,7 +43,6 @@ namespace Messiah.UI {
     }
 
     public void AddCard(string card, CardLocation from = CardLocation.DrawPile) {
-      Logic.GameCoreNS.GameCore.userData.currentGameData.hands.Add(card);
       var clone = Logic.PrefabManager.Instanciate("Card", transform);
       Vector3 pos, scale;
       Quaternion quat;
@@ -141,66 +140,5 @@ namespace Messiah.UI {
 
     void OnDestroy() {
     }
-
-    #region 调试函数
-    [SerializeField]
-    public int m_handSize;
-
-    public void SetFakeHands(int num) {
-      m_handSize = num;
-      if (num < hands.Count)
-        while (num != hands.Count)
-          RemoveCard(hands.Count - 1);
-      else if (num > hands.Count)
-        while (num != hands.Count)
-          AddCard(null);
-    }
-
-    public IEnumerator DoRandomEfect() {
-      var t = UnityEngine.Random.Range(0, 2);
-      var r = UnityEngine.Random.Range(1, 3);
-      switch (t) {
-        case 0:
-          for (int j = 0; j < r; j++) {
-            AddCard(null);
-            yield return new WaitForSeconds(0.2f);
-          }
-          break;
-        case 1:
-          for (int j = 0; j < r; j++) {
-            RemoveCard(UnityEngine.Random.Range(0, hands.Count));
-            yield return new WaitForSeconds(0.2f);
-          }
-          break;
-      }
-      t = UnityEngine.Random.Range(0, 2);
-      // switch (t) {
-      //   case 0:
-      //     r = UnityEngine.Random.Range(0, 3);
-      //     fillBar[r].percent += 0.1f;
-      //     if (fillBar[r].percent > 1) fillBar[r].percent = 1;
-      //     fillBar[r].UpdatePercent();
-      //     break;
-      //   case 1:
-      //     r = UnityEngine.Random.Range(0, 3);
-      //     fillBar[r].percent -= 0.1f;
-      //     if (fillBar[r].percent < 0) fillBar[r].percent = 0;
-      //     fillBar[r].UpdatePercent();
-      //     break;
-      // }
-    }
-
-    public void DrawFiveCard() {
-      StartCoroutine(InitHands(0));
-    }
-
-    IEnumerator InitHands(float wait = 1) {
-      yield return new WaitForSeconds(wait);
-      for (int i = 0; i < 5; i++) {
-        AddCard(null);
-        yield return new WaitForSeconds(0.1f);
-      }
-    }
-    #endregion
   }
 }

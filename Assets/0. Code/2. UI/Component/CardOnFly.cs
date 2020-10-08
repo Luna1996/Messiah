@@ -89,7 +89,11 @@ namespace Messiah.UI {
       quat = Quaternion.identity;
     }
 
-    public void test() {
+    public async void test() {
+      if (UIMask.mask == null)
+        await UIMask.LoadMask(GameManager.viewManager.transform, "CardSelectionView", 0.2f);
+      else
+        await UIMask.UnloadMask(0.2f);
     }
   }
 

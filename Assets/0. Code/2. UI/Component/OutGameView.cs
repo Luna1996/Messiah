@@ -29,6 +29,11 @@ namespace Messiah.UI {
     }
 
     public void NewGame() {
+      GameCore.userData.currentGameData = null;
+      GameCore.FAM.Fire(GameStateTrigger.GameStart);
+    }
+
+    public void OldGame() {
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
   }
