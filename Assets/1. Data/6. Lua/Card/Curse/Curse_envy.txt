@@ -15,5 +15,6 @@ end
 function this:onPlay()
   --效果待写
   GameManager.AddResource(ResourceType.Mine, 10)
+  HandView:AddToHand(self.cardView)
 end
 
