@@ -15,6 +15,10 @@ end
 function this:onPlay()
   self.time = self.time + 1
   GameManager.DrawCard()
+  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
+  function (i)
+    GameManager.AddResource(ResourceType.Food, 1)
+  end)
   if self.time == limit then
     GameManager.Exile(self)
   else

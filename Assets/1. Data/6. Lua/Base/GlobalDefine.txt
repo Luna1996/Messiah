@@ -6,6 +6,7 @@ PrefabManager = CS.Messiah.Logic.PrefabManager
 GameStateTrigger = CS.Messiah.Logic.GameCoreNS.GameStateTrigger
 GameManager = CS.Messiah.Logic.GameManager
 ResourceType = CS.Messiah.Logic.ResourceType
+BuffType = CS.Messiah.Logic.BuffType
 
 Debug = CS.UnityEngine.Debug
 

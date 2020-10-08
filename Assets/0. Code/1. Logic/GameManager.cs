@@ -6,6 +6,8 @@ namespace Messiah.Logic {
   using UI;
   using UnityEngine;
   using Utility;
+  using System;
+  using XLua;
 
   public enum ResourceType {
     Energy = 0,
@@ -92,6 +94,10 @@ namespace Messiah.Logic {
     public static void SubResource(ResourceType rt, int v) {
       var ov = GetResource(rt);
       SetResource(rt, v > ov ? 0 : (ov - v));
+    }
+
+    public static void CreateBuff(Enum id, BuffType type, int time, LuaFunction callback) {
+      new Buff(id, type, time, callback);
     }
 
     static void SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
