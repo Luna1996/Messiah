@@ -1,6 +1,6 @@
 BasicCorePile = class(CardBase,'BasicCorePile')
 local this = BasicCorePile
-
+--已完成
 function this:new(arg)
   if arg then self.usageAmount = tonumber(arg)
   else self.usageAmount = 1 end
@@ -15,15 +15,26 @@ end
 
 
 function this:onPlay()
-  self.usageAmount = self.usageAmount -1
-  GameManager.SubResource(ResourceType.Food, 1)
-  GameManager.AddResource(ResourceType.Tech, 1)
-  --需要判断资源是否可以被扣除，是否为0！TODO
-  if self.usageAmount == 0 then GameManager.Exile(self)
+  if (GameManager.gameData.idleWorker >= 1)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
+    self.usageAmount = self.usageAmount -1
+    
+    GameManager.SubResource(ResourceType.Food, 1)
+    GameManager.AddResource(ResourceType.Tech, 1)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    if self.usageAmount == 0  then GameManager.Exile(self)
+    else
+      GameManager.Discard(self)
+    end
+    --Debug.Log(GameData.drawPile)
   else
-    GameManager.Discard(self)
+    HandView:AddToHand(self.cardView)
   end
-  --Debug.Log(GameData.drawPile)
+  
 end
 
 function this:getCardFullName()

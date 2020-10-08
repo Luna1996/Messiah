@@ -1,12 +1,12 @@
 BasicFarm02 = class(CardBase,'BasicFarm02')
 local this = BasicFarm02
-
+--TODO:挂buff表现
 function this:new()
   self.cardView = nil
   self.name = "农作物种植2"
   --self.frame = "CardFrame_0"
   self.image = "农作物种植2"
-  self.desc = "消耗2点人力2回合 消耗2点矿石 获得60点食物"
+  self.desc = "本回合消耗2点矿石；1回合消耗2点人力，持续2回合；第2回合获得60点食物"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -15,7 +15,20 @@ end
 
 
 function this:onPlay()
-  --self.usageAmount = self.usageAmount - 1
-  GameManager.AddResource(ResourceType.Food, 60)
-  GameManager.Discard(self)
+  if (GameManager.gameData.idleWorker >= 2 and GameManager.GetResource(ResourceType.Mine) >= 2)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
+    GameManager.SubResource(ResourceType.Mine, 2)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.AddResource(ResourceType.Food, 60)
+    end)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
+    end)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
