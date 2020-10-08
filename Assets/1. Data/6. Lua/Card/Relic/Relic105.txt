@@ -7,5 +7,5 @@ this.desc='事件开始时获得5点矿石'
 this.rare='normal'
 
 function this.apply()
-  --事件开始时获得5点矿石
+  --事件开始时获得5点矿石-事件开始：抽到天气牌 抽到天气牌时获得5点矿石
 end

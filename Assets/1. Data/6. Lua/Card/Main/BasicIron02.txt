@@ -9,16 +9,17 @@ function this:new()
   self.desc = "消耗2点人力 获得2点钢铁"
 
   self.inHand = false
-  self.e1 = ResourceModifier("Iron",2)
-  self.cost = LaborConsumer
+  --self.e1 = ResourceModifier("Iron",2)
+  --self.cost = LaborConsumer
 end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Iron, 2)
+  GameManager.Discard(self)
 end
 
+function this:getCardFullName()
+  return self.className
+end

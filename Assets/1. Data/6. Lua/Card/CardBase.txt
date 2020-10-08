@@ -29,5 +29,5 @@ function this:rmvFrHand()
 end
 
 function this:getCardFullName()
-  return this.className
+  return self.className
 end

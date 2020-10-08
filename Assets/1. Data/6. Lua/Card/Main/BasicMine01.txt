@@ -9,17 +9,11 @@ function this:new()
   self.desc = "消耗1点人力 获得1点矿石"
 
   self.inHand = false
-  self.e1 = ResourceModifier("Mine",2)
-  self.cost = LaborConsumer
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1:apply()
-  Debug.Log('CurrentMine:'..LuaGameData.Resource.Mine)
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Mine, 1)
+  GameManager.Discard(self)
 end
 

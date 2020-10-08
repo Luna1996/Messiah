@@ -10,9 +10,9 @@ namespace Messiah.Logic {
   using XLua;
 
   public enum ResourceType {
-    Energy = 0,
+    Mine = 0,
     Food = 1,
-    Ston = 2,
+    Wood = 2,
     Iron = 3,
     Tech = 4,
     Faith = 5,

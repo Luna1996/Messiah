@@ -13,9 +13,9 @@ function this:new(arg)
 end
 
 function this:onPlay()
-  self.time = self.time + 1
+  self.time = self.time --
   GameManager.DrawCard()
-  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
+  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2,
   function (i)
     GameManager.AddResource(ResourceType.Food, 1)
   end)

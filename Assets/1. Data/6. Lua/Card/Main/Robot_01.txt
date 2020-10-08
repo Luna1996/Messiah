@@ -16,7 +16,7 @@ end
 
 function this:onPlay()
   GameManager.SubResource(ResourceType.Iron, 1)
-  GameManager.AddResource(ResourceType.Energy, 2)
+  GameManager.AddResource(ResourceType.Mine, 2)
   GameManager.Discard(self)
 end
 

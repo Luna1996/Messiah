@@ -13,7 +13,7 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Food, 1)
+  GameManager.Discard(self)
 end
-

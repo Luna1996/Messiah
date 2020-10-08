@@ -6,7 +6,7 @@ function this:new()
   self.name = "研究1"
   --self.frame = "CardFrame_0"
   self.image = "研究1"
-  self.desc = "消耗1人力2回合，消耗1点石材和1点钢铁，获得1点科技点数"
+  self.desc = "消耗1人力1回合，消耗1点石材和1点钢铁，获得1点科技点数"
   --self.usageAmount = 1
   --self.temp = true
   self.inHand = false
@@ -14,7 +14,9 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  GameManager.SubResource(ResourceType.Wood,1)
+  GameManager.SubResource(ResourceType.Iron,1)
+  GameManager.AddResource(ResourceType.Tech,1)
+  GameManager.Discard(self)
 end
 

@@ -1,19 +1,28 @@
 BasicWoodPile = class(CardBase,'BasicWoodPile')
 local this = BasicWoodPile
 
-function this:new()
+function this:new(arg)
+  if arg then self.usageAmount = tonumber(arg)
+  else self.usageAmount = 3 end
   self.cardView = nil
   self.name = "石头堆"
   --self.frame = "CardFrame_0"
   self.image = "乱石堆1"
   self.desc = "消耗1点人力 获得1点石材 可以使用3次"
-  self.usageAmount = 3
   self.inHand = false
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  self.usageAmount = self.usageAmount -1
+  GameManager.AddResource(ResourceType.Wood, 1)
+  if (self.usageAmount == 0)
+  then
+    GameManager.Exile(self)
+  else
+    GameManager.Discard(self)
+  end
 end
 
+function this:getCardFullName()
+  return self.className..' '..self.usageAmount
+end

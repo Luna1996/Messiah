@@ -9,17 +9,16 @@ function this:new()
   self.desc = "消耗1点人力2回合 获得10点食物"
 
   self.inHand = false
-  self.e1 = ResourceModifier("Iron",2)
-  self.cost = LaborConsumer
+  --self.e1 = ResourceModifier("Iron",2)
+  --self.cost = LaborConsumer
 end
-
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1.apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Food, 10)
+  GameManager.Discard(self)
 end
 
+function this:getCardFullName()
+  return self.className
+end

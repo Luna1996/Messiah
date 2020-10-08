@@ -1,6 +1,7 @@
 Nurse = class(CardBase,'Nurse')
 local this = Nurse
 
+
 function this:new()
   self.cardView = nil
   self.name = "看护"
@@ -12,9 +13,10 @@ function this:new()
   self.inHand = false
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  --sickworker最多-3
+  --然后挂一个3-6random回合增加最多3个idleworker的buff
+  GameManager.Dissolve(self)
 end
+
 

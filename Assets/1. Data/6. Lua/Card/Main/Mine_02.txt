@@ -12,9 +12,11 @@ function this:new()
   self.inHand = false
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2,
+  function ()
+    GameManager.AddResource(ResourceType.Mine, 15)
+  end)
+  GameManager.Discard(self)
 end
-

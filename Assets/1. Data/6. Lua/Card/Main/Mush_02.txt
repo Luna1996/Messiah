@@ -15,12 +15,11 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  ---额外抽一张卡
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1.apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+  --self.usageAmount = self.usageAmount - 1
+  GameManager.SubResource(ResourceType.Mine, 1)
+  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 4,
+  function ()
+    GameManager.AddResource(ResourceType.Food, 60)
+  end)
+  GameManager.Discard(self)
 end
-

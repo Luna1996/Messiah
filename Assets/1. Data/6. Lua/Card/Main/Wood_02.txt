@@ -1,12 +1,14 @@
 Wood_02 = class(CardBase,'Wood_02')
 local this = Wood_02
 
-function this:new()
+function this:new(arg)
+  if arg then self.usageAmount=tonumber(arg) 
+  else self.usageAmount = 3 end
   self.cardView = nil
   self.name = "爆破采石"
   --self.frame = "CardFrame_0"
   self.image = "爆破采石"
-  self.desc = "装填，消耗1点人力 1点钢材，获得20点石材"
+  self.desc = "装填，消耗1点人力 1点钢材，获得20点石材,可以使用"..self.usageAmount.."次"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -15,12 +17,15 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  ---额外抽一张卡
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1.apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+  self.usageAmount = self.usageAmount - 1
+  GameManager.DrawCard()
+  GameManager.SubResource(ResourceType.Iron,1)
+  GameManager.AddResource(ResourceType.Wood,20)
+  if self.usageAmount == 0 then GameManager.Exile(self)
+  else GameManager.Discard(self) end
 end
 
+
+function this:getCardFullName()
+  return this.className..' '..self.usageAmount
+end

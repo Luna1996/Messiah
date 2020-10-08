@@ -1,20 +1,20 @@
 Pray01 = class(CardBase,'Pray01')
 local this = Pray01
-
+--待修改--
 function this:new()
   self.cardView = nil
   self.name = "晚祷"
   --self.frame = "CardFrame_0"
   self.image = "看护1"
-  self.desc = "消耗所有人力，每消耗1点获得10点信仰值"
-  self.usageAmount = 1
-  self.temp = true
+  self.desc = "消耗本回合所有人力，每消耗1点获得10点信仰值"
   self.inHand = false
 end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  local idleWorker = 1 ---取当前的空闲人力
+  --然后全部消耗掉
+  GameManager.AddResource(ResourceType.Faith, idleWorker*10)
+  GameManager.Discard(self)
 end
 
