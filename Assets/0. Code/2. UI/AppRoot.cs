@@ -2,6 +2,8 @@ namespace Messiah.UI {
   using UnityEngine;
   using Logic.GameCoreNS;
   using Logic;
+  using System;
+  using System.Threading.Tasks;
 
   public class AppRoot : MonoBehaviour {
     public ViewManager viewManager;

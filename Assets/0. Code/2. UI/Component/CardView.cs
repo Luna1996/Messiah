@@ -8,11 +8,13 @@ namespace Messiah.UI {
   using Logic;
   using Coffee.UIExtensions;
 
-  public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+  public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
     [NonSerialized]
     public HandView hands;
     [NonSerialized]
     public bool canPlay;
+    [NonSerialized]
+    public bool inPanel;
 
     public RawImage image;
     public RawImage frame;
@@ -47,26 +49,32 @@ namespace Messiah.UI {
       Destroy(gameObject);
     }
 
-    static Vector3 focusScal = new Vector3(1.5f, 1.5f, 1);
+    static Vector3 focusScal = new Vector3(2f, 2f, 1);
     public void OnBeginDrag(PointerEventData p) {
-      if (!canPlay) return;
+      if (!canPlay || inPanel) return;
       hands.ReleaseFromHand(this);
       transform.DORotateQuaternion(Quaternion.identity, 0.2f);
       transform.DOScale(focusScal, 0.2f);
     }
 
     public void OnDrag(PointerEventData p) {
-      if (!canPlay) return;
+      if (!canPlay || inPanel) return;
       transform.position = p.pointerCurrentRaycast.worldPosition;
     }
 
     public void OnEndDrag(PointerEventData p) {
-      if (!canPlay) return;
-      if (p.pointerCurrentRaycast.worldPosition.y > 0) {
+      if (!canPlay || inPanel) return;
+      if (p.pointerCurrentRaycast.worldPosition.y > -0.05) {
         luacard.onPlay();
       } else
         hands.AddToHand(this);
     }
+
+    public void OnPointerClick(PointerEventData p) {
+      if (!inPanel) return;
+    }
+
+    public void OpenMask() { }
 
   }
 }

@@ -10,22 +10,23 @@ namespace Messiah.UI {
 
     static CanvasGroup canvasGroup;
 
-    public static async Task LoadMask(Transform trans, string prefab = null, float t = 0.1f, int index = -1) {
+    public static async Task<GameObject> LoadMask(Transform trans, string prefab = null, float t = 0.1f, int index = -1) {
       var go = PrefabManager.Instanciate("UIMask", trans);
+      GameObject ret = null;
       mask = go.transform;
       if (index != -1) mask.SetSiblingIndex(index);
       if (!string.IsNullOrEmpty(prefab))
-        PrefabManager.Instanciate(prefab, mask);
+        ret = PrefabManager.Instanciate(prefab, mask);
       canvasGroup = go.GetComponent<CanvasGroup>();
       canvasGroup.alpha = 0;
-      canvasGroup.DOFade(1, t);
-      await Task.Delay((int)(t * 1000));
+      await canvasGroup.DOFade(1, t).AsyncWaitForCompletion();
+      return ret;
     }
 
     public static async Task UnloadMask(float t = 0.1f) {
-      canvasGroup.DOFade(0, t);
-      await Task.Delay((int)(t * 1000));
-      GameObject.Destroy(mask.gameObject);
+      var tween = canvasGroup.DOFade(0, t);
+      await tween.AsyncWaitForCompletion();
+      Destroy(mask.gameObject);
     }
   }
 }

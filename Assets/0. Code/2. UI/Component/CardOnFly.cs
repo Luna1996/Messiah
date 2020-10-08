@@ -13,11 +13,7 @@ namespace Messiah.UI {
     public RectTransform discardPile;
     public RectTransform exilePile;
 
-    void Start() {
-      GameManager.cardOnFly = this;
-    }
-
-    public async void SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
+    public async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       cardView.canPlay = false;
       cardView.transform.SetParent(transform);
       Vector3 endpos;
@@ -31,8 +27,9 @@ namespace Messiah.UI {
       GameObject.Destroy(cardView.gameObject);
     }
 
-    public async void SendCardFromTo(string cardName, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
-      var card = PrefabManager.Instanciate("Card", transform);
+    public async Task SendCardFromTo(string cardName, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
+      var card = PrefabManager.Instanciate("Card", transform).GetComponent<CardView>();
+      card.SetLuaCard(cardName);
       Vector3 pos, scale;
       Quaternion quat;
       GetLoc(fromloc, out pos, out scale, out quat);
@@ -52,7 +49,7 @@ namespace Messiah.UI {
       card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear);
       await Task.Delay((int)(d / 2 * 1000));
 
-      GameObject.Destroy(card);
+      GameObject.Destroy(card.gameObject);
     }
 
     public void GetLoc(CardLocation loc, out Vector3 pos, out Vector3 scale, out Quaternion quat) {
@@ -87,13 +84,6 @@ namespace Messiah.UI {
       pos = pos * ratio + transform.position * (1 - ratio);
       scale = scale * ratio + MidScale * (1 - ratio);
       quat = Quaternion.identity;
-    }
-
-    public async void test() {
-      if (UIMask.mask == null)
-        await UIMask.LoadMask(GameManager.viewManager.transform, "CardSelectionView", 0.2f);
-      else
-        await UIMask.UnloadMask(0.2f);
     }
   }
 
