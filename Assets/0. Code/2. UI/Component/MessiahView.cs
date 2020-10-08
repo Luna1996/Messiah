@@ -2,6 +2,9 @@ namespace Messiah.UI {
   using UnityEngine;
   using DG.Tweening;
   using Messiah.Logic.GameCoreNS;
+  using UnityEngine.EventSystems;
+  using Logic;
+  using System.Collections.Generic;
 
   public class MessiahView : MonoBehaviour {
     [SerializeField]
@@ -24,6 +27,7 @@ namespace Messiah.UI {
           }
           break;
         case GameState.InGameState:
+          UpdateAllBuildings();
           if (trans.anchoredPosition != igpos) {
             trans.DOAnchorPos(igpos, 2);
             trans.DOScale(igscale, 2);
@@ -31,6 +35,13 @@ namespace Messiah.UI {
           }
           break;
       }
+    }
+
+    public void UpdateAllBuildings() {
+      var count = transform.childCount;
+      for (int i = 1; i < count; i++) transform.GetChild(i).gameObject.SetActive(false);
+      foreach (var b in GameManager.gameData.buildingAcquired)
+        transform.Find(b).gameObject.SetActive(true);
     }
 
     public void SetBuildingVisibility(string buildingname, bool flag) {

@@ -22,10 +22,6 @@ namespace Messiah.UI {
 
     void Awake() {
       GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
-      if (GameCore.userData.currentGameData == null) {
-        var gameData = GameData.NewGameData();
-        GameCore.userData.currentGameData = gameData;
-      }
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
       LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
       handView = GetComponentInChildren<HandView>();
@@ -163,8 +159,13 @@ namespace Messiah.UI {
           .Show(GameManager.gameData.exilePile, "放 逐 区");
     }
 
-    public void PrintHand() {
-      Debug.Log("Hand:" + GameManager.gameData.hands.Count + ":" + string.Join(",", GameManager.gameData.hands));
+    public async void ToggleBuildingPanel() {
+      if (BuildingView.view)
+        BuildingView.view.Hide();
+      else
+        (await UIMask.LoadMask(transform, "BuildingView", 0.1f, 1))
+          .GetComponent<BuildingView>()
+          .Show();
     }
 
   }

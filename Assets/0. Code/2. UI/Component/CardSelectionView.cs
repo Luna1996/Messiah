@@ -11,7 +11,7 @@ namespace Messiah.UI {
     public static CardSelectionView view;
 
     public Text title;
-    public Transform content;
+    public CardScrollView cardScrollView;
 
     RectTransform rect;
     float height;
@@ -24,11 +24,7 @@ namespace Messiah.UI {
 
     public void Show(List<string> cards, string title = null, float d = 0.2f) {
       this.title.text = title;
-      foreach (var card in cards) {
-        var cardview = PrefabManager.Instanciate("Card", content).GetComponent<CardView>();
-        cardview.SetLuaCard(card);
-        cardview.inPanel = true;
-      }
+      cardScrollView.SetCards(cards);
       rect.DOAnchorPosY(0, d);
     }
 
