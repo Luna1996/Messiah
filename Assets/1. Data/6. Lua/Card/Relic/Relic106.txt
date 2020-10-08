@@ -1,8 +1,8 @@
 Relic106 = Relic()
-local this = Relic10
+local this = Relic106
 
-this.ID=105
-this.name='矿石祝福'
+this.ID=106
+this.name='人力祝福'
 this.desc='每次事件打出的第一张资源牌不消耗劳动力'
 this.rare='normal'
 

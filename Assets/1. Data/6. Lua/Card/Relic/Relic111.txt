@@ -1,11 +1,11 @@
-Relic110 = Relic()
-local this = Relic110
+Relic111 = Relic()
+local this = Relic111
 
-this.ID=110
-this.name='矿石源泉'
-this.desc='回合开始时获得1点矿石'
+this.ID=111
+this.name='一生二'
+this.desc='每次事件中使用的第1张资源卡的复制洗入牌组'
 this.rare='normal'
 
 function this.apply()
-  --回合开始时获得1点矿石
+  --每次事件中使用的第1张资源卡的复制洗入牌组
 end

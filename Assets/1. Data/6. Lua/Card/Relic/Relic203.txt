@@ -1,11 +1,11 @@
-Relic202 = Relic()
-local this = Relic202
+Relic203 = Relic()
+local this = Relic203
 
-this.ID=202
-this.name='天降神兵'
-this.desc='每个回合获得1张临时资源卡'
+this.ID=203
+this.name='不二法门'
+this.desc='基础资源卡产量+2'
 this.rare='rare'
 
 function this.apply()
-  --每个回合获得1张临时资源卡
+  --基础资源卡产量+2
 end
