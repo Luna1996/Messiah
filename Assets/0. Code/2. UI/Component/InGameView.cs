@@ -35,8 +35,8 @@ namespace Messiah.UI {
       bottomY = bottom.anchoredPosition.y;
 
       EventService.ListenAsync(GameEvent.EnterMainPhase, OnTurnStart);
-      EventService.ListenAsync(GameEvent.EnterConsumePhase, DiscardHand);
-      EventService.ListenAsync(GameEvent.EnterEventPhase, ResolveRandomEvents);
+      EventService.ListenAsync(GameEvent.EnterConsumePhase, OnEnterConsumePhase);
+      EventService.ListenAsync(GameEvent.EnterEventPhase, OnEnterEventPhase);
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChanged);
     }
 
@@ -81,18 +81,17 @@ namespace Messiah.UI {
         GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
-    public async Task DiscardHand() {
-      handView.transform.SetAsFirstSibling();
-      await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 1);
-      await Task.Delay(1000);
-      await UIMask.UnloadMask(0.2f);
-      handView.transform.SetAsFirstSibling();
-      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
+    public async Task OnEnterConsumePhase() {
+      if (DiscardPhaseView.NeedDiscard())
+        await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 0);
+      else
+        GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
-    public async Task ResolveRandomEvents() {
+    public async Task OnEnterEventPhase() {
+      handView.transform.SetAsFirstSibling();
       await UIMask.LoadMask(transform, "EventPhaseView", 0.2f, 1);
-      await Task.Delay(1000);
+      await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
       GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }

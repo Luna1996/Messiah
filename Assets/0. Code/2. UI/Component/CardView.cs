@@ -1,3 +1,4 @@
+#pragma warning disable 4014
 namespace Messiah.UI {
   using System;
   using UnityEngine;
@@ -7,6 +8,8 @@ namespace Messiah.UI {
   using XLua;
   using Logic;
   using Coffee.UIExtensions;
+  using Utility;
+  using Logic.GameCoreNS;
 
   public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
     [NonSerialized]
@@ -15,6 +18,8 @@ namespace Messiah.UI {
     public bool canPlay;
     [NonSerialized]
     public bool inPanel;
+    [NonSerialized]
+    public bool canSelect;
 
     public RawImage image;
     public RawImage frame;
@@ -72,9 +77,23 @@ namespace Messiah.UI {
 
     public void OnPointerClick(PointerEventData p) {
       if (!inPanel) return;
+      if (mask) CloseMask();
+      else if (canSelect) OpenMask();
     }
 
-    public void OpenMask() { }
+    [NonSerialized]
+    public GameObject mask;
+    public void OpenMask() {
+      mask = PrefabManager.Instanciate("CardMask", transform);
+      EventService.NotifyWithArg(GameEvent.IG_OnCardSelectionChanged, this);
+    }
+
+    public void CloseMask() {
+      Destroy(mask);
+      mask = null;
+      EventService.NotifyWithArg(GameEvent.IG_OnCardSelectionChanged, this);
+    }
+
 
   }
 }

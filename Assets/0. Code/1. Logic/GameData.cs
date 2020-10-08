@@ -13,7 +13,7 @@ namespace Messiah.Logic {
     public List<string> discardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 7;
+    public int drawNum = 4;
     public int keepNum = 3;
 
     int _maxWorker = 10;
