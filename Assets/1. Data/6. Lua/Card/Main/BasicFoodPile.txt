@@ -1,19 +1,28 @@
 BasicFoodPile = class(CardBase,'BasicFoodPile')
 local this = BasicFoodPile
 
-function this:new()
+function this:new(arg)
   self.cardView = nil
   self.name = "食物罐头"
   --self.frame = "CardFrame_0"
   self.image = "食物罐头1"
   self.desc = "消耗，获得10点食物"
-  self.usageAmount = 1
+  self.usageAmount = tonumber(arg)
   self.inHand = false
 end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Food, 10)
+  if (self.usageAmount == 0)
+  then 
+    GameManager.Exile(self)
+  else
+    GameManager.Discard(self)
+  end
 end
 
+function this:getCardFullName()
+  return this.className..' '..self.usageAmount
+end

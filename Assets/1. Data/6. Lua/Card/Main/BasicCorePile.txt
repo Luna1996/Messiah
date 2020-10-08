@@ -13,7 +13,12 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
+  --需要判断资源是否可以被扣除，是否为0！TODO
+  GameManager.SubResource(ResourceType.Food, 1)
+  GameManager.AddResource(ResourceType.Tech, 1)
+  GameManager.Exile(self)
+  
+
   --Debug.Log(GameData.drawPile)
 end
 

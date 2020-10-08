@@ -5,7 +5,7 @@ function this:new()
   self.cardView = nil
   self.name = "蒸汽机器人"
   --self.frame = "CardFrame_0"
-  self.image = "蒸汽机器人"
+  self.image = "蒸汽机器人1"
   self.desc = "消耗1点钢材，获得2点矿石"
 
   self.inHand = false
@@ -15,12 +15,8 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  ---额外抽一张卡
-  --Debug.Log(GameData.drawPile.Count)
-  --Debug.Log(LuaGameData.Resource.Mine)
-  --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1.apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+  GameManager.SubResource(ResourceType.Iron, 1)
+  GameManager.AddResource(ResourceType.Energy, 2)
+  GameManager.Discard(self)
 end
 

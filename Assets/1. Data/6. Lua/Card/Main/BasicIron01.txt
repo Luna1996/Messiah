@@ -19,7 +19,6 @@ function this:onPlay()
   --Debug.Log(GameData.drawPile.Count)
   --Debug.Log(LuaGameData.Resource.Mine)
   --LuaGameData.Resource.Mine = LuaGameData.Resource.Mine +2
-  self.e1.apply()
-  Debug.Log(LuaGameData.Resource.Mine)
+
 end
 
