@@ -7,4 +7,5 @@ this.rare='normal'
 
 function this.apply()
   --增加5钢铁
+  GameManager.AddResource(ResourceType.Iron,5)
 end

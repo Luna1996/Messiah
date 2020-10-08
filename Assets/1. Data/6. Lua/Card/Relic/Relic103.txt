@@ -7,4 +7,5 @@ this.rare='normal'
 
 function this.apply()
   --增加30食物
+  GameManager.AddResource(ResourceType.Food,10)
 end
