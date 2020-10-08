@@ -67,8 +67,9 @@ namespace Messiah.UI {
       handView.transform.SetAsFirstSibling();
     }
 
-    public void NextPhase() {
-      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
+    public void NextDay() {
+      if (GameCore.FAM.State == GameState.MainPhase)
+        GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
     public async Task DiscardHand() {
