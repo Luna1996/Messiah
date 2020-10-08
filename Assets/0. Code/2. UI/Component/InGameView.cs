@@ -108,8 +108,8 @@ namespace Messiah.UI {
           txt.color = Color.red;
           img.color = Color.red;
         } else if (oldvalue < newvalue) {
-          txt.color = Color.green;
-          img.color = Color.green;
+          txt.color = new Color(134f / 255f, 1, 248f / 255f);
+          img.color = new Color(134f / 255f, 1, 248f / 255f);
         }
         count[i]++;
         ((RectTransform)go.transform).localScale = Vector3.one;
