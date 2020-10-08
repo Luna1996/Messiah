@@ -13,7 +13,11 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  --get一下当前总人口
+  local population = 10
+  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.Repeat, -1,
+  function ()
+    GameManager.AddResource(ResourceType.Faith, population)
+  end)
 end
 

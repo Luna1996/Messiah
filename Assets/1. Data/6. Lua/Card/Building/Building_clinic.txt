@@ -6,16 +6,17 @@ function this:new()
   self.name = "诊所"
   self.frame = "建筑牌面"
   self.image = "残损义骸"
-  self.desc = "回合开始时，如果存在患者，则将1张临时的【看护】置入手牌，牌组中存在此卡时不会重复置入"
-  --self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.desc = "卡组中加入1张看护"
+  self.boundingCard={"Nurse",}
   self.inHand = false
   self.boudingBuff={}
   self.buildingConsumption={8,3,5,2}
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  GameManager.Exile(self)
+  for i,v in ipairs(self.boundingCard) do
+    GameData.drawPile.Add(v)
+  end
 end
 

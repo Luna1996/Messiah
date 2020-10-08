@@ -7,7 +7,8 @@ function this:new()
   self.frame = "建筑牌面"
   self.image = "残损义骸"
   self.desc = "提高温室的工作产出"
-  self.boundingBuff={}   --把牌组内所有的BasicFarm01替换成BasicFarm02
+  self.boundingCard={"BasicFarm02","BasicFarm02"}   --把牌组内所有的BasicFarm01替换成BasicFarm02
+  self.deletingCard={"BasicFarm01","BasicFarm01"}
   self.inHand = false
   --self.boundingBuff={}
   self.buildingConsumption={20,20,10,4}
@@ -15,7 +16,10 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
-end
+  GameManager.Exile(self)
+  for i,v in ipairs(self.boundingCard) do
+    GameData.drawPile.Add(v)
+  end
 
+  --删除deletingCard里面的牌
+end

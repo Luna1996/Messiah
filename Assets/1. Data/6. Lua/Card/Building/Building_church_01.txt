@@ -6,7 +6,7 @@ function this:new()
   self.name = "教堂修缮"
   self.frame = "建筑牌面"
   self.image = "残损义骸"
-  self.desc = "进一步修缮教堂，为大家提供祷告的场所（牌组中加入1张【晚祷】、1张【祈愿】）"
+  self.desc = "进一步修缮教堂，为大家提供祷告的场所（牌组中加入1张【晚祷】、2张【祈愿】）"
   self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
   self.buildingConsumption = {10,0,3,2}  -----建筑需要的消耗：石材、钢铁、人力、人力回合数
@@ -14,7 +14,9 @@ end
 
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  GameManager.Exile(self)
+  for i,v in ipairs(self.boundingCard) do
+    GameData.drawPile.Add(v)
+  end
 end
 
