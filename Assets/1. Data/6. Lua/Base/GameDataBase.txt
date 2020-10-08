@@ -2,6 +2,7 @@ GameDataBase = class()
 local this = GameDataBase
 
 local function InitDrawCard()
+  Debug.Log("2")
   local drawNum = GameData.drawNum
   -- 处理
   return GameManager.DrawCard(drawNum)

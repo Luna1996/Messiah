@@ -5,7 +5,6 @@ end
 require("Class")
 require("GlobalDefine")
 require("CardBase")
-require("GameDataBase")
 
 require('Effect/ResourceModifier')
 require('Event/Event')

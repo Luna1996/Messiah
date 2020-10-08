@@ -1,3 +1,4 @@
+#pragma warning disable 4014
 namespace Messiah.UI {
   using Coffee.UIExtensions;
   using DG.Tweening;
@@ -19,12 +20,12 @@ namespace Messiah.UI {
 
     public GameObject[] resouces;
 
-    void Awake() {
+    async void Awake() {
       if (GameCore.userData.currentGameData == null) {
         var gameData = GameData.NewGameData();
         GameCore.userData.currentGameData = gameData;
-        Logic.GameManager.gameData = gameData;
       }
+      Logic.GameManager.gameData = GameCore.userData.currentGameData;
       LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
       handView = GetComponentInChildren<HandView>();
       top = (RectTransform)transform.Find("TopBar");
@@ -35,7 +36,12 @@ namespace Messiah.UI {
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
 
-      EventService.ListenAsync(GameEvent.EnterMainPhase, ShowTurnStart);
+      foreach (var card in GameManager.gameData.hands) {
+        handView.AddCard(card);
+        await Task.Delay(100);
+      }
+
+      EventService.ListenAsync(GameEvent.EnterMainPhase, OnTurnStart);
       EventService.ListenAsync(GameEvent.EnterConsumePhase, DiscardHand);
       EventService.ListenAsync(GameEvent.EnterEventPhase, ResolveRandomEvents);
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChanged);
@@ -59,9 +65,11 @@ namespace Messiah.UI {
       Destroy(gameObject);
     }
 
-    public async Task ShowTurnStart() {
+    public async Task OnTurnStart() {
+      UserData.Save();
       handView.transform.SetAsFirstSibling();
       await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 1);
+      GameManager.DrawCard(GameManager.gameData.drawNum);
       await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
       handView.transform.SetAsFirstSibling();

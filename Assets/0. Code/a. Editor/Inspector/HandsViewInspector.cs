@@ -15,7 +15,6 @@ namespace Messiah.Editor {
       target = base.target as HandView;
       s_curvature = serializedObject.FindProperty(nameof(target.m_curvature));
       s_widthRatio = serializedObject.FindProperty(nameof(target.m_widthRatio));
-      s_handSize = serializedObject.FindProperty(nameof(target.m_handSize));
     }
 
     public override void OnInspectorGUI() {
@@ -28,8 +27,6 @@ namespace Messiah.Editor {
       EditorGUILayout.IntSlider(s_handSize, 0, 20, "手牌");
       if (serializedObject.hasModifiedProperties) {
         serializedObject.ApplyModifiedProperties();
-        if (Application.isPlaying)
-          target.SetFakeHands(target.m_handSize);
       }
     }
 
@@ -51,18 +48,6 @@ namespace Messiah.Editor {
           self.arcData.from,
           self.arcData.degree,
           self.arcData.radius);
-
-      if (self.m_handSize > 0) {
-        Handles.color = Color.red;
-        var dir = self.arcData.from;
-        var rotateStep = Quaternion.AngleAxis(self.arcData.degree / (self.m_handSize + 1), -self.transform.forward);
-        var lineLength = self.transData.halfWidth * 0.02f;
-        for (int i = 0; i < self.m_handSize; i++) {
-          dir = rotateStep * dir;
-          var pos = self.arcData.center + dir * self.arcData.radius;
-          Handles.DrawLine(pos + dir * lineLength, pos - dir * lineLength);
-        }
-      }
     }
   }
 }
