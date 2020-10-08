@@ -12,7 +12,7 @@ function this:new(arg)
   else
     self.usageAmount = 5
   end
-  self.desc = "消耗1点人力,获得1点钢铁; 可以使用"..self.usageAmount.."次"
+  self.desc = "占用1点人力,获得1点钢铁; 可以使用"..self.usageAmount.."次"
 end
 
 

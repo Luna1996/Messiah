@@ -8,7 +8,7 @@ function this:new(arg)
   self.name = "爆破采石"
   --self.frame = "CardFrame_0"
   self.image = "爆破采石"
-  self.desc = "装填，消耗1点人力 1点钢材，获得20点石材,可以使用"..self.usageAmount.."次"
+  self.desc = "占用1点人力,消耗1点钢材; 获得20点石材; 可以使用"..self.usageAmount.."次"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -17,12 +17,22 @@ end
 
 
 function this:onPlay()
-  self.usageAmount = self.usageAmount - 1
-  GameManager.DrawCard()
-  GameManager.SubResource(ResourceType.Iron,1)
-  GameManager.AddResource(ResourceType.Wood,20)
-  if self.usageAmount == 0 then GameManager.Exile(self)
-  else GameManager.Discard(self) end
+  if (GameManager.gameData.idleWorker >= 1 and GameManager.GetResource(ResourceType.Iron) >= 1)
+  then
+    self.usageAmount = self.usageAmount - 1
+    --GameManager.DrawCard()
+    GameManager.SubResource(ResourceType.Iron,1)
+    GameManager.AddResource(ResourceType.Wood,20)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    if self.usageAmount == 0 then GameManager.Exile(self)
+    else GameManager.Discard(self) end
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 
 

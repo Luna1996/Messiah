@@ -9,7 +9,7 @@ function this:new(arg)
   self.name = "矿石堆"
   --self.frame = "CardFrame_0"
   self.image = "矿石堆1"
-  self.desc = "消耗1点人力,获得1点矿石; 可以使用"..self.usageAmount.."次"
+  self.desc = "占用1点人力,获得1点矿石; 可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
