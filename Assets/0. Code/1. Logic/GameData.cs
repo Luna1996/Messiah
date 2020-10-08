@@ -76,7 +76,7 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
       //gd.build = new List<string> { "BasicMine01", "DrawCard", "Tech_build_0", "Mine_02", "Tech_build_1", "BasicMinePile", "BasicIronPile", "DrawCard","Wood_02" };
-      gd.build = new List<string> { "BasicFarm01","BasicFarm02","Curse_gluttony","Curse_envy","Curse_lust","Curse_sloth","Curse_wrath","Curse_pride","BasicCorePile" };
+      gd.build = new List<string> { "BasicMine01","BasicFarm02","BasicMine02","BasicIron02","Curse_envy","BasicMinePile","Curse_wrath","Curse_pride","BasicCorePile","BasicIronPile" };
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       return gd;
