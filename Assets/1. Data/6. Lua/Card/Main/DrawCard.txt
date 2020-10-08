@@ -1,19 +1,28 @@
 DrawCard = class(CardBase, "DrawCard")
 local this = DrawCard
+local limit = 2
 
 function this:new(arg)
-  self.time = arg
+  if arg then
+    self.time = tonumber(arg)
+  else
+    self.time = 0
+  end
   self.name = "抽牌"
-  self.desc = "抽一张牌"
+  self.desc = "抽一张牌，残留 "..limit.."，（已用 "..self.time.." 次）"
 end
 
 function this:onPlay()
-  self.time = self.time - 1 
+  self.time = self.time + 1
   GameManager.DrawCard()
-  GameManager.Discard(self)
+  if self.time == limit then
+    GameManager.Exile(self)
+  else
+    GameManager.Discard(self)
+  end
   GameManager.AddResource(ResourceType.Food, 10)
 end
 
 function this:getCardFullName()
-  return this.className..self.time
+  return this.className..' '..self.time
 end
