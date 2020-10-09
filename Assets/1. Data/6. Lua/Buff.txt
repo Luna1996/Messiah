@@ -26,10 +26,28 @@ function Buff_BasicMine02(i)
   GameManager.AddResource(ResourceType.Mine,3)
 end
 
-function ABC(i, args)
-  Debug.Log(i)
+function Buff_BasicMush01(i)
+  GameManager.AddResource(ResourceType.Food,10)
 end
 
-function ABCTIPS(i, args)
-  return i.."回合"..args, i
+function Buff_BasicMush02(i)
+  GameManager.AddResource(ResourceType.Food,30)
+end
+
+
+
+
+function Xturn(i, args)
+  local t = split(args,',')
+  return "下"..t[1]-i.."回合,"..t[2], t[1]-i
+end
+
+function XLaborTurn(i, args)
+  local t = split(args,',')
+  return t[1]..t[2], t[3]-i
+end
+
+function AddBackLabor(i, args)
+  local t = split(args, ',')
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + tonumber(t[1])
 end

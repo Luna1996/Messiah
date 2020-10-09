@@ -17,7 +17,12 @@ function this:new()
 end
 
 function this:applyEffect()
-  Buff("Buff_BasicMine01", GameEvent.EnterMainPhase, BuffType.OneShot, 1, "buff501","下回合,获得1点矿石")
+  Buff(
+    "Buff_BasicMine01", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    1, "buff501", nil,
+    "Xturn", "1,收获1点矿石")
   GameManager.Discard(self)
 end
 

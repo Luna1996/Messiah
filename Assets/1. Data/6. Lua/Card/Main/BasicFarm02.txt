@@ -1,7 +1,7 @@
 BasicFarm02 = class(CardBase,'BasicFarm02')
 local this = BasicFarm02
 --已完成
---回合显示出现问题
+--已测试
 function this:new()
   self.cardView = nil
   self.name = "农作物种植2"
@@ -15,6 +15,11 @@ function this:new()
 end
 
 function this:applyEffect()
-  Buff("Buff_BasicFarm02", GameEvent.EnterMainPhase, BuffType.OneShot, 2, "buff507","xxx,收获60点食物")
-  GameManager.Discard(self)
+  Buff(
+    "Buff_BasicFarm02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    2, "buff507", nil,
+    "Xturn", "2,收获60点食物")
+    GameManager.Discard(self)
 end

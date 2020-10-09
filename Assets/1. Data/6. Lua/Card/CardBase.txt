@@ -73,28 +73,14 @@ end
 function this:laborCost()
   local cost = self.cost + CostModifiter
   if cost <0 then cost = 0 end
+
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - cost
-  if cost ==1 then Buff("AddBackLabor1",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff512',"1名工人正在工作")
-  elseif cost ==2 then Buff("AddBackLabor2",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","2名工人正在工作")
-  elseif cost ==3 then Buff("AddBackLabor3",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","3名工人正在工作")
-  elseif cost ==4 then Buff("AddBackLabor4",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","4名工人正在工作")
-  elseif cost ==5 then Buff("AddBackLabor5",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","5名工人正在工作")
-  elseif cost ==6 then Buff("AddBackLabor6",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","6名工人正在工作")
-  elseif cost ==7 then Buff("AddBackLabor7",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","7名工人正在工作")
-  elseif cost ==8 then Buff("AddBackLabor8",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","8名工人正在工作")
-  elseif cost ==9 then Buff("AddBackLabor9",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","9名工人正在工作")
-  elseif cost ==10 then Buff("AddBackLabor10",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","10名工人正在工作")
-  elseif cost ==11 then Buff("AddBackLabor11",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","11名工人正在工作")
-  elseif cost ==12 then Buff("AddBackLabor12",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","12名工人正在工作")
-  elseif cost ==13 then Buff("AddBackLabor13",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","13名工人正在工作")
-  elseif cost ==14 then Buff("AddBackLabor14",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","14名工人正在工作")
-  elseif cost ==15 then Buff("AddBackLabor15",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","15名工人正在工作")
-  elseif cost ==16 then Buff("AddBackLabor16",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","16名工人正在工作")
-  elseif cost ==17 then Buff("AddBackLabor17",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","17名工人正在工作")
-  elseif cost ==18 then Buff("AddBackLabor18",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","18名工人正在工作")
-  elseif cost ==19 then Buff("AddBackLabor19",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","19名工人正在工作")
-  elseif cost ==20 then Buff("AddBackLabor20",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff512","20名工人正在工作")
-  end
+  Buff(
+    "AddBackLabor", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, 'buff512', nil,
+    "XLaborTurn", tostring(cost)..",名工人在工作,"..tostring(self.rounds))
 end
 
 function this:subRc()

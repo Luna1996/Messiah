@@ -5,29 +5,25 @@ function this:new()
   self.cardView = nil
   self.name = "蘑菇培植2"
   --self.frame = "CardFrame_0"
+  self.frame = "资源牌面s"
   self.image = "蘑菇培植2"
-  self.desc = "占用2点人力,持续2回合; 第2回合,收获30点食物"
+  self.desc = "第3回合,收获30点食物"
 
+
+  self.cost = 2
+  self.rounds = 2
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
   --self.cost = LaborConsumer
 end
 
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 2)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.AddResource(ResourceType.Food, 30)
-    end)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 2
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff(
+    "Buff_BasicMush02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    2, "buff507", nil,
+    "Xturn", "2,获得30点食物")
+  GameManager.Discard(self)
 end
