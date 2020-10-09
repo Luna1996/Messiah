@@ -6,6 +6,6 @@ this.name='钢石之力'
 this.desc='石材和钢铁的资源卡产量+1'
 this.rare='normal'
 
-function this.apply()
-  --石材和钢铁的资源卡产量+1
+function this:apply()
+  --SetResourceModifiter
 end

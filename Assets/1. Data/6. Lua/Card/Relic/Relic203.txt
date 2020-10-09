@@ -6,6 +6,7 @@ this.name='不二法门'
 this.desc='基础资源卡产量+2'
 this.rare='rare'
 
-function this.apply()
+--先不做
+function this:apply()
   --基础资源卡产量+2
 end

@@ -2,11 +2,17 @@ Relic304 = Relic()
 local this = Relic304
 this.ID=304
 this.name='怠惰之息'
-this.desc='选择复制卡组中的1张卡，卡组中加入2张【诅咒-怠惰】'
+this.desc='复制卡组中的1张卡，卡组中加入1张【诅咒-怠惰】'
 this.rare='pandora'
 this.icon=nil
 
-function this.apply()
-  --选择复制卡组中的1张卡，卡组中加入2张【诅咒-怠惰】
+function this:apply()
+  local card = GameManager.gameData.build[math.random(0,GameManager.gameData.build.Count-1)]
+  Debug.Log(card)
+  --选择复制卡组中的1张卡，
+  --Debug.Log(GameManager.gameData.build[0])
+  --Debug.Log(GameManager.gameData.buildingAcquired.Count)
+
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_sloth"})
 end
 

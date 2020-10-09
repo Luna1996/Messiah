@@ -3,9 +3,9 @@ local this = Pray01
 --待修改--
 function this:new()
   self.cardView = nil
-  self.name = "晚祷"
-  --self.frame = "CardFrame_0"
-  self.image = "看护1"
+  self.name = "信仰祈祷"
+  self.frame = "信仰牌面"
+  self.image = "祈愿2"
   self.desc = "占用本回合所有人力，每占用1点获得10点信仰值"
   self.inHand = false
 end

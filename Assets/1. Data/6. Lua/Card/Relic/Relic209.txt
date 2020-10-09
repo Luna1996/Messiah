@@ -6,7 +6,7 @@ this.desc='下次灯塔能量耗尽时，立刻恢复300点能量'
 this.rare='rare'
 this.icon=nil
 
-function this.apply()
-  --下次灯塔能量耗尽时，立刻恢复200点能量
+function this:apply()
+  Buff("Buff_Relic209",GameEvent.IG_MineEqualsZero,BuffType.OneShot,1,"buff209","下次能量耗尽时立刻获得300能量")
 end
 

@@ -1,0 +1,69 @@
+function ExampleBuff(i)
+  Debug.Log(i)
+end
+
+function AddBackLabor1(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1 end
+function AddBackLabor2(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 2 end
+function AddBackLabor3(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 3 end
+function AddBackLabor4(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 4 end
+function AddBackLabor5(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 5 end
+function AddBackLabor6(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 6 end
+function AddBackLabor7(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 7 end
+function AddBackLabor8(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 8 end
+function AddBackLabor9(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 9 end
+function AddBackLabor10(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 10 end
+function AddBackLabor11(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 11 end
+function AddBackLabor12(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 12 end
+function AddBackLabor13(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 13 end
+function AddBackLabor14(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 14 end
+function AddBackLabor15(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 15 end
+function AddBackLabor16(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 16 end
+function AddBackLabor17(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 17 end
+function AddBackLabor18(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 18 end
+function AddBackLabor19(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 19 end
+function AddBackLabor20(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 20 end
+
+function ChurchBuild(i)
+  GameManager.Build(nil,"教堂")
+  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","每回合根据人口产出信仰值")
+end
+function ChurchFaith(i)
+  GameManager.AddResource(ResourceType.Faith,GameManager.gameData.maxWorker)
+end
+function testbuff(t)
+  Debug.Log(t)
+end
+
+function Buff_Relic105(i)
+  GameManager.AddResource(ResourceType.Mine,5)
+end
+
+function Buff_Relic109(i)
+  CostModifiter = CostModifiter + 1
+end
+
+function add_maxWorker(i)
+  GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker +1
+end
+
+function Buff_Relic110(i)
+  GameManager.AddResource(ResourceType.Mine,1)
+end
+
+
+function Buff_Relic209(i)
+  GameManager.AddResource(ResourceType.Mine,200)
+end
+
+function Buff_Relic212(i)
+  --获得所有手牌的临时复制
+end
+
+function Buff_Relic303(i)
+  GameManager.SubResource(ResourceType.Tech,GameManager.GetResource(ResourceType.Tech))
+end
+
+
+function Buff_Relic306(i)
+  GameManager.SubResource(Resource.Mine,5)
+end

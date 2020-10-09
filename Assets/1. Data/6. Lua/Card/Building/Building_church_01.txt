@@ -6,13 +6,23 @@ function this:new()
   self.name = "教堂修缮"
   self.frame = "资源牌面s"
   self.image = "教堂pd"
-  self.desc = "消耗石材10\n修缮教堂,提供祷告的场所\n卡组中加入1张【祈祷】,2张【祈愿】"
-  self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.desc = "消耗石材10\n修缮教堂,提供祷告的场所\n卡组中加入1张【资源祈祷】,1张【信仰祈祷】"
+  self.boundingCard={"Pray01","Pray02"}
   self.inHand = false
   self.woodc = 10
   self.cost =3
   self.rounds =2
 end
+function this:onPlay()
+  if self:canPlay() then
+    self:subRc()
+    self:laborCost()
+    self:applyEffect()
+  else
+    HandView:AddToHand(self.cardView)
+  end
+end
+
 --重写this:applyEffect()
 function this:applyEffect()
     GameManager.Exile(self)

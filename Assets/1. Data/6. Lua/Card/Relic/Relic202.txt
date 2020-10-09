@@ -3,9 +3,10 @@ local this = Relic202
 
 this.ID=202
 this.name='天降神兵'
-this.desc='每个回合获得1张临时资源卡'
+this.desc='获得每种资源卡1张'
 this.rare='rare'
 
-function this.apply()
-  --每个回合获得1张临时资源卡
+function this:apply()
+  local boundingCard ={"BasicMine01","BasicWood01","BasicIron01","BasicMush01"}
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,boundingCard)
 end

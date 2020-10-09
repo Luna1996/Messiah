@@ -5,8 +5,8 @@ this.name='完美主义'
 this.desc='从牌组中选择2张卡删除'
 this.rare='rare'
 this.icon=nil
-
-function this.apply()
+--待修改
+function this:apply()
   --从牌组中选择2张卡删除
 
 end

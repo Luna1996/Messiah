@@ -6,13 +6,16 @@ require("Class")
 require("GlobalDefine")
 require("CardBase")
 
-require('Effect/ResourceModifier')
 require('Event/Event')
-require('Relic')
+require('Relic/Relic')
 require('Buff')
+require('Buff1')
 require("Relic/Relic109")
 require('Relic/Relic110')
+require('Relic/Relic304')
+require('Relic/Relic305')
+
+
 
 CostModifiter = 0
 UsageAmountModifier = 0
-CurrentCost = 0
