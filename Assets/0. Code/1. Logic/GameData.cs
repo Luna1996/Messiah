@@ -75,6 +75,7 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
+
       gd.build = new List<string> {
         "BasicMine01", "BasicFarm02", "BasicMine02",
         "BasicIron02", "Curse_envy", "BasicMinePile",

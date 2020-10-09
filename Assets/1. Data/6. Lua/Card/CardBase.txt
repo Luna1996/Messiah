@@ -31,3 +31,18 @@ end
 function this:getCardFullName()
   return self.className
 end
+
+function this:canBuild(buildingConsumption)
+  local woodc = buildingConsumption[1]
+  local ironc = buildingConsumption[2]
+  local workerc = buildingConsumption[3]
+  if woodc<=GameManager.GetResource(ResourceType.Wood) and ironc<=GameManager.GetResource(ResourceType.Iron) and workerc<=GameManager.gameData.idleWorker then
+    GameManager.SubResource(ResourceType.Wood,woodc)
+    GameManager.SubResource(ResourceType.Iron,ironc)
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - workerc
+    return true
+  else
+    return false
+  end
+end
+    -- body

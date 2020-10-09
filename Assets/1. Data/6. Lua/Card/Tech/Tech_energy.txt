@@ -6,7 +6,7 @@ function this:new()
   self.name = "能量自动化"
   self.frame = "科技牌面"
   self.image = "能量自动化"
-  self.desc = "消耗12科技点数 将【高级采矿】【高级照明】【高级建造】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.desc = "消耗12科技点数 将【高级采矿】【高级照明】【高级建造】加入牌组"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Tech_mine_1","Tech_lighthouse_1","Tech_build_1","Tech_energy"}
   self.inHand = false
   --self.boundingBuff={}
@@ -14,9 +14,15 @@ function this:new()
 end
 
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.drawPile.Add(v)
+  if GameManager.GetResource(ResourceType.Tech)>=12 then
+    GameManager.SubResource(ResourceType.Tech,12)
+    Debug.Log(GameData.buildingDeck.Count)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+    Debug.Log(GameData.buildingDeck.Count)
+  else
+    HandView:AddToHand(self.cardView)
   end
+
 end
 
