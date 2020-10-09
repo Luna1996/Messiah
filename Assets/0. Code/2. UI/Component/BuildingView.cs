@@ -22,7 +22,7 @@ namespace Messiah.UI {
     }
 
     public void Show(float d = 0.2f) {
-      avalible.SetCards(GameManager.gameData.buildingAvaliable);
+      avalible.SetCards(GameManager.gameData.buildingAvaliable, 0);
       ShowAquiredBuilding();
       rect.DOAnchorPosY(0, d);
     }

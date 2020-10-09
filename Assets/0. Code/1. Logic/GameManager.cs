@@ -34,15 +34,17 @@ namespace Messiah.Logic {
     public static CardOnFly cardOnFly;
 
     public static void Discard(Card card) {
-      handView.RemoveCard(card);
-      gameData.hands.Remove(card.getCardFullName());
+      var i = handView.RemoveCard(card);
+      if (i != -1) gameData.hands.RemoveAt(i);
+      else gameData.hands.Remove(card.getCardFullName());
       gameData.discardPile.Add(card.getCardFullName());
       SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
     }
 
     public static void Exile(Card card) {
-      handView.RemoveCard(card);
-      gameData.hands.Remove(card.getCardFullName());
+      var i = handView.RemoveCard(card);
+      if (i != -1) gameData.hands.RemoveAt(i);
+      else gameData.hands.Remove(card.getCardFullName());
       gameData.exilePile.Add(card.getCardFullName());
       card.cardView.Dissolve();
     }
@@ -56,8 +58,8 @@ namespace Messiah.Logic {
         if (gameData.drawPile.Count > 0) {
           var card = gameData.drawPile[0];
           gameData.hands.Add(card);
-          gameData.drawPile.RemoveAt(0);
           cards.Add(card);
+          gameData.drawPile.RemoveAt(0);
         }
       }
       foreach (var card in cards) {

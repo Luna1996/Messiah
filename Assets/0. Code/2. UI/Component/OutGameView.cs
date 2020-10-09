@@ -31,10 +31,12 @@ namespace Messiah.UI {
 
     public void NewGame() {
       GameCore.userData.currentGameData = GameData.NewGameData();
+      Logic.GameManager.gameData = GameCore.userData.currentGameData;
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
 
     public void OldGame() {
+      Logic.GameManager.gameData = GameCore.userData.currentGameData;
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
   }

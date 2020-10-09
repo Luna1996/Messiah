@@ -66,15 +66,16 @@ namespace Messiah.UI {
       if (hands.Count > 0) RestoreCardPosition();
     }
 
-    public void RemoveCard(Card card) {
+    public int RemoveCard(Card card) {
       int i = 0;
       while (i < hands.Count) {
         if (hands[i] == card.cardView) {
           RemoveCard(i);
-          return;
+          return i;
         }
         i++;
       }
+      return -1;
     }
 
     public void RestoreCardPosition(float duration = 0.5f) {

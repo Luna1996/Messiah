@@ -41,7 +41,7 @@ namespace Messiah.UI {
       var count = transform.childCount;
       for (int i = 1; i < count; i++) transform.GetChild(i).gameObject.SetActive(false);
       foreach (var b in GameManager.gameData.buildingAcquired)
-        transform.Find(b).gameObject.SetActive(true);
+        transform.Find(b)?.gameObject.SetActive(true);
     }
 
     public void SetBuildingVisibility(string buildingname, bool flag) {

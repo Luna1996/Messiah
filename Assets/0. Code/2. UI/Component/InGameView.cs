@@ -64,7 +64,6 @@ namespace Messiah.UI {
     }
 
     public async Task OnTurnStart() {
-      Debug.Log("BeginTurn");
       UserData.Save();
       await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 1);
       GameManager.DrawCard(GameManager.gameData.drawNum);

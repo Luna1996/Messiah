@@ -11,6 +11,7 @@ namespace Messiah.UI {
     static CanvasGroup canvasGroup;
 
     public static async Task<GameObject> LoadMask(Transform trans, string prefab = null, float t = 0.1f, int index = -1) {
+      if (mask) await UnloadMask(0);
       var go = PrefabManager.Instanciate("UIMask", trans);
       GameObject ret = null;
       mask = go.transform;
@@ -27,6 +28,7 @@ namespace Messiah.UI {
       var tween = canvasGroup.DOFade(0, t);
       await tween.AsyncWaitForCompletion();
       Destroy(mask.gameObject);
+      mask = null;
     }
   }
 }

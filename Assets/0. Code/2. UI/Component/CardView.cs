@@ -11,7 +11,7 @@ namespace Messiah.UI {
   using Utility;
   using Logic.GameCoreNS;
 
-  public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
+  public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerExitHandler {
     [NonSerialized]
     public HandView hands;
     [NonSerialized]
@@ -56,19 +56,28 @@ namespace Messiah.UI {
 
     static Vector3 focusScal = new Vector3(2f, 2f, 1);
     public void OnBeginDrag(PointerEventData p) {
-      if (!canPlay || inPanel) return;
+      if (!canPlay || inPanel) {
+        this.PassEvent(p, ExecuteEvents.beginDragHandler);
+        return;
+      }
       hands.ReleaseFromHand(this);
       transform.DORotateQuaternion(Quaternion.identity, 0.2f);
       transform.DOScale(focusScal, 0.2f);
     }
 
     public void OnDrag(PointerEventData p) {
-      if (!canPlay || inPanel) return;
+      if (!canPlay || inPanel) {
+        this.PassEvent(p, ExecuteEvents.dragHandler);
+        return;
+      }
       transform.position = p.pointerCurrentRaycast.worldPosition;
     }
 
     public void OnEndDrag(PointerEventData p) {
-      if (!canPlay || inPanel) return;
+      if (!canPlay || inPanel) {
+        this.PassEvent(p, ExecuteEvents.endDragHandler);
+        return;
+      }
       if (p.pointerCurrentRaycast.worldPosition.y > -0.05) {
         luacard.onPlay();
       } else
@@ -77,8 +86,16 @@ namespace Messiah.UI {
 
     public void OnPointerClick(PointerEventData p) {
       if (!inPanel) return;
-      if (mask) CloseMask();
-      else if (canSelect) OpenMask();
+      if (BuildingView.view) {
+        Debug.Log("build" + luacard.name);
+      } else {
+        if (mask) CloseMask();
+        else if (canSelect) OpenMask();
+      }
+    }
+
+    public void OnPointerExit(PointerEventData p) {
+      this.PassEvent(p, ExecuteEvents.pointerExitHandler);
     }
 
     [NonSerialized]
