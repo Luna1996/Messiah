@@ -119,9 +119,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2247225926204771181}
-        m_TargetAssemblyTypeName: Messiah.UI.CardOnFly, MessiahGame
-        m_MethodName: test
+      - m_Target: {fileID: 1564181932009982001}
+        m_TargetAssemblyTypeName: Messiah.UI.InGameView, MessiahGame
+        m_MethodName: ToggleDrawPile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -160,7 +160,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1227535325027222685}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -182,7 +182,6 @@ MonoBehaviour:
   m_curvature: 0.316
   m_widthRatio: 0.8
   fillBar: []
-  m_handSize: 0
 --- !u!1 &963416813699859463
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +530,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847451009480463858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1564181932009982001}
+        m_TargetAssemblyTypeName: Messiah.UI.InGameView, MessiahGame
+        m_MethodName: ToggleExilePile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1734569452005896397
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +723,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1227535325027222685}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -896,7 +907,7 @@ RectTransform:
   - {fileID: 4977855908983385090}
   - {fileID: 2297541526614593214}
   m_Father: {fileID: 1227535325027222685}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1214,11 +1225,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 504937080172497915}
   - {fileID: 1700600310247646465}
   - {fileID: 3328510362722628078}
   - {fileID: 1438411097009105385}
   - {fileID: 7314926885236406202}
-  - {fileID: 504937080172497915}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2229,7 +2240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2014520774031402284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1564181932009982001}
+        m_TargetAssemblyTypeName: Messiah.UI.InGameView, MessiahGame
+        m_MethodName: ToggleDiscardPile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8610228859141755466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,7 +2362,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1227535325027222685}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2496,7 +2519,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 464925729576780195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1564181932009982001}
+        m_TargetAssemblyTypeName: Messiah.UI.InGameView, MessiahGame
+        m_MethodName: ToggleBuildingPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8810015797950873464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2568,7 @@ RectTransform:
   - {fileID: 2735132875133453645}
   - {fileID: 7471738894516018385}
   m_Father: {fileID: 1227535325027222685}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}

@@ -66,4 +66,24 @@ static class UtilityTest {
     var data = Messiah.Logic.UserData.GetUserData("草泥马");
     Debug.Log(data.username);
   }
+
+  [Test]
+  public static async void AsyncTest() {
+    var ts = new List<Task>();
+    for (int i = 0; i < 5; i++) ts.Add(t());
+    foreach (var tt in ts) {
+      tt.Start();
+      await tt;
+    }
+  }
+
+
+  public static Task t() {
+    Debug.Log(2);
+    return new Task(async () => {
+      await Task.Delay(3000);
+      Debug.Log(1);
+    });
+  }
+
 }

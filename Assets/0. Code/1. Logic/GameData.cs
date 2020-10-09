@@ -13,7 +13,7 @@ namespace Messiah.Logic {
     public List<string> discardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 7;
+    public int drawNum = 4;
     public int keepNum = 3;
 
     int _maxWorker = 10;
@@ -21,7 +21,7 @@ namespace Messiah.Logic {
       get { return _maxWorker; }
       set {
         if (value != _maxWorker) {
-          value = _maxWorker;
+          _maxWorker = value;
           EventService.Notify(GameEvent.IG_MaxWorkerChanged);
         }
       }
@@ -32,7 +32,7 @@ namespace Messiah.Logic {
       get { return _idleWorker; }
       set {
         if (value != _idleWorker) {
-          value = _idleWorker;
+          _idleWorker = value;
           EventService.Notify(GameEvent.IG_IdleWorkerChanged);
         }
       }
@@ -43,7 +43,7 @@ namespace Messiah.Logic {
       get { return _occupiedWorker; }
       set {
         if (value != _occupiedWorker) {
-          value = _occupiedWorker;
+          _occupiedWorker = value;
           EventService.Notify(GameEvent.IG_OccupiedWorkerChanged);
         }
       }
@@ -54,7 +54,7 @@ namespace Messiah.Logic {
       get { return _idleWorker; }
       set {
         if (value != _idleWorker) {
-          value = _idleWorker;
+          _idleWorker = value;
           EventService.Notify(GameEvent.IG_SickWorkerChanged);
         }
       }
@@ -75,11 +75,16 @@ namespace Messiah.Logic {
 
     public static GameData NewGameData() {
       var gd = new GameData();
-      //gd.build = new List<string> { "BasicMine01", "DrawCard", "Tech_build_0", "Mine_02", "Tech_build_1", "BasicMinePile", "BasicIronPile", "DrawCard","Wood_02" };
-      gd.build = new List<string> { "Building_church_01","GodCard","GodCard","Curse_lust","Curse_sloth","Curse_wrath","Curse_pride" };
 
+      gd.build = new List<string> {
+        "BasicMine01", "BasicFarm02", "BasicMine02",
+        "BasicIron02", "Curse_envy", "BasicMinePile",
+        "Curse_wrath", "Curse_pride", "BasicCorePile", "BasicIronPile" };
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
+      gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };
+      gd.buildingAcquired = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church", "Building_clinic" };
+      gd.buildingDeck = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church_01", "Building_church", "Building_clinic" };
       return gd;
     }
 

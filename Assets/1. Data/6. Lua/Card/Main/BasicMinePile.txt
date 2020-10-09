@@ -9,21 +9,30 @@ function this:new(arg)
   self.name = "矿石堆"
   --self.frame = "CardFrame_0"
   self.image = "矿石堆1"
-  self.desc = "消耗1点人力 获得1点矿石 可以使用"..self.usageAmount.."次"
+  self.desc = "占用1点人力,获得1点矿石; 可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
-
-
 function this:onPlay()
-  self.usageAmount = self.usageAmount -1
-  GameManager.AddResource(ResourceType.Mine, 1)
-  if (self.usageAmount == 0)
-  then
-    GameManager.Exile(self)
+  if (GameManager.gameData.idleWorker >= 1)
+  then 
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
+    self.usageAmount = self.usageAmount -1
+    GameManager.AddResource(ResourceType.Mine, 1)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    if (self.usageAmount == 0)
+    then
+      GameManager.Exile(self)
+    else
+      GameManager.Discard(self)
+    end
   else
-    GameManager.Discard(self)
+    HandView:AddToHand(self.cardView)
   end
+
 end
 
 function this:getCardFullName()
