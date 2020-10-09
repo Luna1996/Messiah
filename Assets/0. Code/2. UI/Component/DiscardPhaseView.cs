@@ -56,7 +56,7 @@
     public static bool NeedDiscard() {
       var keepNum = GameManager.gameData.keepNum;
       var discNum = GameManager.handView.hands.Count - keepNum;
-      return discNum >= 0;
+      return discNum > 0;
     }
 
   }
