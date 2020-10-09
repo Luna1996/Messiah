@@ -66,6 +66,11 @@ function this:getCardFullName()
 end
 
 function this:enoughLabor()
+   
+  if not self.cost 
+  then 
+    self.cost = 0
+  end
   if GameManager.gameData.idleWorker>=self.cost + CostModifiter then
     return true
   else

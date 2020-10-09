@@ -6,24 +6,18 @@ function this:new()
   self.name = "初级建造"
   self.frame = "科技牌面"
   self.image = "初级建造科技"
-  self.desc = "消耗2科技点数 将【房舍升级】【蘑菇水培池】【教堂修缮】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.desc = "消耗2科技点数\n将【房舍升级】【蘑菇水培池】【教堂修缮】加入牌组"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_church_01","Building_house_01","Building_mush_01"}
   self.inHand = false
+  self.techc = 2
+  self.cost = nil
   --self.boundingBuff={}
   --self.buildingConsumption={2,0,2,2}
 end
 
 
-function this:onPlay()
-  if GameManager.GetResource(ResourceType.Tech)>=2 then
-    GameManager.SubResource(ResourceType.Tech,2)
-    --Debug.Log(GameData.buildingDeck.Count)
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.BuildingDeck,self.boundingCard)
-    --Debug.Log(GameData.buildingDeck.Count)
-  else
-    HandView:AddToHand(self.cardView)
-  end
-
+function this:applyEffect()
+    self.cardView:Dissolve()
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
 end
 

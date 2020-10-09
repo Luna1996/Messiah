@@ -3,28 +3,22 @@ local this = Tech_table
 
 function this:new()
   self.cardView = nil
+
   self.name = "制图桌"
   self.frame = "科技牌面"
   self.image = "制图桌"
-  self.desc = "消耗3科技点数 将【初级采矿】【初级照明】【初级建造】【机械自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
-  self.boundingCard={"Tech_mine_0","Tech_lighthouse_0","Tech_build_0","Tech_machine"}
+  self.desc = "消耗3科技点数\n将【初级采矿】【初级建造】【机械自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.boundingCard={"Tech_mine_0","Tech_build_0","Tech_machine"}
   self.inHand = false
+  self.techc = 3
+  self.cost = nil
   --self.boundingBuff={}
 
 end
 
 
 
-function this:onPlay()
-  if GameManager.GetResource(ResourceType.Tech)>=3 then
-    GameManager.SubResource(ResourceType.Tech,3)
-    Debug.Log(GameData.buildingDeck.Count)
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
-    Debug.Log(GameData.buildingDeck.Count)
-  else
-    HandView:AddToHand(self.cardView)
-  end
-
+function this:applyEffect()
+  self.cardView:Dissolve()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
 end
-
