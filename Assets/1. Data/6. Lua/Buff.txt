@@ -62,6 +62,6 @@ function ABC(i)
   Debug.Log(i)
 end
 
-function ABCTIPS(i)
-  return i.."回合", i
+function ABCTIPS(i, args)
+  return i.."回合"..args, i
 end

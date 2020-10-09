@@ -18,6 +18,7 @@ namespace Messiah.UI {
     public string icon;
     public string tips;
     public string tipsFunc;
+    public string args;
     public int time;
     public int maxtime;
 
@@ -27,7 +28,7 @@ namespace Messiah.UI {
     static List<string> characters = new List<string> { "buff401", "buff402", "buff403", "buff404" };
 
 
-    public Buff(string buff, Enum trigger, BuffType type, int maxtime, string icon, string tips, string tipsFunc = null) {
+    public Buff(string buff, Enum trigger, BuffType type, int maxtime, string icon, string tips, string tipsFunc = null, string args = null) {
       GameManager.gameData.buff.Add(this);
       this.buff = buff;
       this.trigger = trigger;
@@ -35,6 +36,7 @@ namespace Messiah.UI {
       this.icon = icon;
       this.tips = tips;
       this.tipsFunc = tipsFunc;
+      this.args = args;
       this.time = 0;
       this.maxtime = maxtime;
 
@@ -53,7 +55,7 @@ namespace Messiah.UI {
         if (string.IsNullOrEmpty(tipsFunc))
           buffIcon.GetComponent<Tip>().text = tips;
         else {
-          var ret = LuaManager.lua.DoString($"return {tipsFunc}(0)");
+          var ret = LuaManager.lua.DoString($"return {tipsFunc}({time}, '{args}')");
           buffIcon.GetComponent<Tip>().text = ret[0].ToString();
           if (ret.Length > 1) {
             buffIcon.GetComponentInChildren<Text>(true).gameObject.SetActive(true);
@@ -76,13 +78,13 @@ namespace Messiah.UI {
     public async void CallBack() {
       time++;
       if (!string.IsNullOrEmpty(tipsFunc)) {
-        var ret = LuaManager.lua.DoString($"return {tipsFunc}({time})");
+        var ret = LuaManager.lua.DoString($"return {tipsFunc}({time}, '{args}')");
         buffIcon.GetComponent<Tip>().text = ret[0].ToString();
         if (ret.Length > 1)
           buffIcon.GetComponentInChildren<Text>(true).text = ret[1].ToString();
       }
       if (type == BuffType.Repeat || time == maxtime) {
-        LuaManager.lua.DoString($"{buff}({time})");
+        LuaManager.lua.DoString($"{buff}({time}, '{args}')");
         if (buffIcon) {
           await buffIcon.transform.DOPunchScale(big, 1f).AsyncWaitForCompletion();
         }
