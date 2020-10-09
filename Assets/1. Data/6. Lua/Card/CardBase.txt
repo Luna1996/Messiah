@@ -48,14 +48,27 @@ end
 function this:canBuild(buildingConsumption)
   local woodc = buildingConsumption[1]
   local ironc = buildingConsumption[2]
-  local workerc = buildingConsumption[3]
-  if woodc<=GameManager.GetResource(ResourceType.Wood) and ironc<=GameManager.GetResource(ResourceType.Iron) and workerc<=GameManager.gameData.idleWorker then
-    GameManager.SubResource(ResourceType.Wood,woodc)
-    GameManager.SubResource(ResourceType.Iron,ironc)
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - workerc
+  if woodc<=GameManager.GetResource(ResourceType.Wood) and ironc<=GameManager.GetResource(ResourceType.Iron) then
     return true
   else
     return false
   end
 end
     -- body
+
+function this:laborCost(labor,rounds)
+  if GameManager.gameData.idleWorker>=labor then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - labor
+    GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker + labor
+    GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,rounds,
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + labor
+      GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker - labor
+    end)
+    Debug.Log(GameManager.gameData.idleWorker)
+    Debug.Log(GameManager.gameData.occupiedWorker)
+    return true
+  else
+    return false
+  end
+end
