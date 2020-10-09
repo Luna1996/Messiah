@@ -1,0 +1,20 @@
+GodCard = class(CardBase, "GodCard")
+local this = GodCard
+
+function this:new()
+  self.name = "抽牌"
+  self.desc = "无敌"
+  self.image = 'godcard'
+end
+
+function this:onPlay()
+  GameManager.Discard(self)
+  GameManager.DrawCard()
+  GameManager.DrawCard()
+  GameManager.AddResource(ResourceType.Food, 100)
+  GameManager.AddResource(ResourceType.Mine, 100)
+  GameManager.AddResource(ResourceType.Iron, 100)
+  GameManager.AddResource(ResourceType.Wood, 100)
+  Debug.Log(GameManager.gameData.idleWorker)
+end
+

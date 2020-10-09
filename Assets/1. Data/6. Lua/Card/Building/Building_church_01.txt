@@ -12,11 +12,13 @@ function this:new()
   self.buildingConsumption = {10,0,3,2}  -----建筑需要的消耗：石材、钢铁、人力、人力回合数
 end
 
-
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.drawPile.Add(v)
+  if this:canBuild(self.buildingConsumption) then
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
   end
+
 end
 

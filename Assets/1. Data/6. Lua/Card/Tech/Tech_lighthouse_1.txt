@@ -9,15 +9,17 @@ function this:new()
   self.desc = "消耗6科技点数 将【高曲率镜片】【超导管线】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_lighthouse_11","Building_lighthouse_12"}
   self.inHand = false
-  --self.boundingBuff={}
-  --self.buildingConsumption={2,0,2,2}
 end
-
 
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.buildingDeck.Add(v)
+  if GameManager.GetResource(ResourceType.Tech)>=6 then
+    GameManager.SubResource(ResourceType.Tech,2)
+    --Debug.Log(GameData.buildingDeck.Count)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.BuildingDeck,self.boundingCard)
+    --Debug.Log(GameData.buildingDeck.Count)
+  else
+    HandView:AddToHand(self.cardView)
   end
-end
 
+end

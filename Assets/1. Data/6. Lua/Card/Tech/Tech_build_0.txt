@@ -15,12 +15,15 @@ end
 
 
 function this:onPlay()
-  Debug.Log(GameData.buildingDeck.Count)
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.buildingDeck.Add(v)
+  if GameManager.GetResource(ResourceType.Tech)>=2 then
+    GameManager.SubResource(ResourceType.Tech,2)
+    --Debug.Log(GameData.buildingDeck.Count)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.BuildingDeck,self.boundingCard)
+    --Debug.Log(GameData.buildingDeck.Count)
+  else
+    HandView:AddToHand(self.cardView)
   end
-  Debug.Log(GameData.buildingDeck.Count)
 
 end
 
