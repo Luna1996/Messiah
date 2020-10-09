@@ -4,18 +4,27 @@ local this = Building_wood
 function this:new()
   self.cardView = nil
   self.name = "采石场"
-  self.frame = "建筑牌面"
+  self.frame = "资源牌面s"
   --self.image = "残损义骸"
-  self.desc = "开采石材的场所"
+  self.image = "采石场p"
+  self.desc = "消耗2点石材\n建造采石场\n加入2张【采石1】"
   self.boundingCard={"BasicWood01","BasicWood01"}
   self.inHand = false
   --self.boundingBuff={}
-  self.buildingConsumption={2,0,2,2}
+  self.cost = 2
+  self.rounds =2
+  self.woodc = 2 
 end
 
 
-function this:onPlay()
+function this:applyEffect()
   self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  local temp = table.concat(self.boundingCard,";")
+  Buff(
+    "Buff_Building_wood", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "2, 采石场正在建造,"..temp)
 end
 
