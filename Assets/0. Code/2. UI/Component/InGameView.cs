@@ -50,6 +50,8 @@ namespace Messiah.UI {
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
       OnHumanChanged();
+      foreach (var buff in GameManager.gameData.buff)
+        buff.SetUp();
       await System.Threading.Tasks.Task.Delay(500);
 
       handView.Init();
