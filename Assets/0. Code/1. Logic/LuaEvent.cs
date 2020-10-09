@@ -2,6 +2,7 @@ namespace Messiah.Logic {
   using System.Collections.Generic;
 
   public interface LuaEvent {
+    LuaEventState initState { get; set; }
     LuaEventState currentState { get; set; }
     string[] choices();
     void choose(string choice);
