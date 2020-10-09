@@ -1,6 +1,6 @@
 Tech_lighthouse_1= class(CardBase,"Tech_lighthouse_1")
 local this = Tech_lighthouse_1
-
+--暂时不做了
 function this:new()
   self.cardView = nil
   self.name = "中级照明"

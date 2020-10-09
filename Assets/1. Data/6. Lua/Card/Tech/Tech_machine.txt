@@ -6,24 +6,18 @@ function this:new()
   self.name = "机械自动化"
   self.frame = "科技牌面"
   self.image = "机械自动化"
-  self.desc = "消耗8科技点数 将【中级采矿】【中级照明】【中级建造】【能量自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
-  self.boundingCard={"Tech_mine_1","Tech_lighthouse_1","Tech_build_1","Tech_energy"}
+  self.desc = "消耗8科技点数\n将【中级采矿】【中级建造】【能量自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.boundingCard={"Tech_mine_1","Tech_build_1","Tech_energy"}
   self.inHand = false
+  self.techc = 8
+  self.cost = nil
   --self.boundingBuff={}
 
 end
 
 
-function this:onPlay()
-  if GameManager.GetResource(ResourceType.Tech)>=8 then
-    GameManager.SubResource(ResourceType.Tech,8)
-    Debug.Log(GameData.buildingDeck.Count)
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
-    Debug.Log(GameData.buildingDeck.Count)
-  else
-    HandView:AddToHand(self.cardView)
-  end
-
+function this:applyEffect()
+  self.cardView:Dissolve()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
 end
 
