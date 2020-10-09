@@ -5,8 +5,8 @@ this.name='一心二用'
 this.desc='每回合使用的第1张资源卡效果翻倍'
 this.rare='rare'
 this.icon=nil
-
-function this.apply()
+--不做
+function this:apply()
   --每回合使用的第1张资源卡效果翻倍
 end
 

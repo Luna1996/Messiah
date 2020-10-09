@@ -6,8 +6,9 @@ this.desc='抽牌数-2，回合开始时获得所有手牌的临时复制'
 this.rare='rare'
 this.icon=nil
 
-function this.apply()
-  --抽牌数-2，回合开始时获得所有手牌的临时复制
-
+function this:apply()
+  ---drawNum - 2
+  --回合开始时获得所有手牌的临时复制
+  Buff("Buff_Relic212",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff212","抽牌数-2，回合开始时获得所有手牌的临时复制")
 end
 

@@ -16,7 +16,6 @@ end
 
 
 function this:applyEffect()
-  Relic110:apply()
-  GameManager.Exile(self)
+  self.cardView:Dissolve()
   Buff("ChurchBuild",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518","教堂建造中")
 end

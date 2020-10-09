@@ -6,6 +6,6 @@ this.name='金手指'
 this.desc='所有资源产出+1'
 this.rare='rare'
 
-function this.apply()
-  --所有资源产出+1
+function this:apply()
+  --AddResourceModifiter
 end

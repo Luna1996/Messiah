@@ -2,38 +2,6 @@ function ExampleBuff(i)
   Debug.Log(i)
 end
 
-function AddBackLabor(i)
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-  Debug.Log(CurrentCost)
-end
-
-function ChurchBuild(i)
-  GameManager.Build(nil,"教堂")
-  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","每回合根据人口产出信仰值")
-end
-function ChurchFaith(i)
-  GameManager.AddResource(ResourceType.Faith,GameManager.gameData.maxWorker)
-end
-function testbuff(t)
-  Debug.Log(t)
-end
-
-function Buff_Relic105(i)
-  GameManager.AddResource(ResourceType.Mine,5)
-end
-
-function Buff_Relic109(i)
-  CostModifiter = CostModifiter + 1
-end
-
-function add_maxWorker(i)
-  GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker +1
-end
-
-function Buff_Relic110(i)
-  GameManager.AddResource(ResourceType.Mine,1)
-end
-
 function Buff_BasicFarm01(i)
   GameManager.AddResource(ResourceType.Food,30)
 end

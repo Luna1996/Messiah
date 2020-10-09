@@ -2,11 +2,12 @@ Relic305 = Relic()
 local this = Relic305
 this.ID=305
 this.name='愤怒之袭'
-this.desc='抽牌数+1，卡组中加入两张【愤怒】'
+this.desc='抽牌数+1，卡组中加入1张【愤怒】'
 this.rare='pandora'
 this.icon=nil
 
 function this.apply()
-  --抽牌数+1，卡组中加入两张【愤怒】
+  GameManager.gameData.drawNum = GameManager.gameData.drawNum + 1
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_wrath"})
 end
 

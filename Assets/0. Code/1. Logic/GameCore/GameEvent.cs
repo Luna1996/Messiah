@@ -27,5 +27,8 @@ namespace Messiah.Logic.GameCoreNS {
 
     IG_WeatherCardDraw,
     IG_BuildingsBuit,
+    IG_BasicCardPlay,
+    IG_ResourceCardPlay,
+    IG_MineEqualsZero,
   }
 }
