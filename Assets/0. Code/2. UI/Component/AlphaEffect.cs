@@ -30,6 +30,12 @@ namespace Messiah.UI {
         setter = (a) => rawImage.color = new Color(1, 1, 1, a);
         goto OK;
       }
+      var image = GetComponent<Image>();
+      if (image != null) {
+        getter = () => image.color.a;
+        setter = (a) => image.color = new Color(1, 1, 1, a);
+        goto OK;
+      }
       return;
     OK:
       if (playOnStar)
