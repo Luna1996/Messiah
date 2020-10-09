@@ -4,17 +4,25 @@ local this = Building_mine_23
 function this:new()
   self.cardView = nil
   self.name = "应急仓库"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
+  self.frame = "资源牌面s"
+  self.image = "钢厂p"
   self.desc = "获得战时动员卡"
   self.inHand = false
   self.boundingCard={"Wartime"}
   self.buildingConsumption={8,10,4,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 

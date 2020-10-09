@@ -4,14 +4,17 @@ local this = Building_mine_11
 function this:new()
   self.cardView = nil
   self.name = "高炉升级"
-  self.frame = "建筑牌面"
+  self.frame = "资源牌面s"
   self.image = "残损义骸"
   self.desc = "所有炼钢卡的资源产出+2"
   self.inHand = false
   self.boundingBuff={} --炼钢卡资源产出+2
   self.buildingConsumption={4,8,5,3}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
+---buff trigger加一个打出炼钢牌时 notify一个trigger 然后在dashboard里面增加一个值
 
 function this:onPlay()
   self.cardView:Dissolve()

@@ -6,14 +6,23 @@ function this:new()
   self.name = "蘑菇水培池"
   self.frame = "建筑牌面"
   --self.image = "残损义骸"
-  self.desc = "提高蘑菇农场的蘑菇卡等级"
+  self.desc = "-石材5 钢铁2- 提高蘑菇农场的蘑菇卡等级"
   self.inHand = false
-  self.boundingBuff={}  --Build内的所有的BasicMush01替换成BasicMush02
+  self.boundingCard="BasicMush02"
+  self.deletingCard="BasicMush01"
   self.buildingConsumption={5,2,2,2}
+  self.cost =2
+  self.rounds =2
 end
-
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
+

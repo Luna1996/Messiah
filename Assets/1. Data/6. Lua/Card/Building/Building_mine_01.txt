@@ -4,17 +4,25 @@ local this = Building_mine_01
 function this:new()
   self.cardView = nil
   self.name = "改进矿机"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "抉择：将牌组内的采矿/采石/炼钢卡提升1级" --从Basicxx01提升到Basicxx02
+  self.frame = "资源牌面s"
+  self.image = "采煤机p"
+  self.desc = "提升卡组内的采矿卡等级" --从Basicxx01提升到Basicxx02
   self.inHand = false
-  self.boundingBuff={} --3选1 展示三个卡 如果只有两个能升级的（已经升级过一次）则只展示两次
+  self.deletingCard = "BaseMine01"
+  self.boundingCard = "BaseMine02"
   self.buildingConsumption={8,3,2,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
 

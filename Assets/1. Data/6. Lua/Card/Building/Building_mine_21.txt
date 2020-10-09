@@ -8,10 +8,12 @@ function this:new()
   self.image = "残损义骸"
   self.desc = "所有资源卡获得装填" --装填：打出时再抽一张牌
   self.inHand = false
-  self.boundingBuff={} --即时生效 使build内所有资源卡获得装填
   self.buildingConsumption={8,10,6,3}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
+---buff trigger加一个打出资源牌时drawcard
 
 function this:onPlay()
   self.cardView:Dissolve()

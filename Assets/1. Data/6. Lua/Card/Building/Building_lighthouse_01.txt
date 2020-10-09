@@ -12,7 +12,7 @@ function this:new()
   self.buildingConsumption={6,6,4,2}
 end
 
-
+--暂时不用
 function this:onPlay()
   self.cardView:Dissolve()
   --Debug.Log(GameData.drawPile)

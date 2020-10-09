@@ -5,7 +5,7 @@
 local states ={}
 
 states.a = {
-  name = "旅行者B1",
+  name = "逆境求生的旅行者",
   desc = "疲惫的旅行者 需要xx资源",
   choices = {"给他","8给"},
 }

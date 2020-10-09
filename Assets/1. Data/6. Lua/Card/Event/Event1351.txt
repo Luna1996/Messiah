@@ -6,7 +6,7 @@ local states ={}
 
 states.a = {
   name = "约翰退休",
-  desc = "我要退休",
+  desc = "年迈的约翰希望退休",
   choices = {"好的","不行"},
   }
 function states.a:choose(choice)

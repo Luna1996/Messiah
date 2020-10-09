@@ -14,7 +14,7 @@ namespace Messiah.Logic {
     public List<string> discardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 4;
+    public int drawNum = 6;
     public int keepNum = 3;
 
     int _maxWorker = 10;
@@ -79,7 +79,9 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      gd.build = new List<string> { "BasicIronPile" };
+
+      gd.build = new List<string> {
+        "GodCard","Building_church","Building_church_01","Building_clinic","BasicIronPile"};
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };

@@ -5,7 +5,7 @@
 local states ={}
 
 states.a = {
-  name = "求救事件C1",
+  name = "探险队的求救",
   desc = "路过城市的探险队遇到了麻烦",
   choices = {"花费2点人力1回合前往救援","置之不理"},
 }

@@ -8,17 +8,16 @@ function this:new()
 end
 
 function this:onPlay()
-  Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff501", "buff501")
-  Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff401", "buff401")
+  local t = 100
+  Buff("testbuff("..tostring(t)..")", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff501", "buff501")
+  --Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff401", "buff401")
   HandView:AddToHand(self.cardView)
   -- GameManager.Discard(self)
-  -- GameManager.DrawCard()
-  -- GameManager.DrawCard()
-  -- GameManager.AddResource(ResourceType.Food, 100)
-  -- GameManager.AddResource(ResourceType.Mine, 100)
-  -- GameManager.AddResource(ResourceType.Iron, 100)
-  -- GameManager.AddResource(ResourceType.Wood, 100)
-  -- Debug.Log(GameManager.gameData.idleWorker)
-  -- Debug.Log(GameManager.gameData.occupiedWorker)
+   GameManager.DrawCard()
+   GameManager.DrawCard()
+   GameManager.AddResource(ResourceType.Food, 100)
+   GameManager.AddResource(ResourceType.Mine, 100)
+   GameManager.AddResource(ResourceType.Iron, 100)
+   GameManager.AddResource(ResourceType.Wood, 100)
 end
 

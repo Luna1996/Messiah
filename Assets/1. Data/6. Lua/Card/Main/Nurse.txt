@@ -7,7 +7,7 @@ function this:new()
   self.name = "看护"
   --self.frame = "CardFrame_0"
   self.image = "看护1"
-  self.desc = "临时，消耗3人力，将最多3名患者送入诊所"
+  self.desc = "将最多3名患者送入诊所"
   self.usageAmount = 1
   self.temp = true
   self.inHand = false

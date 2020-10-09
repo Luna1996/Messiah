@@ -5,13 +5,13 @@
 local states ={}
 
 states.a = {
-  name = "求救事件E1",
+  name = "动物的哀嚎1",
   desc = "有人呼救",
   choices = {"花费1点人力1回合前往救援","置之不理"},
 }
 
 states.b={
-  name="求救事件E2",
+  name="动物的哀嚎2",
   desc = "发现动物尸体",
   choices = {"储存","放弃"},
 }
