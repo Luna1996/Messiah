@@ -15,7 +15,7 @@ function this:new()
   self.cost =5
   self.rounds =2
 end
-
+--再说
 function this:applyEffect()
     GameManager.Exile(self)
     GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)

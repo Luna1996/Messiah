@@ -17,7 +17,5 @@ end
 
 function this:applyEffect()
   self.cardView:Dissolve()
-  EventService.Notify(GameEvent.IG_WeatherCardDraw)
-  Buff("ChurchBuild",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518","教堂建造中")
-  
+  Buff("ChurchBuild",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518",nil,"BuildTip","2,教堂建造中")
 end

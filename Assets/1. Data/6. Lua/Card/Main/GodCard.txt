@@ -8,11 +8,12 @@ function this:new()
 end
 
 function this:onPlay()
+
   GameManager.AddResource(ResourceType.Food, 100)
   GameManager.AddResource(ResourceType.Mine, 100)
   GameManager.AddResource(ResourceType.Iron, 100)
   GameManager.AddResource(ResourceType.Wood, 100)
-  GameManager.Build(nil, "教堂")
+  --GameManager.Build(nil, "教堂")
   HandView:AddToHand(self.cardView)
 end
 

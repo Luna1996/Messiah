@@ -3,9 +3,9 @@ local this = Relic111
 
 this.ID=111
 this.name='一生二'
-this.desc='每次事件中使用的第1张资源卡的复制洗入牌组'
+this.desc='天气变化后使用的第1张资源卡的复制洗入牌组'
 this.rare='normal'
 --复制先不做
-function this:apply()
+function this.apply()
   --每次事件中使用的第1张资源卡的复制洗入牌组
 end
