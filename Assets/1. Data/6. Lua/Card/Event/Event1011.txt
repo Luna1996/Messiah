@@ -1,12 +1,12 @@
 -------------------------------------------
--- EventExample
+-- Event1011
 
 
 local states ={}
 
 states.a = {
-  name = "女孩的请求1",
-  desc = "提供10点食物",
+  name = "米西亚的请求",
+  desc = "米西亚很饿，希望您提供10点食物",
   choices = {"好的","我没有"},
   }
 function states.a:choose(choice)

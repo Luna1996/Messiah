@@ -6,7 +6,7 @@ function this:new()
   self.name = "房舍升级"
   self.frame = "建筑牌面"
   self.image = "残损义骸"
-  self.desc = "住宅可容纳的人口上限+2"
+  self.desc = "-石材4 钢铁1- 住宅可容纳的人口上限+1"
   self.buildingConsumption={4,1,2,1}
   self.cost =self.buildingConsumption[3]
   self.rounds =self.buildingConsumption[4]
@@ -18,14 +18,7 @@ function this:onPlay()
     self:subRcBuilding(self.buildingConsumption)
     self:laborCost(self.cost+CostModifiter,self.rounds)
       --get一下当前空闲人力
-      local population = GameManager.gameData.idleWorker + GameManager.gameData.occupiedWorker
-      GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,
-      function()
-        GameManager.CreateBuff(GameEvent.ExitMainPhase, BuffType.Repeat, -1,
-        function ()
-          GameManager.AddResource(ResourceType.Faith, population)
-        end)
-      end)
+      GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker + 1
       GameManager.Exile(self)
   else
     HandView:AddToHand(self.cardView)

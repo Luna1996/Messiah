@@ -12,3 +12,4 @@ require('Relic')
 require('Buff')
 
 CostModifiter = 0
+GameDashBoard = {}

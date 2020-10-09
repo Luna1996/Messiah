@@ -5,30 +5,19 @@ function this:new()
   self.cardView = nil
   self.name = "教堂"
   self.frame = "资源牌面s"
-  self.image = "教堂p"
   self.desc = "消耗石材10\n建造教堂,收集居民信仰的力量\n回合结束时每位居民提供1点信仰值"
   self.inHand = false
   self.buildingConsumption = {10,0,5,2}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.cost =5
+  self.rounds =2
+  self.woodc =10
 end
 
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-      --get一下当前空闲人力
-      local population = GameManager.gameData.idleWorker + GameManager.gameData.occupiedWorker
-      GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,
-      function()
-        GameManager.CreateBuff(GameEvent.ExitMainPhase, BuffType.Repeat, -1,
-        function ()
-          GameManager.AddResource(ResourceType.Faith, population)
-        end)
-      end)
-      GameManager.Exile(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
-end
+function this:applyEffect()
+    GameManager.Exile(self)
+    GameManager.Build("教堂")
+      local name="教堂"
+      Buff("ChurchBuild(\""..name.."\")",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518","教堂建造中")
+      --GameManager.Build(self,"教堂")
+    end

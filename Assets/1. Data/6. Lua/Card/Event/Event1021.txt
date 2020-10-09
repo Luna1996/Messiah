@@ -5,12 +5,12 @@
 local states ={}
 
 states.a = {
-  name = "求救事件A1",
-  desc = "隐约听见呼救声",
+  name = "隐约的求救1",
+  desc = "迷雾中传来忽隐忽现的呼救声，是否去搜寻？",
   choices = {"前往救援","置之不理"},}
 states.b={
-  name="求救事件A2",
-  desc = "发现陌生的尸体",
+  name="隐约的求救2",
+  desc = "发现陌生的尸体，是否要埋葬这个可怜人？",
   choices = {"花费3个石材埋了他","不管他"},}
 function states.a:choose(choice)
     if choice == self.choices[1] then

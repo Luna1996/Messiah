@@ -5,14 +5,14 @@
 local states ={}
 
 states.a = {
-  name = "迷路A酱1",
+  name = "迷路的索菲亚1",
   desc = "你喜欢开普勒吗",
   choices = {"yes","no"},
 }
 
 states.b={
-  name="迷路A酱2",
-  desc = "回答错误哦 没收你2点矿石",
+  name="迷路的索菲亚2",
+  desc = "回答错误哦 罚你2点矿石",
   choices = {"给你","不给"},
 }
 

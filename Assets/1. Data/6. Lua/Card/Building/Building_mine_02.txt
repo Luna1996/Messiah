@@ -4,17 +4,25 @@ local this = Building_mine_02
 function this:new()
   self.cardView = nil
   self.name = "改进管线"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "抉择：选择获得1张 采矿/采石/炼钢工作卡"
+  self.frame = "资源牌面s"
+  self.image = "采煤机p"
+  self.desc = "-石材5 钢铁5- 牌组中增加1张采矿牌"
   self.inHand = false
-  self.boundingBuff={} --3选1 展示三个卡 选择1张加入手牌
+  self.boundingBuff={} 
   self.buildingConsumption={5,5,2,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 

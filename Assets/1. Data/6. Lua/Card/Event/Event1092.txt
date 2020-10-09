@@ -5,35 +5,36 @@
 local states ={}
 
 states.a = {
-  name = "可怜的逃命人1",
-  desc = "城西听到呼救声，听起来有五六个人",
-  choices = {"前往查看","置之不理"},
+  name = "迷路的森兰丸1",
+  desc = "你喜欢开普勒吗",
+  choices = {"yes","no"},
 }
 
 states.b={
-  name="可怜的逃命人2",
-  desc = "有一群人希望能加入，不过需要你提供一些食物",
-  choices = {"同意","拒绝"},
+  name="迷路的森兰丸2",
+  desc = "回答错误哦 罚你2点矿石",
+  choices = {"给你","不给"},
 }
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      return states.b
+      --卡牌奖励池1
+      return nil
     elseif choice==self.choices[2] then
       --调用弹对话的接口 text= "狠心！！！"
-      return nil
+      return states.b
     end
 end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
-  --如果食物够 食物-5 人口+5 科技值+1
+  --if矿石>2则矿石-2 否则卡组加入1张诅咒卡
     return nil
   elseif choice==self.choices[2] then
-    --里面有科学家的 你亏了
+    --卡组加入1张诅咒卡
     return nil
   end
 end
 
-Event1071 = Event(states.a)
+Event1091 = Event(states.a)
 -------------------------------------

@@ -5,7 +5,7 @@
 local states ={}
 
 states.a = {
-  name = "求救事件D1",
+  name = "隐秘的角落",
   desc = "有人呼救",
   choices = {"花费随机2点资源前往救援","置之不理"},
 }

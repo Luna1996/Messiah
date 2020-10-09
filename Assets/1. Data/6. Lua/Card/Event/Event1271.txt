@@ -5,12 +5,12 @@
 local states ={}
 
 states.a = {
-  name = "神父1",
+  name = "神父的旨意",
   desc = "神父以神的旨意 需求xx资源",
   choices = {"提供资源","不提供资源"},
 }
 states.b = {
-  name = "神父2",
+  name = "神之子的预言",
   desc = "神父挑选神之子",
   choices = {"允许","不允许"},
 }

@@ -5,8 +5,8 @@
 local states ={}
 
 states.a = {
-  name = "长者去世",
-  desc = "长者死了，送行吗",
+  name = "噩耗",
+  desc = "德高望重的长者去世了，为他送行吗",
   choices = {"送呗，需要5点食物","不送"},
   }
 function states.a:choose(choice)

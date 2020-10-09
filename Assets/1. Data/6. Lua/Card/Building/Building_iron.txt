@@ -4,18 +4,26 @@ local this = Building_iron
 function this:new()
   self.cardView = nil
   self.name = "钢铁厂"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "获取钢材的生产场所"
+  self.frame = "资源牌面s"
+  self.image = "钢厂p"
+  self.desc = "-石材3 钢铁3- 获取钢材的生产场所"
   self.boundingCard={"BasicIron01","BasicIron01"}
   self.inHand = false
   --self.boundingBuff={}
   self.buildingConsumption={2,3,5,3}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 

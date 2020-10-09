@@ -3,19 +3,26 @@ local this = Building_house
 
 function this:new()
   self.cardView = nil
-  self.name = "民宅"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "普通的民宅，最多为5个居民提供庇护"
+  self.name = "住宅"
+  self.frame = "资源牌面s"
+  self.image = "住宅p"
+  self.desc = "-石材2 钢铁0- 普通的民宅，城市的人口数量+1"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
   self.boundingBuff={}
   self.buildingConsumption={2,0,2,1}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
-
 
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+      --get一下当前空闲人力
+      GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker + 1
+      GameManager.Exile(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
-

@@ -1,3 +1,16 @@
 function ExampleBuff(i)
   Debug.Log(i)
 end
+
+function AddBackLabor()
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + GameDashBoard.currentCost +CostModifiter
+end
+
+function ChurchBuild(name)
+  GameManager.Build(name)
+  GameManager.AddResource(ResourceType.Faith,GameManager.gameData.MaxWorker)
+end
+
+function testbuff(t)
+  Debug.Log(t)
+end

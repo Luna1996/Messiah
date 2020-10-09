@@ -10,11 +10,26 @@ function this:new()
   self.inHand = false
   self.boundingBuff={} --灯塔矿石消耗-30%
   self.buildingConsumption={5,5,5,3}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-
+--等结算做出来再改
 function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+      --get一下当前空闲人力
+      local population = GameManager.gameData.idleWorker + GameManager.gameData.occupiedWorker
+      GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,
+      function()
+        GameManager.CreateBuff(GameEvent.ExitMainPhase, BuffType.Repeat, -1,
+        function ()
+          GameManager.AddResource(ResourceType.Faith, population)
+        end)
+      end)
+      GameManager.Exile(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
-
