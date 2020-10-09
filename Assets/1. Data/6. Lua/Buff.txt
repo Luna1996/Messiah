@@ -34,7 +34,26 @@ function Buff_BasicMush02(i)
   GameManager.AddResource(ResourceType.Food,30)
 end
 
+function Buff_BasicWood01(i)
+  GameManager.AddResource(ResourceType.Wood,1)
+end
 
+function Buff_BasicWood02(i)
+  GameManager.AddResource(ResourceType.Wood,3)
+end
+
+function Buff_Mine_02(i)
+  GameManager.AddResource(ResourceType.Mine,15)
+end
+
+function Buff_Mush_02(i)
+  GameManager.AddResource(ResourceType.Food,60)
+end
+
+function Buff_Pray01(i)
+  local t = split(args, ',')
+  GameManager.AddResource(ResourceType.Faith,t[3])
+end
 
 
 function Xturn(i, args)
@@ -51,3 +70,5 @@ function AddBackLabor(i, args)
   local t = split(args, ',')
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + tonumber(t[1])
 end
+
+

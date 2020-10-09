@@ -4,10 +4,13 @@ local this = Mush_02
 function this:new()
   self.cardView = nil
   self.name = "巨型真菌"
+  self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "巨型真菌"
-  self.desc = "本回合消耗1点矿石; 占用1点人力,持续4回合; 第4回合，收获60点食物"
-
+  self.desc = "本回合消耗1点矿石\n第4回合，收获60点食物"
+  self.cost = 1
+  self.rounds = 3
+  self.minec = 1
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
   --self.cost = LaborConsumer
@@ -15,21 +18,12 @@ end
 
 
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 1 and GameManager.GetResource(ResourceType.Mine) >= 1)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
-    GameManager.SubResource(ResourceType.Mine, 1)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 3, 
-    function()
-      GameManager.AddResource(ResourceType.Food, 60)
-    end)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 4, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff(
+    "Buff_Mush_02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    3, "buff507", nil,
+    "Xturn", "3,收获60点食物")
+  GameManager.Discard(self)
 end

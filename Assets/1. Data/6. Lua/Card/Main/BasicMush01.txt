@@ -1,6 +1,7 @@
 BasicMush01 = class(CardBase,'BasicMush01')
 local this = BasicMush01
-
+--已完成
+--已测试
 function this:new()
   self.cardView = nil
   self.name = "蘑菇培植1"
