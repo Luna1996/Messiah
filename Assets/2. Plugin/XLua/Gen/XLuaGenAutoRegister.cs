@@ -29,6 +29,10 @@ namespace XLua.CSObjectWrap
             
             translator.AddInterfaceBridgeCreator(typeof(Messiah.Logic.Card), MessiahLogicCardBridge.__Create);
             
+            translator.AddInterfaceBridgeCreator(typeof(Messiah.Logic.LuaEvent), MessiahLogicLuaEventBridge.__Create);
+            
+            translator.AddInterfaceBridgeCreator(typeof(Messiah.Logic.LuaEventState), MessiahLogicLuaEventStateBridge.__Create);
+            
         }
         
 	    static XLua_Gen_Initer_Register__()

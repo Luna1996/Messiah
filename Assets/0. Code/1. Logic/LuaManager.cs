@@ -47,5 +47,11 @@ namespace Messiah.Logic {
       else
         return (LuaTable)lua.DoString($"require('{args[0]}') return {args[0]}('{args[1]}')")[0];
     }
+
+    public static LuaEvent GetLuaEvent(string name) { 
+      lua.DoString($"require('{name}')");
+      var e = lua.Global.Get<LuaEvent>(name);
+      return e;
+    }
   }
 }

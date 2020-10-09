@@ -9,7 +9,10 @@ namespace Messiah.Editor {
     [CSharpCallLua]
     public static List<Type> CSharpCallLua = new List<Type>() {
       typeof(Messiah.Logic.Card),
-      typeof(System.Action)
+      typeof(System.Action),
+      typeof(System.Action<int,string>),
+      typeof(Messiah.Logic.LuaEvent),
+      typeof(Messiah.Logic.LuaEventState)
     };
   }
 }
