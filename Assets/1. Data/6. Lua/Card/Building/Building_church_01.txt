@@ -5,8 +5,8 @@ function this:new()
   self.cardView = nil
   self.name = "教堂修缮"
   self.frame = "资源牌面s"
-  self.image = "残损义骸"
-  self.desc = "-石材10 钢铁0- 进一步修缮教堂，为大家提供祷告的场所（牌组中加入1张【祈祷】、2张【祈愿】）"
+  self.image = "教堂pd"
+  self.desc = "消耗石材10\n修缮教堂,提供祷告的场所\n牌组中加入1张【祈祷】,2张【祈愿】"
   self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
   self.buildingConsumption = {10,0,3,2}  -----建筑需要的消耗：石材、钢铁、人力、人力回合数
