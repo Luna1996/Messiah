@@ -3,6 +3,7 @@ namespace Messiah.UI {
   using System.Threading.Tasks;
   using UnityEngine;
   using UnityEngine.UI;
+  using Logic;
 
   public class OutGameView : MonoBehaviour {
     public GameObject newGame;
@@ -29,11 +30,13 @@ namespace Messiah.UI {
     }
 
     public void NewGame() {
-      GameCore.userData.currentGameData = null;
+      GameCore.userData.currentGameData = GameData.NewGameData();
+      Logic.GameManager.gameData = GameCore.userData.currentGameData;
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
 
     public void OldGame() {
+      Logic.GameManager.gameData = GameCore.userData.currentGameData;
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
   }

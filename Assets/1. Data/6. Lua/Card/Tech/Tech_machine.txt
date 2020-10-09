@@ -15,9 +15,15 @@ end
 
 
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.drawPile.Add(v)
+  if GameManager.GetResource(ResourceType.Tech)>=8 then
+    GameManager.SubResource(ResourceType.Tech,8)
+    Debug.Log(GameData.buildingDeck.Count)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+    Debug.Log(GameData.buildingDeck.Count)
+  else
+    HandView:AddToHand(self.cardView)
   end
+
 end
 

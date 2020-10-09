@@ -28,7 +28,7 @@ namespace Messiah.UI {
       UpdateArcData();
     }
 
-    void Start() {
+    public void Init() {
       Logic.GameManager.handView = this;
       UpdateArcData();
       hands = new List<CardView>();
@@ -63,19 +63,19 @@ namespace Messiah.UI {
 
       var cardui = hands[i];
       hands.RemoveAt(i);
-      Logic.GameCoreNS.GameCore.userData.currentGameData.hands.RemoveAt(i);
       if (hands.Count > 0) RestoreCardPosition();
     }
 
-    public void RemoveCard(Card card) {
+    public int RemoveCard(Card card) {
       int i = 0;
       while (i < hands.Count) {
         if (hands[i] == card.cardView) {
           RemoveCard(i);
-          return;
+          return i;
         }
         i++;
       }
+      return -1;
     }
 
     public void RestoreCardPosition(float duration = 0.5f) {

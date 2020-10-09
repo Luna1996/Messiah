@@ -15,8 +15,13 @@ end
 
 
 function this:onPlay()
-  GameManager.SubResource(ResourceType.Iron, 1)
-  GameManager.AddResource(ResourceType.Mine, 2)
-  GameManager.Discard(self)
+  if (GameManager.GetResource(ResourceType.Iron) >= 1)
+  then
+    GameManager.SubResource(ResourceType.Iron, 1)
+    GameManager.AddResource(ResourceType.Mine, 2)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
 

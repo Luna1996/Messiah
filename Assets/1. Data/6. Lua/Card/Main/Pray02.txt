@@ -6,7 +6,7 @@ function this:new()
   self.name = "祈愿"
   --self.frame = "CardFrame_0"
   self.image = "看护1"
-  self.desc = "消耗10点信仰值，获得1点矿石、1点石材、1点钢铁"
+  self.desc = "消耗10点信仰值; 获得1点矿石,1点石材,1点钢铁"
   self.usageAmount = 1
   self.temp = true
   self.inHand = false
@@ -15,12 +15,17 @@ end
 
 
 function this:onPlay()
-  --然后全部消耗掉
-  GameManager.SubResource(ResourceType.Faith,10)
-  GameManager.AddResource(ResourceType.Mine,1)
-  GameManager.AddResource(ResourceType.Wood,1)
-  GameManager.AddResource(ResourceType.Iron,1)
-  GameManager.Discard(self)
+  if (GameManager.GetResource(ResourceType.Faith) >= 10)
+  then
+    GameManager.SubResource(ResourceType.Faith,10)
+    GameManager.AddResource(ResourceType.Mine,1)
+    GameManager.AddResource(ResourceType.Wood,1)
+    GameManager.AddResource(ResourceType.Iron,1)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 
 

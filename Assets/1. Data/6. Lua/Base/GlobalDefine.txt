@@ -7,7 +7,7 @@ GameStateTrigger = CS.Messiah.Logic.GameCoreNS.GameStateTrigger
 GameManager = CS.Messiah.Logic.GameManager
 ResourceType = CS.Messiah.Logic.ResourceType
 BuffType = CS.Messiah.Logic.BuffType
-
+DeckType = CS.Messiah.Logic.DeckType
 Debug = CS.UnityEngine.Debug
 
 -- instance class, set by csharp

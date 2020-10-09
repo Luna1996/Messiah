@@ -6,7 +6,7 @@ function this:new()
   self.name = "巨型真菌"
   --self.frame = "CardFrame_0"
   self.image = "巨型真菌"
-  self.desc = "消耗1点人力4回合 1点矿石，获得60点食物"
+  self.desc = "本回合消耗1点矿石; 占用1点人力,持续4回合; 第4回合，收获60点食物"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -14,12 +14,22 @@ function this:new()
 end
 
 
+
 function this:onPlay()
-  --self.usageAmount = self.usageAmount - 1
-  GameManager.SubResource(ResourceType.Mine, 1)
-  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 4,
-  function ()
-    GameManager.AddResource(ResourceType.Food, 60)
-  end)
-  GameManager.Discard(self)
+  if (GameManager.gameData.idleWorker >= 1 and GameManager.GetResource(ResourceType.Mine) >= 1)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
+    GameManager.SubResource(ResourceType.Mine, 1)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 3, 
+    function()
+      GameManager.AddResource(ResourceType.Food, 60)
+    end)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 4, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end

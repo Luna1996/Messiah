@@ -9,7 +9,6 @@ namespace Messiah.Editor {
     new HandView target;
     SerializedProperty s_curvature;
     SerializedProperty s_widthRatio;
-    SerializedProperty s_handSize;
 
     void OnEnable() {
       target = base.target as HandView;
@@ -23,10 +22,6 @@ namespace Messiah.Editor {
       if (serializedObject.hasModifiedProperties) {
         serializedObject.ApplyModifiedProperties();
         target.UpdateArcData();
-      }
-      EditorGUILayout.IntSlider(s_handSize, 0, 20, "手牌");
-      if (serializedObject.hasModifiedProperties) {
-        serializedObject.ApplyModifiedProperties();
       }
     }
 

@@ -14,6 +14,9 @@ namespace Messiah.Logic.GameCoreNS {
     ExitEndingPhase,
 
 
+    IG_OnCardSelectionChanged,
+
+
     IG_ResourceModify,
     IG_DrawCard,
     IG_MaxWorkerChanged,

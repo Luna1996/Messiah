@@ -6,7 +6,7 @@ function this:new()
   self.name = "蘑菇培植1"
   --self.frame = "CardFrame_0"
   self.image = "蘑菇培植1"
-  self.desc = "消耗1点人力2回合 获得10点食物"
+  self.desc = "占用1点人力,持续2回合; 第2回合,收获10点食物"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -14,7 +14,19 @@ function this:new()
 end
 
 function this:onPlay()
-  --self.usageAmount = self.usageAmount - 1
-  GameManager.AddResource(ResourceType.Food, 10)
-  GameManager.Discard(self)
+  if (GameManager.gameData.idleWorker >= 1)
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
+    function()
+      GameManager.AddResource(ResourceType.Food, 10)
+    end)
+    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
+    function()
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+    end)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end

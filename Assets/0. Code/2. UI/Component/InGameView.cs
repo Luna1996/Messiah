@@ -20,11 +20,8 @@ namespace Messiah.UI {
 
     public GameObject[] resouces;
 
-    async void Awake() {
-      if (GameCore.userData.currentGameData == null) {
-        var gameData = GameData.NewGameData();
-        GameCore.userData.currentGameData = gameData;
-      }
+    void Awake() {
+      GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
       LuaManager.lua.Global.Set("GameData", GameCore.userData.currentGameData);
       handView = GetComponentInChildren<HandView>();
@@ -33,17 +30,9 @@ namespace Messiah.UI {
       bottom = (RectTransform)transform.Find("BottomBar");
       bottomY = bottom.anchoredPosition.y;
 
-      for (int i = 0; i < resouces.Length; i++)
-        OnResourceChanged(i);
-
-      foreach (var card in GameManager.gameData.hands) {
-        handView.AddCard(card);
-        await Task.Delay(100);
-      }
-
       EventService.ListenAsync(GameEvent.EnterMainPhase, OnTurnStart);
-      EventService.ListenAsync(GameEvent.EnterConsumePhase, DiscardHand);
-      EventService.ListenAsync(GameEvent.EnterEventPhase, ResolveRandomEvents);
+      EventService.ListenAsync(GameEvent.EnterConsumePhase, OnEnterConsumePhase);
+      EventService.ListenAsync(GameEvent.EnterEventPhase, OnEnterEventPhase);
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChanged);
     }
 
@@ -52,7 +41,16 @@ namespace Messiah.UI {
       LuaManager.lua.Global.Set("InGameView", this);
       top.DOAnchorPosY(0, 0.5f);
       bottom.DOAnchorPosY(0, 0.5f);
+      for (int i = 0; i < resouces.Length; i++)
+        OnResourceChanged(i);
+
       await System.Threading.Tasks.Task.Delay(500);
+
+      handView.Init();
+      foreach (var card in GameManager.gameData.hands) {
+        handView.AddCard(card);
+        await Task.Delay(100);
+      }
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
 
@@ -67,12 +65,10 @@ namespace Messiah.UI {
 
     public async Task OnTurnStart() {
       UserData.Save();
-      handView.transform.SetAsFirstSibling();
       await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 1);
       GameManager.DrawCard(GameManager.gameData.drawNum);
       await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
-      handView.transform.SetAsFirstSibling();
     }
 
     public void NextDay() {
@@ -80,21 +76,18 @@ namespace Messiah.UI {
         GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
-    public async Task DiscardHand() {
-      handView.transform.SetAsFirstSibling();
-      await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 1);
-      await Task.Delay(1000);
-      await UIMask.UnloadMask(0.2f);
-      handView.transform.SetAsFirstSibling();
-      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
+    public async Task OnEnterConsumePhase() {
+      if (DiscardPhaseView.NeedDiscard())
+        await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 0);
+      else
+        GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
-    public async Task ResolveRandomEvents() {
+    public async Task OnEnterEventPhase() {
       handView.transform.SetAsFirstSibling();
       await UIMask.LoadMask(transform, "EventPhaseView", 0.2f, 1);
-      await Task.Delay(1000);
+      await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
-      handView.transform.SetAsFirstSibling();
       GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
@@ -133,6 +126,45 @@ namespace Messiah.UI {
       } else {
         txt.text = $"{newvalue}";
       }
+    }
+
+    public async void ToggleDrawPile() {
+      if (CardSelectionView.view)
+        CardSelectionView.view.Hide();
+      else {
+        var list = new List<string>(GameManager.gameData.drawPile);
+        GameData.Shuffle(list);
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+          .GetComponent<CardSelectionView>()
+          .Show(list, "抽 牌 堆");
+      }
+    }
+
+    public async void ToggleDiscardPile() {
+      if (CardSelectionView.view)
+        CardSelectionView.view.Hide();
+      else
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+          .GetComponent<CardSelectionView>()
+          .Show(GameManager.gameData.discardPile, "弃 牌 堆");
+    }
+
+    public async void ToggleExilePile() {
+      if (CardSelectionView.view)
+        CardSelectionView.view.Hide();
+      else
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+          .GetComponent<CardSelectionView>()
+          .Show(GameManager.gameData.exilePile, "放 逐 区");
+    }
+
+    public async void ToggleBuildingPanel() {
+      if (BuildingView.view)
+        BuildingView.view.Hide();
+      else
+        (await UIMask.LoadMask(transform, "BuildingView", 0.1f, 1))
+          .GetComponent<BuildingView>()
+          .Show();
     }
 
   }
