@@ -13,11 +13,11 @@ function this:new()
   self.woodc = 20
   self.ironc = 20
   self.cost =10
-  self.rounds =4
+  self.rounds =1
 end
 
 function this:applyEffect()
-  GameManager.Exile(self)
-  GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
+  self.cardView:Dissolve()
+  Buff("Build_farm_21",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518",nil,"BuildTip",self.rounds..",温室升级中")
 end
 

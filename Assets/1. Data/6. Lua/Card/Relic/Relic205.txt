@@ -1,12 +1,12 @@
 Relic205 = Relic()
 local this = Relic205
 this.ID=205
-this.name='一心二用'
-this.desc='每回合使用的第1张资源卡效果翻倍'
+this.name='闪电风暴'
+this.desc='每当资源变化时额外获得1点能量'
 this.rare='rare'
 this.icon=nil
 --不做
-function this:apply()
-  --每回合使用的第1张资源卡效果翻倍
+function this.apply()
+  Buff("Buff_Relic205",GameEvent.IG_ResourceModify,BuffType.Repeat,-1,"buff109","闪电风暴")
 end
 

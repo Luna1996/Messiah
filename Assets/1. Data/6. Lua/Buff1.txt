@@ -2,27 +2,6 @@ function ExampleBuff(i)
   Debug.Log(i)
 end
 
-function AddBackLabor1(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1 end
-function AddBackLabor2(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 2 end
-function AddBackLabor3(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 3 end
-function AddBackLabor4(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 4 end
-function AddBackLabor5(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 5 end
-function AddBackLabor6(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 6 end
-function AddBackLabor7(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 7 end
-function AddBackLabor8(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 8 end
-function AddBackLabor9(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 9 end
-function AddBackLabor10(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 10 end
-function AddBackLabor11(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 11 end
-function AddBackLabor12(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 12 end
-function AddBackLabor13(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 13 end
-function AddBackLabor14(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 14 end
-function AddBackLabor15(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 15 end
-function AddBackLabor16(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 16 end
-function AddBackLabor17(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 17 end
-function AddBackLabor18(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 18 end
-function AddBackLabor19(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 19 end
-function AddBackLabor20(i) GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 20 end
-
 function ChurchBuild(i)
   GameManager.Build(nil,"教堂")
   Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","教堂:\n每回合根据人口产出信仰值")
@@ -43,7 +22,8 @@ function Buff_Relic109(i)
 end
 
 function add_maxWorker(i)
-  GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker +1
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker +1
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
 end
 
 function Buff_Relic110(i)
@@ -82,4 +62,42 @@ end
 
 function Buff_Relic1062(i)
   CostModifiter = CostModifiter + 999
+end
+
+function Buff_DrawCard(i)
+  GameManager.DrawCard()
+end
+
+function Buff_Relic205(i)
+  GameManager.AddResource(ResourceType.Mine,1)
+end
+
+function BuildTip(i,args)
+  local t = split(args,',')
+  return t[2],t[1]-i
+end
+
+function Build_church_01(i)
+  GameManager.Build(nil,"教堂")
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Pray01","Pray02"})
+end
+
+function Build_farm_21(i)
+  GameManager.Build(nil,"温室")
+  ReplaceCard("BasicFarm01","BasicFarm02")
+end
+
+function ReplaceCard(src,dist)
+  if GameManager.gameData.drawPile:Contains(src) then GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,src,dist) end
+  Debug.Log(GameManager.handView.hands.Count)
+  for i=0,GameManager.handView.hands.Count-1 do
+    Debug.Log(src)
+    local s = GameManager.handView.hands[i]
+    Debug.Log(s.luacard:getCardFullName())
+    if s.luacard:getCardFullName()==src then
+      GameManager.handView:RemoveCard(s.luacard)
+      s.luacard.cardView:Dissolve()
+      GameManager.handView:AddCard(dist)
+    end
+  end
 end

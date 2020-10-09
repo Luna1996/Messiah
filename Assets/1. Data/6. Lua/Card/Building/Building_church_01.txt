@@ -26,7 +26,7 @@ end
 
 --重写this:applyEffect()
 function this:applyEffect()
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+    self.cardView:Dissolve()
+    Buff("Build_church_01",GameEvent.EnterMainPhase,BuffType.OneShot,2,'buff518',nil,"BuildTip","2,教堂修缮中")
 end
 

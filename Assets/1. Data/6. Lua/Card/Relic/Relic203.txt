@@ -2,11 +2,10 @@ Relic203 = Relic()
 local this = Relic203
 
 this.ID=203
-this.name='不二法门'
-this.desc='基础资源卡产量+2'
+this.name='石像鬼祝福'
+this.desc='石材产量+2'
 this.rare='rare'
 
---先不做
-function this:apply()
-  --基础资源卡产量+2
+function this.apply()
+  GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] +2
 end

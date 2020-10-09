@@ -7,7 +7,8 @@ function this:new()
   self.frame = "信仰牌面"
   self.image = "祈愿3"
   self.desc = "消耗10点信仰值\n获得1点矿石,1点石材,1点钢铁,1点食物"
-  self.temp = true
+  self.faithc = 10
+
   self.inHand = false
 end
 

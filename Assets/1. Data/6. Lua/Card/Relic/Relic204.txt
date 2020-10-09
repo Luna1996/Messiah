@@ -6,6 +6,8 @@ this.name='金手指'
 this.desc='所有资源产出+1'
 this.rare='rare'
 
-function this:apply()
-  --AddResourceModifiter
+function this.apply()
+  for i =0,5 do
+    GameManager.gameData.resourcesModifitor[i] = GameManager.gameData.resourcesModifitor[i] +1
+  end
 end

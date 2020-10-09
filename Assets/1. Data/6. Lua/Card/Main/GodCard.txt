@@ -14,9 +14,8 @@ function this:onPlay()
   GameManager.AddResource(ResourceType.Mine, 100)
   GameManager.AddResource(ResourceType.Iron, 100)
   GameManager.AddResource(ResourceType.Wood, 100)
-  GameManager.AddResource(ResourceType.Tech, 100)
-  -- Debug.Log(GameManager.gameData.idleWorker)
-  -- Debug.Log(GameManager.gameData.occupiedWorker)
-  HandView:AddToHand(self.cardView)
+
+  --GameManager.Build(nil, "教堂")
+
 end
 
