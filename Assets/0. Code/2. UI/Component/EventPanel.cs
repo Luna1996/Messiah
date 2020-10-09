@@ -46,8 +46,9 @@ namespace Messiah.UI {
       }
     }
 
-    void EventEnd() {
-      Destroy(gameObject);
+    async void EventEnd() {
+      await UIMask.UnloadMask();
+      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
   }
 }

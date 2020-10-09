@@ -6,6 +6,6 @@ this.name='矿石源泉'
 this.desc='回合开始时获得1点矿石'
 this.rare='normal'
 
-function this:apply()
+function this.apply()
   Buff("Buff_Relic110",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff110","回合开始时获得1点矿石")
 end

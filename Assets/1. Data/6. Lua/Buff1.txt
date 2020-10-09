@@ -25,7 +25,7 @@ function AddBackLabor20(i) GameManager.gameData.idleWorker = GameManager.gameDat
 
 function ChurchBuild(i)
   GameManager.Build(nil,"教堂")
-  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","每回合根据人口产出信仰值")
+  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","教堂:\n每回合根据人口产出信仰值")
 end
 function ChurchFaith(i)
   GameManager.AddResource(ResourceType.Faith,GameManager.gameData.maxWorker)
@@ -66,4 +66,20 @@ end
 
 function Buff_Relic306(i)
   GameManager.SubResource(Resource.Mine,5)
+end
+
+function Buff_Relic307(i)
+  GameManager.AddResource(ResourceType.Food,33)
+  GameManager.SubResource(ResourceType.Mine,3)
+  GameManager.SubResource(ResourceType.Wood,3)
+  GameManager.SubResource(ResourceType.Iron,3)
+end
+
+function Buff_Relic1061(i)
+  CostModifiter = CostModifiter -999
+  Buff("Buff_Relic1062",GameEvent.IG_ResourceCardPlay,BuffType.OneShot,1,'buff503',"fasdfasdf")
+end
+
+function Buff_Relic1062(i)
+  CostModifiter = CostModifiter + 999
 end

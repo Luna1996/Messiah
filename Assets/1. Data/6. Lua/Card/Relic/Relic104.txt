@@ -3,9 +3,10 @@ local this = Relic104
 
 this.ID=104
 this.name='资源再生'
-this.desc='牌组里所有资源牌的使用次数+1'
+this.desc='随机获得1份资源堆'
 this.rare='normal'
 
-function this:apply()
-  UsageAmountModifier = UsageAmountModifier +1
+function this.apply()
+  local randomList={"BasicIronPile","BasicMinePile","BasicWoodPile","BasicFoodPile"}
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{randomList[math.random(1,#randomList)]})
 end

@@ -1,12 +1,15 @@
 Relic308 = Relic()
 local this = Relic308
 this.ID=308
-this.name='置换反应'
-this.desc='随机失去牌组中的1张卡，并将建筑牌堆中的1张卡无消耗地置入场上'
+this.name='深渊祭礼'
+this.desc='随机失去牌组中的1张卡，并获得10点基础资源'
 this.rare='pandora'
 this.icon=nil
 
 function this.apply()
-  --随机失去牌组中的1张卡，并将建筑牌堆中的1张卡无消耗地置入场上
+  GameManager.RemoveCard(DeckType.OriginalDeckAndDrawPile,GameManager.gameData.build[math.random(0,GameManager.gameData.build.Count-1)])
+  GameManager.AddResource(ResourceType.Mine,10)
+  GameManager.AddResource(ResourceType.Wood,10)
+  GameManager.AddResource(ResourceType.Iron,10)
 end
 
