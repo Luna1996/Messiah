@@ -98,7 +98,9 @@ namespace Messiah.UI {
       await UIMask.LoadMask(transform, "EventPhaseView", 0.2f, 3);
       await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
-      GameCore.FAM.Fire(GameStateTrigger.NextPhase);
+      var go = await UIMask.LoadMask(transform, "EventPhasePanel", 0.2f, 3);
+      var evt = GameManager.ChooseCurrentEvent();
+      go.GetComponent<EventPanel>().SetLuaEvent(evt);
     }
 
     static int[] count = { 0, 0, 0, 0, 0, 0 };

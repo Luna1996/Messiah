@@ -34,8 +34,20 @@ namespace Messiah.Logic {
     public static GameData gameData;
     public static CardOnFly cardOnFly;
 
-    public static int[] turneventpool = new int[]{};
-    public static string[][] eventpool = new string[][] { };
+    public static int[] turneventpool = new int[]{
+      0
+    };
+    public static string[][] eventpool = new string[][] {
+      new string[]{"Event1011"}
+    };
+
+
+    public static LuaEvent ChooseCurrentEvent() {
+      var i = gameData.numberOfTurn % turneventpool.Length;
+      var pool = eventpool[i];
+      var r = UnityEngine.Random.Range(0, pool.Length);
+      return LuaManager.GetLuaEvent(pool[r]);
+    }
 
 
     public static void ModifyCost(int mod) {
