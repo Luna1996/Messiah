@@ -8,16 +8,25 @@ states.a = {
   name = "米西亚的请求",
   desc = "米西亚很饿，希望您提供10点食物",
   choices = {"好的","我没有"},
+  image = "事件4"
   }
+
+states.b = {
+  name = "鄙视的目光",
+  desc = "你港真？",
+  choices = {"你可以走了"},
+  image = "godcard"
+}
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --if GameData..food>10 then
-      --调用给奖励的菜单接口 奖励池子待定
+      GameManager.SubResource(ResourceType.Food, 10)
       return nil
     elseif choice==self.choices[2] then
-      --调用弹对话的接口 text= "你个辣鸡！"
-      return nil
+      return states.b
     end
+end
+function states.b:choose(choice)
+  return nil
 end
 
 Event1011 = Event(states.a)

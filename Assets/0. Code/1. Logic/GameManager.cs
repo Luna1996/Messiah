@@ -34,6 +34,9 @@ namespace Messiah.Logic {
     public static GameData gameData;
     public static CardOnFly cardOnFly;
 
+    public static int[] turneventpool = new int[]{};
+    public static string[][] eventpool = new string[][] { };
+
 
     public static void ModifyCost(int mod) {
       LuaManager.lua.DoString($"CostModifiter = {mod} + CostModifiter");

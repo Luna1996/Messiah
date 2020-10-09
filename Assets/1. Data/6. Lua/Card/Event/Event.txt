@@ -9,5 +9,5 @@ function Event:choices()
 end
 
 function Event:choose(choice)
-  self.currentState = self.currentState.choose(choice)
+  self.currentState = self.currentState:choose(choice)
 end

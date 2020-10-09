@@ -9,6 +9,7 @@ namespace Messiah.Logic {
   public interface LuaEventState {
     string name { get; set; }
     string desc { get; set; }
+    string image { get; set; }
     string[] choices { get; set; }
     LuaEventState choose(string choice);
   }

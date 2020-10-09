@@ -5,7 +5,6 @@ namespace Messiah.UI {
   using DG.Tweening;
   using UnityEngine.UI;
   using UnityEngine.EventSystems;
-  using XLua;
   using Logic;
   using Coffee.UIExtensions;
   using Utility;

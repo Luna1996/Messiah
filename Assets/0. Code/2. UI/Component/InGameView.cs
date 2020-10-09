@@ -52,7 +52,6 @@ namespace Messiah.UI {
       OnHumanChanged();
       foreach (var buff in GameManager.gameData.buff)
         buff.SetUp();
-      Debug.Log(LuaManager.GetLuaEvent("Event1011").currentState.name);
       await System.Threading.Tasks.Task.Delay(500);
 
       handView.Init();

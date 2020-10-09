@@ -33,8 +33,12 @@ function this:setCardView()
     if cost < 0 then cost = 0 end
     self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
   end
-end
 
+  if self.rounds and self.frame == '资源牌面s' then
+    self.cardView.subCost.gameObject:SetActive(true)
+    self.cardView.subCost.text = self.rounds..' 天'
+  end
+end
 
 function this:onPlay()
   if self:canPlay() then
