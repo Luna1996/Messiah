@@ -39,7 +39,7 @@ namespace Messiah.Logic {
     }
 
     int _occupiedWorker = 0;
-    public int ocupiedWorker {
+    public int occupiedWorker {
       get { return _occupiedWorker; }
       set {
         if (value != _occupiedWorker) {
@@ -77,7 +77,7 @@ namespace Messiah.Logic {
       var gd = new GameData();
 
       gd.build = new List<string> {
-        "BasicMine01", "BasicFarm02", "BasicMine02",
+        "Building_church", "BasicFarm02", "BasicMine02",
         "BasicIron02", "Curse_envy", "BasicMinePile",
         "Curse_wrath", "Curse_pride", "BasicCorePile", "BasicIronPile" };
       gd.drawPile = new List<string>(gd.build);
