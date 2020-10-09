@@ -6,7 +6,7 @@ this.desc='获得10点科技值，5回合后失去所有的科技值'
 this.rare='pandora'
 this.icon=nil
 
-function this:apply()
+function this.apply()
   GameManager.AddResource(ResourceType.Tech,10)
   Buff("Buff_Relic303",GameEvent.ExitMainPhase,BuffType.OneShot,5,"buff303","知识的代价：5回合后失去所有科技值")
 end

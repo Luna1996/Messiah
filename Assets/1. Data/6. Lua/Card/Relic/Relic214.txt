@@ -6,8 +6,8 @@ this.desc='抽牌数和手牌保留上限+1'
 this.rare='rare'
 this.icon=nil
 ---待修改
-function this:apply()
-  --抽牌数和手牌保留上限+1
-
+function this.apply()
+  GameManager.gameData.drawNum = GameManager.gameData.drawNum+1
+  GameManager.gameData.keepNum = GameManager.gameData.keepNum +1
 end
 
