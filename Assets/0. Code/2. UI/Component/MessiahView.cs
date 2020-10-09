@@ -21,6 +21,8 @@ namespace Messiah.UI {
 
     public bool canMove;
 
+    public Transform buildings;
+
     public async System.Threading.Tasks.Task SwitchState(GameState gs) {
       var trans = (RectTransform)transform;
       switch (gs) {
@@ -47,16 +49,16 @@ namespace Messiah.UI {
     }
 
     public void UpdateAllBuildings() {
-      var count = transform.childCount;
-      for (int i = 1; i < count; i++) transform.GetChild(i).gameObject.SetActive(false);
+      var count = buildings.childCount;
+      for (int i = 1; i < count; i++) buildings.GetChild(i).gameObject.SetActive(false);
       foreach (var b in GameManager.gameData.buildingAcquired)
-        transform.Find(b)?.gameObject.SetActive(true);
+        buildings.Find(b)?.gameObject.SetActive(true);
     }
 
     static Vector3 center = new Vector3(0, 0, -9);
     static Vector3 zoomInScale = new Vector3(2, 2, 1);
     public async Task Focus(string bname) {
-      var go = transform.Find(bname).gameObject;
+      var go = buildings.Find(bname).gameObject;
       var rt = (RectTransform)transform;
       var rto = (RectTransform)go.transform;
       var size = rt.GetLocalSize();
@@ -72,7 +74,7 @@ namespace Messiah.UI {
       var opos = transform.position;
       var oscale = transform.localScale;
       await Focus(bname);
-      var go = transform.Find(bname).gameObject;
+      var go = buildings.Find(bname).gameObject;
       var shiny = go.AddComponent<UIShiny>();
       if (!go.activeSelf) {
         go.SetActive(true);
