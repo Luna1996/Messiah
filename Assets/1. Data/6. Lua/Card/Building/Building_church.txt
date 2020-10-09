@@ -4,22 +4,31 @@ local this = Building_church
 function this:new()
   self.cardView = nil
   self.name = "教堂"
-  self.frame = "建筑牌面"
+  self.frame = "资源牌面s"
   self.image = "教堂p"
-  self.desc = "建造教堂 收集居民信仰的力量 每回合每名居民提供1点信仰值"
+  self.desc = "石材10 钢铁0 人力5 2回合；建造教堂 收集居民信仰的力量 回合结束时每位居民提供1点信仰值"
   self.inHand = false
   self.buildingConsumption = {10,0,5,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
 
 function this:onPlay()
-  --get一下当前空闲人力
-  GameManager.ModifyCost(1)
-  local population = GameManager.gameData.idleWorker + GameManager.gameData.occupiedWorker
-  GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.Repeat, -1,
-  function ()
-    GameManager.AddResource(ResourceType.Faith, population)
-  end)
-  GameManager.Exile(self)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+      --get一下当前空闲人力
+      local population = GameManager.gameData.idleWorker + GameManager.gameData.occupiedWorker
+      GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,
+      function()
+        GameManager.CreateBuff(GameEvent.ExitMainPhase, BuffType.Repeat, -1,
+        function ()
+          GameManager.AddResource(ResourceType.Faith, population)
+        end)
+      end)
+      GameManager.Exile(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
 end
-

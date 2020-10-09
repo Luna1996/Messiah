@@ -16,5 +16,6 @@ function this:onPlay()
   GameManager.AddResource(ResourceType.Iron, 100)
   GameManager.AddResource(ResourceType.Wood, 100)
   Debug.Log(GameManager.gameData.idleWorker)
+  Debug.Log(GameManager.gameData.occupiedWorker)
 end
 

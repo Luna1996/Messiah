@@ -45,7 +45,7 @@ function this:getCardFullName()
   return self.className
 end
 
-function this:canBuild(buildingConsumption)
+function this:enoughRcBuilding(buildingConsumption)
   local woodc = buildingConsumption[1]
   local ironc = buildingConsumption[2]
   if woodc<=GameManager.GetResource(ResourceType.Wood) and ironc<=GameManager.GetResource(ResourceType.Iron) then
@@ -54,21 +54,35 @@ function this:canBuild(buildingConsumption)
     return false
   end
 end
-    -- body
 
-function this:laborCost(labor,rounds)
+function this:subRcBuilding(buildingConsumption)
+  local woodc = buildingConsumption[1]
+  local ironc = buildingConsumption[2]
+  GameManager.SubResource(ResourceType.Wood,woodc)
+  GameManager.SubResource(ResourceType.Iron,ironc)
+end
+
+function this:enoughLabor(labor)
   if GameManager.gameData.idleWorker>=labor then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - labor
-    GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker + labor
-    GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,rounds,
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + labor
-      GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker - labor
-    end)
-    Debug.Log(GameManager.gameData.idleWorker)
-    Debug.Log(GameManager.gameData.occupiedWorker)
     return true
   else
     return false
   end
+end
+
+function this:laborCost(labor,rounds)
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - labor
+  GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker + labor
+  GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,rounds,
+  function()
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + labor
+    GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker - labor
+    end)
+  Debug.Log(GameManager.gameData.idleWorker)
+  Debug.Log(GameManager.gameData.occupiedWorker)
+end
+
+function this:enoughRc(RcType,num)
+  if GameManager.GetResource(RcType) >= num then return true
+  else return false end
 end

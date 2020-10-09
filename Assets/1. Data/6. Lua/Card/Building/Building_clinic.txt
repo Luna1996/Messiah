@@ -4,19 +4,26 @@ local this = Building_clinic
 function this:new()
   self.cardView = nil
   self.name = "诊所"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "卡组中加入1张看护"
+  self.frame = "资源牌面s"
+  self.image = "医院p"
+  self.desc = "石材8 钢铁3 占用5人力2回合 卡组中加入1张看护"
   self.boundingCard={"Nurse",}
   self.inHand = false
   self.boudingBuff={}
   self.buildingConsumption={8,3,5,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.drawPile.Add(v)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
   end
+
 end
 

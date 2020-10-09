@@ -4,18 +4,25 @@ local this = Building_farm
 function this:new()
   self.cardView = nil
   self.name = "温室"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
+  self.frame = "资源牌面s"
+  self.image = "温室p"
   self.desc = "更高质量的食物来源"
   self.boundingCard={"BasicFarm01","BasicFarm01"}
   self.inHand = false
-  --self.boundingBuff={}
   self.buildingConsumption={20,20,10,4}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
 function this:onPlay()
-  GameManager.Exile(self)
-  for i,v in ipairs(self.boundingCard) do
-    GameData.drawPile.Add(v)
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
   end
+
 end
+
