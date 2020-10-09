@@ -6,23 +6,17 @@ function this:new()
   self.name = "中级采矿"
   self.frame = "科技牌面"
   self.image = "中级采矿研究"
-  self.desc = "消耗6科技点数 将【高炉升温】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.desc = "消耗6科技点数\n将【高炉升温】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_mine_11"}
   self.inHand = false
+  self.techc = 6
+  self.cost = nil
   --self.boundingBuff={}
   --self.buildingConsumption={2,0,2,2}
 end
 
 
-function this:onPlay()
-  if GameManager.GetResource(ResourceType.Tech)>=6 then
-    GameManager.SubResource(ResourceType.Tech,6)
-    --Debug.Log(GameData.buildingDeck.Count)
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.BuildingDeck,self.boundingCard)
-    --Debug.Log(GameData.buildingDeck.Count)
-  else
-    HandView:AddToHand(self.cardView)
-  end
-
+function this:applyEffect()
+  self.cardView:Dissolve()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
 end

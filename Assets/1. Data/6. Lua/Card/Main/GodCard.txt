@@ -2,18 +2,20 @@ GodCard = class(CardBase, "GodCard")
 local this = GodCard
 
 function this:new()
-  self.name = "测试用牌"
-  self.desc = "各种效果"
+  self.name = "抽牌"
+  self.desc = "无敌"
   self.image = 'godcard'
 end
 
 function this:onPlay()
 
+
   GameManager.AddResource(ResourceType.Food, 100)
   GameManager.AddResource(ResourceType.Mine, 100)
   GameManager.AddResource(ResourceType.Iron, 100)
   GameManager.AddResource(ResourceType.Wood, 100)
+
   --GameManager.Build(nil, "教堂")
-  HandView:AddToHand(self.cardView)
+
 end
 
