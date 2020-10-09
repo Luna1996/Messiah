@@ -1,6 +1,7 @@
 BasicIronPile = class(CardBase,'BasicIronPile')
 local this = BasicIronPile
---Test：人口显示测试
+--已完成
+--已测试
 function this:new(arg)
   self.cardView = nil
   self.name = "废铁堆"
@@ -12,8 +13,9 @@ function this:new(arg)
   else
     self.usageAmount = 5
   end
-  self.desc = "占用1点人力,获得1点钢铁; 可以使用"..self.usageAmount.."次"
-  self.cost = 1
+
+  self.desc = "获得1点钢铁\n可以使用"..self.usageAmount.."次"
+
 end
 
 function this:applyEffect()

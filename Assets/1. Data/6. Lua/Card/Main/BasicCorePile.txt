@@ -11,9 +11,6 @@ function this:new(arg)
   self.image = "残损义骸"
   self.desc = "收获1点科技点\n可用"..self.usageAmount.."次"
 
-  self.cost = 1
-  self.rounds = 1
-
 end
 
 

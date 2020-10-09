@@ -41,3 +41,19 @@ end
 function Buff_BasicFarm02(i)
   GameManager.AddResource(ResourceType.Food,60)
 end
+
+function Buff_BasicIron01(i)
+  GameManager.AddResource(ResourceType.Iron,1)
+end
+
+function Buff_BasicIron02(i)
+  GameManager.AddResource(ResourceType.Iron,2)
+end
+
+function Buff_BasicMine01(i)
+  GameManager.AddResource(ResourceType.Mine,1)
+end
+
+function Buff_BasicMine02(i)
+  GameManager.AddResource(ResourceType.Mine,3)
+end

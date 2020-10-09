@@ -1,12 +1,18 @@
 BasicIron02 = class(CardBase,'BasicIron02')
 local this = BasicIron02
---Test：人口显示测试
+
+--已完成
+--已测试
 function this:new()
   self.cardView = nil
   self.name = "炼钢2"
+  self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "炼钢2"
-  self.desc = "占用2点人力,获得2点钢铁"
+  self.desc = "下回合开始,获得2点钢铁"
+
+  self.cost = 2
+  self.rounds = 1 
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)
@@ -15,17 +21,7 @@ end
 
 
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 2)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
-    GameManager.AddResource(ResourceType.Iron, 2)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 2
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff("Buff_BasicIron02", GameEvent.EnterMainPhase, BuffType.OneShot, 1, "buff505","下回合,收获2点钢铁")
+  GameManager.Discard(self)
 end

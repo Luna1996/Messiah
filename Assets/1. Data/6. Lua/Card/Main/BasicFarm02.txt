@@ -1,12 +1,13 @@
 BasicFarm02 = class(CardBase,'BasicFarm02')
 local this = BasicFarm02
---TODO:buff表现有问题
+--已完成
+--回合显示出现问题
 function this:new()
   self.cardView = nil
   self.name = "农作物种植2"
   self.frame = "资源牌面s"
   self.image = "农作物种植2"
-  self.desc = "本回合消耗2点矿石\n第3回合，收获60点食物"
+  self.desc = "本回合消耗2点矿石\n第3回合开始，收获60点食物"
   self.minec = 2
 
   self.cost =2
@@ -14,6 +15,6 @@ function this:new()
 end
 
 function this:applyEffect()
-  Buff("Buff_BasicFarm02", GameEvent.EnterMainPhase, BuffType.OneShot, 2, "buff507","第i回合开始,收获60点食物")
+  Buff("Buff_BasicFarm02", GameEvent.EnterMainPhase, BuffType.OneShot, 2, "buff507","xxx,收获60点食物")
   GameManager.Discard(self)
 end

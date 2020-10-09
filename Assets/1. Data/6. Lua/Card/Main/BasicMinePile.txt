@@ -1,5 +1,7 @@
 BasicMinePile = class(CardBase,'BasicMinePile')
 local this = BasicMinePile
+--已完成
+--已测试
 function this:new(arg)
   if arg then self.usageAmount = tonumber(arg)
   else
@@ -9,32 +11,21 @@ function this:new(arg)
   self.name = "矿石堆"
   --self.frame = "CardFrame_0"
   self.image = "矿石堆1"
-  self.desc = "占用1点人力,获得1点矿石; 可以使用"..self.usageAmount.."次"
+  self.desc = "获得1点矿石\n可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
 function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 1)
-  then 
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
-    self.usageAmount = self.usageAmount -1
-    GameManager.AddResource(ResourceType.Mine, 1)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-    end)
-    if (self.usageAmount == 0)
-    then
-      GameManager.Exile(self)
-    else
-      GameManager.Discard(self)
-    end
+  self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Mine, 1)
+  if (self.usageAmount == 0)
+  then
+    GameManager.Exile(self)
   else
-    HandView:AddToHand(self.cardView)
+    GameManager.Discard(self)
   end
-
 end
 
 function this:getCardFullName()
-  return self.className..' '..self.usageAmount
+  return this.className..' '..self.usageAmount
 end

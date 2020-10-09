@@ -1,28 +1,23 @@
 BasicMine01 = class(CardBase,'BasicMine01')
 local this = BasicMine01
---Test：人口显示测试
+--已完成
+--已测试
 function this:new()
   self.cardView = nil
   self.name = "采矿1"
+  self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "采矿1"
-  self.desc = "占用1点人力,获得1点矿石"
+  self.desc = "下回合开始,获得1点矿石"
+
+  self.cost = 1
+  self.rounds = 1
 
   self.inHand = false
 end
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 1)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
-    GameManager.AddResource(ResourceType.Mine, 1)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff("Buff_BasicMine01", GameEvent.EnterMainPhase, BuffType.OneShot, 1, "buff501","下回合,获得1点矿石")
+  GameManager.Discard(self)
 end
 
