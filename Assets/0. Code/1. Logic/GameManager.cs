@@ -33,10 +33,20 @@ namespace Messiah.Logic {
     public static GameData gameData;
     public static CardOnFly cardOnFly;
 
+
     public static void ModifyCost(int mod) {
       LuaManager.lua.DoString($"CostModifiter = {mod} + CostModifiter");
       EventService.Notify(GameEvent.IG_OnCostModifiterChanged);
     }
+
+    public static void Build(Card card, string bname) {
+      var i = handView.RemoveCard(card);
+      if (!gameData.buildingAcquired.Contains(bname))
+        gameData.buildingAcquired.Add(bname);
+      messiahView.Build(bname);
+      card.cardView.DissolveInCenter();
+    }
+
 
     public static void Discard(Card card) {
       var i = handView.RemoveCard(card);
@@ -48,12 +58,6 @@ namespace Messiah.Logic {
       var i = handView.RemoveCard(card);
       gameData.exilePile.Add(card.getCardFullName());
       card.cardView.Dissolve();
-    }
-
-    public static void Build(Card card, string building) {
-      if (!gameData.buildingAcquired.Contains(building))
-        gameData.buildingAcquired.Add(building);
-
     }
 
     public static async Task DrawCard(int num = 1) {

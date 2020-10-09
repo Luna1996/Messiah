@@ -48,24 +48,6 @@ namespace Messiah.UI {
       EventService.Listen(GameEvent.IG_OnCostModifiterChanged, luacard.setCardView);
     }
 
-    void SetCardView() {
-      if (luacard.cost != -1) { 
-      }
-      //     if self.cost then
-      //   Debug.Log(self.cardView.mainCost)
-      //   -- self.cardView.mainCost:SetActive(true)
-      //   -- local color = "white"
-      //   -- if CostModifiter < 0 then
-      //   --   color = "green"
-      //   -- elseif CostModifiter > 0 then
-      //   --   color = "red"
-      //   -- end
-      //   -- local cost = self.cost + CostModifiter
-      //   -- if cost < 0 then cost = 0 end
-      //   -- self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
-      // end
-    }
-
     public async void Dissolve() {
       effect.enabled = true;
       effect.Play();
@@ -73,9 +55,17 @@ namespace Messiah.UI {
       Destroy(gameObject);
     }
 
+    static Vector3 cscale = new Vector3(0.6f, 0.6f, 1);
+    static Vector3 center = new Vector3(0, 0, -9);
+    public async void DissolveInCenter() {
+      transform.DOScale(cscale, 0.5f);
+      await transform.DOMove(center, 0.5f).AsyncWaitForCompletion();
+      Dissolve();
+    }
+
     static Vector3 focusScal = new Vector3(2f, 2f, 1);
     public void OnBeginDrag(PointerEventData p) {
-      if (!canPlay || inPanel) {
+      if (!canPlay || inPanel || !GameManager.messiahView.canMove) {
         return;
       }
       hands.ReleaseFromHand(this);
@@ -84,14 +74,14 @@ namespace Messiah.UI {
     }
 
     public void OnDrag(PointerEventData p) {
-      if (!canPlay || inPanel) {
+      if (!canPlay || inPanel || !GameManager.messiahView.canMove) {
         return;
       }
       transform.position = p.pointerCurrentRaycast.worldPosition;
     }
 
     public void OnEndDrag(PointerEventData p) {
-      if (!canPlay || inPanel) {
+      if (!canPlay || inPanel || !GameManager.messiahView.canMove) {
         return;
       }
       if (p.pointerCurrentRaycast.worldPosition.y > -0.05) {
