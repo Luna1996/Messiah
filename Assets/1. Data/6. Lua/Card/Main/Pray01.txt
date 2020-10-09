@@ -16,7 +16,6 @@ function this:onPlay()
   then
     local temp = GameManager.gameData.idleWorker
     GameManager.gameData.idleWorker = 0
-    GameManager.AddResource(ResourceType.Faith, temp*10)
     GameManager.Discard(self)
     Buff(
     "AddBackLabor", 
@@ -28,8 +27,8 @@ function this:onPlay()
     "Buff_Pray01", 
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
-    1, 'buff512', nil,
-    "XTurn", "1,获得"..tostring(temp*10).."信仰值,"..tostring(temp*10))
+    1, 'buff520', nil,
+    "Xturn", "1,获得"..tostring(temp*10).."信仰值,"..tostring(temp*10))
 
   else
     HandView:AddToHand(self.cardView)

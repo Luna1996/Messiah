@@ -50,10 +50,15 @@ function Buff_Mush_02(i)
   GameManager.AddResource(ResourceType.Food,60)
 end
 
-function Buff_Pray01(i)
+function Buff_Research(i)
+  GameManager.AddResource(ResourceType.Tech,1)
+end
+
+function Buff_Pray01(i, args)
   local t = split(args, ',')
   GameManager.AddResource(ResourceType.Faith,t[3])
 end
+
 
 
 function Xturn(i, args)

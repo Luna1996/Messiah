@@ -77,14 +77,16 @@ end
 function this:laborCost()
   local cost = self.cost + CostModifiter
   if cost <0 then cost = 0 end
-
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - cost
-  Buff(
-    "AddBackLabor", 
-    GameEvent.EnterMainPhase, 
-    BuffType.OneShot, 
-    self.rounds, 'buff512', nil,
-    "XLaborTurn", tostring(cost)..",名工人在工作,"..tostring(self.rounds))
+  if cost >0
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - cost
+    Buff(
+      "AddBackLabor", 
+      GameEvent.EnterMainPhase, 
+      BuffType.OneShot, 
+      self.rounds, 'buff512', nil,
+      "XLaborTurn", tostring(cost)..",名工人在工作,"..tostring(self.rounds))
+  end
 end
 
 function this:subRc()
