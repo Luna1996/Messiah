@@ -5,6 +5,8 @@ namespace Messiah.UI {
   using UnityEngine.EventSystems;
   using Logic;
   using System.Collections.Generic;
+  using Coffee.UIExtensions;
+  using System.Threading.Tasks;
 
   public class MessiahView : MonoBehaviour {
     [SerializeField]
@@ -44,8 +46,20 @@ namespace Messiah.UI {
         transform.Find(b)?.gameObject.SetActive(true);
     }
 
-    public void SetBuildingVisibility(string buildingname, bool flag) {
-      transform.Find(buildingname).gameObject.SetActive(flag);
+    static Vector3 zoomInScale = new Vector3(3, 3, 1);
+    public async void Focus(string bname) {
+      var go = transform.Find(bname).gameObject;
+      transform.DOMove(transform.position - go.transform.position, 0.5f);
+      await transform.DOScale(ogscale, 0.5f).AsyncWaitForCompletion();
+    }
+
+    public async void Build(string bname) {
+      var go = transform.Find(bname).gameObject;
+      go.SetActive(true);
+      var shiny = go.AddComponent<UIShiny>();
+      shiny.duration = 1;
+      shiny.Play();
+      await Task.Delay(1000);
     }
   }
 }

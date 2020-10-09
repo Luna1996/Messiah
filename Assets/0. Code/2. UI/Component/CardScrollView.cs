@@ -15,6 +15,7 @@ namespace Messiah.UI {
         Destroy(trans.gameObject);
       for (int i = 0; i < cards.Count; i++) {
         var cardview = PrefabManager.Instanciate("Card", scrollRect.content).GetComponent<CardView>();
+        cardview.GetComponent<Image>().raycastTarget = false;
         cardview.gameObject.name = $"{i}";
         cardview.SetLuaCard(cards[i]);
         cardview.inPanel = true;

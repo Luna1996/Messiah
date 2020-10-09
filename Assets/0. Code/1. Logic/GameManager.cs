@@ -49,6 +49,12 @@ namespace Messiah.Logic {
       card.cardView.Dissolve();
     }
 
+    public static void Build(Card card, string building) {
+      if (!gameData.buildingAcquired.Contains(building))
+        gameData.buildingAcquired.Add(building);
+      
+    }
+
     public static async Task DrawCard(int num = 1) {
       var cards = new List<string>();
       for (int i = 0; i < num; i++) {
