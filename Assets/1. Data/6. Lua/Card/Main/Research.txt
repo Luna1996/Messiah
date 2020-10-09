@@ -6,27 +6,25 @@ function this:new()
   self.name = "研究1"
   --self.frame = "CardFrame_0"
   self.image = "研究1"
-  self.desc = "占用1人力1回合; 消耗1点石材和1点钢铁; 获得1点科技点数"
+  self.frame = "资源牌面s"
+  self.desc = "消耗1点石材和1点钢铁\n下回合, 获得1点科技点数"
   --self.usageAmount = 1
+  self.cost = 1
+  self.round = 1
+  self.woodc = 1 
+  self.ironc = 1
   --self.temp = true
   self.inHand = false
 end
 
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 1 and GameManager.GetResource(ResourceType.Wood) >= 1 and  GameManager.GetResource(ResourceType.Iron) >= 1 )
-  then  
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
-    GameManager.SubResource(ResourceType.Wood,1)
-    GameManager.SubResource(ResourceType.Iron,1)
-    GameManager.AddResource(ResourceType.Tech,1)
-    GameManager.Discard(self)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-    end)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff(
+    "Buff_Research", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    1, "buff509", nil,
+    "Xturn", "1,获得1点科技点数")
+  GameManager.Discard(self)
 end
 
