@@ -57,3 +57,11 @@ end
 function Buff_BasicMine02(i)
   GameManager.AddResource(ResourceType.Mine,3)
 end
+
+function ABC(i)
+  Debug.Log(i)
+end
+
+function ABCTIPS(i)
+  return i.."回合", i
+end

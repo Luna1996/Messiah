@@ -44,6 +44,8 @@ namespace Messiah.Logic {
       if (card != null) {
         var i = handView.RemoveCard(card);
         card.cardView.DissolveInCenter();
+        handView.RemoveCard(card);
+        gameData.buildingDeck.Add(card.getCardFullName());
       }
       if (!gameData.buildingAcquired.Contains(bname))
         gameData.buildingAcquired.Add(bname);
