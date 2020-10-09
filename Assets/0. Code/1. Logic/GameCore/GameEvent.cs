@@ -15,6 +15,7 @@ namespace Messiah.Logic.GameCoreNS {
 
 
     IG_OnCardSelectionChanged,
+    IG_OnCostModifiterChanged,
 
 
     IG_ResourceModify,

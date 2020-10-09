@@ -45,6 +45,25 @@ namespace Messiah.UI {
       cardName.text = luacard.name;
       ruleText.text = luacard.desc;
       luacard.setCardView();
+      EventService.Listen(GameEvent.IG_OnCostModifiterChanged, luacard.setCardView);
+    }
+
+    void SetCardView() {
+      if (luacard.cost != -1) { 
+      }
+      //     if self.cost then
+      //   Debug.Log(self.cardView.mainCost)
+      //   -- self.cardView.mainCost:SetActive(true)
+      //   -- local color = "white"
+      //   -- if CostModifiter < 0 then
+      //   --   color = "green"
+      //   -- elseif CostModifiter > 0 then
+      //   --   color = "red"
+      //   -- end
+      //   -- local cost = self.cost + CostModifiter
+      //   -- if cost < 0 then cost = 0 end
+      //   -- self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
+      // end
     }
 
     public async void Dissolve() {
@@ -98,6 +117,11 @@ namespace Messiah.UI {
       Destroy(mask);
       mask = null;
       EventService.NotifyWithArg(GameEvent.IG_OnCardSelectionChanged, this);
+    }
+
+    void OnDestroy() {
+      if (luacard != null)
+        EventService.Ignore(GameEvent.IG_OnCostModifiterChanged, luacard.setCardView);
     }
 
 

@@ -13,9 +13,8 @@ function this:new(arg)
     self.usageAmount = 5
   end
   self.desc = "占用1点人力,获得1点钢铁; 可以使用"..self.usageAmount.."次"
+  self.cost = 1
 end
-
-
 
 function this:onPlay()
   if (GameManager.gameData.idleWorker >= 1)

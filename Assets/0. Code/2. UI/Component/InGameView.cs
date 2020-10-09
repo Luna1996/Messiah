@@ -64,6 +64,8 @@ namespace Messiah.UI {
     }
 
     public async Task OnTurnStart() {
+      LuaManager.lua.DoString("CostModifiter = 0");
+      EventService.Notify(GameEvent.IG_OnCostModifiterChanged);
       UserData.Save();
       await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 1);
       GameManager.DrawCard(GameManager.gameData.drawNum);

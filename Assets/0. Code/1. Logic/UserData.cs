@@ -1,5 +1,6 @@
 namespace Messiah.Logic {
   using System;
+  using System.Collections.Generic;
   using Utility;
   using UnityEngine;
 
@@ -43,6 +44,10 @@ namespace Messiah.Logic {
     }
 
     public static void Save() {
+      var hands = new List<string>();
+      foreach (var card in GameManager.handView.hands)
+        hands.Add(card.luacard.getCardFullName());
+      GameManager.gameData.hands = hands;
       var base64 = ByteConverter.Serialize(GameCoreNS.GameCore.userData);
       PlayerPrefs.SetString(Constant.Pref_UserDataPrefix + GameCoreNS.GameCore.userData.username, base64);
     }

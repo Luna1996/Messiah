@@ -9,6 +9,7 @@ namespace Messiah.Logic {
     string frame { get; set; }
     string image { get; set; }
     string desc { get; set; }
+    int cost { get; set; }
     void setCardView();
     int onPlay();
     int canPlay();

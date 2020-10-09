@@ -21,7 +21,7 @@
       cards = new List<CardView>(GameManager.handView.hands);
       foreach (var card in cards) card.inPanel = true;
       keepNum = GameManager.gameData.keepNum;
-      discNum = GameManager.gameData.hands.Count - keepNum;
+      discNum = GameManager.handView.hands.Count - keepNum;
       UpdataDesc();
       EventService.ListenWithArg<CardView>(GameEvent.IG_OnCardSelectionChanged, OnCardSelectionChanged);
     }
@@ -55,7 +55,7 @@
 
     public static bool NeedDiscard() {
       var keepNum = GameManager.gameData.keepNum;
-      var discNum = GameManager.gameData.hands.Count - keepNum;
+      var discNum = GameManager.handView.hands.Count - keepNum;
       return discNum != 0;
     }
 

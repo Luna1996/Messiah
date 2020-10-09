@@ -49,7 +49,8 @@ namespace Messiah.UI {
     static Vector3 zoomInScale = new Vector3(3, 3, 1);
     public async void Focus(string bname) {
       var go = transform.Find(bname).gameObject;
-      transform.DOMove(transform.position - go.transform.position, 0.5f);
+      Vector2 d = transform.position - go.transform.position;
+      transform.DOMove(d, 0.5f);
       await transform.DOScale(ogscale, 0.5f).AsyncWaitForCompletion();
     }
 

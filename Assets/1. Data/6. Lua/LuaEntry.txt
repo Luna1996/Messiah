@@ -9,3 +9,5 @@ require("CardBase")
 require('Effect/ResourceModifier')
 require('Event/Event')
 require('Relic')
+
+CostModifiter = 0

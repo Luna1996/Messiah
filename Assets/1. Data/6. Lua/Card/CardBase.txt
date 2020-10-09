@@ -7,11 +7,24 @@ function this:new(arg)
   self.frame = "CardFrame_1"
   self.image = "placeholder"
   self.desc = "<color=red>规</color><b><color=green>则</color><color=blue>说</color></b>明"
+  self.cost = nil
 
   self.inHand = false
 end
 
 function this:setCardView()
+  if self.cost then
+    self.cardView.mainCost.gameObject:SetActive(true)
+    local color = "white"
+    if CostModifiter < 0 then
+      color = "green"
+    elseif CostModifiter > 0 then
+      color = "red"
+    end
+    local cost = self.cost + CostModifiter
+    if cost < 0 then cost = 0 end
+    self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
+  end
 end
 
 function this:onPlay()
