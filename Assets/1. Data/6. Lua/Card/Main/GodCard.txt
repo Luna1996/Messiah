@@ -9,6 +9,16 @@ end
 
 function this:onPlay()
 
+  Buff(
+    "ABC", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    3, "buff501", nil,
+    "ABCTIPS", "FUCK")
+
+    require("Relic/Relic106")
+    Relic106.apply()
+    --HandView:AddToHand(self.cardView)
 
   -- GameManager.Discard(self)
   -- GameManager.DrawCard()

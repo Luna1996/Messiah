@@ -6,6 +6,6 @@ this.name='喜加一'
 this.desc='天气变化时，多抽1张牌'
 this.rare='normal'
 
-function this:apply()
+function this.apply()
   --事件开始时，多抽1张牌
 end

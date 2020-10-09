@@ -5,7 +5,7 @@ this.name='石之心'
 this.desc='获得10点石材'
 this.rare='normal'
 
-function this:apply()
+function this.apply()
   --增加10点石材
   GameManager.AddResource(ResourceType.Wood,10)
 end

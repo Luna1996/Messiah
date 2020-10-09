@@ -6,7 +6,7 @@ this.name='HR助手'
 this.desc='所有手牌劳动力消耗-1,持续7回合'
 this.rare='normal'
 
-function this:apply()
+function this.apply()
   CostModifiter = CostModifiter - 1
   Buff("Buff_Relic109",GameEvent.ExitMainPhase,BuffType.Repeat,7,"buff109","所有手牌劳动力消耗-1")
 end
