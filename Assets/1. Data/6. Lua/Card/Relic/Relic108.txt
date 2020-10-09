@@ -3,9 +3,10 @@ local this = Relic108
 
 this.ID=108
 this.name='建筑号角'
-this.desc='初始人口-5,每建造1个新建筑人口+1'
+this.desc='人口-5,每建造1个新建筑人口+1'
 this.rare='normal'
 
-function this.apply()
-  --初始人口-5,每建造1个新建筑人口+1
+function this:apply()
+  GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker - 5
+  Buff("add_maxWorker",GameEvent.IG_BuildingsBuit,BuffType.Repeat,"buff108","每建造1个建筑 人口+1")
 end

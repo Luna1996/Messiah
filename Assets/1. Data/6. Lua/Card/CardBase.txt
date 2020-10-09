@@ -39,7 +39,7 @@ end
 function this:onPlay()
   if self:canPlay() then
     self:subRc()
-    -- self:laborCost()
+    self:laborCost()
     self:applyEffect()
   else
     HandView:AddToHand(self.cardView)
@@ -62,7 +62,7 @@ function this:getCardFullName()
 end
 
 function this:enoughLabor()
-  if GameManager.gameData.idleWorker>=self.cost then
+  if GameManager.gameData.idleWorker>=self.cost + CostModifiter then
     return true
   else
     return false
@@ -71,9 +71,12 @@ end
 
 
 function this:laborCost()
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - self.cost - CostModifiter
-  GameDashBoard.currentCost = self.cost
-  Buff("AddBackLabor",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff501',"下回合释放占用人口")
+  local cost = self.cost + CostModifiter
+if cost <0 then cost = 0 end
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - cost
+  for i=1,cost do
+    Buff("AddBackLabor",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff512',"工人正在工作")
+  end
 end
 
 function this:subRc()

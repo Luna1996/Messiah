@@ -5,7 +5,7 @@ this.name='钢铁之心'
 this.desc='获得5点钢铁'
 this.rare='normal'
 
-function this.apply()
+function this:apply()
   --增加5钢铁
   GameManager.AddResource(ResourceType.Iron,5)
 end

@@ -8,8 +8,8 @@ function this:new()
 end
 
 function this:onPlay()
-  Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff501", "buff501")
-  Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff401", "buff401")
+  --Buff("ExampleBuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff501", "buff501")
+  Buff("testbuff", GameEvent.EnterMainPhase, BuffType.Repeat, 3, "buff401", "buff401")
   HandView:AddToHand(self.cardView)
 
   -- GameManager.Discard(self)

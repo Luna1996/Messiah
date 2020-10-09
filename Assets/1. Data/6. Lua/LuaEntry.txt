@@ -10,6 +10,9 @@ require('Effect/ResourceModifier')
 require('Event/Event')
 require('Relic')
 require('Buff')
+require("Relic/Relic109")
+require('Relic/Relic110')
 
 CostModifiter = 0
-GameDashBoard = {}
+UsageAmountModifier = 0
+CurrentCost = 0
