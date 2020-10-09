@@ -101,3 +101,13 @@ function ReplaceCard(src,dist)
     end
   end
 end
+
+function Build_farm(i)
+  GameManager.Build(nil,"温室")
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFarm01","BasicFarm01"})
+end
+
+function Build_house(i)
+  local houseList = {"住宅","住宅_2","住宅_1","住宅_3","住宅_6","住宅_7","住宅_4","住宅_5","住宅_8","住宅_9","住宅_10","住宅_11","住宅_12"}
+for i =1,13 do if not GameManager.gameData.buildingAcquired:Contains(houseList[i]) then GameManager.Build(nil,houseList[i]) break end end
+end

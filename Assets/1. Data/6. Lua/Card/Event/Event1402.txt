@@ -5,21 +5,24 @@
 local states ={}
 
 states.a = {
-  name = "流放之船1",
-  desc = "押送犯人的流放之船经过，是否收留？",
+  name = "流放之船",
+  desc = "",
   choices = {"收留","不收留"},
+  image="事件报道小哥"
   }
 
 states.b  = {
-  name = "流放之船2",
+  name = "流放之船",
   desc = "城里发生了偷窃事件，是否调查？",
   choices = {"调查","不调查"},
+  image="事件海盗"
 }
 
 states.c  = {
-  name = "流放之船3",
+  name = "流放之船",
   desc = "海盗来了，索要食物和资源",
   choices = {"给他","不给他"},
+  image="事件海盗"
 }
 
 function states.a:choose(choice)
