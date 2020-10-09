@@ -30,6 +30,14 @@ function add_maxWorker(i)
   GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker +1
 end
 
-function Buff_Relic110()
+function Buff_Relic110(i)
   GameManager.AddResource(ResourceType.Mine,1)
+end
+
+function Buff_BasicFarm01(i)
+  GameManager.AddResource(ResourceType.Food,30)
+end
+
+function Buff_BasicFarm02(i)
+  GameManager.AddResource(ResourceType.Food,60)
 end

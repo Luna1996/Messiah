@@ -4,23 +4,17 @@ local this = Building_house_01
 function this:new()
   self.cardView = nil
   self.name = "房舍升级"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "-石材4 钢铁1- 住宅可容纳的人口上限+1"
-  self.buildingConsumption={4,1,2,1}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.frame = "资源牌面s"
+  self.image = "住宅pd"
+  self.desc = "消耗石材4,钢铁1\n住宅扩建\n城市的人口数量+2"
+  self.woodc = 4
+  self.ironc = 1
+  self.cost = 2
+  self.rounds =1
 end
 
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-      --get一下当前空闲人力
-      GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker + 1
-      GameManager.Exile(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  GameManager.Exile(self)
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 2
 end

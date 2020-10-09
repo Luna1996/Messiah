@@ -6,23 +6,18 @@ function this:new()
   self.name = "住宅"
   self.frame = "资源牌面s"
   self.image = "住宅p"
-  self.desc = "-石材2 钢铁0- 普通的民宅，城市的人口数量+1"
+  self.desc = "消耗石材2\n建造民宅\n城市的人口数量+1"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
+  self.woodc = 2
+  self.ironc = 0
+  self.cost =2
+  self.rounds =1
   self.boundingBuff={}
-  self.buildingConsumption={2,0,2,1}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+
 end
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-      --get一下当前空闲人力
-      GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker + 1
-      GameManager.Exile(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  GameManager.Exile(self)
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
 end

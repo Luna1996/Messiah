@@ -1,13 +1,16 @@
 BasicFoodPile = class(CardBase,'BasicFoodPile')
 local this = BasicFoodPile
 --已完成
-function this:new()
+--已测试
+function this:new(arg)
+  if arg then self.usageAmount = tonumber(arg)
+  else self.usageAmount = 1 end
   self.cardView = nil
   self.name = "食物罐头"
   --self.frame = "CardFrame_0"
   self.image = "食物罐头1"
-  self.desc = "获得10点食物,能使用"..self.usageAmount.."次"
-  self.usageAmount = 1
+  self.desc = "获得10点食物\n能使用"..self.usageAmount.."次"
+  
   self.inHand = false
 end
 

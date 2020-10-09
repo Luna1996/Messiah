@@ -1,40 +1,29 @@
 BasicCorePile = class(CardBase,'BasicCorePile')
 local this = BasicCorePile
---Test：人口显示测试
+
+--已完成
+--已测试
 function this:new(arg)
   if arg then self.usageAmount = tonumber(arg)
   else self.usageAmount = 1 end
   self.cardView = nil
   self.name = "残损义骸"
-  --self.frame = "CardFrame_0"
   self.image = "残损义骸"
-  self.desc = "占用1点人力,收获1点科技点; 可用"..self.usageAmount.."次"
-  --self.usageAmount = 1
+  self.desc = "收获1点科技点\n可用"..self.usageAmount.."次"
+
   self.cost = 1
-  self.inHand = false
+  self.rounds = 1
+
 end
 
 
-function this:onPlay()
-  Debug.Log(GameManager.gameData.idleWorker)
-  if (GameManager.gameData.idleWorker >= 1)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 1
-    self.usageAmount = self.usageAmount -1
-    GameManager.AddResource(ResourceType.Tech, 1)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
-    end)
-    if self.usageAmount == 0  then GameManager.Exile(self)
-    else
-      GameManager.Discard(self)
-    end
-    --Debug.Log(GameData.drawPile)
+function this:applyEffect()
+  self.usageAmount = self.usageAmount -1
+  GameManager.AddResource(ResourceType.Tech, 1)
+  if self.usageAmount == 0  then GameManager.Exile(self)
   else
-    HandView:AddToHand(self.cardView)
+    GameManager.Discard(self)
   end
-  
 end
 
 function this:getCardFullName()

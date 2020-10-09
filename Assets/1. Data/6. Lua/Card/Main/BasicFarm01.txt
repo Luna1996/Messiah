@@ -1,31 +1,23 @@
 BasicFarm01 = class(CardBase,'BasicFarm01')
 local this = BasicFarm01
---TODO:挂buff表现
+
+--TODO:buff表现有问题
 function this:new()
   self.cardView = nil
   self.name = "农作物种植1"
-  --self.frame = "CardFrame_0"
+  self.frame = "资源牌面s"
   self.image = "农作物种植1"
-  self.desc = "本回合消耗2点矿石; 占用2点人力,持续2回合; 第2回合，收获30点食物"
-  self.inHand = false
+  self.desc = "本回合消耗2点矿石\n第3回合开始,收获30点食物"
+
+  self.minec = 2
+
+  self.cost =2
+  self.rounds =2
+
 end
 
-
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 2 and GameManager.GetResource(ResourceType.Mine) >= 2)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
-    GameManager.SubResource(ResourceType.Mine, 2)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.AddResource(ResourceType.Food, 30)
-    end)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 2
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff("Buff_BasicFarm01", GameEvent.EnterMainPhase, BuffType.OneShot, 2, "buff507","第i回合开始,收获30点食物")
+  GameManager.Discard(self)
 end
+

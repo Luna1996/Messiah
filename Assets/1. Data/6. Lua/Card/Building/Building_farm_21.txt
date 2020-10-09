@@ -1,29 +1,23 @@
 Building_farm_21 = class(CardBase,"Building_farm_21")
 local this = Building_farm_21
-
+--test 不通过
 function this:new()
   self.cardView = nil
   self.name = "温室升级"
   self.frame = "资源牌面s"
-  self.image = "温室p"
-  self.desc = "提高温室的工作产出"
+  self.image = "温室pd"
+  self.desc = "消耗钢铁20,石材20\n提高温室的工作产出\n将卡组中的【农作物种植1】替换为【农作物种植2】"
   self.boundingCard="BasicFarm02"   --把牌组内所有的BasicFarm01替换成BasicFarm02
   self.deletingCard="BasicFarm01"
   self.inHand = false
-  --self.boundingBuff={}
-  self.buildingConsumption={20,20,10,4}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.woodc = 20
+  self.ironc = 20
+  self.cost =10
+  self.rounds =4
 end
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-    GameManager.Exile(self)
-    GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  GameManager.Exile(self)
+  GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
 end
 

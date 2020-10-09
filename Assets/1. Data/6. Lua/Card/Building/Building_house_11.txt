@@ -3,19 +3,20 @@ local this = Building_house_11
 
 function this:new()
   self.cardView = nil
-  self.name = "预制构件房屋"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "住宅的建造回合数减半"
+  self.name = "房屋装修"
+  self.frame = "资源牌面s"
+  self.image = "住宅pd"
+  self.desc = "消耗石材2,钢铁4\n对房屋进行装修\n提供10点信仰值"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
-  self.inHand = false
-  self.boundingBuff={} ---减半住宅建造回合数
-  self.buildingConsumption={2,8,2,2}
+  self.woodc = 2
+  self.ironc = 4
+  self.cost = 1
+  self.rounds = 2 
 end
 
 
-function this:onPlay()
-  self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+function this:applyEffect()
+  GameManager.Exile(self)
+  GameManager.AddResource(ResourceType.Faith, 10)
 end
 
