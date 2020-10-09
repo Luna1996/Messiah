@@ -1,7 +1,7 @@
 Event = class()
 
 function Event:new(state)
-  self.currentState = state
+  self.initState = state
 end
 
 function Event:choices()

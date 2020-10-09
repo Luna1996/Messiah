@@ -51,6 +51,7 @@ namespace Messiah.Logic {
     public static LuaEvent GetLuaEvent(string name) { 
       lua.DoString($"require('{name}')");
       var e = lua.Global.Get<LuaEvent>(name);
+      e.currentState = e.initState;
       return e;
     }
   }
