@@ -25,7 +25,7 @@ namespace Messiah.UI {
 
     public async Task Hide() {
       Logic.LuaManager.lua.Global.Set("OutGameView", false);
-      await effect.Hide(0.5f);
+      await effect.Hide(1f);
       Destroy(gameObject);
     }
 

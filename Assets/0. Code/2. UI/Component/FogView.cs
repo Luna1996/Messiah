@@ -7,7 +7,7 @@ namespace Messiah.UI {
   using Logic.GameCoreNS;
 
   public class FogView : MonoBehaviour {
-    public Image light;
+    public new Image light;
     public float currentScale = 0.25f;
 
     void Start() {
