@@ -50,6 +50,8 @@ namespace Messiah.UI {
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
       OnHumanChanged();
+      foreach (var buff in GameManager.gameData.buff)
+        buff.SetUp();
       await System.Threading.Tasks.Task.Delay(500);
 
       handView.Init();
@@ -198,7 +200,7 @@ namespace Messiah.UI {
     public void OnHumanChanged() {
       var max = GameManager.gameData.maxWorker;
       var idle = GameManager.gameData.idleWorker;
-      humanBar.fillAmount = idle / max;
+      humanBar.DOFillAmount((float)idle / (float)max, 0.2f);
       human.text = idle + " / " + max;
     }
   }

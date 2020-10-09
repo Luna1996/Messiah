@@ -26,7 +26,7 @@ function Buff_BasicMine02(i)
   GameManager.AddResource(ResourceType.Mine,3)
 end
 
-function ABC(i)
+function ABC(i, args)
   Debug.Log(i)
 end
 
