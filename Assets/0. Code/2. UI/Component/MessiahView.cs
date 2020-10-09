@@ -46,15 +46,14 @@ namespace Messiah.UI {
         transform.Find(b)?.gameObject.SetActive(true);
     }
 
-    static Vector3 zoomInScale = new Vector3(3, 3, 1);
+    static Vector3 center = new Vector3(0, 0, -9);
+    static Vector3 zoomInScale = new Vector3(2, 2, 1);
     public async void Focus(string bname) {
       var go = transform.Find(bname).gameObject;
-      Vector3 d = transform.position - go.transform.position;
-      d.z = transform.position.z;
       var size = ((RectTransform)transform).GetLocalSize();
-      ((RectTransform)transform).pivot = ((RectTransform)go.transform).anchoredPosition/size;
-      transform.DOMove(d, 0.5f);
-      await ((RectTransform)transform).DOScale(ogscale, 0.5f).AsyncWaitForCompletion();
+      ((RectTransform)transform).pivot = ((RectTransform)go.transform).anchoredPosition / size;
+      transform.DOMove(center, 0.5f);
+      await ((RectTransform)transform).DOScale(zoomInScale, 0.5f).AsyncWaitForCompletion();
     }
 
     public async void Build(string bname) {
