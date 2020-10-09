@@ -1,0 +1,3 @@
+function ExampleBuff(i)
+  Debug.Log(i)
+end

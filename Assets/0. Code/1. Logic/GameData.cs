@@ -3,6 +3,7 @@ namespace Messiah.Logic {
   using System;
   using System.Collections.Generic;
   using Utility;
+  using UI;
 
   [Serializable]
   public class GameData {
@@ -68,7 +69,7 @@ namespace Messiah.Logic {
     public List<string> eventDeck = new List<string>();
     public List<string> eventStack = new List<string>();
 
-    public List<string> buf = new List<string>();
+    public List<Buff> buff = new List<Buff>();
     public List<string> relic = new List<string>();
 
     public int[] resources = { 0, 0, 0, 0, 0, 0 };
@@ -76,8 +77,7 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      gd.build = new List<string> {
-        "GodCard","Building_church","Building_church_01"};
+      gd.build = new List<string> {"GodCard"};
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };

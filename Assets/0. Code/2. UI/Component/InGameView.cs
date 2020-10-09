@@ -20,6 +20,9 @@ namespace Messiah.UI {
 
     public GameObject[] resouces;
 
+    public Transform buffpanel;
+    public Transform charpanel;
+
     void Awake() {
       GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
@@ -37,6 +40,7 @@ namespace Messiah.UI {
     }
 
     public async Task Show() {
+      GameManager.inGameView = this;
       LuaManager.lua.Global.Set("HandView", handView);
       LuaManager.lua.Global.Set("InGameView", this);
       top.DOAnchorPosY(0, 0.5f);
@@ -67,7 +71,7 @@ namespace Messiah.UI {
       LuaManager.lua.DoString("CostModifiter = 0");
       EventService.Notify(GameEvent.IG_OnCostModifiterChanged);
       UserData.Save();
-      await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 1);
+      await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 3);
       GameManager.DrawCard(GameManager.gameData.drawNum);
       await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
@@ -80,14 +84,14 @@ namespace Messiah.UI {
 
     public async Task OnEnterConsumePhase() {
       if (DiscardPhaseView.NeedDiscard())
-        await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 0);
+        await UIMask.LoadMask(transform, "DiscardPhaseView", 0.2f, 2);
       else
         GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
     public async Task OnEnterEventPhase() {
-      handView.transform.SetAsFirstSibling();
-      await UIMask.LoadMask(transform, "EventPhaseView", 0.2f, 1);
+      handView.transform.SetSiblingIndex(2);
+      await UIMask.LoadMask(transform, "EventPhaseView", 0.2f, 3);
       await Task.Delay(500);
       await UIMask.UnloadMask(0.2f);
       GameCore.FAM.Fire(GameStateTrigger.NextPhase);
@@ -136,7 +140,7 @@ namespace Messiah.UI {
       else {
         var list = new List<string>(GameManager.gameData.drawPile);
         GameData.Shuffle(list);
-        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 3))
           .GetComponent<CardSelectionView>()
           .Show(list, "抽 牌 堆");
       }
@@ -146,7 +150,7 @@ namespace Messiah.UI {
       if (CardSelectionView.view)
         CardSelectionView.view.Hide();
       else
-        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 3))
           .GetComponent<CardSelectionView>()
           .Show(GameManager.gameData.discardPile, "弃 牌 堆");
     }
@@ -155,7 +159,7 @@ namespace Messiah.UI {
       if (CardSelectionView.view)
         CardSelectionView.view.Hide();
       else
-        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 1))
+        (await UIMask.LoadMask(transform, "CardSelectionView", 0.1f, 3))
           .GetComponent<CardSelectionView>()
           .Show(GameManager.gameData.exilePile, "放 逐 区");
     }
@@ -164,10 +168,27 @@ namespace Messiah.UI {
       if (BuildingView.view)
         BuildingView.view.Hide();
       else
-        (await UIMask.LoadMask(transform, "BuildingView", 0.1f, 1))
+        (await UIMask.LoadMask(transform, "BuildingView", 0.1f, 3))
           .GetComponent<BuildingView>()
           .Show();
     }
 
+    public GameObject tips;
+    public Text tiptext;
+
+    public void ShowTip(Vector3 pos, string text) {
+      var d = Vector3.zero;
+      if (pos.x < 0) d.x = 0.05f;
+      else d.x = -0.05f;
+      if (pos.y < 0) d.y = 0.05f;
+      else d.y = -0.05f;
+      tips.transform.position = pos + d;
+      tiptext.text = text;
+      tips.SetActive(true);
+    }
+
+    public void HideTip() {
+      tips.SetActive(false);
+    }
   }
 }

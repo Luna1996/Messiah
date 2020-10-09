@@ -28,6 +28,7 @@ namespace Messiah.Logic {
 
   public static class GameManager {
     public static ViewManager viewManager;
+    public static InGameView inGameView;
     public static MessiahView messiahView;
     public static HandView handView;
     public static GameData gameData;
@@ -40,11 +41,13 @@ namespace Messiah.Logic {
     }
 
     public static void Build(Card card, string bname) {
-      var i = handView.RemoveCard(card);
+      if (card != null) {
+        var i = handView.RemoveCard(card);
+        card.cardView.DissolveInCenter();
+      }
       if (!gameData.buildingAcquired.Contains(bname))
         gameData.buildingAcquired.Add(bname);
       messiahView.Build(bname);
-      card.cardView.DissolveInCenter();
     }
 
 
@@ -116,9 +119,9 @@ namespace Messiah.Logic {
       SetResource(rt, v > ov ? 0 : (ov - v));
     }
 
-    public static void CreateBuff(Enum id, BuffType type, int time, LuaFunction callback) {
-      new Buff(id, type, time, callback);
-    }
+    // public static void CreateBuff(Enum id, BuffType type, int time, LuaFunction callback) {
+    // new Buff(id, type, time, callback);
+    // }
 
     public static void AddCard(DeckType deckType, string[] card) {
       switch (deckType) {

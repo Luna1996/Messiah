@@ -22,7 +22,7 @@ namespace Messiah.Logic {
 #endif
     }
 
-    public static Texture GetTextrue(string name) {
+    public static Texture GetTexture(string name) {
       return cache[name];
     }
 

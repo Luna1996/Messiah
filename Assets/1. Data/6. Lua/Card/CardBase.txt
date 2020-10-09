@@ -73,11 +73,11 @@ end
 function this:laborCost(labor,rounds)
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - labor
   GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker + labor
-  GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,rounds,
-  function()
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + labor
-    GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker - labor
-    end)
+  -- GameManager.CreateBuff(GameEvent.EnterMainPhase,BuffType.OneShot,rounds,
+  -- function()
+  --   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + labor
+  --   GameManager.gameData.occupiedWorker = GameManager.gameData.occupiedWorker - labor
+  --   end)
   Debug.Log(GameManager.gameData.idleWorker)
   Debug.Log(GameManager.gameData.occupiedWorker)
 end

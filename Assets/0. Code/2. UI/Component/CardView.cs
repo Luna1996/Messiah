@@ -40,8 +40,8 @@ namespace Messiah.UI {
     public void SetLuaCard(string card) {
       luacard = LuaManager.CreateLuaObject(card).Cast<Card>();
       luacard.cardView = this;
-      image.texture = AtlasManager.GetTextrue(luacard.image);
-      frame.texture = AtlasManager.GetTextrue(luacard.frame);
+      image.texture = AtlasManager.GetTexture(luacard.image);
+      frame.texture = AtlasManager.GetTexture(luacard.frame);
       cardName.text = luacard.name;
       ruleText.text = luacard.desc;
       luacard.setCardView();
