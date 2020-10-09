@@ -366,8 +366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 10}
-  m_SizeDelta: {x: -80, y: 50}
+  m_AnchoredPosition: {x: -106.41, y: 25}
+  m_SizeDelta: {x: -412.82922, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3788931491912876571
 CanvasRenderer:
@@ -410,8 +410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10 = <color=blue>4</color> + <color=green>2</color> + <color=red>0</color>
-    + <color=black>2</color>
+  m_Text: 10 / 10
 --- !u!1 &1578299034964555878
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 25}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -340, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &964436454742854881
 CanvasRenderer:
@@ -758,12 +757,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 6621269acd32c6348a20c67433738b6e, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1524,6 +1523,8 @@ MonoBehaviour:
   charpanel: {fileID: 2747878222770879337}
   tips: {fileID: 8615456994875715720}
   tiptext: {fileID: 5047320811338909916}
+  human: {fileID: 2184188964680235538}
+  humanBar: {fileID: 7108147687550898267}
 --- !u!1 &5328751954748267937
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,12 +72,14 @@ namespace Messiah.Logic {
     public List<Buff> buff = new List<Buff>();
     public List<string> relic = new List<string>();
 
+    public int costMod = 0;
     public int[] resources = { 0, 0, 0, 0, 0, 0 };
+    public int[] resourcesModifitor = { 0, 0, 0, 0, 0, 0 };
 
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      gd.build = new List<string> {"GodCard"};
+      gd.build = new List<string> { "BasicIronPile" };
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };

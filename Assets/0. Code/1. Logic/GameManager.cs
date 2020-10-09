@@ -111,11 +111,13 @@ namespace Messiah.Logic {
 
     public static void AddResource(ResourceType rt, int v) {
       var ov = GetResource(rt);
+      v = v + gameData.resourcesModifitor[(int)rt];
       SetResource(rt, v + ov);
     }
 
     public static void SubResource(ResourceType rt, int v) {
       var ov = GetResource(rt);
+      v = v + gameData.resourcesModifitor[(int)rt];
       SetResource(rt, v > ov ? 0 : (ov - v));
     }
 

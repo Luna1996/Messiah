@@ -37,6 +37,7 @@ namespace Messiah.UI {
 
     public void OldGame() {
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
+      LuaManager.lua.DoString($"CostModifiter = {GameManager.gameData.costMod}");
       GameCore.FAM.Fire(GameStateTrigger.GameStart);
     }
   }

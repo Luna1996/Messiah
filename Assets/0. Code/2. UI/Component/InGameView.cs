@@ -36,6 +36,8 @@ namespace Messiah.UI {
       EventService.ListenAsync(GameEvent.EnterMainPhase, OnTurnStart);
       EventService.ListenAsync(GameEvent.EnterConsumePhase, OnEnterConsumePhase);
       EventService.ListenAsync(GameEvent.EnterEventPhase, OnEnterEventPhase);
+      EventService.Listen(GameEvent.IG_IdleWorkerChanged, OnHumanChanged);
+      EventService.Listen(GameEvent.IG_MaxWorkerChanged, OnHumanChanged);
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChanged);
     }
 
@@ -47,7 +49,7 @@ namespace Messiah.UI {
       bottom.DOAnchorPosY(0, 0.5f);
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
-
+      OnHumanChanged();
       await System.Threading.Tasks.Task.Delay(500);
 
       handView.Init();
@@ -68,7 +70,7 @@ namespace Messiah.UI {
     }
 
     public async Task OnTurnStart() {
-      LuaManager.lua.DoString("CostModifiter = 0");
+      // LuaManager.lua.DoString("CostModifiter = 0");
       EventService.Notify(GameEvent.IG_OnCostModifiterChanged);
       UserData.Save();
       await UIMask.LoadMask(transform, "NewDaySplash", 0.2f, 3);
@@ -189,6 +191,15 @@ namespace Messiah.UI {
 
     public void HideTip() {
       tips.SetActive(false);
+    }
+
+    public Text human;
+    public Image humanBar;
+    public void OnHumanChanged() {
+      var max = GameManager.gameData.maxWorker;
+      var idle = GameManager.gameData.idleWorker;
+      humanBar.fillAmount = max / idle;
+      human.text = idle + " / " + max;
     }
   }
 }
