@@ -73,7 +73,7 @@ end
 function this:laborCost()
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - self.cost - CostModifiter
   GameDashBoard.currentCost = self.cost
-  Buff("AddBackLabor",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff501',"下回合释放占用人口")
+  Buff("AddBackLabor()",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff501',"下回合释放占用人口")
 end
 
 function this:subRc()

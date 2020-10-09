@@ -7,7 +7,7 @@ function AddBackLabor()
 end
 
 function ChurchBuild()
-  GameManager.Build("教堂")
+  GameManager.Build(nil,"教堂")
   GameManager.AddResource(ResourceType.Faith,GameManager.gameData.MaxWorker)
 end
 

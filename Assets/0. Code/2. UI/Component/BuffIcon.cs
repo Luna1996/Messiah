@@ -64,7 +64,7 @@ namespace Messiah.UI {
     public async void CallBack() {
       time++;
       if (type == BuffType.Repeat || time == maxtime) {
-        LuaManager.lua.DoString($"{buff}");
+        LuaManager.lua.DoString($"{buff}({time})");
         if (buffIcon) {
           await buffIcon.transform.DOPunchScale(big, 1f).AsyncWaitForCompletion();
         }
