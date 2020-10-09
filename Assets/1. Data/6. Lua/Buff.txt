@@ -6,8 +6,8 @@ function AddBackLabor()
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + GameDashBoard.currentCost +CostModifiter
 end
 
-function ChurchBuild(name)
-  GameManager.Build(name)
+function ChurchBuild()
+  GameManager.Build("教堂")
   GameManager.AddResource(ResourceType.Faith,GameManager.gameData.MaxWorker)
 end
 
