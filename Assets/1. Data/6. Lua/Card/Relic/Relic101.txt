@@ -7,5 +7,5 @@ this.rare='normal'
 
 function this.apply()
   --增加10点石材
-  GameManager.AddResource(ResourceType.Ston,10)
+  GameManager.AddResource(ResourceType.Wood,10)
 end

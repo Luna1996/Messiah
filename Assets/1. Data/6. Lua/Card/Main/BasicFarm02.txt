@@ -6,7 +6,7 @@ function this:new()
   self.name = "农作物种植2"
   --self.frame = "CardFrame_0"
   self.image = "农作物种植2"
-  self.desc = "本回合消耗2点矿石; 占用2点人力,持续2回合; 第2回合获得60点食物"
+  self.desc = "本回合消耗2点矿石; 占用2点人力,持续2回合; 第2回合，收获60点食物"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)

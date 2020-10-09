@@ -6,7 +6,7 @@ function this:new()
   self.name = "诊所"
   self.frame = "资源牌面s"
   self.image = "医院p"
-  self.desc = "石材8 钢铁3 占用5人力2回合 卡组中加入1张看护"
+  self.desc = "消耗石材8,钢铁3\n卡组中加入1张【看护】"
   self.boundingCard={"Nurse",}
   self.inHand = false
   self.boudingBuff={}

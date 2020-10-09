@@ -198,7 +198,7 @@ namespace Messiah.UI {
     public void OnHumanChanged() {
       var max = GameManager.gameData.maxWorker;
       var idle = GameManager.gameData.idleWorker;
-      humanBar.fillAmount = max / idle;
+      humanBar.fillAmount = idle / max;
       human.text = idle + " / " + max;
     }
   }
