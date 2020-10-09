@@ -6,7 +6,7 @@ function this:new()
   self.name = "信仰祈祷"
   self.frame = "信仰牌面"
   self.image = "祈愿2"
-  self.desc = "占用本回合所有人力，每占用1点获得10点信仰值"
+  self.desc = "占用本回合所有人力\n每占用1点人力，下回合获得10点信仰值"
   self.inHand = false
 end
 
@@ -18,10 +18,19 @@ function this:onPlay()
     GameManager.gameData.idleWorker = 0
     GameManager.AddResource(ResourceType.Faith, temp*10)
     GameManager.Discard(self)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + temp
-    end)
+    Buff(
+    "AddBackLabor", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    1, 'buff512', nil,
+    "XLaborTurn", tostring(temp)..",名工人在祷告,"..tostring(1))
+    Buff(
+    "Buff_Pray01", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    1, 'buff512', nil,
+    "XTurn", "1,获得"..tostring(temp*10).."信仰值,"..tostring(temp*10))
+
   else
     HandView:AddToHand(self.cardView)
   end

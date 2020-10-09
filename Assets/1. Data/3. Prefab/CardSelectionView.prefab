@@ -152,14 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.9386792, b: 0.9386792, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d6b22591d08892049a6ef4f32d6b8645, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -312,10 +312,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 433845868529103277, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 433845868529103277, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 461947927207421459, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592299451489622545, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
@@ -348,6 +352,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861760889944864262, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403573624015257462, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096664862238592135, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
@@ -356,15 +364,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194098715759703590, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5194098715759703590, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7498098939257441994, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 9003653739654320086, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_LocalPosition.x

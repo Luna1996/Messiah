@@ -4,28 +4,23 @@ local this = Mine_02
 function this:new()
   self.cardView = nil
   self.name = "集中采矿"
+  self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "采矿1"
-  self.desc = "占用3点人力,持续2回合; 第2回合,获得15点矿石"
+  self.desc = "第3回合,获得15点矿石"
+  self.cost = 3
+  self.rounds = 2
   --self.usageAmount = 1
   --self.temp = true
   self.inHand = false
 end
 
-function this:onPlay()
-  if (GameManager.gameData.idleWorker >= 3)
-  then
-    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 3
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 1, 
-    function()
-      GameManager.AddResource(ResourceType.Mine, 15)
-    end)
-    GameManager.CreateBuff(GameEvent.EnterMainPhase, BuffType.OneShot, 2, 
-    function()
-      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 3
-    end)
-    GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  Buff(
+    "Buff_Mine_02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    2, "buff501", nil,
+    "Xturn", "2,收获15点矿石")
+  GameManager.Discard(self)
 end
