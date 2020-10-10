@@ -6,34 +6,30 @@ local states ={}
 
 states.a = {
   name = "神父的旨意",
-  desc = "神父以神的旨意 需求xx资源",
-  choices = {"提供资源","不提供资源"},
-}
-states.b = {
-  name = "神之子的预言",
-  desc = "神父挑选神之子",
-  choices = {"允许","不允许"},
+  image = "事件报道小哥",
+  desc = "神父以神的旨意, 需求5点矿石",
+  choices = {"提供5点矿石，获得一张神秘建筑卡","不提供资源,受到诅咒"},
+
 }
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
       --选择石材/钢材/能量资源5-10点进行判断/扣减
-      --获得50-100点信仰值奖励
-      return states.b
+      if GameManager.GetResource(ResourceType.Wood) >=5
+      then
+        GameManager.SubResource(ResourceType.Wood,5) 
+        GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Build_church"})
+        return states.b
+      else
+        GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
+        return nil
+      end
+
+      
     elseif choice==self.choices[2] then
-      --信仰值降低-50
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
       return nil
     end
-end
-
-function states.b:choose(choice)
-  if choice == self.choices[1] then
-    --人口-1 --获得神父buff（特殊relic池子
-    return nil
-  elseif choice==self.choices[2] then
-    --信仰值降低 -50
-    return nil
-  end
 end
 
 Event1271 = Event(states.a)
