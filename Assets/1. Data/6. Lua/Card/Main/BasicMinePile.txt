@@ -11,13 +11,13 @@ function this:new(arg)
   self.name = "矿石堆"
   --self.frame = "CardFrame_0"
   self.image = "矿石堆1"
-  self.desc = "获得1点能量\n可以使用"..self.usageAmount.."次"
+  self.desc = "获得2点能量\n可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
 function this:onPlay()
   self.usageAmount = self.usageAmount - 1
-  GameManager.AddResource(ResourceType.Mine, 1)
+  GameManager.AddResource(ResourceType.Mine, 2)
   if (self.usageAmount == 0)
   then
     GameManager.Exile(self)
