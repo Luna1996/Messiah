@@ -23,7 +23,7 @@ end
 
 function add_maxWorker(i)
   GameManager.gameData.maxWorker = GameManager.gameData.maxWorker +1
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
+  --GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
 end
 
 function Buff_Relic110(i)
@@ -117,7 +117,7 @@ end
 function Build_house_01(i)
   Build_house()
   GameManager.gameData.maxWorker = GameManager.gameData.maxWorker+2
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +2
+  --GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +2
 end
 
 function Build_house_11(i)
@@ -128,7 +128,7 @@ end
 function Build_house_basic(i)
   Build_house()
   GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
+  --GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
 end
 
 function Build_iron()
@@ -229,9 +229,8 @@ function BuffFrostyRoland(i) --医生祝福 人力资源发生变化时获得1�
   GameManager.AddResource(ResourceType.Food,1)
 end
 
-function BuffTahriTheGirl(i) --抽卡时增加1点可用人口（总人口不变）
-  if GameManager.gameData.idleWorker < GameManager.gameData.maxWorker then
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker+1 end
+function BuffTahriTheGirl(i) --抽卡时增加2点能量（总人口不变）
+  GameManager.AddResource(ResourceType.Mine,2)
 end
 
 function build_clinic(i)

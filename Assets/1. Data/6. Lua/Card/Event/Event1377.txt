@@ -6,12 +6,17 @@ local states ={}
 
 states.a = {
   name = "台风",
-  desc = "近日将有台风登陆",
-  choices = {"好的"}
+  desc = "近日将有台风登陆..\n"..
+  "在古新世，台风为人所痛恨..\n"..
+  "但狂风吹薄了浓雾..\n"..
+  "也因此带来希望",
+  choices = {"御风：石材-5 信仰+30"},
+  image="事件报道小哥"
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --调用台风的buff系统
+      GameManager.SubResource(ResourceType.Wood,5)
+      GameManager.AddResource(ResourceType.Faith,30)
       return nil
     end
 end
