@@ -86,7 +86,7 @@ namespace Messiah.Logic {
       var gd = new GameData();
 
       var testpile = new List<string> { };
-      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile" };
+      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile","BasicFoodPile" };
       var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood" };
       Shuffle(build);
       mustdraw.AddRange(build);

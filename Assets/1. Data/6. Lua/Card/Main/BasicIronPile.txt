@@ -14,13 +14,13 @@ function this:new(arg)
     self.usageAmount = 5
   end
 
-  self.desc = "获得1点钢铁\n可以使用"..self.usageAmount.."次"
+  self.desc = "获得2点钢铁\n可以使用"..self.usageAmount.."次"
 
 end
 
 function this:applyEffect()
     self.usageAmount = self.usageAmount -1
-    GameManager.AddResource(ResourceType.Iron, 1)
+    GameManager.AddResource(ResourceType.Iron, 2)
     if (self.usageAmount == 0)
     then
       GameManager.Exile(self)
