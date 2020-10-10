@@ -2,12 +2,12 @@ Relic306 = Relic()
 local this = Relic306
 this.ID=306
 this.name='贪婪之手'
-this.desc='复制牌组的一张卡，每回合额外失去5点能量'
+this.desc='复制牌组的一张卡，每回合额外失去5点矿石'
 this.rare='pandora'
 this.icon=nil
 
 function this.apply(card)
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{card})
-  Buff("Buff_Relic306",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff306","贪婪之手：每回合失去5点能量")
+  Buff("Buff_Relic306",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff306","贪婪之手：每回合失去5点矿石")
 end
 

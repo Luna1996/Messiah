@@ -79,7 +79,7 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      gd.build = new List<string> {  "Building_house","GodCard","BasicMine01","BasicWood01","Building_mine_22"};
+      gd.build = new List<string> {  "BasicFoodPile","BasicFoodPile","BasicWoodPile","BasicIronPile","BasicMinePile"};
       gd.drawPile = new List<string>(gd.build);
       Shuffle(gd.drawPile);
       gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };

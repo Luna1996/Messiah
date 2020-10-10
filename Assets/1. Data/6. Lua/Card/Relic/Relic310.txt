@@ -2,11 +2,11 @@ Relic310 = Relic()
 local this = Relic310
 this.ID=310
 this.name='过载抽取'
-this.desc='抽牌数+1 回合开始时失去5点能量'
+this.desc='抽牌数+1 回合开始时失去5点矿石'
 this.rare='pandora'
 this.icon=nil
 
 function this.apply()
   GameManager.gameData.drawNum = GameManager.gameData.drawNum +1
-  Buff("Buff_Relic306",GameEvent.EnterMainPhase,BuffType.Repeat,-1,'buff306','过载抽取：\n回合开始时失去5点能量，额外抽1张卡')
+  Buff("Buff_Relic306",GameEvent.EnterMainPhase,BuffType.Repeat,-1,'buff306','过载抽取：\n回合开始时失去5点矿石，额外抽1张卡')
 end

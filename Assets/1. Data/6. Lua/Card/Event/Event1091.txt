@@ -28,7 +28,6 @@ end
 function states.b:choose(choice)
   if choice == self.choices[1] then
     GameManager.SubResource(ResourceType.Mine, 2)
-  --if矿石>2则矿石-2 否则卡组加入1张诅咒卡
     return nil
   elseif choice==self.choices[2] then
     GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})

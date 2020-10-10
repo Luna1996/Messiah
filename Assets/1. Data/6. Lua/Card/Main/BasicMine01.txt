@@ -10,6 +10,7 @@ function this:new()
   self.image = "采矿1"
   self.desc = "下回合,获得1点矿石"
 
+
   self.cost = 1
   self.rounds = 1
 

@@ -4,9 +4,10 @@ local this = Building_mine
 function this:new()
   self.cardView = nil
   self.name = "矿场"
+
   self.frame = "资源牌面s"
   self.image = "采煤机p"
-  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采能量卡"
+  self.desc = "消耗石材3，钢铁2\n开采矿量的场所\n卡组中加入2张采矿量卡"
   self.boundingCard={"BasicMine01","BasicMine01"}
   self.inHand = false
   --self.boundingBuff={}
@@ -25,7 +26,7 @@ function this:applyEffect()
   3,
   'buff518',
   nil,
-  "BuildTip",
+
   "2,采集能源矿机建设中")
 end
 
