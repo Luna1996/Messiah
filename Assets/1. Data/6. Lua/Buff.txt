@@ -95,6 +95,11 @@ function Buff_Building_research_room(i, args)
 end
 
 
+function Buff_get_relics(i, args)
+  Relic202.apply()
+end
+
+
 
 function Xturn(i, args)
   local t = split(args,',')
