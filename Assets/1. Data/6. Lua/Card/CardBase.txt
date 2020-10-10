@@ -33,13 +33,17 @@ function this:setCardView()
     if cost < 0 then cost = 0 end
     self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
   end
-end
 
+  if self.rounds and self.frame == '资源牌面s' then
+    self.cardView.subCost.gameObject:SetActive(true)
+    self.cardView.subCost.text = self.rounds..' 天'
+  end
+end
 
 function this:onPlay()
   if self:canPlay() then
     self:subRc()
-
+    self:laborCost()
     self:applyEffect()
   else
     HandView:AddToHand(self.cardView)
@@ -62,7 +66,12 @@ function this:getCardFullName()
 end
 
 function this:enoughLabor()
-  if GameManager.gameData.idleWorker>=self.cost then
+   
+  if not self.cost 
+  then 
+    self.cost = 0
+  end
+  if GameManager.gameData.idleWorker>=self.cost + CostModifiter then
     return true
   else
     return false
@@ -71,9 +80,18 @@ end
 
 
 function this:laborCost()
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - self.cost - CostModifiter
-  GameDashBoard.currentCost = self.cost
-  Buff("AddBackLabor",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff501',"下回合释放占用人口")
+  local cost = self.cost + CostModifiter
+  if cost <0 then cost = 0 end
+  if cost >0
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - cost
+    Buff(
+      "AddBackLabor", 
+      GameEvent.EnterMainPhase, 
+      BuffType.OneShot, 
+      self.rounds, 'buff512', nil,
+      "XLaborTurn", tostring(cost)..",名工人在工作,"..tostring(self.rounds))
+  end
 end
 
 function this:subRc()

@@ -6,7 +6,7 @@ function this:new()
   self.name = "高级建造"
   self.frame = "科技牌面"
   self.image = "高级建造科技"
-  self.desc = "消耗12科技点数\n将【天气控制装置】【温室】【温室升级】加入牌组"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.desc = "消耗12科技点数\n将【天气控制装置】【温室】【温室升级】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Building_weather_21","Building_farm","Building_farm_21"}
   self.inHand = false
   self.techc = 12

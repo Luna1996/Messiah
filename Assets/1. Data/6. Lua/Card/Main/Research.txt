@@ -19,7 +19,6 @@ end
 
 
 function this:applyEffect()
-  
   Buff(
     "Buff_Research", 
     GameEvent.EnterMainPhase, 

@@ -16,7 +16,6 @@ function this:new(arg)
 end
 
 function this:onPlay()
-  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   self.usageAmount = self.usageAmount - 1
   GameManager.AddResource(ResourceType.Mine, 1)
   if (self.usageAmount == 0)

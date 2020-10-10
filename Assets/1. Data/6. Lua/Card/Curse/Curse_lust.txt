@@ -9,7 +9,6 @@ function this:new()
   self.desc = "占用2点人力,抽1张牌"
   --self.usageAmount = 1
   self.inHand = false
-  self.cost = 2
 end
 
 function this:onPlay()

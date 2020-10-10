@@ -7,7 +7,7 @@ function this:new()
   self.name = "制图桌"
   self.frame = "科技牌面"
   self.image = "制图桌"
-  self.desc = "消耗3科技点数\n将【初级采矿】【初级建造】【机械自动化】加入牌组"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.desc = "消耗3科技点数\n将【初级采矿】【初级建造】【机械自动化】加入抽牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Tech_mine_0","Tech_build_0","Tech_machine"}
   self.inHand = false
   self.techc = 3

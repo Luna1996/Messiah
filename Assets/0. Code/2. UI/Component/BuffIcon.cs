@@ -17,9 +17,10 @@ namespace Messiah.UI {
     public BuffType type;
     public string icon;
     public string tips;
+    public string tipsFunc;
+    public string args;
     public int time;
     public int maxtime;
-    public string arg;
 
     [NonSerialized]
     GameObject buffIcon;
@@ -27,17 +28,18 @@ namespace Messiah.UI {
     static List<string> characters = new List<string> { "buff401", "buff402", "buff403", "buff404" };
 
 
-    public Buff(string buff, string arg,Enum trigger, BuffType type, int maxtime, string icon, string tips) {
+    public Buff(string buff, Enum trigger, BuffType type, int maxtime, string icon, string tips, string tipsFunc = null, string args = null) {
       GameManager.gameData.buff.Add(this);
       this.buff = buff;
-      this.arg = arg;
       this.trigger = trigger;
       this.type = type;
       this.icon = icon;
       this.tips = tips;
+      this.tipsFunc = tipsFunc;
+      this.args = args;
       this.time = 0;
       this.maxtime = maxtime;
-      Debug.Log(arg);
+
       SetUp();
     }
 
@@ -50,9 +52,19 @@ namespace Messiah.UI {
         var texture = (Texture2D)AtlasManager.GetTexture(icon);
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
         buffIcon.GetComponent<Image>().sprite = sprite;
-        buffIcon.GetComponent<Tip>().text = tips;
-        await buffIcon.GetComponent<Image>().DOFade(1, 0.5f).AsyncWaitForCompletion();
-        var shiny = buffIcon.AddComponent<UIShiny>();
+        if (string.IsNullOrEmpty(tipsFunc))
+          buffIcon.GetComponent<Tip>().text = tips;
+        else {
+          var ret = LuaManager.lua.DoString($"return {tipsFunc}({time}, '{args}')");
+          buffIcon.GetComponent<Tip>().text = ret[0].ToString();
+          if (ret.Length > 1) {
+            buffIcon.GetComponentInChildren<Text>(true).gameObject.SetActive(true);
+            buffIcon.GetComponentInChildren<Text>(true).text = ret[1].ToString();
+          }
+        }
+        buffIcon.GetComponent<CanvasGroup>().alpha = 0;
+        await buffIcon.GetComponent<CanvasGroup>().DOFade(1, 0.5f).AsyncWaitForCompletion();
+        var shiny = buffIcon.GetComponent<UIShiny>();
         shiny.duration = 1;
         shiny.Play();
         await Task.Delay(1000);
@@ -65,8 +77,14 @@ namespace Messiah.UI {
     static Vector3 big = new Vector3(1.2f, 1.2f, 1.2f);
     public async void CallBack() {
       time++;
+      if (!string.IsNullOrEmpty(tipsFunc)) {
+        var ret = LuaManager.lua.DoString($"return {tipsFunc}({time}, '{args}')");
+        buffIcon.GetComponent<Tip>().text = ret[0].ToString();
+        if (ret.Length > 1)
+          buffIcon.GetComponentInChildren<Text>(true).text = ret[1].ToString();
+      }
       if (type == BuffType.Repeat || time == maxtime) {
-        LuaManager.lua.DoString($"{buff}({arg})");
+        LuaManager.lua.DoString($"{buff}({time}, '{args}')");
         if (buffIcon) {
           await buffIcon.transform.DOPunchScale(big, 1f).AsyncWaitForCompletion();
         }
@@ -79,7 +97,7 @@ namespace Messiah.UI {
       EventService.Ignore(trigger, CallBack);
       GameManager.gameData.buff.Remove(this);
       if (buffIcon) {
-        await buffIcon.GetComponent<Image>().DOFade(0, 0.5f).AsyncWaitForCompletion();
+        await buffIcon.GetComponent<CanvasGroup>().DOFade(0, 0.5f).AsyncWaitForCompletion();
         GameObject.Destroy(buffIcon);
       }
 

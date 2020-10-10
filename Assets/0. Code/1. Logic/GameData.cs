@@ -95,7 +95,9 @@ namespace Messiah.Logic {
       gd.drawPile = new List<string>(testpile);
       gd.build = new List<string>(testpile);
 
+      // gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };
       gd.buildingAcquired = new List<string> { };
+      // gd.buildingDeck = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church_01", "Building_church", "Building_clinic" };
       return gd;
     }
 

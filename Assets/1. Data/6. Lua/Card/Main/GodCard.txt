@@ -14,8 +14,13 @@ function this:onPlay()
   GameManager.AddResource(ResourceType.Mine, 100)
   GameManager.AddResource(ResourceType.Iron, 100)
   GameManager.AddResource(ResourceType.Wood, 100)
+  GameManager.Build(nil,"采煤场")
+  GameManager.Build(nil,"采石场")
+  GameManager.Build(nil,"研究站")
+  Build_house()
   --GameManager.Build(nil, "教堂")
-  --GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_house","Building_house_11","Building_house_01"})
+  local c = GameManager.gameData.buildingAcquired
+  for i = 0,c.Count-1 do Debug.Log(c[i]) end
   HandView:AddToHand(self.cardView)
 end
 

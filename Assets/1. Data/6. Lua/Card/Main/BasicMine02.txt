@@ -8,10 +8,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "采矿2"
-  self.desc = "下回合,获得3点能量"
-=======
   self.desc = "下回合,获得3点矿石"
->>>>>>> parent of 3e825c0... replace 矿石with  能量
 
   self.inHand = false
   self.cost = 2
@@ -21,7 +18,6 @@ function this:new()
 end
 
 function this:applyEffect()
-  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   Buff(
     "Buff_BasicMine02", 
     GameEvent.EnterMainPhase, 

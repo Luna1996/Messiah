@@ -6,19 +6,24 @@ function this:new()
   self.name = "钢铁厂"
   self.frame = "资源牌面s"
   self.image = "钢厂p"
-  self.desc = "消耗石材3,钢铁3\n 获取钢材的生产场所\n牌组中加入2张炼钢牌"
+  self.desc = "-石材3 钢铁3- 获取钢材的生产场所"
   self.boundingCard={"BasicIron01","BasicIron01"}
   self.inHand = false
   --self.boundingBuff={}
   self.buildingConsumption={2,3,5,3}
-  self.woodc=2
-  self.ironc=3
-  self.cost =5
-  self.rounds =3
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-function this:applyEffect()
-  self.cardView:Dissolve()
-  Buff("Build_iron_basic",GameEvent.EnterMainPhase,BuffType.OneShot,3,'buff518',nil,"BuildTip","3,正在建造钢厂")
+function this:onPlay()
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 

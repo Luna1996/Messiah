@@ -5,24 +5,24 @@ function this:new()
   self.cardView = nil
   self.name = "改进管线"
   self.frame = "资源牌面s"
-  self.image = "采煤机pd"
-  self.desc = "消耗石材5，钢铁5\n牌组中增加1张采矿牌"
+  self.image = "采煤机p"
+  self.desc = "-石材5 钢铁5- 牌组中增加1张采矿牌"
   self.inHand = false
-  self.woodc=5
-  self.ironc=5
-  self.cost =2
-  self.rounds =2
+  self.boundingBuff={} 
+  self.buildingConsumption={5,5,2,2}
+  self.cost =self.buildingConsumption[3]
+  self.rounds =self.buildingConsumption[4]
 end
 
-function this:applyEffect()
-  self.cardView:Dissolve()
-  Buff("Build_mine_02",
-  GameEvent.EnterMainPhase,
-  BuffType.OneShot,
-  self.rounds,
-  'buff518',
-  nil,
-  "BuildTip",
-  "2,改进管线铺设")
+function this:onPlay()
+  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
+    self:subRcBuilding(self.buildingConsumption)
+    self:laborCost(self.cost+CostModifiter,self.rounds)
+    GameManager.Exile(self)
+    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
 end
 
