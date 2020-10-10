@@ -1,0 +1,27 @@
+-------------------------------------------
+-- Event1011
+
+
+local states ={}
+
+states.a = {
+  name = "食物短缺",
+  image = "事件报道小哥",
+  desc = 
+    "大人，我们随身携带的罐头马上就快用完了,现在需要建造一些能够生产食物的建筑，来帮助我们生存。如果没有足够的食物，人民就会逐渐在迷雾死去。\n阁下，我们应该怎么办？",
+  choices = {
+    "当然是建造蘑菇农场了，获得一张【蘑菇农场】",
+  }
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush"})
+      return nil
+    end
+  end
+
+
+Event1010 = Event(states.a)
+
+-------------------------------------

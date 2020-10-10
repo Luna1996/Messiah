@@ -17,7 +17,7 @@ states.b = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --选择石材/钢材/矿石资源5-10点进行判断/扣减
+      --选择石材/钢材/能量资源5-10点进行判断/扣减
       --获得50-100点信仰值奖励
       return states.b
     elseif choice==self.choices[2] then
