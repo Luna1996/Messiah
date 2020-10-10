@@ -4,26 +4,39 @@ local this = Building_mine
 function this:new()
   self.cardView = nil
   self.name = "矿场"
+<<<<<<< HEAD
+
   self.frame = "资源牌面s"
   self.image = "采煤机p"
-  self.desc = "-石材3 钢铁2- 开采矿石的场所"
+  self.desc = "消耗石材3，钢铁2\n开采矿量的场所\n卡组中加入2张采矿量卡"
+=======
+  self.frame = "资源牌面s"
+  self.image = "采煤机p"
+  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采能量卡"
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
   self.boundingCard={"BasicMine01","BasicMine01"}
   self.inHand = false
   --self.boundingBuff={}
-  self.buildingConsumption={3,2,3,2}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+
+  self.woodc=3
+  self.ironc=0
+  self.cost=3
+  self.rounds=2
 end
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_mine_basic",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  3,
+  'buff518',
+  nil,
+<<<<<<< HEAD
 
+=======
+  "BuildTip",
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
+  "2,采集能源矿机建设中")
 end
 

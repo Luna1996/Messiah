@@ -4,19 +4,28 @@ local this = Building_mine_21
 function this:new()
   self.cardView = nil
   self.name = "连轴运转"
-  self.frame = "建筑牌面"
-  self.image = "残损义骸"
-  self.desc = "所有资源卡获得装填" --装填：打出时再抽一张牌
+  self.frame = "资源牌面s"
+  self.image = "钢厂pd"
+  self.desc = "消耗石材8，钢铁10\n所有资源卡获得装填\n(装填：打出时再抽一张牌)"
   self.inHand = false
-  self.buildingConsumption={8,10,6,3}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.cost =6
+  self.rounds =4
+  self.woodc=8
+  self.ironc=10
 end
 
 ---buff trigger加一个打出资源牌时drawcard
 
-function this:onPlay()
+function this:applyEffect()
   self.cardView:Dissolve()
   --Debug.Log(GameData.drawPile)
+  Buff("Build_mine_21",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  4,
+  'buff518',
+  nil,
+  "BuildTip",
+  "4,联轴运转加载中")
 end
 

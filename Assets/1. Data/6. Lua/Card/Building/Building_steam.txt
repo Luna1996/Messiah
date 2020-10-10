@@ -4,13 +4,13 @@ local this = Building_steam
 function this:new()
   self.cardView = nil
   self.name = "蒸汽计算机"
-  self.frame = "建筑牌面"
-  --self.image = "残损义骸"
+  self.frame = "资源牌面s"
+  self.image = "差分机【高级】"
   self.desc = "每消耗5点人力，下一张资源牌不消耗人力，而是直接从手牌/牌组中使用1张机器人替代" ---机器人卡Robot_01,Robot_02
   self.boundingCard={"Research","Research"}
   self.inHand = false
   --self.boundingBuff={}
-  self.buildingConsumption={5,5,5,3}
+  self.buildingConsumption={5,5,5,3}--暂时不写了！
 end
 
 

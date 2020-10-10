@@ -6,60 +6,65 @@ local states ={}
 
 states.a = {
   name = "流放之船",
-  desc = "",
-  choices = {"收留","不收留"},
+  desc = "和大部分在旧约之海错综复杂、尔虞我诈的迷局中获得赫赫恶名的大人物们一样，"..
+  "流放之刃的双手上不乏鲜血。但事实并非一直都如此，她曾经的名字叫做泰娅，是一位著名航海家的女儿，"..
+  "她们一家三口离群索居，在孤岛上的工坊里幸福地过着和平的生活..."..
+  "...直到迷雾的出现改变了这一切"
+  ,
+  choices = {"欢迎流放之船的拜访-减少10点矿石",
+  "拒绝流放之船的拜访"},
   image="事件报道小哥"
   }
 
 states.b  = {
-  name = "流放之船",
-  desc = "城里发生了偷窃事件，是否调查？",
-  choices = {"调查","不调查"},
+  name = "流放之船-泰娅",
+  desc = "　对于勇敢面对旧约之地严酷海洋的人，"..
+  "能拥有一艘属于自己的船和船员，就已是个不错的成就。"..
+  "更不用提泰娅召集而来的船员们，他们都是旧约之地的流放者"..
+  "流放...是因为罪行吗...迷雾出现之前，或许是的吧...",
+  choices = {"举办盛大宴会招待泰娅的船队-减少20点食物"
+  ,"热情欢迎泰娅和船员的到来"},
   image="事件海盗"
 }
 
 states.c  = {
-  name = "流放之船",
-  desc = "海盗来了，索要食物和资源",
-  choices = {"给他","不给他"},
+  name = "弥赛亚-泰娅",
+  desc = "泰娅似乎有留下来的打算"..
+  "也许长期的海上生活已让她厌倦"..
+  "又或者...只是迷雾已经厚重到不适合继续航行了"..
+  "毕竟，我们不像它们，还是需要视觉的",
+  choices = {"挽留泰娅-获得泰娅的祝福",
+  "送别泰娅-获得泰娅的谢礼 40石材 40钢铁 20食物"},
   image="事件海盗"
 }
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-        --调用弹对话的接口 text=“你棒棒！”
-        --调用给奖励的菜单接口 大量人口
-        --return states.b
-
+        GameManager.SubResource(ResourceType.Mine,10)
+        return states.b
     elseif choice==self.choices[2] then
-      --调用弹对话的接口 text= "你坏坏！"
       return nil
     end
 end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
-      --调用给奖励的菜单接口 奖励池子11111
-      --return states.c
-    return nil
-
+      GameManager.SubResource(ResourceType.Food,20)
+    return states.c
   elseif choice==self.choices[2] then
-    --调用弹对话的接口 text= "你坏坏！"
     return nil
   end
 end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    --判断资源满足
-      --调用给奖励的菜单接口 奖励池子11111
-      --调用秋日菊buff
-    --判断资源不满足
-      --调用弹对话的接口 text= “你坏坏！“
+    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","泰娅的祝福\n每回合获得6矿石/4石材/4钢铁")
     return nil
 
   elseif choice==self.choices[2] then
-    --调用弹对话的接口 text= "你坏坏！"
+    GameManager.AddResource(Resource.Wood,40)
+    GameManager.AddResource(Resource.Iron,40)
+    GameManager.AddResource(Resource.Food,20)
     return nil
   end
 end
