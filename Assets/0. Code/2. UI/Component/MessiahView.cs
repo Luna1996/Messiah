@@ -88,7 +88,6 @@ namespace Messiah.UI {
       rt.DOPivot(opivot, 0.5f);
       transform.DOMove(opos, 0.5f);
       await transform.DOScale(oscale, 0.5f).AsyncWaitForCompletion();
-      Destroy(shiny);
       canMove = true;
     }
 
