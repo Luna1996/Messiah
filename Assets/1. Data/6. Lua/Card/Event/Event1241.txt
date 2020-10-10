@@ -12,7 +12,7 @@ states.a = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --选择石材/钢材/能量资源5-10点进行判断/扣减
+      --选择石材/钢材/矿石资源5-10点进行判断/扣减
       --获得2-4点科技值
       return nil
     elseif choice==self.choices[2] then

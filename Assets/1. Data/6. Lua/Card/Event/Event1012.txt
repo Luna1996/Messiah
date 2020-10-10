@@ -6,7 +6,7 @@ local states ={}
 
 states.a = {
   name = "米西亚的拒绝",
-  desc = "米西亚拒绝为城市提供能量线索",
+  desc = "米西亚拒绝为城市提供矿石线索",
   choices = {"为什么！！"}
   }
 function states.a:choose(choice)

@@ -12,8 +12,13 @@ states.a = {
 
 states.b={
   name="迷路的索菲亚2",
+<<<<<<< HEAD
   desc = "回答错误哦 罚你2点能量",
   choices = {"给出两点能量","不给，加入一张诅咒牌进入卡组"},
+=======
+  desc = "回答错误哦 罚你2点矿石",
+  choices = {"给你","不给"},
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
 }
 
 function states.a:choose(choice)
@@ -28,7 +33,11 @@ end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
+<<<<<<< HEAD
     GameManager.SubResource(ResourceType.Mine, 2)
+=======
+  --if矿石>2则矿石-2 否则卡组加入1张诅咒卡
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
     return nil
   elseif choice==self.choices[2] then
     GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})

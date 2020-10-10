@@ -6,7 +6,7 @@ function this:new()
   self.name = "蒸汽机器人"
   --self.frame = "CardFrame_0"
   self.image = "蒸汽机器人1"
-  self.desc = "消耗1点钢材，获得2点能量"
+  self.desc = "消耗1点钢材，获得2点矿石"
 
   self.inHand = false
   --self.e1 = ResourceModifier("Iron",2)

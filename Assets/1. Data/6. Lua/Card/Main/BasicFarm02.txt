@@ -7,7 +7,7 @@ function this:new()
   self.name = "农作物种植2"
   self.frame = "资源牌面s"
   self.image = "农作物种植2"
-  self.desc = "本回合消耗2点能量\n第3回合开始，收获60点食物"
+  self.desc = "本回合消耗2点矿石\n第3回合开始，收获60点食物"
   self.minec = 2
 
   self.cost =2
