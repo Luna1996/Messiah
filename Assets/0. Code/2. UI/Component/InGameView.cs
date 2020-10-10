@@ -95,7 +95,6 @@ namespace Messiah.UI {
 
     public void OnTurnStart() {
       ToggleNextDay(true);
-      EventService.Notify(GameEvent.IG_OnCostModifiterChanged);
       UserData.Save();
       PrefabManager.Instanciate("NewDaySplash", transform);
       GameManager.DrawCard(GameManager.gameData.drawNum);
@@ -120,9 +119,12 @@ namespace Messiah.UI {
     }
 
     public async Task OnEnterEventPhase() {
-      PrefabManager.Instanciate("EventPhaseView", transform);
-      await Task.Delay(1000);
-      PrefabManager.Instanciate("EventPhasePanel", aboveHand);
+      if (GameManager.ShouldTriggerEvent()) {
+        PrefabManager.Instanciate("EventPhaseView", transform);
+        await Task.Delay(1000);
+        PrefabManager.Instanciate("EventPhasePanel", aboveHand);
+      } else
+        GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 
     static int[] count = { 0, 0, 0, 0, 0, 0 };

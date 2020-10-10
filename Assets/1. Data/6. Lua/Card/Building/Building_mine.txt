@@ -22,7 +22,7 @@ function this:applyEffect()
   Buff("Build_mine_basic",
   GameEvent.EnterMainPhase,
   BuffType.OneShot,
-  3,
+  2,
   'buff518',
   nil,
   "BuildTip",

@@ -57,7 +57,7 @@ namespace Messiah.UI {
       var food = GameManager.GetResource(ResourceType.Food);
       GameManager.SubResource(ResourceType.Food, foodCost);
       if (food < foodCost) {
-        var dead = foodCost - food;
+        var dead = Random.Range(1, foodCost - food + 1);
         texts[5].text = $"又有{dead}人死于饥饿";
         await texts[5].DOFade(1, skip ? 0.1f : d).AsyncWaitForCompletion();
         GameManager.gameData.maxWorker -= dead;

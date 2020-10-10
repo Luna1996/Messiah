@@ -86,7 +86,7 @@ namespace Messiah.Logic {
       var gd = new GameData();
 
       var testpile = new List<string> { };
-      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile" };
+      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile","BasicFoodPile" };
       var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood" };
       Shuffle(build);
       mustdraw.AddRange(build);
@@ -95,9 +95,7 @@ namespace Messiah.Logic {
       gd.drawPile = new List<string>(testpile);
       gd.build = new List<string>(testpile);
 
-      // gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };
       gd.buildingAcquired = new List<string> { };
-      // gd.buildingDeck = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church_01", "Building_church", "Building_clinic" };
       return gd;
     }
 
