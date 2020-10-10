@@ -79,7 +79,7 @@ namespace Messiah.Logic {
     public List<string> relic = new List<string>();
 
     public int costMod = 0;
-    public int[] resources = { 0, 0, 0, 0, 0, 0 };
+    public int[] resources = { 10, 10, 10, 10, 10, 10 };
     public int[] resourcesModifitor = { 0, 0, 0, 0, 0, 0 };
 
     public static GameData NewGameData() {

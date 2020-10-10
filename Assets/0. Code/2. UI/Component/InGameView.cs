@@ -30,6 +30,8 @@ namespace Messiah.UI {
     Sprite nextOff;
     public Image nextBtn;
 
+    public Text dayNum;
+
     void Awake() {
       GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
