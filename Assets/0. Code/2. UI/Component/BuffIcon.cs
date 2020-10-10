@@ -64,7 +64,7 @@ namespace Messiah.UI {
         }
         buffIcon.GetComponent<CanvasGroup>().alpha = 0;
         await buffIcon.GetComponent<CanvasGroup>().DOFade(1, 0.5f).AsyncWaitForCompletion();
-        var shiny = buffIcon.AddComponent<UIShiny>();
+        var shiny = buffIcon.GetComponent<UIShiny>();
         shiny.duration = 1;
         shiny.Play();
         await Task.Delay(1000);

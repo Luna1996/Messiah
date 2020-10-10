@@ -75,7 +75,7 @@ namespace Messiah.UI {
       var oscale = transform.localScale;
       await Focus(bname);
       var go = buildings.Find(bname).gameObject;
-      var shiny = go.AddComponent<UIShiny>();
+      var shiny = go.GetComponent<UIShiny>();
       if (!go.activeSelf) {
         go.SetActive(true);
         await go.GetComponent<RawImage>().DOFade(1, 0.5f).AsyncWaitForCompletion();
