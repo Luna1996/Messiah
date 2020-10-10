@@ -79,14 +79,14 @@ namespace Messiah.Logic {
     public List<string> relic = new List<string>();
 
     public int costMod = 0;
-    public int[] resources = { 0, 0, 0, 0, 0, 0 };
+    public int[] resources = { 10, 10, 10, 10, 10, 10 };
     public int[] resourcesModifitor = { 0, 0, 0, 0, 0, 0 };
 
     public static GameData NewGameData() {
       var gd = new GameData();
 
       var testpile = new List<string> { };
-      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile","BasicFoodPile" ,"GodCard"};
+      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile", "BasicFoodPile", "GodCard" };
       var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood" };
       Shuffle(build);
       mustdraw.AddRange(build);
