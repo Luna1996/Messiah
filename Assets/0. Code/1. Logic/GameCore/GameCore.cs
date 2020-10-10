@@ -18,6 +18,7 @@ namespace Messiah.Logic.GameCoreNS {
 
       FAM.Configure(GameState.InGameState)
         .Permit(GameStateTrigger.GameStart, GameState.MainPhase)
+        .Permit(GameStateTrigger.Back, GameState.OutGameState)
         .OnEntry(() => {
           EventService.Notify(GameEvent.EnterInGameState);
         })

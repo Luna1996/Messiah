@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5430087457237120547}
   - component: {fileID: 8247201182424303836}
   - component: {fileID: 8323627896604162135}
+  - component: {fileID: 2427995905847607096}
+  - component: {fileID: 791122614826736261}
   m_Layer: 5
   m_Name: DiscardPhaseView
   m_TagString: Untagged
@@ -62,6 +64,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desc: {fileID: 6472392776320762563}
   confirm: {fileID: 6072208641792961897}
+--- !u!225 &2427995905847607096
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629818851546611028}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &791122614826736261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629818851546611028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.4}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &4363604987744286474
 GameObject:
   m_ObjectHideFlags: 0

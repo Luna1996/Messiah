@@ -1,3 +1,4 @@
+#pragma warning disable 4014
 namespace Messiah.UI {
   using Logic.GameCoreNS;
   using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Messiah.UI {
 
     Text debugPanelText;
 
-    public async Task Init() {
+    public void Init() {
       EventService.Listen(GameEvent.EnterInGameState, SwitchToInGameView);
       EventService.Listen(GameEvent.EnterOutGameState, SwitchToOutGameView);
       messiah = GetComponentInChildren<MessiahView>();
@@ -24,14 +25,18 @@ namespace Messiah.UI {
       Logic.LuaManager.lua.Global.Set("ViewManager", this);
       Logic.LuaManager.lua.Global.Set("MessiahView", messiah);
       outGameView.Init();
-      await Task.Delay(0);
+    }
+
+    void OnDestroy() {
+      EventService.Ignore(GameEvent.EnterInGameState, SwitchToInGameView);
+      EventService.Ignore(GameEvent.EnterOutGameState, SwitchToOutGameView);
     }
 
     public async void SwitchToOutGameView() {
       await inGameView.Hide();
       await messiah.SwitchState(GameState.OutGameState);
       outGameView = LoadPrefab("OutGameView").GetComponent<OutGameView>();
-      await outGameView.Show();
+      outGameView.Show();
     }
 
     public async void SwitchToInGameView() {

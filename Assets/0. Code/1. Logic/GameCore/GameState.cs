@@ -12,5 +12,6 @@ namespace Messiah.Logic.GameCoreNS {
     GameStart,
     NextPhase,
     GameEnd,
+    Back
   }
 }

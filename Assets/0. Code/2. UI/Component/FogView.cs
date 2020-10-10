@@ -15,6 +15,11 @@ namespace Messiah.UI {
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChange);
     }
 
+    void OnDestroy() {
+      EventService.Ignore(GameEvent.EnterInGameState, DoFogShake);
+      EventService.IgnoreWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChange);
+    }
+
     static int[] energyThreshold = new int[] { 10, 50, 100, 200, 300, 500, 1000 };
     static float[] scaleLevel = new float[] { 0.25f, 0.27f, 0.3f, 0.4f, 0.6f, 0.8f, 1f, 1.2f };
     void OnResourceChange(int rt) {

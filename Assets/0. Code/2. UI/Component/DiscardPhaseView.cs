@@ -8,7 +8,7 @@
   using Logic.GameCoreNS;
   using System.Threading.Tasks;
 
-  public class DiscardPhaseView : MonoBehaviour {
+  public class DiscardPhaseView : UIMask {
     public Text desc;
     public Button confirm;
 
@@ -17,7 +17,8 @@
 
     List<CardView> cards;
 
-    void Start() {
+    new async void Start() {
+      await base.Start();
       cards = new List<CardView>(GameManager.handView.hands);
       foreach (var card in cards) card.inPanel = true;
       keepNum = GameManager.gameData.keepNum;
@@ -49,7 +50,7 @@
         }
       }
       EventService.IgnoreWithArg<CardView>(GameEvent.IG_OnCardSelectionChanged, OnCardSelectionChanged);
-      await UIMask.UnloadMask(0.2f);
+      await Close();
       GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
 

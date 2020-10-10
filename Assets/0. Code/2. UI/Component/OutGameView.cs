@@ -1,3 +1,4 @@
+#pragma warning disable 4014
 namespace Messiah.UI {
   using Messiah.Logic.GameCoreNS;
   using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Messiah.UI {
     }
 
     public async Task Show() {
+      Init();
       Logic.LuaManager.lua.Global.Set("OutGameView", this);
       await effect.Show(0.5f);
     }
@@ -36,6 +38,7 @@ namespace Messiah.UI {
     }
 
     public void OldGame() {
+      GameCore.userData = UserData.GetLastUserData();
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
       LuaManager.lua.DoString($"CostModifiter = {GameManager.gameData.costMod}");
       GameCore.FAM.Fire(GameStateTrigger.GameStart);

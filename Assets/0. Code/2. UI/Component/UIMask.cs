@@ -1,34 +1,21 @@
 namespace Messiah.UI {
   using UnityEngine;
-  using UnityEngine.UI;
-  using Logic;
   using DG.Tweening;
   using System.Threading.Tasks;
 
   public class UIMask : MonoBehaviour {
-    public static Transform mask;
+    protected CanvasGroup canvasGroup;
+    protected float duration = 0.2f;
 
-    static CanvasGroup canvasGroup;
-
-    public static async Task<GameObject> LoadMask(Transform trans, string prefab = null, float t = 0.1f, int index = -1) {
-      if (mask) await UnloadMask(0);
-      var go = PrefabManager.Instanciate("UIMask", trans);
-      GameObject ret = null;
-      mask = go.transform;
-      if (index != -1) mask.SetSiblingIndex(index);
-      if (!string.IsNullOrEmpty(prefab))
-        ret = PrefabManager.Instanciate(prefab, mask);
-      canvasGroup = go.GetComponent<CanvasGroup>();
+    protected async Task Start() {
+      canvasGroup = gameObject.GetComponent<CanvasGroup>();
       canvasGroup.alpha = 0;
-      await canvasGroup.DOFade(1, t).AsyncWaitForCompletion();
-      return ret;
+      await canvasGroup.DOFade(1, duration).AsyncWaitForCompletion();
     }
 
-    public static async Task UnloadMask(float t = 0.1f) {
-      var tween = canvasGroup.DOFade(0, t);
-      await tween.AsyncWaitForCompletion();
-      Destroy(mask.gameObject);
-      mask = null;
+    public async Task Close() {
+      await canvasGroup.DOFade(0, duration).AsyncWaitForCompletion();
+      Destroy(gameObject);
     }
   }
 }

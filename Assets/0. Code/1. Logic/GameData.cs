@@ -14,24 +14,30 @@ namespace Messiah.Logic {
     public List<string> discardPile = new List<string>();
     public List<string> exilePile = new List<string>();
     public List<string> hands = new List<string>();
-    public int drawNum = 4;
+    public int drawNum = 3;
     public int keepNum = 3;
 
-    int _maxWorker = 10;
+    int _maxWorker = 5;
     public int maxWorker {
       get { return _maxWorker; }
       set {
+        if (value < 0) value = 0;
         if (value != _maxWorker) {
+          var dif = value - _maxWorker;
           _maxWorker = value;
+          idleWorker += dif;
           EventService.Notify(GameEvent.IG_MaxWorkerChanged);
         }
+        if (_maxWorker == 0)
+          GameCore.FAM.Fire(GameStateTrigger.GameEnd);
       }
     }
 
-    int _idleWorker = 10;
+    int _idleWorker = 5;
     public int idleWorker {
       get { return _idleWorker; }
       set {
+        if (value < 0) value = 0;
         if (value != _idleWorker) {
           _idleWorker = value;
           EventService.Notify(GameEvent.IG_IdleWorkerChanged);
@@ -79,12 +85,19 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      gd.build = new List<string> {  "BasicFarm01","GodCard","BasicFarm01","BasicFarm01","Building_farm"};
-      gd.drawPile = new List<string>(gd.build);
-      Shuffle(gd.drawPile);
-      gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };
-      gd.buildingAcquired = new List<string> {};
-      gd.buildingDeck = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church_01", "Building_church", "Building_clinic" };
+      var testpile = new List<string> { };
+      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile" };
+      var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood" };
+      Shuffle(build);
+      mustdraw.AddRange(build);
+      testpile.AddRange(mustdraw);
+
+      gd.drawPile = new List<string>(testpile);
+      gd.build = new List<string>(testpile);
+
+      // gd.buildingAvaliable = new List<string> { "Building_church_01", "Building_church", "Building_clinic" };
+      gd.buildingAcquired = new List<string> { };
+      // gd.buildingDeck = new List<string> { "Building_church_01", "Building_church", "Building_clinic", "Building_church_01", "Building_church", "Building_clinic" };
       return gd;
     }
 

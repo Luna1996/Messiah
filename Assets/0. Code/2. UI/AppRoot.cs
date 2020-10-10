@@ -2,11 +2,11 @@ namespace Messiah.UI {
   using UnityEngine;
   using Logic.GameCoreNS;
   using Logic;
-  using System;
-  using System.Threading.Tasks;
+  using UnityEngine.AddressableAssets;
 
   public class AppRoot : MonoBehaviour {
     public ViewManager viewManager;
+    public GameObject loading;
 
     async void Start() {
       DontDestroyOnLoad(gameObject);
@@ -19,12 +19,12 @@ namespace Messiah.UI {
 #endif
 
       GameCore.Init();
+
       await LuaManager.Init();
       await AtlasManager.Init();
       await PrefabManager.Init();
-      await viewManager.Init();
-
-      LuaManager.lua.Global.Set("AppRoot", this);
+      viewManager.Init();
+      Destroy(loading);
     }
 
     void AutoLogin() {

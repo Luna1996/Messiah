@@ -4,7 +4,7 @@ namespace Messiah.UI {
   using Logic;
   using Logic.GameCoreNS;
 
-  public class EventPanel : MonoBehaviour {
+  public class EventPanel : UIMask {
     public Text title;
     public Text desc;
     public Image image;
@@ -12,12 +12,12 @@ namespace Messiah.UI {
 
     LuaEvent evt;
 
-    void Start() {
-      LuaEvent e = LuaManager.GetLuaEvent("Event1011");
-      SetLuaEvent(e);
+    new async void Start() {
+      await base.Start();
+      SetLuaEvent(GameManager.ChooseCurrentEvent());
     }
 
-    public void SetLuaEvent(LuaEvent evt) {
+    void SetLuaEvent(LuaEvent evt) {
       this.evt = evt;
       UpdateState();
     }
@@ -47,7 +47,7 @@ namespace Messiah.UI {
     }
 
     async void EventEnd() {
-      await UIMask.UnloadMask();
+      await Close();
       GameCore.FAM.Fire(GameStateTrigger.NextPhase);
     }
   }

@@ -1,13 +1,16 @@
+#pragma warning disable 4014
 namespace Messiah.UI {
-  using UnityEngine;
   using UnityEngine.UI;
   using Logic;
 
-  public class NewDaySplash : MonoBehaviour {
-    void Start() {
-      var text = GetComponent<Text>();
+  public class NewDaySplash : UIMask {
+    new async void Start() {
+      duration = 0.5f;
       GameManager.gameData.numberOfTurn += 1;
+      var text = GetComponentInChildren<Text>();
       text.text = $"第 {GameManager.gameData.numberOfTurn} 天";
+      await base.Start();
+      Close();
     }
   }
 }

@@ -26,5 +26,10 @@ namespace Messiah.Logic {
       return cache[name];
     }
 
+    public static Sprite GetSprite(string name) { 
+      var t = (Texture2D)cache[name];
+      return Sprite.Create(t, new Rect(0, 0, t.width, t.height), new Vector2(0.5f, 0.5f), 100f);
+    }
+
   }
 }

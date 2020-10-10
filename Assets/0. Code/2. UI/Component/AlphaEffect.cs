@@ -43,11 +43,15 @@ namespace Messiah.UI {
     }
 
     public async Task Show(float d) {
+      if (getter == null) Start();
+      var canvasGroup = GetComponent<CanvasGroup>();
+      canvasGroup.alpha = 0;
       alpha = DOTween.To(getter, setter, 1, d);
       await alpha.AsyncWaitForCompletion();
     }
 
     public async Task Hide(float d) {
+      if (getter == null) Start();
       alpha = DOTween.To(getter, setter, 0, d);
       await alpha.AsyncWaitForCompletion();
     }

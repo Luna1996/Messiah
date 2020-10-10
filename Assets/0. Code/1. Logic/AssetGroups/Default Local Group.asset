@@ -24,6 +24,12 @@ MonoBehaviour:
     - Json
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 6a31df153ed83b44f88dfa6560eb360f
+    m_Address: BGM
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: bd0d07c13e247ce41a8376e56cc4cc7a
     m_Address: Assets/1. Data/6. Lua
     m_ReadOnly: 0

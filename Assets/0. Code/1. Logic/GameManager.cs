@@ -129,12 +129,20 @@ namespace Messiah.Logic {
     public static void AddResource(ResourceType rt, int v) {
       var ov = GetResource(rt);
       v = v + gameData.resourcesModifitor[(int)rt];
+      if (v >= 0)
+        inGameView.textFlyers[(int)rt].FlyText($"<color=green>+{v}</color> ");
+      else
+        inGameView.textFlyers[(int)rt].FlyText($"<color=green>{v}</color> ");
       SetResource(rt, v + ov);
     }
 
     public static void SubResource(ResourceType rt, int v) {
       var ov = GetResource(rt);
       v = v + gameData.resourcesModifitor[(int)rt];
+      if (v >= 0)
+        inGameView.textFlyers[(int)rt].FlyText($"<color=red>-{v}</color> ");
+      else
+        inGameView.textFlyers[(int)rt].FlyText($"<color=red>+{-v}</color> ");
       SetResource(rt, v > ov ? 0 : (ov - v));
     }
 
