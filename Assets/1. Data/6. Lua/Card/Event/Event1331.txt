@@ -12,7 +12,7 @@ states.a = {
 function states.a:choose(choice)
     if choice == self.choices[1] then
       --判断食物是否够用
-      --获得遗产，获得一个十点矿石资源，十点石头资源
+      --获得遗产，获得一个十点能量资源，十点石头资源
       return nil
     elseif choice==self.choices[2] then
       --调用弹对话的接口 text= "你坏坏！"

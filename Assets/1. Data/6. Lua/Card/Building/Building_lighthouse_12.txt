@@ -6,9 +6,9 @@ function this:new()
   self.name = "超导管线"
   self.frame = "建筑牌面"
   self.image = "残损义骸"
-  self.desc = "降低灯塔的矿石消耗"
+  self.desc = "降低灯塔的能量消耗"
   self.inHand = false
-  self.boundingBuff={} --灯塔矿石消耗-30%
+  self.boundingBuff={} --灯塔能量消耗-30%
   self.buildingConsumption={5,5,5,3}
   self.cost =self.buildingConsumption[3]
   self.rounds =self.buildingConsumption[4]

@@ -6,7 +6,7 @@ function this:new()
   self.name = "改进管线"
   self.frame = "资源牌面s"
   self.image = "采煤机pd"
-  self.desc = "消耗石材5，钢铁5\n牌组中增加1张采矿牌"
+  self.desc = "消耗石材5，钢铁5\n牌组中增加1张采能牌"
   self.inHand = false
   self.woodc=5
   self.ironc=5

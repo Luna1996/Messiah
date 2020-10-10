@@ -3,11 +3,11 @@ local this = Mine_02
 
 function this:new()
   self.cardView = nil
-  self.name = "集中采矿"
+  self.name = "集中采能"
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
-  self.image = "采矿1"
-  self.desc = "第3回合,获得15点矿石"
+  self.image = "采能1"
+  self.desc = "第3回合,获得15点能量"
   self.cost = 3
   self.rounds = 2
   --self.usageAmount = 1
@@ -22,6 +22,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     2, "buff501", nil,
-    "Xturn", "2,收获15点矿石")
+    "Xturn", "2,收获15点能量")
   GameManager.Discard(self)
 end

@@ -6,12 +6,12 @@ local states ={}
 
 states.a = {
   name = "圣诞节的请求",
-  desc = "提供10点矿石制作发光的圣诞树",
+  desc = "提供10点能量制作发光的圣诞树",
   choices = {"嗯呢","不给"},
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --判断矿石资源是否够用
+      --判断能量资源是否够用
         --受到节日气氛的鼓舞，每回合资源牌获取+1
       return nil
     elseif choice==self.choices[2] then
