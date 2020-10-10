@@ -225,8 +225,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6185309087792238887}
         m_TargetAssemblyTypeName: Messiah.UI.CardSelectionView, MessiahGame
-        m_MethodName: Hide
-        m_Mode: 4
+        m_MethodName: CloseView
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

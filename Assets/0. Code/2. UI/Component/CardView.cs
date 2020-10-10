@@ -51,7 +51,8 @@ namespace Messiah.UI {
       effect.enabled = true;
       effect.Play();
       await System.Threading.Tasks.Task.Delay((int)(effect.duration * 1000));
-      Destroy(gameObject);
+      if (this != null)
+        Destroy(gameObject);
     }
 
     static Vector3 cscale = new Vector3(0.6f, 0.6f, 1);

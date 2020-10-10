@@ -42,10 +42,14 @@ namespace Messiah.Logic {
     };
    
 
+    public static bool ShouldTriggerEvent() {
+      var i = (gameData.numberOfTurn - 1) % turneventpool.Length;
+      return turneventpool[i] >= 0 && turneventpool[i] < eventpool.Length;
+    }
 
     public static LuaEvent ChooseCurrentEvent() {
-      var i = gameData.numberOfTurn % turneventpool.Length;
-      var pool = eventpool[i];
+      var i = (gameData.numberOfTurn - 1) % turneventpool.Length;
+      var pool = eventpool[turneventpool[i]];
       var r = UnityEngine.Random.Range(0, pool.Length);
       return LuaManager.GetLuaEvent(pool[r]);
     }
