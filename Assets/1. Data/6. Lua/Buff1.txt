@@ -215,21 +215,21 @@ function Build_pub(i)
 end
 
 
-function BuffTayaThePirate()--海盗祝福 每回合 +6能量 +4石材 +4钢铁
+function BuffTayaThePirate(i)--海盗祝福 每回合 +6矿石 +4石材 +4钢铁
   GameManager.AddResource(ResourceType.Mine,6)
   GameManager.AddResource(ResourceType.Wood,4)
   GameManager.AddResource(ResourceType.Iron,4)
 end
 
-function BuffAndreTheDetective() --侦探祝福 每回合+2科技值
+function BuffAndreTheDetective(i) --侦探祝福 每回合+2科技值
   GameManager.AddResource(ResourceType.Tech,3)
 end
 
-function BuffFrostyRoland() --医生祝福 人力资源发生变化时获得1点食物
+function BuffFrostyRoland(i) --医生祝福 人力资源发生变化时获得1点食物
   GameManager.AddResource(ResourceType.Food,1)
 end
 
-function BuffTahriTheGirl() --抽卡时增加1点可用人口（总人口不变）
+function BuffTahriTheGirl(i) --抽卡时增加1点可用人口（总人口不变）
   if GameManager.gameData.idleWorker < GameManager.gameData.maxWorker then
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker+1 end
 end

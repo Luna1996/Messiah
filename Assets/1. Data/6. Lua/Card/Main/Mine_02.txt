@@ -7,11 +7,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "采矿1"
-<<<<<<< HEAD
-  self.desc = "第3回合,获得15点能量"
-=======
   self.desc = "第3回合,获得15点矿石"
->>>>>>> parent of 3e825c0... replace 矿石with  能量
   self.cost = 3
   self.rounds = 2
   --self.usageAmount = 1

@@ -6,11 +6,7 @@ function this:new()
   self.name = "初级采矿"
   self.frame = "科技牌面"
   self.image = "初级采矿研究"
-<<<<<<< HEAD
-  self.desc = "消耗2科技点数\n将【改进能量机】【改进管线】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
-=======
   self.desc = "消耗2科技点数\n将【改进矿机】【改进管线】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
->>>>>>> parent of 3e825c0... replace 矿石with  能量
   self.boundingCard={"Building_mine_01","Building_mine_02"}
   self.inHand = false
   self.techc = 2
