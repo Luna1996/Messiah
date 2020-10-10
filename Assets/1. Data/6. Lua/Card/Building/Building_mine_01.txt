@@ -3,7 +3,9 @@ local this = Building_mine_01
 
 function this:new()
   self.cardView = nil
+
   self.name = "改进矿机"
+
   self.frame = "资源牌面s"
   self.image = "采煤机pd"
   self.desc = "消耗石材8，钢铁3\n提升卡组内的采矿卡等级" --从Basicxx01提升到Basicxx02
@@ -19,5 +21,6 @@ end
 function this:applyEffect()
   self.cardView:Dissolve()
     Buff("Build_mine_01",GameEvent.EnterMainPhase,BuffType.OneShot,3,'buff518',nil,"BuildTip","3,改进矿机中")
+
 end
 

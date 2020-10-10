@@ -3,9 +3,9 @@ local this = Tech_energy
 
 function this:new()
   self.cardView = nil
-  self.name = "能量自动化"
+  self.name = "矿石自动化"
   self.frame = "科技牌面"
-  self.image = "能量自动化"
+  self.image = "矿石自动化"
   self.desc = "消耗12科技点数\n将【高级采矿】【高级建造】加入牌组"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
   self.boundingCard={"Tech_mine_2","Tech_build_2"}
   self.inHand = false
