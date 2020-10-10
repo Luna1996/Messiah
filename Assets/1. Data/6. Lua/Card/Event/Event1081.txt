@@ -13,7 +13,7 @@ states.a = {
 states.b={
   name="神秘的求救2",
   desc = "发现遗迹",
-  choices = {"前往探索","拒绝"},
+  choices = {"消耗2人力1回合获得一个神秘buff","拒绝"},
 }
 
 function states.a:choose(choice)
@@ -27,8 +27,25 @@ end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
+    if GameManager.gameData.idleWorker>=2 then
+      GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
+      Buff(
+        "AddBackLabor", 
+        GameEvent.EnterMainPhase, 
+        BuffType.OneShot, 
+        1, 'buff512', nil,
+        "XLaborTurn", tostring(2)..",名工人在工作,"..tostring(1))
+
+      Buff("Buff_get_relics", GameEvent.EnterMainPhase, 
+      BuffType.OneShot, 
+      1, "buff106", nil,
+      "Xturn", "1,获得一个深渊祝福")
+      return nil
+    else
+      return nil
+    end
   --消耗2人力1回合 获得深渊relic
-    return nil
+
   elseif choice==self.choices[2] then
     --无事发生 目测是你亏了
     return nil
