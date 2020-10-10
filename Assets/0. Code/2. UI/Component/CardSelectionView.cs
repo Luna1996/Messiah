@@ -29,6 +29,8 @@ namespace Messiah.UI {
       cardScrollView.SetCards(cards);
     }
 
+    public void CloseView() { Close(); }
+
     public static async Task ToggleView(Transform trans, List<string> cards, string title) {
       if (view) {
         if (view.title.text != title) {

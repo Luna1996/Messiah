@@ -6,7 +6,7 @@ local states ={}
 
 states.a = {
   name = "圣诞节的请求",
-  desc = "提供10点矿石制作发光的圣诞树",
+  desc = "提供10点能量制作发光的圣诞树",
   choices = {"嗯呢","不给"},
   }
 function states.a:choose(choice)
