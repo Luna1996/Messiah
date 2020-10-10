@@ -1,0 +1,23 @@
+-------------------------------------------
+-- Event1341
+
+
+local states ={}
+
+states.a = {
+  name = "生日的请求",
+  desc = "女儿生日，玛利亚请假",
+  choices = {"批准","不批准"}
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --人力-1，同时不满值降低5点
+      return nil
+    elseif  choice == self.choices[2] then
+      -- 不满值升高5点
+      return nil
+    end
+end
+
+Event1341 = Event(states.a)
+-------------------------------------

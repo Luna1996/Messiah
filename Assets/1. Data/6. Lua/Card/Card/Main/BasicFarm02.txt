@@ -1,0 +1,26 @@
+BasicFarm02 = class(CardBase,'BasicFarm02')
+local this = BasicFarm02
+--已完成
+--已测试
+function this:new()
+  self.cardView = nil
+  self.name = "农作物种植2"
+  self.frame = "资源牌面s"
+  self.image = "农作物种植2"
+  self.desc = "本回合消耗2点矿石\n第3回合开始，收获60点食物"
+  self.minec = 2
+
+  self.cost =2
+  self.rounds =2
+end
+
+function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
+  Buff(
+    "Buff_BasicFarm02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    2, "buff507", nil,
+    "Xturn", "2,收获60点食物")
+    GameManager.Discard(self)
+end

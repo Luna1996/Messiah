@@ -1,0 +1,14 @@
+LoginCard = class(CardBase, "LoginCard")
+local this = LoginCard
+
+function this:new()
+  self.name = "造访弥赛亚"
+  self.frame = "CardFrame_0"
+  self.image = "小姑娘卡面"
+  self.desc = "<size=12><i>\n\n“迷雾之中众生平等，\n 愿明灯指引你前行。”\n                 ——《雾中圣典·序》</i></size>"
+end
+
+function this:onPlay()
+  ViewManager:LoadPrefab("LoginView")
+  self.cardView:Dissolve()
+end

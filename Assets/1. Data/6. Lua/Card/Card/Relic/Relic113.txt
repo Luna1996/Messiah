@@ -1,0 +1,11 @@
+Relic113 = Relic()
+local this = Relic113
+
+this.ID=113
+this.name='信仰之力'
+this.desc='获得的信仰值产出+10'
+this.rare='normal'
+
+function this.apply()
+  GameManager.gameData.resourcesModifitor[ResourceType.Faith.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Faith.value__] +10
+end

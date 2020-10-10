@@ -1,0 +1,102 @@
+CardBase = class(Object, "CardBase")
+local this = CardBase
+
+function this:new(arg)
+  self.cardView = nil
+  self.name = "卡 名"
+  self.frame = "CardFrame_1"
+  self.image = "placeholder"
+  self.desc = "<color=red>规</color><b><color=green>则</color><color=blue>说</color></b>明"
+  self.minec = 0
+  self.woodc=0
+  self.ironc=0
+  self.foodc=0
+  self.techc=0
+  self.faithc=0
+  self.cost = 0
+  self.rounds = 1
+  self.cardType = "testcard"
+
+  self.inHand = false
+end
+
+function this:setCardView()
+  if self.cost then
+    self.cardView.mainCost.gameObject:SetActive(true)
+    local color = "white"
+    if CostModifiter < 0 then
+      color = "green"
+    elseif CostModifiter > 0 then
+      color = "red"
+    end
+    local cost = self.cost + CostModifiter
+    if cost < 0 then cost = 0 end
+    self.cardView.mainCost.text = "<color="..color..">"..cost.."</color>"
+  end
+end
+
+
+function this:onPlay()
+  if self:canPlay() then
+    self:subRc()
+
+    self:applyEffect()
+  else
+    HandView:AddToHand(self.cardView)
+  end
+end
+
+function this:canPlay()
+  if self:enoughRc() and self:enoughLabor() then return true
+  else return false end
+end
+    
+function this:addToHand()
+end
+    
+function this:rmvFrHand()
+end
+
+function this:getCardFullName()
+  return self.className
+end
+
+function this:enoughLabor()
+  if GameManager.gameData.idleWorker>=self.cost then
+    return true
+  else
+    return false
+  end
+end
+
+
+function this:laborCost()
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - self.cost - CostModifiter
+  GameDashBoard.currentCost = self.cost
+  Buff("AddBackLabor",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,'buff501',"下回合释放占用人口")
+end
+
+function this:subRc()
+  if self.minec>0 then GameManager.SubResource(ResourceType.Mine,self.minec) end
+  if self.woodc>0 then GameManager.SubResource(ResourceType.Wood,self.woodc) end
+  if self.ironc>0 then GameManager.SubResource(ResourceType.Iron,self.ironc) end
+  if self.foodc>0 then GameManager.SubResource(ResourceType.Food,self.foodc) end
+  if self.techc>0 then GameManager.SubResource(ResourceType.Tech,self.techc) end
+  if self.faithc>0 then GameManager.SubResource(ResourceType.Faith,self.faithc) end
+end
+
+
+function this:enoughRc()
+  if GameManager.GetResource(ResourceType.Wood) >= self.woodc and
+  GameManager.GetResource(ResourceType.Mine)>=self.minec and
+  GameManager.GetResource(ResourceType.Iron)>=self.ironc and
+  GameManager.GetResource(ResourceType.Food)>=self.foodc and
+  GameManager.GetResource(ResourceType.Tech)>=self.techc and
+  GameManager.GetResource(ResourceType.Faith)>=self.faithc
+   then return true
+  else return false end
+end
+
+function this:applyEffect()
+  HandView:AddToHand(self.cardView)
+end

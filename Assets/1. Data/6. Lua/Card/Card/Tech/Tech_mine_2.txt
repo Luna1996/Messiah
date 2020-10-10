@@ -1,0 +1,23 @@
+Tech_mine_2 = class(CardBase,"Tech_mine_2")
+local this = Tech_mine_2
+
+function this:new()
+  self.cardView = nil
+  self.name = "高级采矿"
+  self.frame = "科技牌面"
+  self.image = "高级采矿"
+  self.desc = "消耗12科技点数\n将【联轴运转】【源能切割】加入建筑牌堆"  ---科技卡分两种：一种将其他科技卡加入手牌抽牌堆，一种将科技建筑卡加入建筑牌堆
+  self.boundingCard={"Building_mine_21","Building_mine_22",}
+  self.inHand = false
+  self.techc = 12
+  self.cost = nil
+  --self.boundingBuff={}
+  --self.buildingConsumption={2,0,2,2}
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+end
+

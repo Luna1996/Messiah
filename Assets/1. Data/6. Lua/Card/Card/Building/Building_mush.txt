@@ -1,0 +1,30 @@
+Building_mush= class(CardBase,"Building_mush")
+local this = Building_mush
+
+function this:new()
+  self.cardView = nil
+  self.name = "蘑菇农场"
+  self.frame = "资源牌面s"
+  self.image = "蘑菇p"
+  self.desc = "消耗石材4，钢铁1\n种植蘑菇 产出基本食物\n牌组中加入2张蘑菇培植卡"
+  self.boundingCard={"BasicMush01","BasicMush01"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.woodc=4
+  self.ironc=1
+  self.cost =3
+  self.rounds=2
+end
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_mush_basic",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  3,
+  "buff518",
+  nil,
+  "BuildTip",
+  "2,蘑菇农场建设中")
+end
+

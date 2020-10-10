@@ -1,0 +1,24 @@
+-------------------------------------------
+-- EventE1331
+
+
+local states ={}
+
+states.a = {
+  name = "噩耗",
+  desc = "德高望重的长者去世了，为他送行吗",
+  choices = {"送呗，需要5点食物","不送"},
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --判断食物是否够用
+      --获得遗产，获得一个十点矿石资源，十点石头资源
+      return nil
+    elseif choice==self.choices[2] then
+      --调用弹对话的接口 text= "你坏坏！"
+      return nil
+    end
+end
+
+Event1331 = Event(states.a)
+-------------------------------------

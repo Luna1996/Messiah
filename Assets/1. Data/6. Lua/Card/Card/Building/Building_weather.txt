@@ -1,0 +1,30 @@
+Building_weather= class(CardBase,"Building_weather")
+local this = Building_weather
+--砍了
+function this:new()
+  self.cardView = nil
+  self.name = "气象站"
+  self.frame = "资源牌面s"
+  self.image = "气象站p"
+  --self.image = "残损义骸"
+  self.desc = "消耗10点石材，5点钢铁\n建造气象站，预报天气\n使得所有食物资源卡产量+1" ---
+  self.inHand = false
+  --self.boundingBuff={}
+  self.woodc = 10
+  self.ironc = 5
+  self.cost = 8
+  self.rounds = 3
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff(
+    "Buff_Building_weather", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "3, 建造气象站")
+  
+  --Debug.Log(GameData.drawPile)
+end

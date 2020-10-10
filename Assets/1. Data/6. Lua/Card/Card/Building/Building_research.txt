@@ -1,0 +1,33 @@
+Building_research= class(CardBase,"Building_research")
+local this = Building_research
+
+function this:new()
+  self.cardView = nil
+  self.name = "研究站"
+  self.frame = "资源牌面s"
+  --self.image = "残损义骸"
+  self.image = "研究所p"
+  self.desc = "消耗5点石材，5点钢铁\n建造研究站\n将【研究1】【研究1】【制图桌】加入卡组" ---卡组中加入2张研究卡和1张初始科技卡
+  self.boundingCard={"Research","Research","Tech_table"}
+  self.inHand = false
+  --self.boundingBuff={}
+  self.woodc = 5
+  self.ironc = 5
+
+  self.cost = 5
+  self.rounds = 3
+  
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  local temp = table.concat(self.boundingCard,";")
+  Buff(
+    "Buff_Building_research", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "3, 研究站正在建造,"..temp)
+  --Debug.Log(GameData.drawPile)
+end

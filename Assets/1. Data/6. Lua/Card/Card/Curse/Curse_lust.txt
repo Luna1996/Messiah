@@ -1,0 +1,18 @@
+Curse_lust = class(CardBase,'Curse_lust')
+local this = Curse_lust
+
+function this:new()
+  self.cardView = nil
+  self.name = "诅咒-欲望"
+  self.frame = "诅咒牌面"
+  self.image = "色欲"
+  self.desc = "占用2点人力,抽1张牌"
+  --self.usageAmount = 1
+  self.inHand = false
+  self.cost = 2
+end
+
+function this:onPlay()
+  GameManager.DrawCard()
+  GameManager.Discard(self)
+end

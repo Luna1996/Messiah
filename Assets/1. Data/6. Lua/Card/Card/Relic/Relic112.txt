@@ -1,0 +1,13 @@
+Relic112 = Relic()
+local this = Relic112
+
+this.ID=112
+this.name='钢石之力'
+this.desc='石材和钢铁的资源卡产量+1'
+this.rare='normal'
+
+function this.apply()
+  --Debug.Log(GameManager.gameData.resourcesModifitor[ResourceType.Wood] )
+  GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] +1
+  GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__] +1
+end

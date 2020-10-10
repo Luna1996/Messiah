@@ -1,0 +1,30 @@
+Building_research_room= class(CardBase,"Building_research_room")
+local this = Building_research_room
+
+function this:new()
+  self.cardView = nil
+  self.name = "研究室"
+  self.frame = "资源牌面s"
+  self.image = "研究所pd"
+  self.desc = "消耗2点石材，2点钢铁\n升级研究站\n增加1张科研牌到手牌" ---卡组中加入1张研究卡
+  self.boundingCard={"Research"}
+  self.cost = 2 
+  self.rounds = 2
+  self.woodc = 3
+  self.ironc = 3
+  self.inHand = false
+
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  local temp = table.concat(self.boundingCard,";")
+  Buff(
+    "Buff_Building_research_room", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "2, 研究站正在升级,"..temp)
+  --Debug.Log(GameData.drawPile)
+end

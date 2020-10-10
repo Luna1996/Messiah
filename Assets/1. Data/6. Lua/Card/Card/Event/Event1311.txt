@@ -1,0 +1,24 @@
+-------------------------------------------
+-- Event1311
+
+
+local states ={}
+
+states.a = {
+  name = "情人节的请求",
+  desc = "提供20点食物制作烛光晚餐",
+  choices = {"嗯呢","不给"},
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --判断食物资源是否够用
+        --受到节日气氛的鼓舞，获得一个资源获取效率up的buff
+      return nil
+    elseif choice==self.choices[2] then
+      --调用弹对话的接口 text= "你坏坏！"
+      return nil
+    end
+end
+
+Event1311 = Event(states.a)
+-------------------------------------

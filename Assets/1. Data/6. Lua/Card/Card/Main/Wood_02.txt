@@ -1,0 +1,33 @@
+Wood_02 = class(CardBase,'Wood_02')
+local this = Wood_02
+
+function this:new(arg)
+  if arg then self.usageAmount=tonumber(arg) 
+  else self.usageAmount = 3 end
+  self.cardView = nil
+  self.name = "爆破采石"
+  --self.frame = "CardFrame_0"
+  self.image = "爆破采石"
+  self.desc = "消耗1点钢材,获得20点石材\n可以使用"..self.usageAmount.."次"
+  self.ironc = 1
+  self.inHand = false
+  --self.e1 = ResourceModifier("Iron",2)
+  --self.cost = LaborConsumer
+end
+
+function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
+  self.usageAmount = self.usageAmount - 1
+  GameManager.AddResource(ResourceType.Wood,20)
+  if self.usageAmount == 0  then GameManager.Exile(self)
+  else
+    GameManager.Discard(self)
+  end
+end
+
+
+
+
+function this:getCardFullName()
+  return this.className..' '..self.usageAmount
+end

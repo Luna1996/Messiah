@@ -1,0 +1,11 @@
+Relic103 = Relic()
+local this = Relic103
+this.ID=103
+this.name='饕餮之心'
+this.desc='获得30点食物'
+this.rare='normal'
+
+function this.apply()
+  --增加30食物
+  GameManager.AddResource(ResourceType.Food,10)
+end

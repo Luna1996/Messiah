@@ -1,0 +1,33 @@
+BasicIron02 = class(CardBase,'BasicIron02')
+local this = BasicIron02
+
+--已完成
+--已测试
+function this:new()
+  self.cardView = nil
+  self.name = "炼钢2"
+  self.frame = "资源牌面s"
+  --self.frame = "CardFrame_0"
+  self.image = "炼钢2"
+  self.desc = "下回合,获得2点钢铁"
+
+  self.cost = 2
+  self.rounds = 1 
+
+  self.inHand = false
+  --self.e1 = ResourceModifier("Iron",2)
+  --self.cost = LaborConsumer
+end
+
+
+
+function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
+  Buff(
+    "Buff_BasicIron02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    1, "buff505", nil,
+    "Xturn", "1,收获2点钢铁")
+  GameManager.Discard(self)
+end

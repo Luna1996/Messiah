@@ -1,0 +1,21 @@
+Building_church = class(CardBase,"Building_church")
+local this = Building_church
+
+function this:new()
+  self.cardView = nil
+  self.name = "教堂"
+  self.frame = "资源牌面s"
+  self.image="教堂p"
+  self.desc = "消耗石材10\n建造教堂,收集居民信仰的力量\n回合结束时每位居民提供1点信仰值"
+  self.inHand = false
+  self.buildingConsumption = {10,0,5,2}
+  self.cost =5
+  self.rounds =2
+  self.woodc =10
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("ChurchBuild",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518",nil,"BuildTip","2,教堂建造中")
+end

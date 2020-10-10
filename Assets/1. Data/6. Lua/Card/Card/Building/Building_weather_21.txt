@@ -1,0 +1,30 @@
+Building_weather_21= class(CardBase,"Building_weather_21")
+local this = Building_weather_21
+--砍了
+function this:new()
+  self.cardView = nil
+  self.name = "天气控制站"
+  self.frame = "资源牌面s"
+  self.image = "气象站pd"
+  self.desc = "消耗6点石材，18点钢材\n升级气象站\n获得闪电风暴buff:每当资源变化时额外获得1点矿石" ---
+  self.boundingBuff={} --可以点击事件牌组查看下一次事件
+  self.inHand = false
+  --self.boundingBuff={}
+  self.woodc = 6
+  self.ironc = 18
+  self.cost = 5
+  self.rounds = 4
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff(
+    "Buff_Building_weather_21", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "4, 建造天气控制站")
+  
+  --Debug.Log(GameData.drawPile)
+end

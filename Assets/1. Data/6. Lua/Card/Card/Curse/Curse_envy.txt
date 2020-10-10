@@ -1,0 +1,20 @@
+Curse_envy = class(CardBase,'Curse_envy')
+local this = Curse_envy
+
+function this:new()
+  self.cardView = nil
+  self.name = "诅咒-嫉妒"
+  self.frame = "诅咒牌面"
+  self.image = "嫉妒"
+  self.desc = "无法被打出，此卡在手牌中时，无法连续打出相同类型的牌"
+  --self.usageAmount = 1
+  self.inHand = false
+end
+
+
+function this:onPlay()
+  --效果待写
+  GameManager.AddResource(ResourceType.Mine, 10)
+  HandView:AddToHand(self.cardView)
+end
+

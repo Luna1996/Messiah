@@ -1,0 +1,23 @@
+Building_house= class(CardBase,"Building_house")
+local this = Building_house
+
+function this:new()
+  self.cardView = nil
+  self.name = "住宅"
+  self.frame = "资源牌面s"
+  self.image = "住宅p"
+  self.desc = "消耗石材2\n建造民宅\n城市的人口数量+1"
+  --self.boundingCard={"Pray01","Pray02","Pray02"}
+  self.inHand = false
+  self.woodc = 2
+  self.ironc = 0
+  self.cost =2
+  self.rounds =1
+  self.boundingBuff={}
+
+end
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_house_basic",GameEvent.EnterMainPhase,BuffType.OneShot,1,'buff518',nil,"BuildTip","1,住宅建设中")
+end

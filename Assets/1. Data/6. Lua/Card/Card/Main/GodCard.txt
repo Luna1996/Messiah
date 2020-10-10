@@ -1,0 +1,21 @@
+GodCard = class(CardBase, "GodCard")
+local this = GodCard
+
+function this:new()
+  self.name = "抽牌"
+  self.desc = "无敌"
+  self.image = 'godcard'
+end
+
+function this:onPlay()
+
+
+  GameManager.AddResource(ResourceType.Food, 100)
+  GameManager.AddResource(ResourceType.Mine, 100)
+  GameManager.AddResource(ResourceType.Iron, 100)
+  GameManager.AddResource(ResourceType.Wood, 100)
+  --GameManager.Build(nil, "教堂")
+  --GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_house","Building_house_11","Building_house_01"})
+  HandView:AddToHand(self.cardView)
+end
+

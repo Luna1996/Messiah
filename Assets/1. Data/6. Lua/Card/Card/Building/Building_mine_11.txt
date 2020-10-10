@@ -1,0 +1,28 @@
+Building_mine_11 = class(CardBase,"Building_mine_11")
+local this = Building_mine_11
+
+function this:new()
+  self.cardView = nil
+  self.name = "高炉升级"
+  self.frame = "资源牌面s"
+  self.image = "钢厂pd"
+  self.desc = "消耗石材4，钢铁8\n所有炼钢卡的资源产出+2"
+  self.inHand = false
+  self.woodc=4
+  self.ironc=8
+  self.cost=5
+  self.rounds=3
+end
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_mine_11",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  self.cost,
+  'buff518',
+  nil,
+  "BuildTip",
+  "3,炼钢高炉升级中")
+end
+

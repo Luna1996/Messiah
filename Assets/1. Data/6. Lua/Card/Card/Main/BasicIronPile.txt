@@ -1,0 +1,35 @@
+BasicIronPile = class(CardBase,'BasicIronPile')
+local this = BasicIronPile
+--已完成
+--已测试
+function this:new(arg)
+  self.cardView = nil
+  self.name = "废铁堆"
+  --self.frame = "CardFrame_0"
+  self.image = "废铁堆1"
+  --self.usageAmount = 5
+  self.inHand = false
+  if arg then self.usageAmount = tonumber(arg)
+  else
+    self.usageAmount = 5
+  end
+
+  self.desc = "获得2点钢铁\n可以使用"..self.usageAmount.."次"
+
+end
+
+function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
+    self.usageAmount = self.usageAmount -1
+    GameManager.AddResource(ResourceType.Iron, 2)
+    if (self.usageAmount == 0)
+    then
+      GameManager.Exile(self)
+    else
+      GameManager.Discard(self)
+    end
+end
+
+function this:getCardFullName()
+  return self.className..' '..self.usageAmount
+end
