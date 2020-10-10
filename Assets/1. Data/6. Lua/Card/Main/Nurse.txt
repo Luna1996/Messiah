@@ -7,15 +7,16 @@ function this:new()
   self.name = "看护"
   --self.frame = "CardFrame_0"
   self.image = "看护1"
-  self.desc = "抽2张牌"
+  self.desc = "将最多3名患者送入诊所"
+  self.usageAmount = 1
   self.temp = true
   self.inHand = false
 end
 
 function this:onPlay()
-  GameManager.Discard(self)
-  GameManager.DrawCard()
-  GameManager.DrawCard()
+  --sickworker最多-3
+  --然后挂一个3-6random回合增加最多3个idleworker的buff
+  GameManager.Dissolve(self)
 end
 
 

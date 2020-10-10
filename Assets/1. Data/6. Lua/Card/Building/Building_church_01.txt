@@ -14,6 +14,16 @@ function this:new()
   self.rounds =2
 end
 
+function this:onPlay()
+  if self:canPlay() then
+    self:subRc()
+    self:laborCost()
+    self:applyEffect()
+  else
+    HandView:AddToHand(self.cardView)
+  end
+end
+
 --重写this:applyEffect()
 function this:applyEffect()
     self.cardView:Dissolve()

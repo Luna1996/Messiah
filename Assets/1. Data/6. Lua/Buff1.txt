@@ -229,12 +229,3 @@ function FrostyRoland(i) --医生祝福 人力资源发生变化时获得1点食
   GameManager.AddResource(ResourceType.Food,1)
 end
 
-function TahriTheGirl(i) --抽卡时增加1点可用人口（总人口不变）
-  if GameManager.gameData.idleWorker < GameManager.gameData.maxWorker then
-  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker+1 end
-end
-
-function build_clinic(i)
-  GameManager.Build(nil,"医院")
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Nurse","Nurse"})
-end

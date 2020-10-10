@@ -6,7 +6,7 @@ function this:new()
   self.name = "钢铁厂"
   self.frame = "资源牌面s"
   self.image = "钢厂p"
-  self.desc = "消耗石材3,钢铁3\n 获取钢材的生产场所\n牌组中加入2张炼钢牌"
+  self.desc = "消耗石材3,钢铁3\n 获取钢材的生产场所"
   self.boundingCard={"BasicIron01","BasicIron01"}
   self.inHand = false
   --self.boundingBuff={}
