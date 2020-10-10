@@ -5,8 +5,8 @@ function this:new()
   self.cardView = nil
   self.name = "改进矿机"
   self.frame = "资源牌面s"
-  self.image = "采煤机p"
-  self.desc = "提升卡组内的采矿卡等级" --从Basicxx01提升到Basicxx02
+  self.image = "采煤机pd"
+  self.desc = "消耗石材8，钢铁3\n提升卡组内的采矿卡等级" --从Basicxx01提升到Basicxx02
   self.inHand = false
   self.deletingCard = "BasicMine01"
   self.boundingCard = "BasicMine02"

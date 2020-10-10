@@ -213,3 +213,19 @@ function Build_pub(i)
   GameManager.Build(nil,"酒馆")
   CostModifiter = CostModifiter - 1
 end
+
+
+function TayaThePirate(i)--海盗祝福 每回合 +6能量 +4石材 +4钢铁
+  GameManager.AddResource(ResourceType.Mine,6)
+  GameManager.AddResource(ResourceType.Wood,4)
+  GameManager.AddResource(ResourceType.Iron,4)
+end
+
+function AndreTheDetective(i) --侦探祝福 每回合+2科技值
+  GameManager.AddResource(ResourceType.Tech,3)
+end
+
+function FrostyRoland(i) --医生祝福 人力资源发生变化时获得1点食物
+  GameManager.AddResource(ResourceType.Food,1)
+end
+

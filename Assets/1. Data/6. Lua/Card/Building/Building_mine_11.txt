@@ -5,8 +5,8 @@ function this:new()
   self.cardView = nil
   self.name = "高炉升级"
   self.frame = "资源牌面s"
-  self.image = "残损义骸"
-  self.desc = "所有炼钢卡的资源产出+2"
+  self.image = "钢厂pd"
+  self.desc = "消耗石材4，钢铁8\n所有炼钢卡的资源产出+2"
   self.inHand = false
   self.woodc=4
   self.ironc=8

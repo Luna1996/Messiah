@@ -6,7 +6,7 @@ function this:new()
   self.name = "连轴运转"
   self.frame = "资源牌面s"
   self.image = "钢厂pd"
-  self.desc = "所有资源卡获得装填\n(装填：打出时再抽一张牌)"
+  self.desc = "消耗石材8，钢铁10\n所有资源卡获得装填\n(装填：打出时再抽一张牌)"
   self.inHand = false
   self.cost =6
   self.rounds =4

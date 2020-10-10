@@ -55,7 +55,8 @@ function Buff_Research(i)
 end
 
 function Buff_Building_wood(i, args)
-  GameManager.Build(nil,"采石场")
+  local li = {"采石场","采石场_1","采石场_2","采石场_3"}
+  GameManager.Build(nil,li[math.random(1,4)])
   local t = split(args, ',')
   local temp = split(t[3],';')
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)

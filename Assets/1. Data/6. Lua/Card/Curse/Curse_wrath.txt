@@ -12,6 +12,5 @@ function this:new()
 end
 
 function this:onPlay()
-  --效果待写
   HandView:AddToHand(self.cardView)
 end
