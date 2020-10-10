@@ -8,13 +8,13 @@ function this:new(arg)
   self.name = "石头堆"
   --self.frame = "CardFrame_0"
   self.image = "乱石堆1"
-  self.desc = "获得1点石材\n可以使用"..self.usageAmount.."次"
+  self.desc = "获得2点石材\n可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
 function this:applyEffect()
   self.usageAmount = self.usageAmount -1
-  GameManager.AddResource(ResourceType.Wood, 1)
+  GameManager.AddResource(ResourceType.Wood, 2)
   if (self.usageAmount == 0)
   then
     GameManager.Exile(self)

@@ -6,12 +6,15 @@ local states ={}
 
 states.a = {
   name = "晴天",
-  desc = "好天气让人舒服的很",
-  choices = {"好的"}
+  desc = "好天气让人舒服的很..\n"..
+  "在古新世，人们常常这样说..\n"..
+  "如今浓雾遮蔽了天空..\n"..
+  "灯塔，才是人们的太阳吧",
+  choices = {"太阳能 灯塔能量+15"}
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --调用晴天的buff系统
+      GameManager.AddResource(ResourceType.Mine,15)
       return nil
     end
 end

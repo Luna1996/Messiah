@@ -9,7 +9,7 @@ function this:new(arg)
   self.name = "食物罐头"
   --self.frame = "CardFrame_0"
   self.image = "食物罐头1"
-  self.desc = "获得10点食物\n能使用"..self.usageAmount.."次"
+  self.desc = "获得12点食物\n能使用"..self.usageAmount.."次"
   
   self.inHand = false
 end
@@ -17,7 +17,7 @@ end
 
 function this:onPlay()
   self.usageAmount = self.usageAmount - 1
-  GameManager.AddResource(ResourceType.Food, 10)
+  GameManager.AddResource(ResourceType.Food, 12)
   if (self.usageAmount == 0)
   then
     GameManager.Exile(self)

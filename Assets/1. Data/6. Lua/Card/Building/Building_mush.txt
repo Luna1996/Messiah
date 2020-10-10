@@ -6,12 +6,11 @@ function this:new()
   self.name = "蘑菇农场"
   self.frame = "资源牌面s"
   self.image = "蘑菇p"
-  self.desc = "消耗石材4，钢铁1\n种植蘑菇 产出基本食物\n牌组中加入2张蘑菇培植卡"
+  self.desc = "消耗石材2\n种植蘑菇,产出基本食物\n牌组中加入2张蘑菇培植卡"
   self.boundingCard={"BasicMush01","BasicMush01"}
   self.inHand = false
   --self.boundingBuff={}
-  self.woodc=4
-  self.ironc=1
+  self.woodc=2
   self.cost =3
   self.rounds=2
 end

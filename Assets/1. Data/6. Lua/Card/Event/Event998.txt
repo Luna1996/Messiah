@@ -1,0 +1,27 @@
+-------------------------------------------
+-- Event1011
+
+
+local states ={}
+
+states.a = {
+  name = "小女孩的馈赠",
+  image = "事件小姑娘",
+  desc = 
+    "大人，在迷雾中，灯塔需要能量\n才能驱散迷雾，您要时刻注意您的灯塔能量！\n初次相遇，请您接受我的馈赠！",
+  choices = {
+    "谢谢你！收获10点能量！",
+  }
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.AddResource(ResourceType.Mine, 10)
+      return nil
+    end
+  end
+
+
+Event998 = Event(states.a)
+
+-------------------------------------

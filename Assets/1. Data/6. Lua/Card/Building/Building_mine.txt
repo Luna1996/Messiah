@@ -6,7 +6,7 @@ function this:new()
   self.name = "矿场"
   self.frame = "资源牌面s"
   self.image = "采煤机p"
-  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采矿卡"
+  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采能量卡"
   self.boundingCard={"BasicMine01","BasicMine01"}
   self.inHand = false
   --self.boundingBuff={}
@@ -22,7 +22,7 @@ function this:applyEffect()
   Buff("Build_mine_basic",
   GameEvent.EnterMainPhase,
   BuffType.OneShot,
-  3,
+  2,
   'buff518',
   nil,
   "BuildTip",

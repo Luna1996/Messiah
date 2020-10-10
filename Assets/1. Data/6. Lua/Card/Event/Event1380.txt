@@ -6,12 +6,20 @@ local states ={}
 
 states.a = {
   name = "潮信",
-  desc = "又到了潮流更替的时候了",
-  choices = {"好的"}
+  desc = "又到了潮流更替的时候\n"..
+  "洋流在旧约海岸交汇，\n"..
+  "涌动的海水隔绝了浓雾的侵染\n"..
+  "因此带来生命和希望",
+  choices = {"生命的潮汐-鱼群 食物+10",
+  "猛烈的潮汐-船只残骸"},
+  image="事件报道小哥"
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --调用潮信的buff系统
+      GameManager.AddResource(ResourceType.Food,20)
+      return nil
+    elseif choice ==self.choices[2] then
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicIronPile"})
       return nil
     end
 end
