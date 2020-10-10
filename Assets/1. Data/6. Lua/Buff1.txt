@@ -243,7 +243,7 @@ function BuffFrostyRoland(i) --医生祝福 人力资源发生变化时获得1�
 end
 
 function BuffTahriTheGirl(i) --抽卡时增加2点能量（总人口不变）
-  GameManager.AddResource(ResourceType.Mine,2)
+  GameManager.AddResource(ResourceType.Mine,1)
 end
 
 function build_clinic(i)

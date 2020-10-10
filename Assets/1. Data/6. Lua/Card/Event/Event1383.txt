@@ -5,13 +5,15 @@
 local states ={}
 
 states.a = {
-  name = "起雾",
-  desc = "起雾了，人民的心情好像不太好",
-  choices = {"好的"}
+  name = "浓雾",
+  desc = "浓雾来袭,圣城面临的第一场严峻体验，你需要<b>50点能量</b>来对抗即将来临的浓雾",
+  choices = {"与浓雾抗争<b>能量-50</b>"}
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --调用起雾的buff系统
+      local rc = GameManager.GetResource(ResourceType.Mine)
+      GameManager.SubResource(ResourceType.Mine,50)
+      GameCore.FAM.Fire(GameStateTrigger.GameEnd)
       return nil
     end
 end
