@@ -35,10 +35,10 @@ namespace Messiah.Logic {
     public static CardOnFly cardOnFly;
 
     public static int[] turneventpool = new int[]{
-      0
+      1,2
     };
     public static string[][] eventpool = new string[][] {
-      new string[]{"Event1011"},new string[]{"Event1001"},
+      new string[]{"Event999"},new string[]{"Event1001"},
     };
    
 
