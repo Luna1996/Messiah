@@ -3,10 +3,10 @@ local this = Mine_02
 
 function this:new()
   self.cardView = nil
-  self.name = "集中采能"
+  self.name = "集中采矿"
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
-  self.image = "采能1"
+  self.image = "采矿1"
   self.desc = "第3回合,获得15点能量"
   self.cost = 3
   self.rounds = 2

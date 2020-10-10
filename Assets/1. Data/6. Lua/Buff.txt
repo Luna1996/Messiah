@@ -2,6 +2,38 @@ function ExampleBuff(i)
   Debug.Log(i)
 end
 
+function AddBackLabor(i)
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + 1
+  Debug.Log(CurrentCost)
+end
+
+function ChurchBuild(i)
+  GameManager.Build(nil,"教堂")
+  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","每回合根据人口产出信仰值")
+end
+function ChurchFaith(i)
+  GameManager.AddResource(ResourceType.Faith,GameManager.gameData.maxWorker)
+end
+function testbuff(t)
+  Debug.Log(t)
+end
+
+function Buff_Relic105(i)
+  GameManager.AddResource(ResourceType.Mine,5)
+end
+
+function Buff_Relic109(i)
+  CostModifiter = CostModifiter + 1
+end
+
+function add_maxWorker(i)
+  GameManager.gameData.MaxWorker = GameManager.gameData.MaxWorker +1
+end
+
+function Buff_Relic110(i)
+  GameManager.AddResource(ResourceType.Mine,1)
+end
+
 function Buff_BasicFarm01(i)
   GameManager.AddResource(ResourceType.Food,30)
 end
@@ -10,67 +42,16 @@ function Buff_BasicFarm02(i)
   GameManager.AddResource(ResourceType.Food,60)
 end
 
-function Buff_BasicIron01(i)
-  GameManager.AddResource(ResourceType.Iron,1)
+function Buff_Relic209(i)
+  GameManager.AddResource(ResourceType.Mine,200)
 end
 
-function Buff_BasicIron02(i)
-  GameManager.AddResource(ResourceType.Iron,2)
+function Buff_Relic212(i)
+  --获得所有手牌的临时复制
 end
 
-function Buff_BasicMine01(i)
-  GameManager.AddResource(ResourceType.Mine,1)
-end
-
-function Buff_BasicMine02(i)
-  GameManager.AddResource(ResourceType.Mine,3)
-end
-
-function Buff_BasicMush01(i)
-  GameManager.AddResource(ResourceType.Food,10)
-end
-
-function Buff_BasicMush02(i)
-  GameManager.AddResource(ResourceType.Food,30)
-end
-
-function Buff_BasicWood01(i)
-  GameManager.AddResource(ResourceType.Wood,1)
-end
-
-function Buff_BasicWood02(i)
-  GameManager.AddResource(ResourceType.Wood,3)
-end
-
-function Buff_Mine_02(i)
-  GameManager.AddResource(ResourceType.Mine,15)
-end
-
-function Buff_Mush_02(i)
-  GameManager.AddResource(ResourceType.Food,60)
-end
-
-function Buff_Research(i)
-  GameManager.AddResource(ResourceType.Tech,1)
-end
-
-function Buff_Building_wood(i, args)
-  local li = {"采石场","采石场_1","采石场_2","采石场_3"}
-  GameManager.Build(nil,li[math.random(1,4)])
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
-end
-
-function Buff_Pray01(i, args)
-  local t = split(args, ',')
-  GameManager.AddResource(ResourceType.Faith,t[3])
-end
-
-function Buff_Building_weather_21(i)
-  GameManager.Build(nil,"RawImage")
-  --有问题
-  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","闪电风暴：\n每当资源变化时\n额外获得1点能量")
+function Buff_Relic303(i)
+  GameManager.SubResource(ResourceType.Tech,GameManager.GetResource(ResourceType.Tech))
 end
 
 function Buff_Building_weather(i)
@@ -99,8 +80,6 @@ function Buff_get_relics(i, args)
   Relic202.apply()
 end
 
-
-
 function Xturn(i, args)
   local t = split(args,',')
   return "下"..t[1]-i.."回合,"..t[2], t[1]-i
@@ -115,5 +94,4 @@ function AddBackLabor(i, args)
   local t = split(args, ',')
   GameManager.gameData.idleWorker = GameManager.gameData.idleWorker + tonumber(t[1])
 end
-
 

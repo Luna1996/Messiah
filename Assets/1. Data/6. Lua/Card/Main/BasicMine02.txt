@@ -4,10 +4,10 @@ local this = BasicMine02
 --已测试
 function this:new()
   self.cardView = nil
-  self.name = "采能2"
+  self.name = "采矿2"
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
-  self.image = "采能2"
+  self.image = "采矿2"
   self.desc = "下回合,获得3点能量"
 
   self.inHand = false
