@@ -74,7 +74,7 @@ namespace Messiah.UI {
       EventService.Listen(trigger, CallBack);
     }
 
-    static Vector3 big = new Vector3(1.2f, 1.2f, 1.2f);
+    static Vector3 big = new Vector3(1.1f, 1.1f, 1f);
     public async void CallBack() {
       time++;
       if (!string.IsNullOrEmpty(tipsFunc)) {
