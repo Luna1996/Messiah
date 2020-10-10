@@ -86,6 +86,12 @@ function Buff_Building_research(i, args)
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
 end
 
+function Buff_Building_research_room(i, args)
+  GameManager.Build(nil,"研究站")
+  local t = split(args, ',')
+  local temp = split(t[3],';')
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+end
 
 
 
