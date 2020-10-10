@@ -107,7 +107,37 @@ function Build_farm(i)
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFarm01","BasicFarm01"})
 end
 
-function Build_house(i)
+
+function Build_house()
   local houseList = {"住宅","住宅_2","住宅_1","住宅_3","住宅_6","住宅_7","住宅_4","住宅_5","住宅_8","住宅_9","住宅_10","住宅_11","住宅_12"}
-for i =1,13 do if not GameManager.gameData.buildingAcquired:Contains(houseList[i]) then GameManager.Build(nil,houseList[i]) break end end
+  GameManager.Build(nil,houseList[math.random(1,#houseList)])
 end
+
+
+function Build_house_01(i)
+  Build_house()
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker+2
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +2
+end
+
+function Build_house_11(i)
+  Build_house()
+  GameManager.AddResource(ResourceType.Faith,40)
+end
+
+function Build_house_basic(i)
+  Build_house()
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
+  GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
+end
+
+function Build_iron()
+  local ironList={"钢厂","钢厂_1"}
+  GameManager.Build(nil,ironList[math.random(1,#ironList)])
+end
+
+function Build_iron_basic(i)
+  Build_iron()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicIron01","BasicIron01"})
+end
+

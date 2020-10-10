@@ -24,6 +24,5 @@ function this:applyEffect()
     1, "buff501", nil,
     "Xturn", "1,收获1点矿石")
   GameManager.Discard(self)
-  EventService.Notify(GameEvent.IG_ResourceCardPlay)
 end
 

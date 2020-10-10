@@ -14,8 +14,6 @@ function this:new()
   self.rounds =self.buildingConsumption[4]
 end
 
----buff trigger加一个打出炼钢牌时 notify一个trigger 然后在dashboard里面增加一个值
-
 function this:onPlay()
   self.cardView:Dissolve()
   --Debug.Log(GameData.drawPile)
