@@ -1,0 +1,42 @@
+Building_mine= class(CardBase,"Building_mine")
+local this = Building_mine
+
+function this:new()
+  self.cardView = nil
+  self.name = "矿场"
+<<<<<<< HEAD
+
+  self.frame = "资源牌面s"
+  self.image = "采煤机p"
+  self.desc = "消耗石材3，钢铁2\n开采矿量的场所\n卡组中加入2张采矿量卡"
+=======
+  self.frame = "资源牌面s"
+  self.image = "采煤机p"
+  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采能量卡"
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
+  self.boundingCard={"BasicMine01","BasicMine01"}
+  self.inHand = false
+  --self.boundingBuff={}
+
+  self.woodc=3
+  self.ironc=0
+  self.cost=3
+  self.rounds=2
+end
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_mine_basic",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  3,
+  'buff518',
+  nil,
+<<<<<<< HEAD
+
+=======
+  "BuildTip",
+>>>>>>> parent of 3e825c0... replace 矿石with  能量
+  "2,采集能源矿机建设中")
+end
+

@@ -1,0 +1,13 @@
+Relic215 = Relic()
+local this = Relic215
+this.ID=215
+this.name='工作号角'
+this.desc='抽牌数+3 手牌保留上限变为0'
+this.rare='rare'
+this.icon=nil
+--待修改
+function this.apply()
+  GameManager.gameData.drawNum = GameManager.gameData.drawNum +3
+  GameManager.gameData.keepNum = 0
+end
+

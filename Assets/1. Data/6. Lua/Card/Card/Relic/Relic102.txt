@@ -1,0 +1,11 @@
+Relic102 = Relic()
+local this = Relic102
+this.ID=102
+this.name='钢铁之心'
+this.desc='获得5点钢铁'
+this.rare='normal'
+
+function this.apply()
+  --增加5钢铁
+  GameManager.AddResource(ResourceType.Iron,5)
+end

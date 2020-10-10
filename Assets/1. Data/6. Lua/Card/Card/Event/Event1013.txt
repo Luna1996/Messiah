@@ -1,0 +1,21 @@
+-------------------------------------------
+-- Event1013
+
+
+local states ={}
+
+states.a = {
+  name = "米西亚之伤",
+  desc = "你的人民信念发生了动摇，一些人准备放弃这里",
+  choices = {"为什么！！！"}
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --人口-40 食物-80 信仰-40
+      return nil
+    end
+end
+
+Event1013 = Event(states.a)
+
+-------------------------------------

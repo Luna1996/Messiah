@@ -1,0 +1,20 @@
+Building_lighthouse_22 = class(CardBase,"Building_lighthouse_22")
+local this = Building_lighthouse_22
+
+function this:new()
+  self.cardView = nil
+  self.name = "晶格共振"
+  self.frame = "建筑牌面"
+  self.image = "残损义骸"
+  self.desc = "灯塔亮度范围提升到3级"
+  self.inHand = false
+  self.boundingBuff={} --提高灯塔范围上限的buff
+  self.buildingConsumption={6,10,5,2}
+end
+
+--暂时不做
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

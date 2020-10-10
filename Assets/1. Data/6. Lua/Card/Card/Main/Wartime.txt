@@ -1,0 +1,21 @@
+Wartime = class(CardBase,'Wartime')
+local this = Wartime
+
+function this:new()
+  self.cardView = nil
+  self.name = "战时动员"
+  --self.frame = "CardFrame_0"
+  self.image = "战时动员"
+  self.desc = "移除，手牌内所有资源牌的临时复制洗入牌组，每洗入1张则抽1张牌" --临时复制：使用一次即被移除
+  --self.usageAmount = 1
+  --self.temp = true
+  self.inHand = false
+  self.boundingBuff={} --这卡不行就先不要了吧
+end
+
+
+function this:onPlay()
+  self.cardView:Dissolve()
+  --Debug.Log(GameData.drawPile)
+end
+

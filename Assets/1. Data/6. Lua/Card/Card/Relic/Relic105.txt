@@ -1,0 +1,11 @@
+Relic105 = Relic()
+local this = Relic105
+
+this.ID=105
+this.name='矿石祝福'
+this.desc='抽到天气牌时获得5点矿石'
+this.rare='normal'
+
+function this.apply()
+  Buff("Buff_Relic105",GameEvent.IG_WeatherCardDraw,BuffType.Repeat,-1,"buff105","抽到天气牌时获得5点矿石")
+end

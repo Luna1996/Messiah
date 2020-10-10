@@ -1,0 +1,13 @@
+Relic204 = Relic()
+local this = Relic204
+
+this.ID=204
+this.name='金手指'
+this.desc='所有资源产出+1'
+this.rare='rare'
+
+function this.apply()
+  for i =0,5 do
+    GameManager.gameData.resourcesModifitor[i] = GameManager.gameData.resourcesModifitor[i] +1
+  end
+end

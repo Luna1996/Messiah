@@ -1,0 +1,33 @@
+Pray02 = class(CardBase,'Pray02')
+local this = Pray02
+
+function this:new()
+  self.cardView = nil
+  self.name = "资源祈祷"
+  self.frame = "信仰牌面"
+  self.image = "祈愿3"
+  self.desc = "消耗10点信仰值\n获得1点矿石,1点石材,1点钢铁,1点食物"
+  self.faithc = 10
+
+  self.inHand = false
+end
+
+
+
+function this:onPlay()
+  if GameManager.GetResource(ResourceType.Faith) >= 10
+  then
+    GameManager.SubResource(ResourceType.Faith,10)
+    GameManager.AddResource(ResourceType.Mine,1)
+    GameManager.AddResource(ResourceType.Wood,1)
+    GameManager.AddResource(ResourceType.Iron,1)
+    GameManager.AddResource(ResourceType.Food,1)
+    GameManager.Discard(self)
+  else
+    HandView:AddToHand(self.cardView)
+  end
+
+
+end
+
+

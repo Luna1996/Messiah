@@ -1,0 +1,40 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "迷路的森兰丸1",
+  desc = "你喜欢开普勒吗",
+  choices = {"yes","no"},
+}
+
+states.b={
+  name="迷路的森兰丸2",
+  desc = "回答错误哦 罚你2点矿石",
+  choices = {"给你","不给"},
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --卡牌奖励池1
+      return nil
+    elseif choice==self.choices[2] then
+      --调用弹对话的接口 text= "狠心！！！"
+      return states.b
+    end
+end
+
+function states.b:choose(choice)
+  if choice == self.choices[1] then
+  --if矿石>2则矿石-2 否则卡组加入1张诅咒卡
+    return nil
+  elseif choice==self.choices[2] then
+    --卡组加入1张诅咒卡
+    return nil
+  end
+end
+
+Event1091 = Event(states.a)
+-------------------------------------

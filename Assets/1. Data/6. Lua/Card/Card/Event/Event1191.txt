@@ -1,0 +1,25 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "发现神秘洞穴",
+  desc = "是否进行探索",
+  choices = {"探索","不探索"},
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --随机选择资源2-5点进行扣减 不足的话直接nil
+      --足够扣减 则获得卡牌奖励池1
+      return nil
+    elseif choice==self.choices[2] then
+      --调用弹对话的接口 无事发生
+      return nil
+    end
+end
+
+Event1191 = Event(states.a)
+-------------------------------------

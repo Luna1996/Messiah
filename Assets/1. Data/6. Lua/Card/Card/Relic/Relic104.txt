@@ -1,0 +1,12 @@
+Relic104 = Relic()
+local this = Relic104
+
+this.ID=104
+this.name='资源再生'
+this.desc='随机获得1份资源堆'
+this.rare='normal'
+
+function this.apply()
+  local randomList={"BasicIronPile","BasicMinePile","BasicWoodPile","BasicFoodPile"}
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{randomList[math.random(1,#randomList)]})
+end

@@ -1,0 +1,12 @@
+Relic210 = Relic()
+local this = Relic210
+this.ID=210
+this.name='科学灵感'
+this.desc='科技值产出+1'
+this.rare='rare'
+this.icon=nil
+--待修改
+function this:apply()
+  --AddResourceModifiter
+end
+

@@ -1,0 +1,23 @@
+Building_farm_21 = class(CardBase,"Building_farm_21")
+local this = Building_farm_21
+--test 不通过
+function this:new()
+  self.cardView = nil
+  self.name = "温室升级"
+  self.frame = "资源牌面s"
+  self.image = "温室pd"
+  self.desc = "消耗钢铁20,石材20\n提高温室的工作产出\n将卡组中的【农作物种植1】替换为【农作物种植2】"
+  self.boundingCard="BasicFarm02"   --把牌组内所有的BasicFarm01替换成BasicFarm02
+  self.deletingCard="BasicFarm01"
+  self.inHand = false
+  self.woodc = 20
+  self.ironc = 20
+  self.cost =10
+  self.rounds =1
+end
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_farm_21",GameEvent.EnterMainPhase,BuffType.OneShot,self.rounds,"buff518",nil,"BuildTip",self.rounds..",温室升级中")
+end
+

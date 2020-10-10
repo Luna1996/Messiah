@@ -1,0 +1,21 @@
+-------------------------------------------
+-- Event1014
+
+
+local states ={}
+
+states.a = {
+  name = "米西亚之歌",
+  desc = "米西亚将面临最终挑战",
+  choices = {"来吧！！！"}
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      --调用米西亚之歌buff
+      return nil
+    end
+end
+
+Event1014 = Event(states.a)
+
+-------------------------------------
