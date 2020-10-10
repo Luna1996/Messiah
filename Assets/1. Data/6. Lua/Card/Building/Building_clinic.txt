@@ -6,18 +6,25 @@ function this:new()
   self.name = "诊所"
   self.frame = "资源牌面s"
   self.image = "医院p"
-  self.desc = "消耗石材8,钢铁3\n卡组中加入1张【看护】"
+  self.desc = "消耗石材6,钢铁3\n卡组中加入1张【看护】\n看护：抽2张牌"
   self.boundingCard={"Nurse",}
   self.inHand = false
   self.boudingBuff={}
-  self.woodc = 8
+  self.woodc = 6
   self.ironc = 3
   self.cost =5
   self.rounds =2
 end
 --再说
 function this:applyEffect()
-    GameManager.Exile(self)
-    GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,self.boundingCard)
+  self.cardView:Dissolve()
+  Buff("build_clinic",
+  GameEvent.EnterMainState,
+  BuffType.OneShot,
+  2,
+  'buff518',
+  nil,
+  "BuildTip",
+  "2,诊所搭建中")
 end
 
