@@ -38,8 +38,9 @@ namespace Messiah.Logic {
       0
     };
     public static string[][] eventpool = new string[][] {
-      new string[]{"Event1011"}
+      new string[]{"Event1011"},new string[]{"Event1001"},
     };
+   
 
 
     public static LuaEvent ChooseCurrentEvent() {

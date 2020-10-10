@@ -12,7 +12,7 @@ states.a = {
 
 states.b={
   name="迷路的森兰丸2",
-  desc = "回答错误哦 罚你2点矿石",
+  desc = "回答错误哦 罚你2点能量",
   choices = {"给你","不给"},
 }
 
@@ -28,7 +28,7 @@ end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
-  --if矿石>2则矿石-2 否则卡组加入1张诅咒卡
+  --if能量>2则能量-2 否则卡组加入1张诅咒卡
     return nil
   elseif choice==self.choices[2] then
     --卡组加入1张诅咒卡
