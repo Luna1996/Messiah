@@ -86,7 +86,8 @@ namespace Messiah.UI {
       if (type == BuffType.Repeat || time == maxtime) {
         LuaManager.lua.DoString($"{buff}({time}, '{args}')");
         if (buffIcon) {
-          await buffIcon.transform.DOPunchScale(big, 1f).AsyncWaitForCompletion();
+          await buffIcon.transform.DOScale(big, 0.4f).AsyncWaitForCompletion();
+          await buffIcon.transform.DOScale(Vector3.one, 0.4f).AsyncWaitForCompletion();
         }
       }
       if (time == maxtime)
