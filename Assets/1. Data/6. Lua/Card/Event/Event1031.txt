@@ -24,10 +24,9 @@ states.c={
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      --if 食物<3则return nil，else食物-3
+      GameManager.SubResource(ResourceType.Food,3)
       return states.b
     elseif choice==self.choices[2] then
-      --调用弹对话的接口 text= "狠心！！！"
       return nil
     end
 end

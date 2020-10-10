@@ -58,7 +58,7 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","泰娅的祝福\n每回合获得6能量/4石材/4钢铁")
+    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","<b>泰娅的祝福</b>\n每回合获得6能量/4石材/4钢铁")
     return nil
 
   elseif choice==self.choices[2] then

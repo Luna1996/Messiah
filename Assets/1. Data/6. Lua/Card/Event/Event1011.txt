@@ -13,9 +13,9 @@ states.a = {
     "并没有出现被污染的迹象，"..
     "阁下，我们应该怎么办？",
   choices = {
-    "带她来高塔，不惜代价<b>（-10能量）</b>",
+    "带她来高塔，不惜代价<b>（-6能量）</b>",
     "浓雾来客，从无善者<b>（-5信仰）</b>",
-    "不能接受这种怪物，有悖教义<i>（+10信仰，-10科技）</b>"}
+    "不能接受这种怪物，有悖教义<b>（+6信仰，-3科技）</b>"}
   }
 
 states.b = {
@@ -26,7 +26,7 @@ states.b = {
     "可我已经有五天没有注射抗毒血清了，在这样下去我也会变得跟他们一样，"..
     "那些可怕的怪物...",
   choices = {
-    "我不能坐视不管<b>（-8食物）小女孩加入城市</b>",
+    "我不能坐视不管<b>（-5食物）小女孩加入城市</b>",
     "愿明灯指引你前行<b>（+1信仰）</b>"
   }
 }
@@ -49,7 +49,7 @@ end
 function states.b:choose(choice)
   if choice == self.choices[1] then
     GameManager.SubResource(ResourceType.Food, 8)
-    
+    Buff("BuffTahriTheGirl",GameEvent.IG_DrawCard,BuffType.Repeat,-1,"buff403","<b>塔莉的祝福</b>\n抽牌时获得2点能量")
   else
     GameManager.AddResource(ResourceType.Faith, 1)
   end
