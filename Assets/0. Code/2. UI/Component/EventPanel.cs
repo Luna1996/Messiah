@@ -13,8 +13,8 @@ namespace Messiah.UI {
     LuaEvent evt;
 
     new async void Start() {
-      await base.Start();
       SetLuaEvent(GameManager.ChooseCurrentEvent());
+      await base.Start();
     }
 
     void SetLuaEvent(LuaEvent evt) {
