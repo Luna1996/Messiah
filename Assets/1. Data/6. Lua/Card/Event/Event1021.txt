@@ -25,6 +25,13 @@ end
 function states.b:choose(choice)
   if choice == self.choices[1] then
   --if 石头>3 then 石头-3 else 弹对话"石头不够"
+    if GameManager.GetResource(ResourceType.Wood) >=3
+    then
+      GameManager.SubResource(ResourceType.Wood,3) 
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFoodPile"})
+    end
+
+      
     return nil
   elseif choice==self.choices[2] then
     --弹对话：无情！！！

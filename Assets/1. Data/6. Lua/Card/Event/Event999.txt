@@ -16,7 +16,7 @@ states.a = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush"})
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush","BasicMush01"})
       return nil
     end
   end
