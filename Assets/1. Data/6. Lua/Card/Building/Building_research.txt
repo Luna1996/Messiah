@@ -8,7 +8,7 @@ function this:new()
   --self.image = "残损义骸"
   self.image = "研究所p"
   self.desc = "消耗5点石材，5点钢铁\n建造研究站\n将【研究1】【制图桌】【住宅】加入卡组" ---卡组中加入2张研究卡和1张初始科技卡
-  self.boundingCard={"Research","Research","Tech_table","Building_house","Building_house"}
+  self.boundingCard={"Research","Research","Tech_Table","Building_house","Building_house"}
   self.inHand = false
   --self.boundingBuff={}
   self.woodc = 5

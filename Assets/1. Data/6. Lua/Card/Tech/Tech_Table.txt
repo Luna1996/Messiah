@@ -1,5 +1,5 @@
-Tech_table= class(CardBase,"Tech_table")
-local this = Tech_table
+Tech_Table= class(CardBase,"Tech_Table")
+local this = Tech_Table
 
 function this:new()
   self.cardView = nil
@@ -15,6 +15,9 @@ function this:new()
   --self.boundingBuff={}
 
 end
+
+   
+
 
 
 
