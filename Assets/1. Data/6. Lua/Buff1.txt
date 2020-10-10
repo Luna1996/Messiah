@@ -181,7 +181,7 @@ function Build_mine_22(i)
   for i=0,5 do
     GameManager.gameData.resourcesModifitor[i] = GameManager.gameData.resourcesModifitor[i] +2
   end
-  Buff("mine_consumption",GameEvent.IG_ResourceCardPlay,BuffType.Repeat,-1,"buff306","源能切割:\n每打出1张资源牌额外消耗1点矿石，所有资源卡产量+2")
+  Buff("mine_consumption",GameEvent.IG_ResourceCardPlay,BuffType.Repeat,-1,"buff306","源能切割:\n每打出1张资源牌额外消耗1点能量，所有资源卡产量+2")
 end
 
 function Build_mine_basic(i)

@@ -8,10 +8,10 @@ function this:new(arg)
     self.usageAmount = 5
   end
   self.cardView = nil
-  self.name = "矿石堆"
+  self.name = "能量堆"
   --self.frame = "CardFrame_0"
-  self.image = "矿石堆1"
-  self.desc = "获得1点矿石\n可以使用"..self.usageAmount.."次"
+  self.image = "能量堆1"
+  self.desc = "获得1点能量\n可以使用"..self.usageAmount.."次"
   self.inHand = false
 end
 
