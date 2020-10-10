@@ -4,17 +4,27 @@ local this = Building_pub
 function this:new()
   self.cardView = nil
   self.name = "酒吧"
-  self.frame = "建筑牌面"
+  self.frame = "资源牌面c"
   --self.image = "残损义骸"
-  self.desc = "喝喝小酒 释放压力"
+  self.desc = "喝喝小酒 释放压力 降低人力资源消耗1点"
   self.boundingBuff={}  --每回合降低3点压力值
   self.inHand = false
   --self.boundingBuff={}
-  self.buildingConsumption={20,0,10,3}
+  self.woodc = 20
+  self.ironc = 5
+  self.cost =5
+  self.rounds = 4
 end
 
 
-function this:onPlay()
+function this:applyEffect()
   self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  Buff("Build_pub",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  self.rounds,
+  'buff518',
+  nil,
+  "BuildTip",
+  "4,酒馆即将开业！")
 end

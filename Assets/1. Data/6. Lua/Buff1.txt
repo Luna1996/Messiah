@@ -141,3 +141,75 @@ function Build_iron_basic(i)
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicIron01","BasicIron01"})
 end
 
+function Build_mine()
+  local mineList ={"采煤场","采煤场_1","采煤场_2","采煤场_3"}
+  GameManager.Build(nil,mineList[math.random(1,#mineList)])
+end
+function Build_mine_01(i)
+  Build_mine()
+  ReplaceCard("BasicMine01", "BasicMine02")
+end
+function Build_mine_02(i)
+  Build_mine()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMine01",})
+end
+function Build_mine_11(i)
+  Build_mine()
+  GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__]+2
+end
+function Build_mine_21(i)
+  Build_iron()
+  Buff("Draw_card",
+  GameEvent.IG_ResourceCardPlay,
+  BuffType.Repeat,
+  -1,
+  "buff205",
+  "连轴运转:\n打出资源牌时再抽一张牌")
+end
+
+function Draw_card()
+  GameManager.DrawCard()
+end
+function mine_consumption()
+  if GameManager.GetResource(ResourceType.Mine)>0 then
+  GameManager.SetResource(ResourceType.Mine,GameManager.GetResource(ResourceType.Mine)-1)
+  end
+end
+
+function Build_mine_22(i)
+  Build_iron()
+  for i=0,5 do
+    GameManager.gameData.resourcesModifitor[i] = GameManager.gameData.resourcesModifitor[i] +2
+  end
+  Buff("mine_consumption",GameEvent.IG_ResourceCardPlay,BuffType.Repeat,-1,"buff306","源能切割:\n每打出1张资源牌额外消耗1点矿石，所有资源卡产量+2")
+end
+
+function Build_mine_basic(i)
+  Build_mine()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMine01","BasicMine01"})
+end
+
+function Build_mush()
+  local mushList = {"蘑菇","蘑菇_1","蘑菇_2"}
+  GameManager.Build(nil,mushList[math.random(1,#mushList)])
+end
+
+function Build_mush_basic(i)
+  Build_mush()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMush01","BasicMush01"})
+end
+
+function Build_mush_01(i)
+  Build_mush()
+  ReplaceCard("BasicMush01", "BasicMush02")
+end
+
+function Build_mush_11(i)
+  Build_mush()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Mush_02","Mush_02"})
+end
+
+function Build_pub(i)
+  GameManager.Build(nil,"酒馆")
+  CostModifiter = CostModifiter - 1
+end

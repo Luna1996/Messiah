@@ -10,10 +10,21 @@ function this:new()
   self.inHand = false
   self.boundingBuff={} --即时生效 为牌组内所有资源卡增加上述效果
   self.buildingConsumption={12,10,5,3}
+  self.woodc=12
+  self.ironc=10
+  self.cost=5
+  self.rounds=3
 end
 
 function this:onPlay()
   self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  Buff("Build_mine_22",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  3,
+  'buff518',
+  nil,
+  "BuildTip",
+  "3,源能切割研究中")
 end
 

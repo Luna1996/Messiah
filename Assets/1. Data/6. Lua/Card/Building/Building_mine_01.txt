@@ -8,21 +8,16 @@ function this:new()
   self.image = "采煤机p"
   self.desc = "提升卡组内的采矿卡等级" --从Basicxx01提升到Basicxx02
   self.inHand = false
-  self.deletingCard = "BaseMine01"
-  self.boundingCard = "BaseMine02"
-  self.buildingConsumption={8,3,2,2}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.deletingCard = "BasicMine01"
+  self.boundingCard = "BasicMine02"
+  self.woodc = 8
+  self.ironc = 3
+  self.cost =3
+  self.rounds = 3
 end
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-    GameManager.Exile(self)
-    GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  self.cardView:Dissolve()
+    Buff("Build_mine_01",GameEvent.EnterMainPhase,BuffType.OneShot,3,'buff518',nil,"BuildTip","3,改进矿机中")
 end
 

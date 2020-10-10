@@ -18,6 +18,7 @@ function this:new()
 end
 
 function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   Buff(
     "Buff_BasicFarm01", 
     GameEvent.EnterMainPhase, 

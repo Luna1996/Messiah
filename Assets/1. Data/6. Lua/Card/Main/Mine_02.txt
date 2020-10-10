@@ -16,6 +16,7 @@ function this:new()
 end
 
 function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   Buff(
     "Buff_Mine_02", 
     GameEvent.EnterMainPhase, 

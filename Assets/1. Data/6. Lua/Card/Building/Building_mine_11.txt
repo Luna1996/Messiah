@@ -8,14 +8,21 @@ function this:new()
   self.image = "残损义骸"
   self.desc = "所有炼钢卡的资源产出+2"
   self.inHand = false
-  self.boundingBuff={} --炼钢卡资源产出+2
-  self.buildingConsumption={4,8,5,3}
-  self.cost =self.buildingConsumption[3]
-  self.rounds =self.buildingConsumption[4]
+  self.woodc=4
+  self.ironc=8
+  self.cost=5
+  self.rounds=3
 end
 
-function this:onPlay()
+function this:applyEffect()
   self.cardView:Dissolve()
-  --Debug.Log(GameData.drawPile)
+  Buff("Build_mine_11",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  self.cost,
+  'buff518',
+  nil,
+  "BuildTip",
+  "3,炼钢高炉升级中")
 end
 

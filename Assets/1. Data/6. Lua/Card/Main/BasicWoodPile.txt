@@ -13,6 +13,7 @@ function this:new(arg)
 end
 
 function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   self.usageAmount = self.usageAmount -1
   GameManager.AddResource(ResourceType.Wood, 1)
   if (self.usageAmount == 0)

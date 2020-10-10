@@ -10,19 +10,22 @@ function this:new()
   self.inHand = false
   self.boundingCard="BasicMush02"
   self.deletingCard="BasicMush01"
-  self.buildingConsumption={5,2,2,2}
   self.cost =2
   self.rounds =2
+  self.woodc=5
+  self.ironc=2
+
 end
 
-function this:onPlay()
-  if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
-    self:subRcBuilding(self.buildingConsumption)
-    self:laborCost(self.cost+CostModifiter,self.rounds)
-    GameManager.Exile(self)
-    GameManager.ReplaceCard(DeckType.OriginalDeckAndDrawPile,self.delectingCard,self.boundingCard)
-  else
-    HandView:AddToHand(self.cardView)
-  end
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff("Build_mush_01",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  self.rounds,
+  'buff518',
+  nil,
+  "BuildTip",
+  "2,蘑菇水培池建造中")
 end
 

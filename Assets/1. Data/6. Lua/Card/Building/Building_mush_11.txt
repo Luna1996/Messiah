@@ -13,7 +13,15 @@ function this:new()
 end
 
 
-function this:onPlay()
+function this:applyEffect()
   self.cardView:Dissolve()
+  Buff("Build_mush_11",
+  GameEvent.EnterMainPhase,
+  BuffType.OneShot,
+  self.rounds,
+  'buff518',
+  nil,
+  "BuildTip",
+  "3,孢子克隆实验中")
   --Debug.Log(GameData.drawPile)
 end

@@ -16,6 +16,7 @@ end
 
 
 function this:onPlay()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   self.usageAmount = self.usageAmount - 1
   GameManager.AddResource(ResourceType.Food, 10)
   if (self.usageAmount == 0)
