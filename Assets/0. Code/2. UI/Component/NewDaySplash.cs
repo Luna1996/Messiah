@@ -9,6 +9,7 @@ namespace Messiah.UI {
       GameManager.gameData.numberOfTurn += 1;
       var text = GetComponentInChildren<Text>();
       text.text = $"第 {GameManager.gameData.numberOfTurn} 天";
+      GameManager.inGameView.dayNum.text = $"{GameManager.gameData.numberOfTurn}";
       await base.Start();
       Close();
     }

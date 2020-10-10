@@ -109,8 +109,10 @@ end
 
 
 function Build_house()
+  local buildingdeck = GameManager.gameData.buildingAcquired
   local houseList = {"住宅","住宅_2","住宅_1","住宅_3","住宅_6","住宅_7","住宅_4","住宅_5","住宅_8","住宅_9","住宅_10","住宅_11","住宅_12"}
-  GameManager.Build(nil,houseList[math.random(1,#houseList)])
+  for i=1,#houseList do if not buildingdeck:Contains(houseList[i]) then GameManager.Build(nil,houseList[i]) return true end end
+  return false
 end
 
 
@@ -132,9 +134,13 @@ function Build_house_basic(i)
 end
 
 function Build_iron()
+  local buildingdeck = GameManager.gameData.buildingAcquired
   local ironList={"钢厂","钢厂_1"}
-  GameManager.Build(nil,ironList[math.random(1,#ironList)])
+  for i=1,#ironList do if not buildingdeck:Contains(ironList[i]) then GameManager.Build(nil,ironList[i]) return true end end
+  GameManager.Build(nil,ironList[#ironList])
+  return false
 end
+
 
 function Build_iron_basic(i)
   Build_iron()
@@ -142,8 +148,9 @@ function Build_iron_basic(i)
 end
 
 function Build_mine()
+  local buildingdeck = GameManager.gameData.buildingAcquired
   local mineList ={"采煤场","采煤场_1","采煤场_2","采煤场_3"}
-  GameManager.Build(nil,mineList[math.random(1,#mineList)])
+  for i=1,#mineList do if not buildingdeck:Contains(mineList[i]) then GameManager.Build(nil,mineList[i])break end end
 end
 function Build_mine_01(i)
   Build_mine()
@@ -190,8 +197,9 @@ function Build_mine_basic(i)
 end
 
 function Build_mush()
+  local buildingdeck = GameManager.gameData.buildingAcquired
   local mushList = {"蘑菇","蘑菇_1","蘑菇_2"}
-  GameManager.Build(nil,mushList[math.random(1,#mushList)])
+  for i=1,#mushList do if not buildingdeck:Contains(mushList[i]) then GameManager.Build(nil,mushList[i])break end end
 end
 
 function Build_mush_basic(i)
