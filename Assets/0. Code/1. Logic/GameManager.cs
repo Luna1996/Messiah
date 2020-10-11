@@ -162,16 +162,24 @@ namespace Messiah.Logic {
     // new Buff(id, type, time, callback);
     // }
 
-    public static void AddCard(DeckType deckType, string[] card) {
+    public static async void AddCard(DeckType deckType, string[] card) {
       switch (deckType) {
         case DeckType.OriginalDeckAndDrawPile:
           AddCardTo(gameData.build, card);
           goto case DeckType.DrawPile;
         case DeckType.DrawPile:
           AddCardTo(gameData.drawPile, card);
+          foreach (var c in card) {
+            SendCardFromTo(c, CardLocation.Center, CardLocation.DrawPile);
+            await Task.Delay(100);
+          }
           break;
         case DeckType.DiscardPile:
           AddCardTo(gameData.discardPile, card);
+          foreach (var c in card) {
+            SendCardFromTo(c, CardLocation.Center, CardLocation.DiscardPile);
+            await Task.Delay(100);
+          }
           break;
         case DeckType.BuildingDeck:
           AddCardTo(gameData.buildingDeck, card);
