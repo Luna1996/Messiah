@@ -14,6 +14,7 @@ require("Relic/Relic109")
 require('Relic/Relic110')
 require('Relic/Relic304')
 require('Relic/Relic305')
+require('buildeffect')
 
 
 

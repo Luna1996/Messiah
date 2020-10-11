@@ -3,9 +3,10 @@ function ExampleBuff(i)
 end
 
 function ChurchBuild(i)
-  GameManager.Build(nil,"教堂")
-  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","教堂:\n每回合根据人口产出信仰值")
+  local location="教堂"
+  GameManager.handView:AddCard('BuildCard 教堂建造,教堂p,'..location..',Build_church_effect')
 end
+
 function ChurchFaith(i)
   GameManager.AddResource(ResourceType.Faith,GameManager.gameData.maxWorker)
 end
@@ -78,8 +79,8 @@ function BuildTip(i,args)
 end
 
 function Build_church_01(i)
-  GameManager.Build(nil,"教堂")
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Pray01","Pray02"})
+  local location="教堂"
+  GameManager.handView:AddCard('BuildCard 教堂修缮,教堂pd,'..location..',Build_church_01_effect')
 end
 
 function Build_farm_21(i)
@@ -111,9 +112,8 @@ end
 function Build_house()
   local buildingdeck = GameManager.gameData.buildingAcquired
   local houseList = {"住宅","住宅_2","住宅_1","住宅_3","住宅_6","住宅_7","住宅_4","住宅_5","住宅_8","住宅_9","住宅_10","住宅_11","住宅_12"}
-  for i=1,#houseList do if not buildingdeck:Contains(houseList[i]) then GameManager.Build(nil,houseList[i]) return true end end
-  GameManager.Build(nil,houseList[#houseList])
-  return false
+  for i=1,#houseList do if not buildingdeck:Contains(houseList[i]) then return houseList[i] end end
+  return houseList[#houseList]
 end
 
 
@@ -129,10 +129,10 @@ function Build_house_11(i)
 end
 
 function Build_house_basic(i)
-  Build_house()
-  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
-  --GameManager.gameData.idleWorker = GameManager.gameData.idleWorker +1
+  local location = Build_house()
+  GameManager.handView:AddCard('BuildCard 住宅建筑,住宅p,'..location..',Build_house_basic_effect')
 end
+
 
 function Build_iron()
   local buildingdeck = GameManager.gameData.buildingAcquired
@@ -247,6 +247,43 @@ function BuffTahriTheGirl(i) --抽卡时增加2点能量（总人口不变）
 end
 
 function build_clinic(i)
-  GameManager.Build(nil,"医院")
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Nurse","Nurse"})
+  --GameManager.Build(nil,"医院")
+  local location = "医院"
+  GameManager.handView:AddCard('BuildCard 诊所建造,医院p,'..location..',Build_clinic_effect') 
+end
+
+function Buff_Building_weather_21(i)
+  GameManager.Build(nil,"RawImage")
+  --有问题
+  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","闪电风暴：\n每当资源变化时\n额外获得1点能量")
+end
+
+function Buff_Building_weather(i)
+  GameManager.Build(nil,"RawImage")
+  Debug.Log('1')
+  GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] + 1
+end
+
+
+function Buff_Building_research(i, args)
+  GameManager.Build(nil,"研究站")
+  local t = split(args, ',')
+  local temp = split(t[3],';')
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+end
+
+function Buff_Building_research_room(i, args)
+  GameManager.Build(nil,"研究站")
+  local t = split(args, ',')
+  local temp = split(t[3],';')
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+end
+
+
+function Buff_Building_wood(i, args)
+  local li = {"采石场","采石场_1","采石场_2","采石场_3"}
+  GameManager.Build(nil,li[math.random(1,4)])
+  local t = split(args, ',')
+  local temp = split(t[3],';')
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
 end

@@ -6,9 +6,9 @@ local states ={}
 
 states.a = {
   name = "神父的旨意",
-  image = "事件报道小哥",
-  desc = "神父以神的旨意, 需求5点矿石",
-  choices = {"提供5点矿石，获得一张神秘建筑卡","不提供资源,受到诅咒"},
+  image = "事件4",
+  desc = "无上之神传来旨意\n迷雾之中唯有谨遵他的教诲\n",
+  choices = {"提供5点能量，获得一张神秘建筑卡","不提供资源,受到诅咒"},
 
 }
 
@@ -17,18 +17,13 @@ function states.a:choose(choice)
       --选择石材/钢材/能量资源5-10点进行判断/扣减
       if GameManager.GetResource(ResourceType.Wood) >=5
       then
-        GameManager.SubResource(ResourceType.Wood,5) 
-        GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Build_church"})
-        return states.b
+        GameManager.SubResource(ResourceType.Wood,5)
+        GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_church"})
+        return nil
       else
         GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
         return nil
       end
-
-      
-    elseif choice==self.choices[2] then
-      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
-      return nil
     end
 end
 

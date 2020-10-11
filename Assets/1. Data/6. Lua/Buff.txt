@@ -55,45 +55,12 @@ function Buff_Research(i)
 end
 
 
-function Buff_Building_wood(i, args)
-  local li = {"采石场","采石场_1","采石场_2","采石场_3"}
-  GameManager.Build(nil,li[math.random(1,4)])
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
-end
 
 function Buff_Pray01(i, args)
   local t = split(args, ',')
   GameManager.AddResource(ResourceType.Faith,t[3])
 end
 
-function Buff_Building_weather_21(i)
-  GameManager.Build(nil,"RawImage")
-  --有问题
-  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","闪电风暴：\n每当资源变化时\n额外获得1点能量")
-end
-
-function Buff_Building_weather(i)
-  GameManager.Build(nil,"RawImage")
-  Debug.Log('1')
-  GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] + 1
-end
-
-
-function Buff_Building_research(i, args)
-  GameManager.Build(nil,"研究站")
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
-end
-
-function Buff_Building_research_room(i, args)
-  GameManager.Build(nil,"研究站")
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
-end
 
 
 function Buff_get_relics(i)

@@ -1,0 +1,15 @@
+function Build_house_basic_effect()
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
+end
+
+function Build_church_01_effect()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Pray01","Pray02"})
+end
+
+function Build_church_effect()
+  Buff("ChurchFaith",GameEvent.ExitMainPhase,BuffType.Repeat,-1,"buff511","<b>教堂</b>\n每回合根据人口产出信仰值")
+end
+
+function Build_clinic_effect()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Nurse",})
+end

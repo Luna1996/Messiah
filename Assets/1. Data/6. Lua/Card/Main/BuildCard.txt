@@ -1,0 +1,25 @@
+BuildCard = class(CardBase,'BuildCard')
+local this = BuildCard
+
+function this:new(arg)
+  if arg then
+    local t= split(arg,',')
+    self.name =t[1]
+    self.image=t[2]
+    self.build=t[3]
+    self.func=t[4]
+  else
+    self.name="神秘的建筑卡"
+    self.image="godcard"
+    self.build="教堂"
+    self.func='ChurchBuild(i)'
+  end
+  self.frame="科技牌面"
+  self.cost=nil
+  self.desc=self.name.."已完工\n打出此卡来建造它"
+end
+
+function this:onPlay()
+  GameManager.Build(self,self.build)
+  _G[self.func]()
+end

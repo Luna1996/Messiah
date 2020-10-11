@@ -4,7 +4,7 @@ local this = CardBase
 function this:new(arg)
   self.cardView = nil
   self.name = "卡 名"
-  self.frame = "CardFrame_1"
+  self.frame = "CardFrame_0"
   self.image = "placeholder"
   self.desc = "<color=red>规</color><b><color=green>则</color><color=blue>说</color></b>明"
   self.minec = 0
@@ -13,7 +13,7 @@ function this:new(arg)
   self.foodc=0
   self.techc=0
   self.faithc=0
-  self.cost = 0
+  self.cost = nil
   self.rounds = 1
   self.cardType = "testcard"
 

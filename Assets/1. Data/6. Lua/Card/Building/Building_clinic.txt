@@ -6,8 +6,8 @@ function this:new()
   self.name = "诊所"
   self.frame = "资源牌面s"
   self.image = "医院p"
-  self.desc = "消耗石材6,钢铁3\n卡组中加入1张【看护】\n看护：抽2张牌"
-  self.boundingCard={"Nurse",}
+  self.desc = "消耗石材6,钢铁3\n卡组中加入1张[看护]\n看护:救回迷雾侵染之人"
+  --self.boundingCard={"Nurse",}
   self.inHand = false
   self.boudingBuff={}
   self.woodc = 6
@@ -19,7 +19,7 @@ end
 function this:applyEffect()
   self.cardView:Dissolve()
   Buff("build_clinic",
-  GameEvent.EnterMainState,
+  GameEvent.EnterMainPhase,
   BuffType.OneShot,
   2,
   'buff518',
