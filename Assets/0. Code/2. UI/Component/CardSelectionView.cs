@@ -39,8 +39,7 @@ namespace Messiah.UI {
           view.SetCards(cards, title);
           await view.rect.DOAnchorPosY(0, 0.2f).AsyncWaitForCompletion();
         } else {
-          view.rect.DOAnchorPosY(view.height, 0.2f).AsyncWaitForCompletion();
-          await view.Close();
+          await UnloadView();
         }
       } else {
         view = PrefabManager.Instanciate("CardSelectionView", trans).GetComponent<CardSelectionView>();
@@ -50,6 +49,7 @@ namespace Messiah.UI {
 
     public static async Task UnloadView() {
       if (view) {
+        view.Close();
         await view.rect.DOAnchorPosY(view.height, 0.2f).AsyncWaitForCompletion();
         GameObject.Destroy(view);
         view = null;

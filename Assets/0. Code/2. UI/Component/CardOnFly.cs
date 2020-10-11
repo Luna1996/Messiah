@@ -25,6 +25,8 @@ namespace Messiah.UI {
         await cardView.transform.DOScale(endscale, d).SetEase(Ease.Linear).AsyncWaitForCompletion();
         if (loc == CardLocation.Center)
           await cardView.Disappear();
+        else
+          Destroy(cardView.gameObject);
       } else {
         await GameManager.handView.AddToHand(cardView);
       }

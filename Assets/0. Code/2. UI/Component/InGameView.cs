@@ -105,9 +105,9 @@ namespace Messiah.UI {
       GameManager.DrawCard(GameManager.gameData.drawNum);
     }
 
-    public void NextDay() {
+    public async void NextDay() {
       ToggleNextDay(false);
-      CardSelectionView.UnloadView();
+      await CardSelectionView.UnloadView();
       if (DiscardPhaseView.NeedDiscard())
         PrefabManager.Instanciate("DiscardPhaseView", underHand);
       else
