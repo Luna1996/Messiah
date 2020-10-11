@@ -18,7 +18,7 @@ function this:onPlay()
   ---GameManager.Build(nil,"采石场")
   ---GameManager.Build(nil,"研究站")
   --Build_iron()
-  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker-1
+  --GameManager.gameData.maxWorker = GameManager.gameData.maxWorker-1
   HandView:AddToHand(self.cardView)
 end
 

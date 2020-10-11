@@ -6,11 +6,11 @@ function this:new()
   self.name = "孢子克隆实验室"
   self.frame = "资源牌面s"
   self.image = "蘑菇pd"
-  self.desc = "消耗石材6，钢铁2\n可以培植巨型真菌"
+  self.desc = "消耗石材15，钢铁8\n可以培植巨型真菌"
   self.inHand = false
-  self.woodc=6
-  self.ironc=2
-  self.cost=2
+  self.woodc=15
+  self.ironc=8
+  self.cost=6
   self.rounds=3
 end
 

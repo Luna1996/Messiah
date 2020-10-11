@@ -3,10 +3,10 @@ local this = Building_mine
 
 function this:new()
   self.cardView = nil
-  self.name = "矿场"
+  self.name = "能量矿机"
   self.frame = "资源牌面s"
   self.image = "采煤机p"
-  self.desc = "消耗石材3，钢铁2\n开采矿石的场所\n卡组中加入2张采能量卡"
+  self.desc = "消耗石材3，钢铁2\n开采能源矿石的场所\n卡组中加入2张采能卡"
   self.boundingCard={"BasicMine01","BasicMine01"}
   self.inHand = false
   --self.boundingBuff={}

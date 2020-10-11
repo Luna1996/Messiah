@@ -1,0 +1,18 @@
+drink = class(CardBase,'drink')
+local this = drink
+
+function this:new()
+  self.name="小酌"
+  self.image="懒惰"
+  self.cost=nil
+  self.foodc=3
+  self.desc="小酌一杯 小憩一会\n消耗3点食物 抽3张卡"
+end
+
+function this:applyEffect()
+  GameManager.Discard(self)
+  GameManager.DrawCard()
+  GameManager.DrawCard()
+  GameManager.DrawCard()
+end
+

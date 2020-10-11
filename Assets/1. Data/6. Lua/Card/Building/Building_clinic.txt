@@ -25,6 +25,6 @@ function this:applyEffect()
   'buff518',
   nil,
   "BuildTip",
-  "2,诊所搭建中")
+  "2,诊所建造中")
 end
 

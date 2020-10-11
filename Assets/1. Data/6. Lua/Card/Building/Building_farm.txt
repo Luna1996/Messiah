@@ -6,13 +6,13 @@ function this:new()
   self.name = "温室"
   self.frame = "资源牌面s"
   self.image = "温室p"
-  self.desc = "消耗钢铁20,石材20\n获得更高质量的食物来源\n卡组中加入2张【农作物种植1】"
+  self.desc = "消耗钢铁20,石材20\n卡组中加入2张[农作物种植1]-获得30食物"
   self.boundingCard={"BasicFarm01","BasicFarm01"}
   self.inHand = false
-  self.woodc=20
-  self.ironc=20
-  self.cost =3
-  self.rounds =4
+  self.woodc=15
+  self.ironc=10
+  self.cost =7
+  self.rounds =3
 end
 
 function this:applyEffect()

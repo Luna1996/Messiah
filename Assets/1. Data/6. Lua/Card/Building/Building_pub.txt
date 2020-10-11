@@ -3,18 +3,19 @@ local this = Building_pub
 
 function this:new()
   self.cardView = nil
-  self.name = "酒吧"
+  self.name = "酒馆"
   self.frame = "资源牌面s"
   self.image = "酒馆p"
-  self.desc = "消耗石材20，钢铁5\n喝喝小酒 释放压力 降低人力资源消耗1点"
+  self.desc = "消耗石材10，钢铁5\n喝喝小酒 释放压力\n加入2张[小酌]-食物-1 抽3张卡"
   self.boundingBuff={}  --每回合降低3点压力值
   self.inHand = false
   --self.boundingBuff={}
-  self.woodc = 20
+  self.woodc = 10
   self.ironc = 5
   self.cost =5
-  self.rounds = 4
+  self.rounds = 2
 end
+
 
 
 function this:applyEffect()
@@ -26,5 +27,5 @@ function this:applyEffect()
   'buff518',
   nil,
   "BuildTip",
-  "4,酒馆即将开业！")
+  "2,酒馆即将开业！")
 end
