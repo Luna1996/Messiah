@@ -6,16 +6,24 @@ namespace Messiah.UI {
   using DG.Tweening;
   using Logic;
   using UnityEngine.UI;
-  using System.Collections.ObjectModel;
+  using Utility;
+  using Logic.GameCoreNS;
 
   public class CardSelectionView : UIMask {
     static CardSelectionView view;
 
     public Text title;
     public CardScrollView cardScrollView;
+    public Button confirm;
 
     RectTransform rect;
     float height;
+    int max;
+    XLua.LuaFunction cb;
+    XLua.LuaFunction canchoose;
+
+    List<Card> selection;
+
     new async void Start() {
       view = this;
       rect = (RectTransform)transform.GetChild(0);
@@ -25,18 +33,58 @@ namespace Messiah.UI {
       rect.DOAnchorPosY(0, 0.2f);
     }
 
-    public void SetCards(ObservableCollection<string> cards, string title) {
+    public void SetCards(IList<string> cards, string title) {
       this.title.text = title;
       cardScrollView.SetCards(cards);
     }
 
-    public void CloseView() { Close(); }
+    public void SetCB(int max, XLua.LuaFunction cb, XLua.LuaFunction canfun) {
+      this.max = max;
+      this.cb = cb;
+      this.canchoose = canfun;
+      if (max == -1 || cb == null) {
+        EventService.IgnoreWithArg<CardView>(GameEvent.IG_OnCardSelectionChanged, OnCardSelectionChanged);
+        confirm.gameObject.SetActive(false);
+        selection = null;
+        foreach (var view in cardScrollView.cardViews)
+          view.canSelect = false;
+      } else {
+        EventService.ListenWithArg<CardView>(GameEvent.IG_OnCardSelectionChanged, OnCardSelectionChanged);
+        confirm.gameObject.SetActive(true);
+        confirm.interactable = false;
+        selection = new List<Card>();
+        foreach (var view in cardScrollView.cardViews) {
+          view.canSelect = true;
+          view.canSelectFunc = canfun;
+          view.GetComponent<Image>().raycastTarget = true;
+        }
+      }
+    }
 
-    public static async Task ToggleView(Transform trans, ObservableCollection<string> cards, string title) {
+    public void OnCardSelectionChanged(CardView cv) {
+      if (cv.mask) selection.Add(cv.luacard);
+      else selection.Remove(cv.luacard);
+      if ((max == 0 && selection.Count > 0) || (max > 0 && max == selection.Count)) {
+        confirm.interactable = true;
+      } else confirm.interactable = false;
+    }
+
+    public void OnConfirm() {
+      cb?.Call(selection);
+      UnloadView();
+    }
+
+    public void CloseView() {
+      cb?.Call(null);
+      UnloadView();
+    }
+
+    public static async Task ToggleView(Transform trans, IList<string> cards, string title, int max = -1, XLua.LuaFunction cb = null, XLua.LuaFunction canchoose = null) {
       if (view) {
         if (view.title.text != title) {
           await view.rect.DOAnchorPosY(view.height, 0.2f).AsyncWaitForCompletion();
           view.SetCards(cards, title);
+          view.SetCB(max, cb, canchoose);
           await view.rect.DOAnchorPosY(0, 0.2f).AsyncWaitForCompletion();
         } else {
           await UnloadView();
@@ -44,7 +92,9 @@ namespace Messiah.UI {
       } else {
         view = PrefabManager.Instanciate("CardSelectionView", trans).GetComponent<CardSelectionView>();
         view.SetCards(cards, title);
+        view.SetCB(max, cb, canchoose);
       }
+
     }
 
     public static async Task UnloadView() {

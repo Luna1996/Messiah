@@ -27,7 +27,7 @@ namespace Messiah.UI {
         else
           Destroy(cardView.gameObject);
       } else {
-        await GameManager.handView.AddToHand(cardView);
+        GameManager.handView.AddToHand(cardView);
       }
     }
 
@@ -58,7 +58,7 @@ namespace Messiah.UI {
       if (toloc == CardLocation.Center) {
         await card.Disappear();
       } else if (toloc == CardLocation.Hand) {
-        await GameManager.handView.AddToHand(card);
+        GameManager.handView.AddToHand(card);
       } else {
         GameObject.Destroy(card.gameObject);
       }

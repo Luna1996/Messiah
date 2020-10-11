@@ -4,12 +4,14 @@ namespace Messiah.UI {
   using UnityEngine.UI;
   using Logic;
   using DG.Tweening;
-  using System.Collections.ObjectModel;
 
   public class CardScrollView : MonoBehaviour {
     public ScrollRect scrollRect;
+    public List<CardView> cardViews;
 
-    public void SetCards(ObservableCollection<string> cards, int dir = 2) {
+    public void SetCards(IList<string> cards, int dir = 2) {
+      if (cardViews == null) cardViews = new List<CardView>();
+      else cardViews.Clear();
       scrollRect.horizontal = (dir & 1) != 0;
       scrollRect.vertical = (dir & 2) != 0;
       foreach (Transform trans in scrollRect.content.transform)
@@ -20,6 +22,7 @@ namespace Messiah.UI {
         cardview.gameObject.name = $"{i}";
         cardview.SetLuaCard(cards[i]);
         cardview.inPanel = true;
+        cardViews.Add(cardview);
       }
     }
 

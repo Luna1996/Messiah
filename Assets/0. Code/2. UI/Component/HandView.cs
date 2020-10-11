@@ -35,7 +35,7 @@ namespace Messiah.UI {
       gameData = Logic.GameCoreNS.GameCore.userData.currentGameData;
     }
 
-    public async Task AddCard(string card, CardLocation from = CardLocation.DrawPile) {
+    public void AddCard(string card, CardLocation from = CardLocation.DrawPile) {
       var clone = Logic.PrefabManager.Instanciate("Card", transform);
       Vector3 pos, scale;
       Quaternion quat;
@@ -49,10 +49,10 @@ namespace Messiah.UI {
       cardui.hands = this;
       cardui.SetLuaCard(card);
       hands.Add(cardui);
-      await RestoreCardPosition();
+      RestoreCardPosition();
     }
 
-    public async Task RestoreCardPosition(float duration = 0.5f) {
+    public void RestoreCardPosition(float duration = 0.5f) {
       var dir = arcData.from;
       var rotateStep = Quaternion.AngleAxis(arcData.degree / (hands.Count + 1), -transform.forward);
       int index = 0;
@@ -71,13 +71,13 @@ namespace Messiah.UI {
       }
     }
 
-    public async Task ReleaseFromHand(CardView ui) {
+    public void ReleaseFromHand(CardView ui) {
       hands.Remove(ui);
       ui.transform.SetAsLastSibling();
-      await RestoreCardPosition(0.2f);
+      RestoreCardPosition(0.2f);
     }
 
-    public async Task AddToHand(CardView ui) {
+    public void AddToHand(CardView ui) {
       ui.hands = this;
       ui.transform.SetParent(transform);
       int index;
@@ -86,7 +86,7 @@ namespace Messiah.UI {
         hands.Add(ui);
       else
         hands.Insert(index, ui);
-      await RestoreCardPosition(0.2f);
+      RestoreCardPosition(0.2f);
     }
 
     [NonSerialized]
