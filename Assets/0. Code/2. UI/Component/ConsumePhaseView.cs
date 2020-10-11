@@ -31,7 +31,12 @@ namespace Messiah.UI {
         texts[2].text = "在浓雾的侵染下";
         await texts[2].DOFade(1, skip ? 0.1f : d).AsyncWaitForCompletion();
         var dead = Random.Range(1, buildingNum - energy + 1);
-        texts[3].text = $"{dead}人丧失了理智";
+        if (dead > GameManager.gameData.idleWorker) dead = GameManager.gameData.idleWorker;
+        if (dead > 0)
+          texts[3].text = $"{dead}人丧失了理智";
+        else
+          texts[3].text = $"无人丧失理智，真走运";
+
         await texts[3].DOFade(1, skip ? 0.1f : d).AsyncWaitForCompletion();
         GameManager.gameData.maxWorker -= dead;
         if (GameCore.FAM.State == GameState.EndingPhase) {
@@ -58,7 +63,11 @@ namespace Messiah.UI {
       GameManager.SubResource(ResourceType.Food, foodCost);
       if (food < foodCost) {
         var dead = Random.Range(1, foodCost - food + 1);
-        texts[5].text = $"又有{dead}人死于饥饿";
+        if (dead > GameManager.gameData.idleWorker) dead = GameManager.gameData.idleWorker;
+        if (dead > 0)
+          texts[5].text = $"又有{dead}人死于饥饿";
+        else
+          texts[5].text = $"人民食不果腹";
         await texts[5].DOFade(1, skip ? 0.1f : d).AsyncWaitForCompletion();
         GameManager.gameData.maxWorker -= dead;
         if (GameCore.FAM.State == GameState.EndingPhase) {
