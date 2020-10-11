@@ -1,7 +1,6 @@
 namespace Messiah.UI {
   using Logic;
   using UnityEngine;
-  using UnityEngine.UI;
   using DG.Tweening;
   using System.Threading.Tasks;
 
@@ -15,16 +14,20 @@ namespace Messiah.UI {
 
     public async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       cardView.canPlay = false;
-      cardView.transform.SetParent(transform);
-      Vector3 endpos;
-      Vector3 endscale;
-      Quaternion endquat;
-      GetLoc(loc, out endpos, out endscale, out endquat);
-      cardView.transform.DOMove(endpos, d).SetEase(Ease.Linear);
-      cardView.transform.DORotateQuaternion(endquat, d).SetEase(Ease.Linear);
-      cardView.transform.DOScale(endscale, d).SetEase(Ease.Linear);
-      await Task.Delay((int)(d * 1000));
-      GameObject.Destroy(cardView.gameObject);
+      if (loc != CardLocation.Hand) {
+        cardView.transform.SetParent(transform);
+        Vector3 endpos;
+        Vector3 endscale;
+        Quaternion endquat;
+        GetLoc(loc, out endpos, out endscale, out endquat);
+        cardView.transform.DOMove(endpos, d).SetEase(Ease.Linear);
+        cardView.transform.DORotateQuaternion(endquat, d).SetEase(Ease.Linear);
+        await cardView.transform.DOScale(endscale, d).SetEase(Ease.Linear).AsyncWaitForCompletion();
+        if (loc == CardLocation.Center)
+          await cardView.Disappear();
+      } else {
+        await GameManager.handView.AddToHand(cardView);
+      }
     }
 
     public async Task SendCardFromTo(string cardName, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
@@ -37,40 +40,55 @@ namespace Messiah.UI {
       card.transform.rotation = quat;
       ((RectTransform)(card.transform)).localScale = scale;
 
+
+      if (fromloc == CardLocation.Center)
+        await card.Appear();
+
       GetLocInBetween(fromloc, toloc, out pos, out scale, out quat);
       card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
       card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
-      card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear);
-      await Task.Delay((int)(d / 2 * 1000));
+      await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
 
       GetLoc(toloc, out pos, out scale, out quat);
       card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
       card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
-      card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear);
-      await Task.Delay((int)(d / 2 * 1000));
+      await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
 
-      GameObject.Destroy(card.gameObject);
+      if (toloc == CardLocation.Center) {
+        await card.Disappear();
+      } else if (toloc == CardLocation.Hand) {
+        await GameManager.handView.AddToHand(card);
+      } else {
+        GameObject.Destroy(card.gameObject);
+      }
     }
 
     public void GetLoc(CardLocation loc, out Vector3 pos, out Vector3 scale, out Quaternion quat) {
       quat = Quaternion.identity;
-      scale = EndScale;
       switch (loc) {
         case CardLocation.DrawPile:
           pos = drawPile.position;
+          scale = EndScale;
           break;
         case CardLocation.DiscardPile:
           pos = discardPile.position;
+          scale = EndScale;
           break;
         case CardLocation.ExilePile:
           pos = exilePile.position;
+          scale = EndScale;
           break;
         case CardLocation.Camera:
           pos = GameManager.handView.transData.cardgen;
           scale = Vector3.one;
           break;
+        case CardLocation.Center:
+          pos = transform.position;
+          scale = Vector3.one;
+          break;
         default:
           pos = Vector3.zero;
+          scale = EndScale;
           break;
       }
     }
@@ -91,6 +109,8 @@ namespace Messiah.UI {
     DrawPile,
     DiscardPile,
     ExilePile,
-    Camera
+    Camera,
+    Center,
+    Hand,
   }
 }

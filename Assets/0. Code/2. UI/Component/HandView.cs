@@ -35,14 +35,7 @@ namespace Messiah.UI {
       gameData = Logic.GameCoreNS.GameCore.userData.currentGameData;
     }
 
-    public async Task RemoveHands() {
-      while (hands.Count > 0) {
-        RemoveCard(0);
-        await Task.Delay(100);
-      }
-    }
-
-    public void AddCard(string card, CardLocation from = CardLocation.DrawPile) {
+    public async Task AddCard(string card, CardLocation from = CardLocation.DrawPile) {
       var clone = Logic.PrefabManager.Instanciate("Card", transform);
       Vector3 pos, scale;
       Quaternion quat;
@@ -56,30 +49,10 @@ namespace Messiah.UI {
       cardui.hands = this;
       cardui.SetLuaCard(card);
       hands.Add(cardui);
-      RestoreCardPosition();
+      await RestoreCardPosition();
     }
 
-    public void RemoveCard(int i) {
-      if (hands.Count == 0) return;
-
-      var cardui = hands[i];
-      hands.RemoveAt(i);
-      if (hands.Count > 0) RestoreCardPosition();
-    }
-
-    public int RemoveCard(Card card) {
-      int i = 0;
-      while (i < hands.Count) {
-        if (hands[i] == card.cardView) {
-          RemoveCard(i);
-          return i;
-        }
-        i++;
-      }
-      return -1;
-    }
-
-    public void RestoreCardPosition(float duration = 0.5f) {
+    public async Task RestoreCardPosition(float duration = 0.5f) {
       var dir = arcData.from;
       var rotateStep = Quaternion.AngleAxis(arcData.degree / (hands.Count + 1), -transform.forward);
       int index = 0;
@@ -93,21 +66,26 @@ namespace Messiah.UI {
         var rot = Quaternion.FromToRotation(transform.up, dir);
         cardui.transform.DOMove(pos, duration);
         cardui.transform.DORotateQuaternion(rot, duration);
-        cardui.transform.DOScale(Vector3.one, duration).OnComplete(() => { cardui.canPlay = true; });
+        cardui.transform.DOScale(Vector3.one, duration);
+        cardui.canPlay = true;
       }
     }
 
-    public void ReleaseFromHand(CardView ui) {
+    public async Task ReleaseFromHand(CardView ui) {
       hands.Remove(ui);
-      RestoreCardPosition(0.2f);
       ui.transform.SetAsLastSibling();
+      await RestoreCardPosition(0.2f);
     }
 
-    public void AddToHand(CardView ui) {
+    public async Task AddToHand(CardView ui) {
+      ui.transform.SetParent(transform);
       int index;
       int.TryParse(ui.gameObject.name, out index);
-      hands.Insert(index, ui);
-      RestoreCardPosition(0.2f);
+      if (index == -1)
+        hands.Add(ui);
+      else
+        hands.Insert(index, ui);
+      await RestoreCardPosition(0.2f);
     }
 
     [NonSerialized]

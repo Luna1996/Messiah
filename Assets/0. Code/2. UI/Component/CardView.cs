@@ -9,6 +9,7 @@ namespace Messiah.UI {
   using Coffee.UIExtensions;
   using Utility;
   using Logic.GameCoreNS;
+  using System.Threading.Tasks;
 
   public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
     [NonSerialized]
@@ -35,9 +36,16 @@ namespace Messiah.UI {
     [NonSerialized]
     public Card luacard;
 
-    UIDissolve effect;
-    void Start() {
-      effect = GetComponent<UIDissolve>();
+    public async Task Appear(float d = 0.5f) {
+      var cg = GetComponent<CanvasGroup>();
+      cg.alpha = 0;
+      await cg.DOFade(1, d).AsyncWaitForCompletion();
+    }
+
+    public async Task Disappear(float d = 0.5f) {
+      await GetComponent<CanvasGroup>().DOFade(0, d).AsyncWaitForCompletion();
+      if (this != null)
+        Destroy(gameObject);
     }
 
     public void SetLuaCard(string card) {
@@ -52,9 +60,9 @@ namespace Messiah.UI {
     }
 
     public async void Dissolve() {
+      var effect = GetComponent<UIDissolve>();
       effect.enabled = true;
-      effect.Play();
-      disolvesound.Play();
+      effect.Play(true);
       await System.Threading.Tasks.Task.Delay((int)(effect.duration * 1000));
       if (this != null)
         Destroy(gameObject);
