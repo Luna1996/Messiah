@@ -24,6 +24,7 @@ namespace Messiah.Logic.GameCoreNS {
     IG_IdleWorkerChanged,
     IG_OccupiedWorkerChanged,
     IG_SickWorkerChanged,
+    IG_DeadWorkerChanged,
 
     IG_WeatherCardDraw,
     IG_BuildingsBuit,

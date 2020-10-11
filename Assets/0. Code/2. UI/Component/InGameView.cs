@@ -31,6 +31,7 @@ namespace Messiah.UI {
     public Image nextBtn;
 
     public Text dayNum;
+    public Text deadNum;
 
     void Awake() {
       GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
@@ -52,6 +53,7 @@ namespace Messiah.UI {
       EventService.Listen(GameEvent.IG_MaxWorkerChanged, OnHumanChanged);
       EventService.ListenWithArg<int>(GameEvent.IG_ResourceModify, OnResourceChanged);
       EventService.Listen(GameEvent.EnterEndingPhase, OnEnterEndingPhase);
+      EventService.Listen(GameEvent.IG_DeadWorkerChanged, OnDeadWorkerChanged);
     }
 
     void OnDestroy() {
@@ -69,13 +71,13 @@ namespace Messiah.UI {
       LuaManager.lua.Global.Set("HandView", handView);
       LuaManager.lua.Global.Set("InGameView", this);
       top.DOAnchorPosY(0, 0.5f);
-      bottom.DOAnchorPosY(0, 0.5f);
+      await bottom.DOAnchorPosY(0, 0.5f).AsyncWaitForCompletion();
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
       OnHumanChanged();
       foreach (var buff in GameManager.gameData.buff)
         buff.SetUp();
-      await System.Threading.Tasks.Task.Delay(500);
+      OnDeadWorkerChanged();
 
       handView.Init();
       foreach (var card in GameManager.gameData.hands) {
@@ -195,11 +197,11 @@ namespace Messiah.UI {
       else d.y = -0.05f;
       tips.transform.position = pos + d;
       tiptext.text = text;
-      tips.SetActive(true);
+      tips.transform.parent.gameObject.SetActive(true);
     }
 
     public void HideTip() {
-      tips.SetActive(false);
+      tips.transform.parent.gameObject.SetActive(false);
     }
 
     public Text human;
@@ -213,6 +215,12 @@ namespace Messiah.UI {
 
     public void OnEnterEndingPhase() {
       PrefabManager.Instanciate("EndingPhasePanel", transform);
+    }
+
+    public async void OnDeadWorkerChanged() {
+      deadNum.text = $"{GameManager.gameData.deadWorker}";
+      await deadNum.transform.DOScale(new Vector3(1.1f, 1.1f, 1), 0.5f).SetEase(Ease.Linear).AsyncWaitForCompletion();
+      await deadNum.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.Linear).AsyncWaitForCompletion();
     }
   }
 }

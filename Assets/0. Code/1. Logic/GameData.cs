@@ -25,6 +25,7 @@ namespace Messiah.Logic {
         if (value != _maxWorker) {
           var dif = value - _maxWorker;
           _maxWorker = value;
+          deadWorker -= deadWorker;
           idleWorker += dif;
           EventService.Notify(GameEvent.IG_MaxWorkerChanged);
         }
@@ -41,6 +42,18 @@ namespace Messiah.Logic {
         if (value != _idleWorker) {
           _idleWorker = value;
           EventService.Notify(GameEvent.IG_IdleWorkerChanged);
+        }
+      }
+    }
+
+    int _deadWorker = 0;
+    public int deadWorker {
+      get { return _deadWorker; }
+      set {
+        if (value < 0) value = 0;
+        if (value != _deadWorker) {
+          _deadWorker = value;
+          EventService.Notify(GameEvent.IG_DeadWorkerChanged);
         }
       }
     }
@@ -86,8 +99,8 @@ namespace Messiah.Logic {
       var gd = new GameData();
 
       var testpile = new List<string> { };
-      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile","BasicFoodPile",};
-      var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood","Building_research"};
+      var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile", "BasicFoodPile", };
+      var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood", "Building_research" };
       Shuffle(build);
       mustdraw.AddRange(build);
       testpile.AddRange(mustdraw);

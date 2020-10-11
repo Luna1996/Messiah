@@ -28,6 +28,10 @@ namespace Messiah.UI {
     public Text ruleText;
     public Text subType;
 
+    public AudioSource drawsound;
+    public AudioSource playsound;
+    public AudioSource disolvesound;
+
     [NonSerialized]
     public Card luacard;
 
@@ -50,6 +54,7 @@ namespace Messiah.UI {
     public async void Dissolve() {
       effect.enabled = true;
       effect.Play();
+      disolvesound.Play();
       await System.Threading.Tasks.Task.Delay((int)(effect.duration * 1000));
       if (this != null)
         Destroy(gameObject);

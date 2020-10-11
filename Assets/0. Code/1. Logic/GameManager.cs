@@ -4,10 +4,7 @@ namespace Messiah.Logic {
   using System.Collections.Generic;
   using System.Threading.Tasks;
   using UI;
-  using UnityEngine;
   using Utility;
-  using System;
-  using XLua;
 
   public enum ResourceType {
     Mine = 0,
@@ -27,6 +24,7 @@ namespace Messiah.Logic {
   }
 
   public static class GameManager {
+    public static AppRoot appRoot;
     public static ViewManager viewManager;
     public static InGameView inGameView;
     public static MessiahView messiahView;
@@ -80,6 +78,7 @@ namespace Messiah.Logic {
       var i = handView.RemoveCard(card);
       gameData.discardPile.Add(card.getCardFullName());
       SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
+      card.cardView.playsound.Play();
     }
 
     public static void Exile(Card card) {
@@ -113,6 +112,7 @@ namespace Messiah.Logic {
       gameData.discardPile.Clear();
       GameData.Shuffle(gameData.drawPile);
 
+      appRoot.shufflesound.Play();
       foreach (var card in cardOnFly) {
         SendCardFromTo(card, CardLocation.DiscardPile, CardLocation.DrawPile);
         await Task.Delay(50);

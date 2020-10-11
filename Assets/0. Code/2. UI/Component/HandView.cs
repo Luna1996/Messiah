@@ -51,6 +51,7 @@ namespace Messiah.UI {
       clone.transform.rotation = quat;
       clone.name = hands.Count.ToString();
       var cardui = clone.GetComponent<CardView>();
+      cardui.drawsound.Play();
       cardui.canPlay = false;
       cardui.hands = this;
       cardui.SetLuaCard(card);
