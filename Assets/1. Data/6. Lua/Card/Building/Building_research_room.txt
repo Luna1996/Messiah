@@ -6,7 +6,7 @@ function this:new()
   self.name = "研究室"
   self.frame = "资源牌面s"
   self.image = "研究所pd"
-  self.desc = "消耗2点石材，2点钢铁\n升级研究站\n增加1张科研牌到手牌" ---卡组中加入1张研究卡
+  self.desc = "消耗2点石材，2点钢铁\n升级研究站\n增加你的研究员数量" ---卡组中加入1张研究卡
   self.boundingCard={"Research"}
   self.cost = 2 
   self.rounds = 2
@@ -25,6 +25,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     self.rounds, "buff518", nil,
-    "BuildTip", "2, 研究站正在升级,"..temp)
+    "BuildTip", "2, 研究站正在升级")
   --Debug.Log(GameData.drawPile)
 end
