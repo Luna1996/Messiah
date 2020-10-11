@@ -14,7 +14,7 @@ states.a = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-        GameManager.AddCardsToHand({"Build_church"})
+        GameManager.AddCardsToHand({"Building_church"})
         return nil
       else
         GameManager.AddResource(ResourceType.Mine,10)
