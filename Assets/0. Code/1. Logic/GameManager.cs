@@ -34,13 +34,20 @@ namespace Messiah.Logic {
     public static CardOnFly cardOnFly;
 
     public static int[] turneventpool = new int[]{
-      0,1,2,3,-1,8,-1,-1,4,-1,-1,-1,-1,6,-1,7,-1,-1,-1,4,-1,-1,-1,-1,5,-1,-1,2,-1,10,-1,4-1,6,7,-1,-1,4,-1,-1,-1,-1,-1,9
+      0,
+      -1,1,11,-1,9,-1,11,2,10,-1,12,7,-1,3,11,8,-1,12,6,
+      11,-1,12,-1,11,12,-1,12,6,-1,12,
+      4,-1,12,6,12,-1,-1,12,11,-1,-1,-1,
+      5,-1,-1,12,6,-1,12,-1,-1,-1,-1,
+      //终局事件here
     };
     public static string[][] eventpool = new string[][] {
        new string[]{"Event0001"},
-      new string[]{"Event1011",},new string[]{"Event1362","Event1021"},
-      new string[]{"Event1402"},new string[]{"Event1362","Event1377"},new string[]{"Event1081","Event1011"},
-      new string[]{"Event1271",},new string[]{"Event1383"},new string[]{"Event1301"}
+      new string[]{"EventBomb",},new string[]{"EventChurch"},
+      new string[]{"EventCurse1"},new string[]{"EventCurse2",},new string[]{"EventCurse3"},
+      new string[]{"EventDelCard",},new string[]{"EventDetective"},new string[]{"EventDoc"},
+      new string[]{"EventGirl"},new string[]{"EventPirate"},new string[]{"EventPoolBuild"},
+      new string[]{"EventPoolTrash1","EventPoolTrash2","EventPoolTrash3","EventPoolTrash4"}
     };
 
 
