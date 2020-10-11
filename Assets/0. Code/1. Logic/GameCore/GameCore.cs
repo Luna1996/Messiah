@@ -48,7 +48,7 @@ namespace Messiah.Logic.GameCoreNS {
       FAM.Configure(GameState.EndingPhase)
         .SubstateOf(GameState.InGameState)
         .Permit(GameStateTrigger.GameStart, GameState.InGameState)
-        .Permit(GameStateTrigger.GameEnd, GameState.OutGameState)
+        .Permit(GameStateTrigger.Back, GameState.OutGameState)
         .OnEntry(() => EventService.Notify(GameEvent.EnterEndingPhase))
         .OnExit(() => EventService.Notify(GameEvent.ExitEndingPhase));
 

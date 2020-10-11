@@ -4,11 +4,12 @@ namespace Messiah.UI {
   using UnityEngine.UI;
   using Logic;
   using DG.Tweening;
+  using System.Collections.ObjectModel;
 
   public class CardScrollView : MonoBehaviour {
     public ScrollRect scrollRect;
 
-    public void SetCards(List<string> cards, int dir = 2) {
+    public void SetCards(ObservableCollection<string> cards, int dir = 2) {
       scrollRect.horizontal = (dir & 1) != 0;
       scrollRect.vertical = (dir & 2) != 0;
       foreach (Transform trans in scrollRect.content.transform)

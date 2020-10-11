@@ -5,6 +5,7 @@ namespace Messiah.Logic {
   using System.Threading.Tasks;
   using UI;
   using Utility;
+  using System.Collections.ObjectModel;
 
   public enum ResourceType {
     Mine = 0,
@@ -63,10 +64,9 @@ namespace Messiah.Logic {
 
     public static void Build(Card card, string bname) {
       if (card != null) {
-        var i = handView.RemoveCard(card);
-        card.cardView.DissolveInCenter();
-        handView.RemoveCard(card);
+        var i = handView.ReleaseFromHand(card.cardView);
         gameData.buildingDeck.Add(card.getCardFullName());
+        card.cardView.DissolveInCenter();
       }
       if (!gameData.buildingAcquired.Contains(bname))
         gameData.buildingAcquired.Add(bname);
@@ -75,15 +75,16 @@ namespace Messiah.Logic {
 
 
     public static void Discard(Card card) {
-      var i = handView.RemoveCard(card);
+      var i = handView.ReleaseFromHand(card.cardView);
       gameData.discardPile.Add(card.getCardFullName());
-      SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
       card.cardView.playsound.Play();
+      SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
     }
 
     public static void Exile(Card card) {
-      var i = handView.RemoveCard(card);
+      var i = handView.ReleaseFromHand(card.cardView);
       gameData.exilePile.Add(card.getCardFullName());
+      card.cardView.disolvesound.Play();
       card.cardView.Dissolve();
     }
 
@@ -108,10 +109,12 @@ namespace Messiah.Logic {
 
     public static async Task RecycleDiscardPile() {
       var cardOnFly = new List<string>(gameData.discardPile);
-      gameData.drawPile.AddRange(gameData.discardPile);
+      foreach (var card in cardOnFly) {
+        gameData.drawPile.Add(card);
+      }
       gameData.discardPile.Clear();
-      GameData.Shuffle(gameData.drawPile);
 
+      GameData.Shuffle(gameData.drawPile);
       appRoot.shufflesound.Play();
       foreach (var card in cardOnFly) {
         SendCardFromTo(card, CardLocation.DiscardPile, CardLocation.DrawPile);
@@ -179,8 +182,8 @@ namespace Messiah.Logic {
       }
     }
 
-    static void AddCardTo(List<string> list, string[] card) {
-      list.AddRange(card);
+    static void AddCardTo(ObservableCollection<string> list, string[] card) {
+      foreach (var c in card) list.Add(c);
       GameData.Shuffle(list);
     }
 
@@ -204,7 +207,7 @@ namespace Messiah.Logic {
       }
     }
 
-    static void ReplaceCardTo(List<string> list, string src, string dst) {
+    static void ReplaceCardTo(ObservableCollection<string> list, string src, string dst) {
       for (int i = 0; i < list.Count; i++) {
         if (list[i].StartsWith(src)) {
           list[i] = dst;
@@ -232,18 +235,18 @@ namespace Messiah.Logic {
       }
     }
 
-    static void RemoveCardTo(List<string> list, string[] card) {
+    static void RemoveCardTo(ObservableCollection<string> list, string[] card) {
       foreach (var c in card) {
         for (int i = 0; i < list.Count; i++)
           if (list[i].StartsWith(c)) list.RemoveAt(i);
       }
     }
 
-    static async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
+    public static async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       await cardOnFly.SendCardTo(cardView, loc, d);
     }
 
-    static async Task SendCardFromTo(string cardname, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
+    public static async Task SendCardFromTo(string cardname, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
       await cardOnFly.SendCardFromTo(cardname, fromloc, toloc, d);
     }
   }
