@@ -7,7 +7,6 @@ namespace Messiah.UI {
   public class CardOnFly : MonoBehaviour {
     public static float ratio = 0.1f;
     public static Vector3 EndScale = new Vector3(0.2f, 0.2f, 1);
-    public static Vector3 MidScale = new Vector3(1, 1, 1);
     public RectTransform drawPile;
     public RectTransform discardPile;
     public RectTransform exilePile;
@@ -40,11 +39,11 @@ namespace Messiah.UI {
       GetLoc(fromloc, out pos, out scale, out quat);
       card.transform.position = pos;
       card.transform.rotation = quat;
-      ((RectTransform)(card.transform)).localScale = scale;
+      card.transform.localScale = scale;
 
 
       if (fromloc == CardLocation.Center)
-        await card.Appear();
+        await card.Appear(0.2f);
 
       GetLocInBetween(fromloc, toloc, out pos, out scale, out quat);
       card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
@@ -89,8 +88,8 @@ namespace Messiah.UI {
           scale = Vector3.one;
           break;
         default:
-          pos = Vector3.zero;
-          scale = EndScale;
+          pos = transform.position;
+          scale = Vector3.one;
           break;
       }
     }
@@ -102,7 +101,7 @@ namespace Messiah.UI {
       pos = (pos1 + pos2) / 2;
       scale = (scale1 + scale2) / 2;
       pos = pos * ratio + transform.position * (1 - ratio);
-      scale = scale * ratio + MidScale * (1 - ratio);
+      scale = scale * ratio + Vector3.one * (1 - ratio);
       quat = Quaternion.identity;
     }
   }
