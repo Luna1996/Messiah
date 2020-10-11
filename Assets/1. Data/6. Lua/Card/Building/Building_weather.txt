@@ -7,12 +7,12 @@ function this:new()
   self.frame = "资源牌面s"
   self.image = "气象站p"
   --self.image = "残损义骸"
-  self.desc = "消耗10点石材，5点钢铁\n建造气象站，预报天气\n使得所有食物资源卡产量+1" ---
+  self.desc = "消耗10点石材，5点钢铁\n建造气象站，预报天气\n使得所有食物资源卡产量+8" ---
   self.inHand = false
   --self.boundingBuff={}
   self.woodc = 10
   self.ironc = 5
-  self.cost = 8
+  self.cost = 6
   self.rounds = 3
 end
 

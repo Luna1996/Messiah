@@ -11,19 +11,19 @@ function Buff_BasicFarm02(i)
 end
 
 function Buff_BasicIron01(i)
-  GameManager.AddResource(ResourceType.Iron,1)
-end
-
-function Buff_BasicIron02(i)
   GameManager.AddResource(ResourceType.Iron,2)
 end
 
+function Buff_BasicIron02(i)
+  GameManager.AddResource(ResourceType.Iron,4)
+end
+
 function Buff_BasicMine01(i)
-  GameManager.AddResource(ResourceType.Mine,1)
+  GameManager.AddResource(ResourceType.Mine,2)
 end
 
 function Buff_BasicMine02(i)
-  GameManager.AddResource(ResourceType.Mine,3)
+  GameManager.AddResource(ResourceType.Mine,4)
 end
 
 function Buff_BasicMush01(i)
@@ -35,11 +35,11 @@ function Buff_BasicMush02(i)
 end
 
 function Buff_BasicWood01(i)
-  GameManager.AddResource(ResourceType.Wood,1)
+  GameManager.AddResource(ResourceType.Wood,3)
 end
 
 function Buff_BasicWood02(i)
-  GameManager.AddResource(ResourceType.Wood,3)
+  GameManager.AddResource(ResourceType.Wood,6)
 end
 
 function Buff_Mine_02(i)

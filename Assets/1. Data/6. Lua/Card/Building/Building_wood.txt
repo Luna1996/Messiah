@@ -7,7 +7,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.image = "残损义骸"
   self.image = "采石场p"
-  self.desc = "消耗2点石材\n建造采石场\n加入2张【采石1】"
+  self.desc = "消耗2点石材\n建造采石场\n加入3张【采石1】"
   self.boundingCard={"BasicWood01","BasicWood01"}
   self.inHand = false
   --self.boundingBuff={}
@@ -19,12 +19,11 @@ end
 
 function this:applyEffect()
   self.cardView:Dissolve()
-  local temp = table.concat(self.boundingCard,";")
   Buff(
     "Buff_Building_wood", 
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     self.rounds, "buff518", nil,
-    "BuildTip", "2, 采石场正在建造,"..temp)
+    "BuildTip", "2, 采石场正在建造")
 end
 

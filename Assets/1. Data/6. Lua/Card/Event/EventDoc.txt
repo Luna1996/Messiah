@@ -1,0 +1,28 @@
+
+-------------------------------------
+-------------------------------------------
+-- Event1402
+
+
+local states ={}
+
+states.a = {
+  name = "霜痕罗兰的来访",
+  desc = "如您所见，灯塔的能量和食物\n是维持人民理智的重要资源\n被迷雾侵染虽然可怕，但并非不可逆转\n如果您愿意，我希望您能建造诊所\n以上",
+  choices = {"接受罗兰的提议-获得<b>诊所</b>和罗兰的祝福","谢绝罗兰的好意-获得20份食物"},
+  image="事件法师"
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.handView:AddCard('Building_clinic')
+
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.AddResource(ResourceType.Food,20)
+      return nil
+    end
+end
+
+
+EventDoc = Event(states.a)
+-------------------------------------

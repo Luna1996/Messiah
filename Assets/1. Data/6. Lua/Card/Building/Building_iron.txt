@@ -10,10 +10,9 @@ function this:new()
   self.boundingCard={"BasicIron01","BasicIron01"}
   self.inHand = false
   --self.boundingBuff={}
-  self.buildingConsumption={2,3,5,3}
-  self.woodc=2
-  self.ironc=3
-  self.cost =5
+  self.woodc=8
+  self.ironc=4
+  self.cost =7
   self.rounds =3
 end
 

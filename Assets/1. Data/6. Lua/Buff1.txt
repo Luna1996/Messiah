@@ -210,9 +210,8 @@ end
 function Build_mush()
   local buildingdeck = GameManager.gameData.buildingAcquired
   local mushList = {"蘑菇","蘑菇_1","蘑菇_2"}
-  for i=1,#mushList do if not buildingdeck:Contains(mushList[i]) then GameManager.Build(nil,mushList[i]) return true end end
-  GameManager.Build(nil,mushList[#mushList])
-  return false
+  for i=1,#mushList do if not buildingdeck:Contains(mushList[i]) then return mushList[i] end end
+  return mushList[#mushList]
 end
 
 function Build_mush_basic(i)
@@ -237,21 +236,21 @@ function Build_pub(i)
   GameManager.handView:AddCard('BuildCard 酒馆,酒馆p,'..location..',Build_pub_effect')
 end
 
-function BuffTayaThePirate(i)--海盗祝福 每回合 +6矿石 +4石材 +4钢铁
-  GameManager.AddResource(ResourceType.Mine,6)
-  GameManager.AddResource(ResourceType.Wood,4)
-  GameManager.AddResource(ResourceType.Iron,4)
+function BuffTayaThePirate(i)--海盗祝福 每回合 +1矿石 +1石材 +1钢铁
+  GameManager.AddResource(ResourceType.Mine,1)
+  GameManager.AddResource(ResourceType.Wood,1)
+  GameManager.AddResource(ResourceType.Iron,1)
 end
 
-function BuffAndreTheDetective(i) --侦探祝福 每回合+2科技值
-  GameManager.AddResource(ResourceType.Tech,3)
+function BuffAndreTheDetective(i) --侦探祝福 每回合+1科技值
+  GameManager.AddResource(ResourceType.Tech,1)
 end
 
-function BuffFrostyRoland(i) --医生祝福 人力资源发生变化时获得1点食物
-  GameManager.AddResource(ResourceType.Food,1)
+function BuffFrostyRoland(i) --医生祝福 每回合获得2点信仰
+  GameManager.AddResource(ResourceType.Food,2)
 end
 
-function BuffTahriTheGirl(i) --抽卡时增加2点能量（总人口不变）
+function BuffTahriTheGirl(i) --抽卡时增加1点能量（总人口不变）
   GameManager.AddResource(ResourceType.Mine,1)
 end
 
@@ -262,37 +261,43 @@ function build_clinic(i)
 end
 
 function Buff_Building_weather_21(i)
-  GameManager.Build(nil,"RawImage")
+  local location = "RawImage"
   --有问题
-  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","闪电风暴：\n每当资源变化时\n额外获得1点能量")
+  GameManager.handView:AddCard('BuildCard 天气控制器,气象站pd,'..location..',Build_weather_21_effect')
 end
+
+
 
 function Buff_Building_weather(i)
   GameManager.Build(nil,"RawImage")
-  Debug.Log('1')
-  GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] + 1
+  local location = "RawImage"
+  GameManager.handView:AddCard('BuildCard 气象站,气象站p,'..location..',Build_weather_effect')
 end
 
 
-function Buff_Building_research(i, args)
+function Buff_Building_research(i)
   GameManager.Build(nil,"研究站")
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+  local location = "研究站"
+  GameManager.handView:AddCard('BuildCard 研究站,研究所p,'..location..',Build_research_effect')
 end
 
-function Buff_Building_research_room(i, args)
-  GameManager.Build(nil,"研究站")
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+function Buff_Building_research_room(i)
+  local location ="研究站"
+  GameManager.handView:AddCard('BuildCard 研究室,研究所pd,'..location..',Build_research_room_effect')
 end
 
 
-function Buff_Building_wood(i, args)
-  local li = {"采石场","采石场_1","采石场_2","采石场_3"}
-  GameManager.Build(nil,li[math.random(1,4)])
-  local t = split(args, ',')
-  local temp = split(t[3],';')
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,temp)
+function Build_wood()
+  local buildingdeck = GameManager.gameData.buildingAcquired
+  local mineList ={"采石场","采石场_1","采石场_2","采石场_3"}
+  for i=1,#mineList do if not buildingdeck:Contains(mineList[i]) then return mineList[i] end end
+  return mineList[#mineList]
 end
+
+function Buff_Building_wood(i)
+  local location = Build_wood()
+  GameManager.AddCardsToHand({'BuildCard 采石场,采石场p,'..location..',Build_wood_effect'})
+  
+end
+
+
