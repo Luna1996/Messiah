@@ -250,6 +250,13 @@ namespace Messiah.Logic {
       }
     }
 
+    public static async Task AddCardsToHand(string[] cards) {
+      foreach (var card in cards) {
+        SendCardFromTo(card, CardLocation.Center, CardLocation.Hand);
+        await Task.Delay(100);
+      }
+    }
+
     public static async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       await cardOnFly.SendCardTo(cardView, loc, d);
     }
