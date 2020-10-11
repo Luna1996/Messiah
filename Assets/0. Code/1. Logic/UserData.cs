@@ -44,10 +44,9 @@ namespace Messiah.Logic {
     }
 
     public static void Save() {
-      var hands = new List<string>();
+      var hands = GameManager.gameData.hands;
       foreach (var card in GameManager.handView.hands)
         hands.Add(card.luacard.getCardFullName());
-      GameManager.gameData.hands = hands;
       GameManager.gameData.costMod = LuaManager.lua.Global.Get<int>("CostModifiter");
       var base64 = ByteConverter.Serialize(GameCoreNS.GameCore.userData);
       PlayerPrefs.SetString(Constant.Pref_UserDataPrefix + GameCoreNS.GameCore.userData.username, base64);

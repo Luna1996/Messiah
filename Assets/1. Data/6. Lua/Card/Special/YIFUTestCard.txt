@@ -1,0 +1,13 @@
+YIFUTestCard = class(CardBase, "YIFUTestCard")
+local this = YIFUTestCard
+
+function this:new()
+  self.name = "一夫测试用牌"
+  self.desc = "打出这张牌可能会导致bug"
+  self.image = 'godcard'
+end
+
+function this:onPlay()
+  HandView:AddToHand(self.cardView)
+end
+

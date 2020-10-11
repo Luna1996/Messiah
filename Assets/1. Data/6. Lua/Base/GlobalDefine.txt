@@ -10,6 +10,7 @@ BuffType = CS.Messiah.UI.BuffType
 Buff = CS.Messiah.UI.Buff
 DeckType = CS.Messiah.Logic.DeckType
 Debug = CS.UnityEngine.Debug
+CardLocation = CS.Messiah.UI.CardLocation
 
 -- instance class, set by csharp
 AppRoot = nil

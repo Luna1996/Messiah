@@ -6,6 +6,7 @@ namespace Messiah.UI {
   using DG.Tweening;
   using Logic;
   using UnityEngine.UI;
+  using System.Collections.ObjectModel;
 
   public class CardSelectionView : UIMask {
     static CardSelectionView view;
@@ -24,14 +25,14 @@ namespace Messiah.UI {
       rect.DOAnchorPosY(0, 0.2f);
     }
 
-    public void SetCards(List<string> cards, string title) {
+    public void SetCards(ObservableCollection<string> cards, string title) {
       this.title.text = title;
       cardScrollView.SetCards(cards);
     }
 
     public void CloseView() { Close(); }
 
-    public static async Task ToggleView(Transform trans, List<string> cards, string title) {
+    public static async Task ToggleView(Transform trans, ObservableCollection<string> cards, string title) {
       if (view) {
         if (view.title.text != title) {
           await view.rect.DOAnchorPosY(view.height, 0.2f).AsyncWaitForCompletion();

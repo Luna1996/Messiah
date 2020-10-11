@@ -2,6 +2,7 @@ namespace Messiah.Logic {
   using GameCoreNS;
   using System;
   using System.Collections.Generic;
+  using System.Collections.ObjectModel;
   using Utility;
   using UI;
 
@@ -9,11 +10,11 @@ namespace Messiah.Logic {
   public class GameData {
     public int numberOfTurn = 0;
 
-    public List<string> build;
-    public List<string> drawPile;
-    public List<string> discardPile = new List<string>();
-    public List<string> exilePile = new List<string>();
-    public List<string> hands = new List<string>();
+    public ObservableCollection<string> build;
+    public ObservableCollection<string> drawPile;
+    public ObservableCollection<string> discardPile = new ObservableCollection<string>();
+    public ObservableCollection<string> exilePile = new ObservableCollection<string>();
+    public ObservableCollection<string> hands = new ObservableCollection<string>();
     public int drawNum = 3;
     public int keepNum = 3;
 
@@ -82,16 +83,16 @@ namespace Messiah.Logic {
       }
     }
 
-    public List<string> buildingDeck = new List<string>();
-    public List<string> buildingAvaliable = new List<string>();
-    public List<string> buildingAcquired = new List<string>();
+    public ObservableCollection<string> buildingDeck = new ObservableCollection<string>();
+    public ObservableCollection<string> buildingAvaliable = new ObservableCollection<string>();
+    public ObservableCollection<string> buildingAcquired = new ObservableCollection<string>();
 
     public string phase = "start";
-    public List<string> eventDeck = new List<string>();
-    public List<string> eventStack = new List<string>();
+    public ObservableCollection<string> eventDeck = new ObservableCollection<string>();
+    public ObservableCollection<string> eventStack = new ObservableCollection<string>();
 
-    public List<Buff> buff = new List<Buff>();
-    public List<string> relic = new List<string>();
+    public ObservableCollection<Buff> buff = new ObservableCollection<Buff>();
+    public ObservableCollection<string> relic = new ObservableCollection<string>();
 
     public int costMod = 0;
     public int[] resources = { 10, 10, 10, 10, 10, 10 };
@@ -100,24 +101,24 @@ namespace Messiah.Logic {
     public static GameData NewGameData() {
       var gd = new GameData();
 
-      var testpile = new List<string> { };
+      var testpile = new List<string> { "YIFUTestCard" };
       var mustdraw = new List<string> { "BasicFoodPile", "BasicMinePile", "BasicFoodPile", };
-      var build = new List<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood", "Building_research" };
+      var build = new ObservableCollection<string> { "BasicIronPile", "BasicWoodPile", "Building_house", "Building_mine", "Building_wood", "Building_research" };
       Shuffle(build);
       mustdraw.AddRange(build);
       testpile.AddRange(mustdraw);
 
-      gd.drawPile = new List<string>(testpile);
-      gd.build = new List<string>(testpile);
+      gd.drawPile = new ObservableCollection<string>(testpile);
+      gd.build = new ObservableCollection<string>(testpile);
 
-      gd.buildingAcquired = new List<string> { };
+      gd.buildingAcquired = new ObservableCollection<string> { };
       return gd;
     }
 
     public static void ResetGame() {
     }
 
-    public static void Shuffle<T>(List<T> list) {
+    public static void Shuffle<L>(L list) where L : System.Collections.IList {
       for (int i = list.Count - 1; i >= 1; i--) {
         var j = UnityEngine.Random.Range(0, i + 1);
         var t = list[j];

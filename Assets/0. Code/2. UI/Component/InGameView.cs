@@ -9,6 +9,7 @@ namespace Messiah.UI {
   using UnityEngine;
   using UnityEngine.UI;
   using Utility;
+  using System.Collections.ObjectModel;
 
   public class InGameView : MonoBehaviour {
     RectTransform top;
@@ -169,7 +170,7 @@ namespace Messiah.UI {
     }
 
     public void ToggleDrawPile() {
-      var list = new List<string>(GameManager.gameData.drawPile);
+      var list = new ObservableCollection<string>(GameManager.gameData.drawPile);
       GameData.Shuffle(list);
       CardSelectionView.ToggleView(aboveHand, list, "抽 牌 堆");
     }
