@@ -8,7 +8,26 @@ function this:new()
 end
 
 function this:onPlay()
-  GameManager.AddCardsToHand({"YIFUTestCard", "YIFUTestCard"})
+  GameManager.SelectCards(
+    GameManager.gameData.drawPile,
+    "选择任意数量任意卡",
+    0,
+    slot(self, this.OnConfirm),
+    slot(self, this.OnSelect)
+  )
   HandView:AddToHand(self.cardView)
+end
+
+function this:OnConfirm(cards)
+  if cards ~= nil then
+    for i = 0, cards.Count - 1 do
+      Debug.Log(cards[i]:getCardFullName())
+    end
+  end
+end
+
+function this:OnSelect(card)
+  Debug.Log(card:getCardFullName().."被选中")
+  return true
 end
 

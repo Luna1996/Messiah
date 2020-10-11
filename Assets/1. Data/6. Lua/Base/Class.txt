@@ -32,7 +32,7 @@ end
 
 function slot(caller, func)
   return function (...)
-    func(caller, ...)
+    return func(caller, ...)
   end
 end
 

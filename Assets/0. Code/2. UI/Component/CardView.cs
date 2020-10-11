@@ -20,6 +20,7 @@ namespace Messiah.UI {
     public bool inPanel;
     [NonSerialized]
     public bool canSelect;
+    public XLua.LuaFunction canSelectFunc;
 
     public RawImage image;
     public RawImage frame;
@@ -106,7 +107,13 @@ namespace Messiah.UI {
     public void OnPointerClick(PointerEventData p) {
       if (!inPanel) return;
       if (mask) CloseMask();
-      else if (canSelect) OpenMask();
+      else if (canSelect) {
+        if (canSelectFunc != null) {
+          var o = canSelectFunc.Call(luacard);
+          if (!(bool)o[0]) return;
+        }
+        OpenMask();
+      }
     }
 
     [NonSerialized]

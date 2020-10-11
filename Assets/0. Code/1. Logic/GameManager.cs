@@ -64,7 +64,7 @@ namespace Messiah.Logic {
 
     public static void Build(Card card, string bname) {
       if (card != null) {
-        var i = handView.ReleaseFromHand(card.cardView);
+        handView.ReleaseFromHand(card.cardView);
         gameData.buildingDeck.Add(card.getCardFullName());
         card.cardView.DissolveInCenter();
       }
@@ -75,14 +75,14 @@ namespace Messiah.Logic {
 
 
     public static void Discard(Card card) {
-      var i = handView.ReleaseFromHand(card.cardView);
+      handView.ReleaseFromHand(card.cardView);
       gameData.discardPile.Add(card.getCardFullName());
       card.cardView.playsound.Play();
       SendCardTo(card.cardView, CardLocation.DiscardPile, 0.2f);
     }
 
     public static void Exile(Card card) {
-      var i = handView.ReleaseFromHand(card.cardView);
+      handView.ReleaseFromHand(card.cardView);
       gameData.exilePile.Add(card.getCardFullName());
       card.cardView.disolvesound.Play();
       card.cardView.Dissolve();
@@ -263,6 +263,10 @@ namespace Messiah.Logic {
 
     public static async Task SendCardFromTo(string cardname, CardLocation fromloc, CardLocation toloc, float d = 0.5f) {
       await cardOnFly.SendCardFromTo(cardname, fromloc, toloc, d);
+    }
+
+    public static void SelectCards(IList<string> cards, string title, int max, XLua.LuaFunction cb, XLua.LuaFunction canchoose = null) {
+      CardSelectionView.ToggleView(viewManager.transform, cards, title, max, cb, canchoose);
     }
   }
 }
