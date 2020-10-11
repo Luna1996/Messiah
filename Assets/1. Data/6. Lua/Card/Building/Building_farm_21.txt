@@ -6,14 +6,14 @@ function this:new()
   self.name = "温室升级"
   self.frame = "资源牌面s"
   self.image = "温室pd"
-  self.desc = "消耗钢铁20,石材20\n提高温室的工作产出\n将卡组中的【农作物种植1】替换为【农作物种植2】"
+  self.desc = "消耗钢铁20,石材20\n提高温室的工作产出\n升级农作物种植-获得60点食物"
   self.boundingCard="BasicFarm02"   --把牌组内所有的BasicFarm01替换成BasicFarm02
   self.deletingCard="BasicFarm01"
   self.inHand = false
   self.woodc = 20
   self.ironc = 20
-  self.cost =10
-  self.rounds =1
+  self.cost =8
+  self.rounds =3
 end
 
 function this:applyEffect()

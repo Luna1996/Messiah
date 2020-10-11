@@ -8,6 +8,7 @@ function this:new()
 end
 
 function this:onPlay()
+  GameManager.AddCardsToHand({"YIFUTestCard", "YIFUTestCard"})
   HandView:AddToHand(self.cardView)
 end
 

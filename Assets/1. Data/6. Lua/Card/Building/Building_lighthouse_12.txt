@@ -14,7 +14,7 @@ function this:new()
   self.rounds =self.buildingConsumption[4]
 end
 
---等结算做出来再改
+--不做
 function this:onPlay()
   if self:enoughLabor(self.cost+CostModifiter) and self:enoughRcBuilding(self.buildingConsumption) then
     self:subRcBuilding(self.buildingConsumption)

@@ -6,13 +6,13 @@ function this:new()
   self.name = "源能切割"
   self.frame = "资源牌面s"
   self.image = "钢厂pd"
-  self.desc = "消耗石材12，钢铁10\n每打出1张资源卡额外消耗1点能量，所有资源卡产量+2"
+  self.desc = "消耗石材20，钢铁30\n每打出1张资源卡额外消耗1点能量，所有资源卡产量+2"
   self.inHand = false
   self.boundingBuff={} --即时生效 为牌组内所有资源卡增加上述效果
   self.buildingConsumption={12,10,5,3}
-  self.woodc=12
-  self.ironc=10
-  self.cost=5
+  self.woodc=20
+  self.ironc=30
+  self.cost=10
   self.rounds=3
 end
 

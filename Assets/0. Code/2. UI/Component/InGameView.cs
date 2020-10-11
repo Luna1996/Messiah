@@ -4,12 +4,12 @@ namespace Messiah.UI {
   using DG.Tweening;
   using Messiah.Logic;
   using Messiah.Logic.GameCoreNS;
-  using System.Collections.Generic;
   using System.Threading.Tasks;
   using UnityEngine;
   using UnityEngine.UI;
   using Utility;
   using System.Collections.ObjectModel;
+  using System.Collections.Specialized;
 
   public class InGameView : MonoBehaviour {
     RectTransform top;
@@ -34,6 +34,10 @@ namespace Messiah.UI {
     public Text dayNum;
     public Text deadNum;
 
+    public Text drawpileNum;
+    public Text discardpileNum;
+    public Text exilepileNum;
+
     void Awake() {
       GameManager.cardOnFly = GetComponentInChildren<CardOnFly>();
       Logic.GameManager.gameData = GameCore.userData.currentGameData;
@@ -47,6 +51,14 @@ namespace Messiah.UI {
       nextOn = AtlasManager.GetSprite("下一天s");
       nextOff = AtlasManager.GetSprite("下一天");
 
+      OnDrawPileCountChanged();
+      OnDiscardPileCountChanged();
+      OnExilePileCountChanged();
+
+      GameManager.gameData.drawPile.CollectionChanged += OnDrawPileChanged;
+      GameManager.gameData.discardPile.CollectionChanged += OnDiscardPileChanged;
+      GameManager.gameData.exilePile.CollectionChanged += OnExilePileChanged;
+
       EventService.Listen(GameEvent.EnterMainPhase, OnTurnStart);
       EventService.Listen(GameEvent.EnterConsumePhase, OnEnterConsumePhase);
       EventService.ListenAsync(GameEvent.EnterEventPhase, OnEnterEventPhase);
@@ -58,6 +70,9 @@ namespace Messiah.UI {
     }
 
     void OnDestroy() {
+      GameManager.gameData.drawPile.CollectionChanged -= OnDrawPileChanged;
+      GameManager.gameData.discardPile.CollectionChanged -= OnDiscardPileChanged;
+      GameManager.gameData.exilePile.CollectionChanged -= OnExilePileChanged;
       EventService.Ignore(GameEvent.EnterMainPhase, OnTurnStart);
       EventService.Ignore(GameEvent.EnterConsumePhase, OnEnterConsumePhase);
       EventService.IgnoreAsync(GameEvent.EnterEventPhase, OnEnterEventPhase);
@@ -105,9 +120,9 @@ namespace Messiah.UI {
       GameManager.DrawCard(GameManager.gameData.drawNum);
     }
 
-    public void NextDay() {
+    public async void NextDay() {
       ToggleNextDay(false);
-      CardSelectionView.UnloadView();
+      await CardSelectionView.UnloadView();
       if (DiscardPhaseView.NeedDiscard())
         PrefabManager.Instanciate("DiscardPhaseView", underHand);
       else
@@ -222,6 +237,33 @@ namespace Messiah.UI {
       deadNum.text = $"{GameManager.gameData.deadWorker}";
       await deadNum.transform.DOScale(new Vector3(1.1f, 1.1f, 1), 0.5f).SetEase(Ease.Linear).AsyncWaitForCompletion();
       await deadNum.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.Linear).AsyncWaitForCompletion();
+    }
+
+    public void OnDrawPileChanged(object sender, NotifyCollectionChangedEventArgs args) {
+      var pile = GameManager.gameData.drawPile;
+      OnDrawPileCountChanged();
+    }
+
+    public void OnDrawPileCountChanged() {
+      drawpileNum.text = $"{GameManager.gameData.drawPile.Count}";
+    }
+
+    public void OnDiscardPileChanged(object sender, NotifyCollectionChangedEventArgs args) {
+      var pile = GameManager.gameData.discardPile;
+      OnDiscardPileCountChanged();
+    }
+
+    public void OnDiscardPileCountChanged() {
+      discardpileNum.text = $"{GameManager.gameData.discardPile.Count}";
+    }
+
+    public void OnExilePileChanged(object sender, NotifyCollectionChangedEventArgs args) {
+      var pile = GameManager.gameData.exilePile;
+      OnExilePileCountChanged();
+    }
+
+    public void OnExilePileCountChanged() {
+      exilepileNum.text = $"{GameManager.gameData.exilePile.Count}";
     }
   }
 }

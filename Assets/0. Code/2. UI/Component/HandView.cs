@@ -78,6 +78,7 @@ namespace Messiah.UI {
     }
 
     public async Task AddToHand(CardView ui) {
+      ui.hands = this;
       ui.transform.SetParent(transform);
       int index;
       int.TryParse(ui.gameObject.name, out index);
