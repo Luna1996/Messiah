@@ -6,7 +6,7 @@ function this:new()
   self.name = "诅咒-贪婪"
   self.frame = "诅咒牌面"
   self.image = "贪欲"
-  self.desc = "获得下列效果之一：\n获得8点能量\n失去4点能量\n抽1张牌\n牌组中加入1张<b>[贪婪]</b>"
+  self.desc = "获得下列效果之一：\n获得8能量;失去4能量;抽1张牌;\n牌组中加入1张<b>[贪婪]</b>"
   --self.usageAmount = 1
   self.inHand = false
 end
@@ -16,9 +16,10 @@ function this:onPlay()
   --效果待写
   GameManager.Discard(self)
   local r = math.random(1,4)
+  Debug.Log(r)
   if r==1 then GameManager.AddResource(ResourceType.Mine,8)
   elseif r==2 then GameManager.SubResource(ResourceType.Mine,4)
   elseif r==3 then GameManager.DrawCard()
-  else GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed",}) end
+  elseif r==4 then GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed",}) end
 end
 

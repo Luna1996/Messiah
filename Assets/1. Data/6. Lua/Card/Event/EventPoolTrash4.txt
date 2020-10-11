@@ -1,0 +1,36 @@
+-------------------------------------------
+-- Event1012
+
+local states ={}
+
+states.a = {
+  name = "行道商人",
+  desc = "商人似乎有东西要出售\n"..
+  "这样的世道下，居然还有行道商人\n"..
+  "实在是不可思议...",
+  choices = {"购买食物 能量-12 罐头+2","购买石材 能量-10 石材+7","购买钢材 能量-10 钢铁+5",
+  "商人的小礼物 能量+1"},
+  image="事件报道小哥"
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.SubResource(ResourceType.Mine,12)
+      GameManager.AddCardsToHand({"BasicFoodPile","BasicFoodPile"})
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.SubResource(ResourceType.Mine,10)
+      GameManager.AddResource(ResourceType.Wood,7)
+      return nil
+    elseif choice==self.choices[3] then
+      GameManager.SubResource(ResourceType.Mine,10)
+      GameManager.AddResource(ResourceType.Iron,5)
+      return nil
+    elseif choice==self.choices[4] then
+      GameManager.AddResource(ResourceType.Mine,1)
+      return nil    
+    end
+end
+
+EventPoolTrash4 = Event(states.a)
+
+-------------------------------------

@@ -8,7 +8,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "炼钢1"
-  self.desc = "下回合,获得1点钢铁"
+  self.desc = "下回合,获得2点钢铁"
 
   self.cost = 1
   self.rounds = 1

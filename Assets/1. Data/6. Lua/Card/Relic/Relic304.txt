@@ -1,8 +1,8 @@
 Relic304 = Relic()
 local this = Relic304
 this.ID=304
-this.name='怠惰之息'
-this.desc='卡组中加入1张【诅咒-怠惰】和3张基础资源卡'
+this.name='贪婪之息'
+this.desc='卡组中加入1张【诅咒-贪婪】和3张基础资源卡'
 this.rare='pandora'
 this.icon=nil
 
@@ -14,6 +14,6 @@ function this.apply()
   local randomList = {"BasicMine01","BasicWood01","BasicIron01"}
 
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,randomList)
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_sloth"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
 end
 

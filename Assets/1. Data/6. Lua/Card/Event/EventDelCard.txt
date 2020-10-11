@@ -1,0 +1,30 @@
+
+-------------------------------------
+-------------------------------------------
+-- Event1402
+
+
+local states ={}
+
+states.a = {
+  name = "删除牌组",
+  desc = "如您所见，牌组的优化也非常重要\n您可以选择牌组中的牌进行删除\n",
+  choices = {"选择删除1张牌","不必了-获得5点所有资源"},
+  image="事件6"
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.AddResource(ResourceType.Food,5)
+      GameManager.AddResource(ResourceType.Iron,5)
+      GameManager.AddResource(ResourceType.Wood,5)
+      GameManager.AddResource(ResourceType.Mine,5)
+      return nil
+    end
+end
+
+
+EventDelCard = Event(states.a)
+-------------------------------------

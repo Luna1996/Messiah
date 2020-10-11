@@ -1,0 +1,28 @@
+-------------------------------------------
+-- Event1012
+
+local states ={}
+
+states.a = {
+  name = "落雷",
+  desc = "天气阴沉 马上会有雷暴\n"..
+  "一旦闪电击中灯塔 将会带来损害 需要石材修缮\n"..
+  "但似乎也能因此补充不菲的能量\n"..
+  "是否说明矿石中也蕴含着雷电的能量呢\n"..
+  "如此惊人的能量蕴含在小小的矿石中，实在是不可思议",
+  choices = {"雷击灯塔-能量+10 修缮灯塔-石材-5","引雷-钢材-1"},
+  image="事件报道小哥"
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.SubResource(ResourceType.Wood,5)
+      GameManager.AddResource(ResourceType.Mine,10)
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.SubResource(ResourceType.Iron,1)
+    end
+end
+
+EventPoolTrash3 = Event(states.a)
+
+-------------------------------------

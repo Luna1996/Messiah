@@ -49,7 +49,9 @@ end
 function states.b:choose(choice)
   if choice == self.choices[1] then
     GameManager.SubResource(ResourceType.Food, 8)
-    Buff("BuffTahriTheGirl",GameEvent.IG_DrawCard,BuffType.Repeat,-1,"buff403","<b>米西亚的祝福</b>\n抽牌时获得1点能量")
+    Buff("BuffTahriTheGirl",
+    GameEvent.IG_DrawCard,BuffType.Repeat,-1,"buff403",
+    "<b>米西亚的祝福</b>\n抽牌时获得1点能量")
   else
     GameManager.AddResource(ResourceType.Faith, 1)
   end

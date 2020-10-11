@@ -1,0 +1,44 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "深渊的呼唤",
+  desc = "深渊在呼唤着您\n"..
+  "您是否愿意接受深渊的馈赠？选择如下效果",
+  choices = {"神秘仪式-每回合抽牌+1 人口消耗+1",
+  "贪欲之舌-卡组中加入1张【诅咒-贪婪】和3张基础资源卡",
+  "愤怒之袭-抽牌数+1，卡组中加入1张【愤怒】",
+  "工作号角-抽牌数+3 手牌保留上限变为0",
+  "过载抽取-抽牌数+1 回合开始时失去5点能量"},
+  image="事件3"
+  }
+function states.a:choose(choice)
+    local curseCard ={"Curse_creed","Curse_wrath","Curse_gluttony","Curse_lust"}
+    if choice == self.choices[1] then
+      GameManager.gameData.drawNum = GameManager.gameData.drawNum +1
+      CostModifiter = CostModifiter + 1
+      return nil
+    elseif choice==self.choices[2] then
+      local randomList = {"BasicMine01","BasicWood01","BasicIron01"}
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,randomList)
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
+      return nil
+    elseif choice==self.choices[3] then
+      GameManager.gameData.drawNum = GameManager.gameData.drawNum + 1
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_wrath"})
+      return nil
+    elseif choice==self.choices[4] then
+      GameManager.gameData.drawNum = GameManager.gameData.drawNum +1
+      Buff("Buff_Relic306",GameEvent.EnterMainPhase,BuffType.Repeat,-1,'buff306','过载抽取：\n回合开始时失去5点能量，额外抽1张卡')
+      return nil
+    elseif choice==self.choices[5] then
+      return nil
+
+    end
+end
+
+EventCurse3= Event(states.a)
+-------------------------------------

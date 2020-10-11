@@ -38,7 +38,7 @@ function Build_mine_01_effect()
 end
 
 function Build_mine_02_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMine01",})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Mine_02",})
 end
 
 function Build_mine_11_effect()

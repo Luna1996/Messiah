@@ -1,0 +1,47 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "深渊的呼唤",
+  desc = "深渊在呼唤着您\n"..
+  "您是否愿意接受深渊的馈赠？\n拾取1张<b>随机诅咒卡</b>，获得如下效果",
+  choices = {"石之心-获得10点石材",
+  "钢铁之心-获得5点钢铁",
+  "饕餮之心-获得30点食物",
+  "钢石之力-石材和钢铁的资源产量+1",
+  "拒绝深渊的馈赠"},
+  image="事件3"
+  }
+function states.a:choose(choice)
+  local curseCard ={"Curse_creed","Curse_wrath","Curse_gluttony","Curse_lust"}
+    if choice == self.choices[1] then
+      GameManager.AddResource(ResourceType.Wood,10)
+      GameManager.AddCardsToHand({curseCard[math.random(1,4)],})
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.AddResource(ResourceType.Iron,5)
+      GameManager.AddCardsToHand({curseCard[math.random(1,4)],})
+      return nil
+    elseif choice==self.choices[3] then
+      GameManager.AddResource(ResourceType.Food,30)
+      GameManager.AddCardsToHand({curseCard[math.random(1,4)],})
+      return nil
+    elseif choice==self.choices[4] then
+      GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] =
+      GameManager.gameData.resourcesModifitor[ResourceType.Wood.value__] +1
+      GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__] =
+      GameManager.gameData.resourcesModifitor[ResourceType.Iron.value__] +1
+      GameManager.AddCardsToHand({curseCard[math.random(1,4)],})
+      return nil
+    elseif choice==self.choices[5] then
+      
+      return nil
+
+    end
+end
+
+EventCurse1= Event(states.a)
+-------------------------------------

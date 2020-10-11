@@ -1,0 +1,35 @@
+-------------------------------------------
+-- Event1012
+
+local states ={}
+
+states.a = {
+  name = "城市发展",
+  desc = "一味苟活毫无意义\n"..
+  "我们必须要发展才有未来\n"..
+  "请您选择城市的发展方向",
+  choices = {"增加人口-获得住宅*2",
+  "储备能量-获得采矿场",
+  "开采石材-获得采石场",
+  "种植蘑菇-获得蘑菇农场"},
+  image="事件报道小哥"
+  }
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.AddCardsToHand({"Building_house","Building_house"})
+      return nil
+    elseif choice==self.choices[2] then
+      GameManager.AddCardsToHand({"Building_mine",})
+      return nil
+    elseif choice==self.choices[3] then
+      GameManager.AddCardsToHand({"Building_wood",})
+      return nil
+    elseif choice==self.choices[4] then
+      GameManager.AddCardsToHand({"Building_mush",})
+      return nil
+    end
+end
+
+EventPoolBuild = Event(states.a)
+
+-------------------------------------

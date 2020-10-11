@@ -8,10 +8,11 @@ function this:new()
   self.image = "色欲"
   self.desc = "占用2点人力,抽1张牌"
   --self.usageAmount = 1
+  self.cost=2
   self.inHand = false
 end
 
-function this:onPlay()
-  GameManager.DrawCard()
+function this:applyEffect()
   GameManager.Discard(self)
+  GameManager.DrawCard()
 end

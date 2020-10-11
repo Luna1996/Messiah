@@ -8,5 +8,5 @@ this.icon=nil
 
 function this.apply()
   GameManager.AddResource(ResourceType.Tech,10)
-  Buff("Buff_Relic303",GameEvent.ExitMainPhase,BuffType.OneShot,5,"buff303","知识的代价：5回合后失去所有科技值")
+  Buff("Buff_Relic303",GameEvent.ExitMainPhase,BuffType.OneShot,5,"buff303","<b>知识的代价<b>\n5回合后失去所有科技值")
 end

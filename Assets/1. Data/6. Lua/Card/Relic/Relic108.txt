@@ -5,7 +5,7 @@ this.ID=108
 this.name='建筑号角'
 this.desc='每建造1个新建筑人口+1'
 this.rare='normal'
-
+--废弃
 function this.apply()
   Buff("add_maxWorker",GameEvent.IG_BuildingsBuit,BuffType.Repeat,"buff108","每建造1个建筑 人口+1")
 end

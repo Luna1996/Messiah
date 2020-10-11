@@ -5,7 +5,7 @@ this.ID=105
 this.name='矿石祝福'
 this.desc='抽到天气牌时获得5点能量'
 this.rare='normal'
-
+--未实现
 function this.apply()
   Buff("Buff_Relic105",GameEvent.IG_WeatherCardDraw,BuffType.Repeat,-1,"buff105","抽到天气牌时获得5点能量")
 end

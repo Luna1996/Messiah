@@ -246,8 +246,8 @@ function BuffAndreTheDetective(i) --侦探祝福 每回合+1科技值
   GameManager.AddResource(ResourceType.Tech,1)
 end
 
-function BuffFrostyRoland(i) --医生祝福 每回合获得2点信仰
-  GameManager.AddResource(ResourceType.Food,2)
+function BuffFrostyRoland(i) --医生祝福 每回合获得1点信仰
+  GameManager.AddResource(ResourceType.Faith,2)
 end
 
 function BuffTahriTheGirl(i) --抽卡时增加1点能量（总人口不变）
