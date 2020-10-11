@@ -8,7 +8,7 @@ states.a = {
   name = "不稳定的灯塔",
   desc = "灯塔的激光发生器出现了问题\n"..
   "是否让人进去检修\n很可能会有生命危险",
-  choices = {"派人检修-人口-1，获得炸弹",
+  choices = {"派空闲的工人进入检修-人口-1，获得炸弹",
   "不派人检修 能量-10",},
   image="事件2"
   }
@@ -16,9 +16,10 @@ function states.a:choose(choice)
     if choice == self.choices[1] then
       if GameManager.gameData.idleWorker>0 then
       GameManager.AddCardsToHand({"Wood_02"})
-      GameManager.gameData.maxWorker = GameManager.gameData.maxWorker -1 
-      else GameManager.SubResource(ResourceType.Mine,10) end
-      return nil
+      GameManager.gameData.maxWorker = GameManager.gameData.maxWorker -1 return nil
+      else
+      return states.a
+      end
     elseif choice==self.choices[2] then
       GameManager.SubResource(ResourceType.Mine,10)
       return nil
