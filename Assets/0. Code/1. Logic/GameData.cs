@@ -26,7 +26,6 @@ namespace Messiah.Logic {
           var dif = value - _maxWorker;
           if (dif < 0) deadWorker -= dif;
           _maxWorker = value;
-          deadWorker -= deadWorker;
           idleWorker += dif;
           EventService.Notify(GameEvent.IG_MaxWorkerChanged);
         }
