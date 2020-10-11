@@ -58,7 +58,9 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
+    Buff("BuffTayaThePirate",
+    GameEvent.EnterMainPhase,BuffType.Repeat,-1,
+    "buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
     GameManager.handView:AddCard('Building_pub')
     return nil
 
@@ -71,5 +73,5 @@ function states.c:choose(choice)
 end
 
 
-Event1402 = Event(states.a)
+EventPirate = Event(states.a)
 -------------------------------------

@@ -1,0 +1,26 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "信仰之萌芽",
+  image = "事件4",
+  desc = "“古神之息即为迷雾，尔等需诚心祷告，以得善果”\n——《幽邃圣典》",
+  choices = {"供奉圣典-<b>获得教堂</b>","将圣典投入火炉-获得10点能量"},
+
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+        GameManager.AddCardsToHand({"Build_church"})
+        return nil
+      else
+        GameManager.AddResource(ResourceType.Mine,10)
+        return nil
+    end
+end
+
+EventChurch = Event(states.a)
+-------------------------------------

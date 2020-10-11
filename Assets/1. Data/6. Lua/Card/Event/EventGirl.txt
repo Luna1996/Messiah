@@ -56,6 +56,6 @@ function states.b:choose(choice)
   return nil
 end
 
-Event1011 = Event(states.a)
+EventGirl = Event(states.a)
 
 -------------------------------------

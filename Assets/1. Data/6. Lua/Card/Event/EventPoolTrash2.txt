@@ -1,6 +1,5 @@
 -------------------------------------------
--- Event1377
-
+-- Event1012
 
 local states ={}
 
@@ -23,5 +22,6 @@ function states.a:choose(choice)
     end
 end
 
-Event1377 = Event(states.a)
+EventPoolTrash2 = Event(states.a)
+
 -------------------------------------
