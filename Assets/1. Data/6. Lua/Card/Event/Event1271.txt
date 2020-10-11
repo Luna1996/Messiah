@@ -19,7 +19,7 @@ function states.a:choose(choice)
       then
         GameManager.SubResource(ResourceType.Wood,5) 
         GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Build_church"})
-        return states.b
+        return nil
       else
         GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Curse_creed"})
         return nil
