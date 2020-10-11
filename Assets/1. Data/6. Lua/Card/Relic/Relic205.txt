@@ -7,6 +7,6 @@ this.rare='rare'
 this.icon=nil
 --不做
 function this.apply()
-  Buff("Buff_Relic205",GameEvent.IG_ResourceModify,BuffType.Repeat,-1,"buff109","闪电风暴")
+  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","<b>闪电风暴</b>\n每当人口变化时获得1点资源")
 end
 

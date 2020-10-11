@@ -14,7 +14,7 @@ function this:new(arg)
     self.build="教堂"
     self.func='ChurchBuild(i)'
   end
-  self.frame="科技牌面"
+  self.frame="科技牌面s"
   self.cost=nil
   self.desc=self.name.."已完工\n打出此卡来建造它"
 end

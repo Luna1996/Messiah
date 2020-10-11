@@ -12,7 +12,7 @@ states.a = {
   "...直到迷雾的出现改变了这一切"
   ,
   choices = {"欢迎流放之船的拜访-减少5点能量",
-  "拒绝流放之船的拜访"},
+  "拒绝流放之船的拜访-无事发生"},
   image="事件报道小哥"
   }
 
@@ -23,7 +23,7 @@ states.b  = {
   "更不用提泰娅召集而来的船员们，他们都是旧约之地的流放者"..
   "流放...是因为罪行吗...迷雾出现之前，或许是的吧...",
   choices = {"举办盛大宴会招待泰娅的船队-减少8点食物"
-  ,"热情欢迎泰娅和船员的到来"},
+  ,"船员...?还是不了吧-无事发生"},
   image="事件海盗"
 }
 
@@ -33,7 +33,7 @@ states.c  = {
   "也许长期的海上生活已让她厌倦"..
   "又或者...只是迷雾已经厚重到不适合继续航行了"..
   "毕竟，我们不像它们，还是需要视觉的",
-  choices = {"挽留泰娅-获得泰娅的祝福",
+  choices = {"挽留泰娅-获得泰娅的祝福 可以建造酒馆",
   "送别泰娅-获得泰娅的谢礼 20石材 20钢铁 30食物"},
   image="事件海盗"
 }
@@ -58,13 +58,14 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","<b>泰娅的祝福</b>\n每回合获得6能量/4石材/4钢铁")
+    Buff("BuffTayaThePirate",GameEvent.EnterMainPhase,BuffType.Repeat,-1,"buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
+    GameManager.handView:AddCard('Building_pub')
     return nil
 
   elseif choice==self.choices[2] then
-    GameManager.AddResource(Resource.Wood,40)
-    GameManager.AddResource(Resource.Iron,40)
-    GameManager.AddResource(Resource.Food,20)
+    GameManager.AddResource(Resource.Wood,20)
+    GameManager.AddResource(Resource.Iron,20)
+    GameManager.AddResource(Resource.Food,30)
     return nil
   end
 end

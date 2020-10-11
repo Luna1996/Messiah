@@ -70,7 +70,7 @@ function Build_mush_01_effect()
 end
 
 function Build_mush_11_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Mush_02","Mush_02"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Mush_02",})
 end
 
 function Build_mush_basic_effect()
@@ -79,4 +79,24 @@ end
 
 function Build_pub_effect()
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"drink","drink"})
+end
+
+function Build_research_room_effect()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Research",})
+end
+
+function Build_research_effect()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Research","Research","Tech_Table",})
+end
+
+function Build_weather_effect()
+  GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] = GameManager.gameData.resourcesModifitor[ResourceType.Food.value__] + 1
+end
+
+function Build_weatther_21_effect()
+  Buff("Buff_Relic205",GameEvent.IG_IdleWorkerChanged,BuffType.Repeat,-1,"buff109","闪电风暴：\n每当人口变化时\n额外获得1点能量")
+end
+
+function Build_wood_effect()
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicWood01","BasicWood01","BasicWood01"})
 end
