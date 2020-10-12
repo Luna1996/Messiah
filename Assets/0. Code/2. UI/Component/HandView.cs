@@ -8,6 +8,7 @@ namespace Messiah.UI {
   using System.Threading.Tasks;
   using Messiah.Logic;
   using XLua;
+  using System.Linq;
 
   public class HandView : MonoBehaviour {
     [SerializeField]
@@ -53,6 +54,7 @@ namespace Messiah.UI {
     }
 
     public void RestoreCardPosition(float duration = 0.5f) {
+      hands = hands.Distinct().ToList();
       var dir = arcData.from;
       var rotateStep = Quaternion.AngleAxis(arcData.degree / (hands.Count + 1), -transform.forward);
       int index = 0;
