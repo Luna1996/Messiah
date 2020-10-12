@@ -63,7 +63,7 @@ namespace XLua.CSObjectWrap
 #endif
 		}
         
-		void Messiah.Logic.LuaEvent.choose(string choice)
+		System.Func<System.Threading.Tasks.Task> Messiah.Logic.LuaEvent.choose(string choice)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -71,7 +71,7 @@ namespace XLua.CSObjectWrap
 #endif
 				RealStatePtr L = luaEnv.L;
 				int err_func = LuaAPI.load_error_func(L, luaEnv.errorFuncRef);
-				
+				ObjectTranslator translator = luaEnv.translator;
 				
 				LuaAPI.lua_getref(L, luaReference);
 				LuaAPI.xlua_pushasciistring(L, "choose");
@@ -88,14 +88,14 @@ namespace XLua.CSObjectWrap
 				LuaAPI.lua_remove(L, -3);
 				LuaAPI.lua_pushstring(L, choice);
 				
-				int __gen_error = LuaAPI.lua_pcall(L, 2, 0, err_func);
+				int __gen_error = LuaAPI.lua_pcall(L, 2, 1, err_func);
 				if (__gen_error != 0)
 					luaEnv.ThrowExceptionFromError(err_func - 1);
 				
 				
-				
+				System.Func<System.Threading.Tasks.Task> __gen_ret = translator.GetDelegate<System.Func<System.Threading.Tasks.Task>>(L, err_func + 1);
 				LuaAPI.lua_settop(L, err_func - 1);
-				
+				return  __gen_ret;
 #if THREAD_SAFE || HOTFIX_ENABLE
             }
 #endif

@@ -1,0 +1,9 @@
+require("CharactorCard")
+GirlCard = class(CharactorCard, "DocCard")
+local this = GirlCard
+
+function this:new()
+  self.frame = "小姑娘牌面"
+  self.name = "米希亚"
+  self.desc = nil
+end

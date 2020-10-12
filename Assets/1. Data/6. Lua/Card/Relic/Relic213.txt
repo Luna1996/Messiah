@@ -8,6 +8,5 @@ this.icon=nil
 --待修改
 function this.apply()
   --从牌组中选择2张卡删除
-
 end
 

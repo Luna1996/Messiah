@@ -5,7 +5,7 @@
 local states ={}
 
 states.a = {
-  name = "米西亚之伤",
+  name = "米希亚之伤",
   desc = "你的人民信念发生了动摇，一些人准备放弃这里",
   choices = {"为什么！！！"}
   }

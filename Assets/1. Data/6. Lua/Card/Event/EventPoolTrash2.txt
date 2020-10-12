@@ -14,9 +14,10 @@ states.a = {
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
+      if GameManager.GetResource(ResourceType.Wood)>5 then
       GameManager.SubResource(ResourceType.Wood,5)
       GameManager.AddResource(ResourceType.Faith,30)
-      return nil
+      return nil else return states.a end
     elseif choice==self.choices[2] then
       GameManager.AddCardsToHand({"BasicWoodPile"})
     end

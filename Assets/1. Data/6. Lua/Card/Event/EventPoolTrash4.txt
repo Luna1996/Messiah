@@ -27,7 +27,7 @@ function states.a:choose(choice)
       return nil
     elseif choice==self.choices[4] then
       GameManager.AddResource(ResourceType.Mine,1)
-      return nil    
+      return nil
     end
 end
 

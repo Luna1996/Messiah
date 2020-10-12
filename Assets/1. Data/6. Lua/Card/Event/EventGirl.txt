@@ -15,7 +15,7 @@ states.a = {
   choices = {
     "带她来高塔，不惜代价<b>（-6能量）</b>",
     "浓雾来客，从无善者<b>（-5信仰）</b>",
-    "不能接受这种怪物，有悖教义<b>（+6信仰，-3科技）</b>"}
+    "不能接受这种怪物，有悖教义<b>（+6信仰）</b>"}
   }
 
 states.b = {
@@ -27,20 +27,24 @@ states.b = {
     "那些可怕的怪物...",
   choices = {
     "我不能坐视不管<b>（-5食物）小女孩加入城市</b>",
-    "愿明灯指引你前行<b>（+1信仰）</b>"
+    "愿明灯指引你前行<b>（+5信仰）</b>"
   }
 }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      GameManager.SubResource(ResourceType.Mine, 10)
+      if GameManager.GetResource(ResourceType.Mine)>6 then
+      GameManager.SubResource(ResourceType.Mine, 6)
       return states.b
+      else return states.a end
     else
       if choice == self.choices[2] then
+        if GameManager.GetResource(ResourceType.Faith)>5 then
         GameManager.SubResource(ResourceType.Faith, 5)
-        return nil
+      return nil
+      else return states.a end
       else
-        GameManager.AddResource(ResourceType.Faith, 10)
-        GameManager.SubResource(ResourceType.Tech, 10)
+        GameManager.AddResource(ResourceType.Faith, 6)
+        GameManager.SubResource(ResourceType.Tech, 3)
       return nil
       end
 
@@ -48,14 +52,21 @@ function states.a:choose(choice)
 end
 function states.b:choose(choice)
   if choice == self.choices[1] then
-    GameManager.SubResource(ResourceType.Food, 8)
-    Buff("BuffTahriTheGirl",
-    GameEvent.IG_DrawCard,BuffType.Repeat,-1,"buff403",
-    "<b>米西亚的祝福</b>\n抽牌时获得1点能量")
+    if GameManager.GetResource(ResourceType.Food)>5 then
+    return nil, await(
+        function ()
+          return GameManager.DisplayCard("GirlCard", 1)
+        end,
+        function ()
+          GameManager.SubResource(ResourceType.Food, 5)
+          Buff("BuffTahriTheGirl",
+          GameEvent.IG_DrawCard,BuffType.Repeat,-1,"buff403",
+          "<b>米希亚的祝福</b>\n抽牌时获得1点能量")
+        end)
+        else return states.b end
   else
-    GameManager.AddResource(ResourceType.Faith, 1)
-  end
-  return nil
+    GameManager.AddResource(ResourceType.Faith, 5)
+    return nil end
 end
 
 EventGirl = Event(states.a)

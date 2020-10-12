@@ -30,4 +30,3 @@ function this:OnSelect(card)
   Debug.Log(card:getCardFullName().."被选中")
   return true
 end
-

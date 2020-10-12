@@ -17,6 +17,7 @@ namespace Messiah.Logic {
   }
 
   public enum DeckType {
+    Build,
     OriginalDeckAndDrawPile,
     DrawPile,
     DiscardPile,
@@ -222,7 +223,7 @@ namespace Messiah.Logic {
       }
     }
 
-    static void ReplaceCardTo(ObservableCollection<string> list, string src, string dst) {
+    static void ReplaceCardTo(IList<string> list, string src, string dst) {
       for (int i = 0; i < list.Count; i++) {
         if (list[i].StartsWith(src)) {
           list[i] = dst;
@@ -250,7 +251,7 @@ namespace Messiah.Logic {
       }
     }
 
-    static void RemoveCardTo(ObservableCollection<string> list, string[] card) {
+    static void RemoveCardTo(IList<string> list, string[] card) {
       foreach (var c in card) {
         for (int i = 0; i < list.Count; i++)
           if (list[i].StartsWith(c)) list.RemoveAt(i);
@@ -264,6 +265,14 @@ namespace Messiah.Logic {
       }
     }
 
+    public static void AddCardToHand(string card) {
+      SendCardFromTo(card, CardLocation.Center, CardLocation.Hand);
+    }
+
+    public static async Task DisplayCard(string card, float d = 1) {
+      await cardOnFly.SendCardFromTo(card, CardLocation.Center, CardLocation.Center, d);
+    }
+
     public static async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       await cardOnFly.SendCardTo(cardView, loc, d);
     }
@@ -274,6 +283,41 @@ namespace Messiah.Logic {
 
     public static void SelectCards(IList<string> cards, string title, int max, XLua.LuaFunction cb, XLua.LuaFunction canchoose = null) {
       CardSelectionView.ToggleView(viewManager.transform, cards, title, max, cb, canchoose);
+    }
+
+    public static async Task SelectCards(DeckType dtype, string title, int max, XLua.LuaFunction cb, XLua.LuaFunction canchoose = null) {
+      ObservableCollection<string> cards;
+      switch (dtype) {
+        case DeckType.Build:
+          cards = gameData.build;
+          break;
+        case DeckType.DrawPile:
+          cards = new ObservableCollection<string>(gameData.drawPile);
+          GameData.Shuffle(cards);
+          break;
+        case DeckType.DiscardPile:
+          cards = gameData.discardPile;
+          break;
+        default:
+          cards = null;
+          break;
+      }
+      await CardSelectionView.ToggleView(viewManager.transform, cards, title, max, cb, canchoose);
+    }
+
+    public static async Task Do(System.Func<Task>[] tasks) {
+      foreach (var task in tasks) {
+        var t = task();
+        if (t != null) await t;
+      }
+    }
+
+    public static string[] GetHeroes() {
+      var max = inGameView.charpanel.transform.childCount;
+      List<string> names = new List<string>();
+      for (int i = 0; i < max; i++)
+        names.Add(inGameView.charpanel.transform.GetChild(i).gameObject.name);
+      return names.ToArray();
     }
   }
 }

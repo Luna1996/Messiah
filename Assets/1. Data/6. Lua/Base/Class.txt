@@ -50,3 +50,14 @@ function split(str, split_char)
   end      
   return sub_str_tab
 end
+
+function delay(ms)
+  return CS.System.Threading.Tasks.Task.Delay(ms)
+end
+
+function await(...)
+  local args = {...}
+  return function ()
+    return GameManager.Do(args)
+  end
+end

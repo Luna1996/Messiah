@@ -12,7 +12,12 @@ namespace Messiah.Editor {
       typeof(System.Action),
       typeof(System.Action<int,string>),
       typeof(Messiah.Logic.LuaEvent),
-      typeof(Messiah.Logic.LuaEventState)
+      typeof(Messiah.Logic.LuaEventState),
+      typeof(Func<System.Threading.Tasks.Task>)
+    };
+    [LuaCallCSharp]
+    public static List<Type> LuaCallCSharp = new List<Type>() {
+      typeof(Func<System.Threading.Tasks.Task>)
     };
   }
 }

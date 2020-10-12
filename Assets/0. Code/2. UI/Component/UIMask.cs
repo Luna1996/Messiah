@@ -13,9 +13,10 @@ namespace Messiah.UI {
       await canvasGroup.DOFade(1, duration).AsyncWaitForCompletion();
     }
 
-    public async Task Close() {
+    public async Task Close(bool destroy = true) {
       await canvasGroup.DOFade(0, duration).AsyncWaitForCompletion();
-      Destroy(gameObject);
+      if (destroy)
+        Destroy(gameObject);
     }
   }
 }

@@ -40,8 +40,9 @@ states.c  = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
-        GameManager.SubResource(ResourceType.Mine,10)
-        return states.b
+      if GameManager.GetResource(ResourceType.Mine)>5 then
+        GameManager.SubResource(ResourceType.Mine,5)
+      return states.b else return states.a end
     elseif choice==self.choices[2] then
       return nil
     end
@@ -49,8 +50,9 @@ end
 
 function states.b:choose(choice)
   if choice == self.choices[1] then
-      GameManager.SubResource(ResourceType.Food,20)
-    return states.c
+    if GameManager.GetResource(ResourceType.Food)>8 then
+      GameManager.SubResource(ResourceType.Food,8)
+    return states.c else return states.b end
   elseif choice==self.choices[2] then
     return nil
   end
@@ -58,11 +60,17 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    Buff("BuffTayaThePirate",
-    GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-    "buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
-    GameManager.handView:AddCard('Building_pub')
-    return nil
+    return nil, await(
+      function ()
+        return GameManager.DisplayCard("PirateCard", 1)
+      end,
+      function ()
+        Buff("BuffTayaThePirate",
+        GameEvent.EnterMainPhase,BuffType.Repeat,-1,
+        "buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
+        GameManager.AddCardToHand('Building_pub')
+      end
+    )
 
   elseif choice==self.choices[2] then
     GameManager.AddResource(Resource.Wood,20)

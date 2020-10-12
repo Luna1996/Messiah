@@ -1,0 +1,9 @@
+require("CharactorCard")
+PirateCard = class(CharactorCard, "DocCard")
+local this = PirateCard
+
+function this:new()
+  self.frame = "海盗牌面"
+  self.name = "泰娅"
+  self.desc = nil
+end

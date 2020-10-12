@@ -14,8 +14,22 @@ states.a = {
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      
-      return nil
+      return nil, await(
+        function ()
+          return GameManager.SelectCards(
+            DeckType.DrawPile,
+            "选择一张卡删除",
+            1,
+            function (cards)
+              local list = {}
+              for i = 0, cards.Count - 1 do
+                list[#list + 1] = cards[i]:getCardFullName()
+              end
+              GameManager.RemoveCard(DeckType.DrawPile, list)
+            end
+          )
+        end
+      )
     elseif choice==self.choices[2] then
       GameManager.AddResource(ResourceType.Food,5)
       GameManager.AddResource(ResourceType.Iron,5)

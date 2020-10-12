@@ -1,11 +1,12 @@
 namespace Messiah.Logic {
-  using System.Collections.Generic;
+  using System;
+  using System.Threading.Tasks;
 
   public interface LuaEvent {
     LuaEventState initState { get; set; }
     LuaEventState currentState { get; set; }
     string[] choices();
-    void choose(string choice);
+    Func<Task> choose(string choice);
   }
   public interface LuaEventState {
     string name { get; set; }

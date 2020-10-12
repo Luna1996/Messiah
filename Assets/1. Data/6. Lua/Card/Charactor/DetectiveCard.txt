@@ -1,0 +1,9 @@
+require("CharactorCard")
+DetectiveCard = class(CharactorCard, "DocCard")
+local this = DetectiveCard
+
+function this:new()
+  self.frame = "侦探牌面"
+  self.name = "安德"
+  self.desc = nil
+end
