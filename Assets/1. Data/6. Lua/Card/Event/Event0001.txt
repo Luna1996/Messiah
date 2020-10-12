@@ -13,6 +13,7 @@ states.a = {
     "同时在弥赛亚的所有建筑也都是会消耗1点能量！如果能量校验失败，我们的人民就会被迷雾侵蚀，出现死亡",
   choices = {
     "点击<color=red>左上角能量图标</color>可以查看他的说明",
+    "我知道了！"
   }
 }
 
@@ -30,6 +31,7 @@ states.b = {
     "还可以点点下方<color=red>人口图标</color>看看",
     "还可以点点最下方<color=red>信仰图标</color>看看",
     "还可以点点最下方<color=red>科技图标</color>看看",
+    "我知道了！"
   }
 }
 states.c = {
@@ -45,6 +47,7 @@ states.c = {
     "      左上角是<color=red>耗尽牌库</color>      ",
     "左下角的房子是<color=red>返回我们的主菜单</color>",
     "主界面<color=red>继续游戏</color>可以帮您找回存档哦",
+    "我知道了！"
   }
 }
 
@@ -61,21 +64,28 @@ states.d = {
 
 function states.a:choose(choice)
     if choice == self.choices[1] then
+      return states.a
+    else
       return states.b
     end
   end
 
 function states.b:choose(choice)
-    if choice then
+    if choice == self.choices[7] then
       GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush"})
       return states.c
+    else
+      return states.b
     end
 end
 
 function states.c:choose(choice)
-  if choice then
+  if choice == self.choices[6] then
     return states.d
+  else
+    return states.c
   end
+
 end
 
 function states.d:choose(choice)

@@ -8,11 +8,25 @@ function this:new()
   self.image = "色欲"
   self.desc = "占用2点人力,抽1张牌"
   --self.usageAmount = 1
-  self.cost=2
+  self.cost=nil
   self.inHand = false
 end
 
-function this:applyEffect()
-  GameManager.Discard(self)
-  GameManager.DrawCard()
+function this:onPlay()
+  if GameManager.gameData.idleWorker >=2
+  then
+    GameManager.gameData.idleWorker = GameManager.gameData.idleWorker - 2
+    Buff(
+      "AddBackLabor", 
+      GameEvent.EnterMainPhase, 
+      BuffType.OneShot, 
+      self.rounds, 'buff512', nil,
+      "XLaborTurn", tostring(2)..",名工人被诅咒牌占用,"..tostring(1))
+ 
+      GameManager.Discard(self)
+      GameManager.DrawCard()
+    else
+      HandView:AddToHand(self.cardView)
+    end
+    
 end
