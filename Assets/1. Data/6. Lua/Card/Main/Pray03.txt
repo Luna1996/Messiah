@@ -1,5 +1,5 @@
-Pray01 = class(CardBase,'Pray01')
-local this = Pray01
+Pray03 = class(CardBase,'Pray03')
+local this = Pray03
 --待修改--
 function this:new()
   self.cardView = nil
