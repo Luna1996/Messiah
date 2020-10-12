@@ -1,35 +1,153 @@
 local states ={}
 
-local heros = {"buff401", "buff402", "buff403", "buff404"}
-local hasheros = GameManager.GetHeroes()
+local getheronames = GameManager.GetHeroes()
+local hasheroes = {}
+for i = 0, getheronames.Length - 1 do
+  hasheroes[getheronames[i]] = true
+end
 
+hasheroes.energy = GameManager.GetResource(ResourceType.Mine) >= 50
+
+hasheroes.energy = true
+hasheroes.buff402 = true
+hasheroes.buff403 = true
+hasheroes.buff404 = true
 states.a = {
   name = "浓雾来袭",
   image = "事件报道小哥",
   desc = 
-    "浓雾之下无人可以幸免",
+    "浓雾之下无人可以幸免……",
   choices = {
-    "最大功率开启灯塔（-100能量）",
-    "我没有这么多能量..."
+    "最大功率开启灯塔（-50能量）",
   }
 }
 
-states.b = {
-  name = "浓雾来袭",
-  image = "事件报道小哥",
-  desc = 
-    "浓雾之下无人可以幸免",
-  choices = {
-    "灯塔过载（-100能量）",
-  }
-}
-
-function states.a:choose(choice)
-    if choice == self.choices[1] then
-      GameManager.AddResource(ResourceType.Mine, 20)
-      return nil
-    end
+if hasheroes.energy == false then
+  states.a.choices = {"我没有这么多能量..."}
 end
 
+function states.a:choose()
+  if hasheroes.energy then
+    GameManager.SubResource(ResourceType.Mine, 50)
+    return states.b
+  else
+    GameManager.gameData.maxWorker = 0
+    return nil
+  end
+end
+
+states.b = {
+  name = "教团暴乱",
+  image = "事件小姑娘",
+  desc = 
+    "浓雾之下无人可以幸免，教团发生了暴乱!",
+  choices = {
+    "米西娅安抚了教众"
+  }
+}
+
+if hasheroes.buff403 == nil then
+  states.b.image = "事件报道小哥"
+  states.b.choices = "你无能为力"
+end
+
+function states.b:choose()
+  if hasheroes.buff403 then
+    GameManager.SubResource(ResourceType.Faith, 1000)
+    return states.c
+  else
+    GameManager.gameData.maxWorker = 0
+    return nil
+  end
+end
+
+states.c = {
+  name = "翻江倒海",
+  image = "事件海盗",
+  desc = 
+    "浓雾之下无人可以幸免，海啸来袭！",
+  choices = {
+    "泰娅带领大家登上了海盗船"
+  }
+}
+
+if hasheroes.buff402 == nil then
+  states.c.image = "事件报道小哥"
+  states.c.choices = {"你无能为力"}
+end
+
+function states.c:choose()
+  if hasheroes.buff402 then
+    GameManager.SubResource(ResourceType.Iron, 1000)
+    return states.d
+  else
+    GameManager.gameData.maxWorker = 0
+    return nil
+  end
+end
+
+states.d = {
+  name = "岌岌可危",
+  image = "事件侦探",
+  desc = 
+    "浓雾之下无人可以幸免，灯塔过载了！",
+  choices = {
+    "安德修好了灯塔",
+  }
+}
+
+if hasheroes.buff404 == nil then
+  states.d.image = "事件报道小哥"
+  states.d.choices = {"你无能为力"}
+end
+
+function states.d:choose()
+  if hasheroes.buff404 then
+    GameManager.SubResource(ResourceType.Tech, 1000)
+    return states.e
+  else
+    GameManager.gameData.maxWorker = 0
+    return nil
+  end
+end
+
+states.e = {
+  name = "人性不存",
+  image = "事件法师",
+  desc = 
+    "浓雾之下无人可以幸免，有人陷入了疯狂……",
+  choices = {
+    "罗兰挽救了他们",
+  }
+}
+
+if hasheroes.buff401 == nil then
+  states.e.image = "事件报道小哥"
+  states.e.choices = {"你无能为力"}
+end
+
+function states.e:choose()
+  if hasheroes.buff401 then
+    GameManager.SubResource(ResourceType.Food, 1000)
+    return states.f
+  else
+    GameManager.gameData.maxWorker = 0
+    return nil
+  end
+end
+
+states.f = {
+  name = "浓雾散去",
+  image = "事件报道小哥",
+  desc = "终于，浩劫结束了",
+  choices = {
+    "真的吗……太好了",
+  }
+}
+
+function states.f:choose()
+  GameCore.FAM:Fire(GameStateTrigger.GameEnd)
+  return nil
+end
 
 EndingEvent = Event(states.a)

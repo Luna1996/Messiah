@@ -16,7 +16,10 @@ namespace Messiah.UI {
       await base.Start();
       float d = 1;
 
-      var buildingNum = GameManager.gameData.buildingAcquired.Count + 1;
+      var buildingNum = 1;
+      foreach (var name in GameManager.gameData.buildingAcquired) {
+        if (!name.StartsWith("住宅")) buildingNum += 1;
+      }
       var energyMod = GameManager.gameData.resourcesModifitor[(int)ResourceType.Mine];
       var energyCost = buildingNum - energyMod;
       if (energyCost < 0) energyCost = 0;
