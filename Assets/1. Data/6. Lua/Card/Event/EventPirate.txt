@@ -58,11 +58,17 @@ end
 
 function states.c:choose(choice)
   if choice == self.choices[1] then
-    Buff("BuffTayaThePirate",
-    GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-    "buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
-    GameManager.handView:AddCard('Building_pub')
-    return nil
+    return nil, await(
+      function ()
+        return GameManager.DisplayCard("PirateCard", 1)
+      end,
+      function ()
+        Buff("BuffTayaThePirate",
+        GameEvent.EnterMainPhase,BuffType.Repeat,-1,
+        "buff402","<b>泰娅的祝福</b>\n每回合获得1能量/1石材/1钢铁")
+        GameManager.AddCardToHand('Building_pub')
+      end
+    )
 
   elseif choice==self.choices[2] then
     GameManager.AddResource(Resource.Wood,20)

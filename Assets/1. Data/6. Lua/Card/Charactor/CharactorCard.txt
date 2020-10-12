@@ -1,0 +1,6 @@
+CharactorCard = class(CardBase, "CharactorCard")
+local this = CharactorCard
+
+function  this:setCardView()
+  self.cardView.image.gameObject:SetActive(false)
+end

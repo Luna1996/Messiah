@@ -10,6 +10,7 @@ namespace Messiah.UI {
     public RectTransform drawPile;
     public RectTransform discardPile;
     public RectTransform exilePile;
+    static Vector3 cscale = new Vector3(2, 2, 1);
 
     public async Task SendCardTo(CardView cardView, CardLocation loc, float d = 0.5f) {
       cardView.canPlay = false;
@@ -42,24 +43,30 @@ namespace Messiah.UI {
       card.transform.localScale = scale;
 
 
-      if (fromloc == CardLocation.Center)
-        await card.Appear(0.2f);
+      if (fromloc == CardLocation.Center) {
+        await card.Dissolve(0.5f, true);
+        await Task.Delay((int)(d * 500));
+      } else {
+        GetLocInBetween(fromloc, toloc, out pos, out scale, out quat);
+        card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
+        card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
+        await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
+      }
 
-      GetLocInBetween(fromloc, toloc, out pos, out scale, out quat);
-      card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
-      card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
-      await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
+      if (toloc == CardLocation.Hand) {
+        GameManager.handView.AddToHand(card);
+        return;
+      }
 
-      GetLoc(toloc, out pos, out scale, out quat);
-      card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
-      card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
-      await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
 
       if (toloc == CardLocation.Center) {
-        await card.Disappear();
-      } else if (toloc == CardLocation.Hand) {
-        GameManager.handView.AddToHand(card);
+        await Task.Delay((int)(d * 500));
+        await card.Dissolve(0.5f);
       } else {
+        GetLoc(toloc, out pos, out scale, out quat);
+        card.transform.DOMove(pos, d / 2).SetEase(Ease.Linear);
+        card.transform.DOScale(scale, d / 2).SetEase(Ease.Linear);
+        await card.transform.DORotateQuaternion(quat, d / 2).SetEase(Ease.Linear).AsyncWaitForCompletion();
         GameObject.Destroy(card.gameObject);
       }
     }
@@ -85,7 +92,7 @@ namespace Messiah.UI {
           break;
         case CardLocation.Center:
           pos = transform.position;
-          scale = Vector3.one;
+          scale = cscale;
           break;
         default:
           pos = transform.position;
@@ -101,7 +108,7 @@ namespace Messiah.UI {
       pos = (pos1 + pos2) / 2;
       scale = (scale1 + scale2) / 2;
       pos = pos * ratio + transform.position * (1 - ratio);
-      scale = scale * ratio + Vector3.one * (1 - ratio);
+      scale = scale * ratio + cscale * (1 - ratio);
       quat = Quaternion.identity;
     }
   }

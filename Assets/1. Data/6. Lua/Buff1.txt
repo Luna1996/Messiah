@@ -4,7 +4,7 @@ end
 
 function ChurchBuild(i)
   local location="教堂"
-  GameManager.handView:AddCard('BuildCard 教堂建造,教堂p,'..location..',Build_church_effect')
+  GameManager.AddCardToHand('BuildCard 教堂建造,教堂p,'..location..',Build_church_effect')
 end
 
 function ChurchFaith(i)
@@ -80,12 +80,12 @@ end
 
 function Build_church_01(i)
   local location="教堂"
-  GameManager.handView:AddCard('BuildCard 教堂修缮,教堂pd,'..location..',Build_church_01_effect')
+  GameManager.AddCardToHand('BuildCard 教堂修缮,教堂pd,'..location..',Build_church_01_effect')
 end
 
 function Build_farm_21(i)
   local location="温室"
-  GameManager.handView:AddCard('BuildCard 温室升级,温室pd,'..location..',Build_farm_21_effect')
+  GameManager.AddCardToHand('BuildCard 温室升级,温室pd,'..location..',Build_farm_21_effect')
 end
 
 
@@ -99,7 +99,7 @@ function ReplaceCard(src,dist)
     if s.luacard:getCardFullName()==src then
       GameManager.handView:RemoveCard(s.luacard)
       s.luacard.cardView:Dissolve()
-      GameManager.handView:AddCard(dist)
+      GameManager.AddCardToHand(dist)
     end
   end
 end
@@ -107,7 +107,7 @@ end
 function Build_farm(i)
   --GameManager.Build(nil,"温室")
   local location ="温室"
-  GameManager.handView:AddCard('BuildCard 温室建造,温室p,'..location..',Build_farm_effect')
+  GameManager.AddCardToHand('BuildCard 温室建造,温室p,'..location..',Build_farm_effect')
 end
 
 
@@ -122,18 +122,18 @@ end
 
 function Build_house_01(i)
   local location = Build_house()
-  GameManager.handView:AddCard('BuildCard 住房扩建,住宅pd,'..location..',Build_house_01_effect')
+  GameManager.AddCardToHand('BuildCard 住房扩建,住宅pd,'..location..',Build_house_01_effect')
 end
 
 function Build_house_11(i)
   local location = Build_house()
-  GameManager.handView:AddCard('BuildCard 住房装修,住宅pd,'..location..',Build_house_11_effect')
+  GameManager.AddCardToHand('BuildCard 住房装修,住宅pd,'..location..',Build_house_11_effect')
   
 end
 
 function Build_house_basic(i)
   local location = Build_house()
-  GameManager.handView:AddCard('BuildCard 住宅建筑,住宅p,'..location..',Build_house_basic_effect')
+  GameManager.AddCardToHand('BuildCard 住宅建筑,住宅p,'..location..',Build_house_basic_effect')
 end
 
 
@@ -147,7 +147,7 @@ end
 
 function Build_iron_basic(i)
   local location = Build_iron()
-  GameManager.handView:AddCard('BuildCard 钢厂建设,钢厂p,'..location..',Build_iron_basic_effect')
+  GameManager.AddCardToHand('BuildCard 钢厂建设,钢厂p,'..location..',Build_iron_basic_effect')
 end
 
 
@@ -160,26 +160,26 @@ end
 
 function Build_mine_01(i)
   local location = Build_mine()
-  GameManager.handView:AddCard('BuildCard 改进矿机,采煤机pd,'..location..',Build_mine_01_effect')
+  GameManager.AddCardToHand('BuildCard 改进矿机,采煤机pd,'..location..',Build_mine_01_effect')
 end
 
 
 function Build_mine_02(i)
   local location = Build_mine()
-  GameManager.handView:AddCard('BuildCard 管线铺设,采煤机pd,'..location..',Build_mine_02_effect')
+  GameManager.AddCardToHand('BuildCard 管线铺设,采煤机pd,'..location..',Build_mine_02_effect')
 end
 
 
 function Build_mine_11(i)
   local location = "钢厂"
-  GameManager.handView:AddCard('BuildCard 高炉升级,钢厂pd,'..location..',Build_mine_11_effect')
+  GameManager.AddCardToHand('BuildCard 高炉升级,钢厂pd,'..location..',Build_mine_11_effect')
 end
 
 
 function Build_mine_21(i)
   
   local location =Build_iron()
-  GameManager.handView:AddCard('BuildCard 联轴运转,钢厂pd,'..location..',Build_mine_21_effect')
+  GameManager.AddCardToHand('BuildCard 联轴运转,钢厂pd,'..location..',Build_mine_21_effect')
   
 end
 
@@ -196,13 +196,13 @@ end
 
 function Build_mine_22(i)
   local location = Build_iron()
-  GameManager.handView:AddCard('BuildCard 源能切割器,钢厂pd,'..location..',Build_mine_22_effect')
+  GameManager.AddCardToHand('BuildCard 源能切割器,钢厂pd,'..location..',Build_mine_22_effect')
 end
 
 
 function Build_mine_basic(i)
   local location = Build_mine()
-  GameManager.handView:AddCard('BuildCard 能源矿机,采煤机p,'..location..',Build_mine_basic_effect')
+  GameManager.AddCardToHand('BuildCard 能源矿机,采煤机p,'..location..',Build_mine_basic_effect')
 end
 
 
@@ -216,24 +216,24 @@ end
 
 function Build_mush_basic(i)
   local location = Build_mush()
-  GameManager.handView:AddCard('BuildCard 蘑菇农场,蘑菇p,'..location..',Build_mush_basic_effect')
+  GameManager.AddCardToHand('BuildCard 蘑菇农场,蘑菇p,'..location..',Build_mush_basic_effect')
 end
 
 function Build_mush_01(i)
   local location = Build_mush()
-  GameManager.handView:AddCard('BuildCard 蘑菇水培池,蘑菇pd,'..location..',Build_mush_01_effect')
+  GameManager.AddCardToHand('BuildCard 蘑菇水培池,蘑菇pd,'..location..',Build_mush_01_effect')
 end
 
 
 
 function Build_mush_11(i)
   local location = Build_mush()
-  GameManager.handView:AddCard('BuildCard 孢子实验,蘑菇pd,'..location..',Build_mush_11_effect')
+  GameManager.AddCardToHand('BuildCard 孢子实验,蘑菇pd,'..location..',Build_mush_11_effect')
 end
 
 function Build_pub(i)
   local location = "酒馆"
-  GameManager.handView:AddCard('BuildCard 酒馆,酒馆p,'..location..',Build_pub_effect')
+  GameManager.AddCardToHand('BuildCard 酒馆,酒馆p,'..location..',Build_pub_effect')
 end
 
 function BuffTayaThePirate(i)--海盗祝福 每回合 +1矿石 +1石材 +1钢铁
@@ -257,13 +257,13 @@ end
 function build_clinic(i)
   --GameManager.Build(nil,"医院")
   local location = "医院"
-  GameManager.handView:AddCard('BuildCard 诊所建造,医院p,'..location..',Build_clinic_effect') 
+  GameManager.AddCardToHand('BuildCard 诊所建造,医院p,'..location..',Build_clinic_effect') 
 end
 
 function Buff_Building_weather_21(i)
   local location = "RawImage"
   --有问题
-  GameManager.handView:AddCard('BuildCard 天气控制器,气象站pd,'..location..',Build_weather_21_effect')
+  GameManager.AddCardToHand('BuildCard 天气控制器,气象站pd,'..location..',Build_weather_21_effect')
 end
 
 
@@ -271,19 +271,19 @@ end
 function Buff_Building_weather(i)
   GameManager.Build(nil,"RawImage")
   local location = "RawImage"
-  GameManager.handView:AddCard('BuildCard 气象站,气象站p,'..location..',Build_weather_effect')
+  GameManager.AddCardToHand('BuildCard 气象站,气象站p,'..location..',Build_weather_effect')
 end
 
 
 function Buff_Building_research(i)
   GameManager.Build(nil,"研究站")
   local location = "研究站"
-  GameManager.handView:AddCard('BuildCard 研究站,研究所p,'..location..',Build_research_effect')
+  GameManager.AddCardToHand('BuildCard 研究站,研究所p,'..location..',Build_research_effect')
 end
 
 function Buff_Building_research_room(i)
   local location ="研究站"
-  GameManager.handView:AddCard('BuildCard 研究室,研究所pd,'..location..',Build_research_room_effect')
+  GameManager.AddCardToHand('BuildCard 研究室,研究所pd,'..location..',Build_research_room_effect')
 end
 
 

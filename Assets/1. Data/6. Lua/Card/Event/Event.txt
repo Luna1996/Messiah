@@ -9,5 +9,7 @@ function Event:choices()
 end
 
 function Event:choose(choice)
-  self.currentState = self.currentState:choose(choice)
+  local delay
+  self.currentState, delay = self.currentState:choose(choice)
+  return delay
 end

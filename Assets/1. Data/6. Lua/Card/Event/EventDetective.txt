@@ -9,15 +9,24 @@ local states ={}
 states.a = {
   name = "安德的来访",
   desc = "如您所见，随着城市规模的扩大\n基础的建筑已经不能满足人民的需要\n科技才是人们对抗迷雾的重要武器\n让您的人民来获取知识吧\n以上",
-  choices = {"聘请安德为科学顾问-获得<b>研究所</b>和安德的祝福",},
+  choices = {"聘请安德为科学顾问-获得<b>研究所</b>和安德的祝福","再想想"},
   image="事件侦探"
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      GameManager.AddCardsToHand({'Building_research'})
-      Buff("BuffAndreTheDetective",
-      GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-      "buff404","<b>安德的祝福</b>\n每回合获得1科技点")
+      return nil, await(
+        function ()
+          return GameManager.DisplayCard("DetectiveCard", 1)
+        end,
+        function ()
+          GameManager.AddCardsToHand({'Building_research'})
+          Buff("BuffAndreTheDetective",
+          GameEvent.EnterMainPhase,BuffType.Repeat,-1,
+          "buff404","<b>安德的祝福</b>\n每回合获得1科技点")
+          return delay(1000)
+        end
+      )
+    else 
       return nil
     end
 end

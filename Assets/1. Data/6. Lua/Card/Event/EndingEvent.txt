@@ -1,0 +1,35 @@
+local states ={}
+
+local heros = {"buff401", "buff402", "buff403", "buff404"}
+local hasheros = GameManager.GetHeroes()
+
+states.a = {
+  name = "浓雾来袭",
+  image = "事件报道小哥",
+  desc = 
+    "浓雾之下无人可以幸免",
+  choices = {
+    "最大功率开启灯塔（-100能量）",
+    "我没有这么多能量..."
+  }
+}
+
+states.b = {
+  name = "浓雾来袭",
+  image = "事件报道小哥",
+  desc = 
+    "浓雾之下无人可以幸免",
+  choices = {
+    "灯塔过载（-100能量）",
+  }
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      GameManager.AddResource(ResourceType.Mine, 20)
+      return nil
+    end
+end
+
+
+EndingEvent = Event(states.a)

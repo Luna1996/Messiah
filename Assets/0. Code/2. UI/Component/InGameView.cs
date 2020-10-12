@@ -86,14 +86,14 @@ namespace Messiah.UI {
       GameManager.inGameView = this;
       LuaManager.lua.Global.Set("HandView", handView);
       LuaManager.lua.Global.Set("InGameView", this);
-      top.DOAnchorPosY(0, 0.5f);
-      await bottom.DOAnchorPosY(0, 0.5f).AsyncWaitForCompletion();
       for (int i = 0; i < resouces.Length; i++)
         OnResourceChanged(i);
       OnHumanChanged();
       foreach (var buff in GameManager.gameData.buff)
         buff.SetUp();
       OnDeadWorkerChanged();
+      top.DOAnchorPosY(0, 0.5f);
+      await bottom.DOAnchorPosY(0, 0.5f).AsyncWaitForCompletion();
 
       handView.Init();
       foreach (var card in GameManager.gameData.hands) {

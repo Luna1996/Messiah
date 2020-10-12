@@ -18,13 +18,13 @@
     List<CardView> cards;
 
     new async void Start() {
-      await base.Start();
       cards = new List<CardView>(GameManager.handView.hands);
       foreach (var card in cards) card.inPanel = true;
       keepNum = GameManager.gameData.keepNum;
       discNum = GameManager.handView.hands.Count - keepNum;
       UpdataDesc();
       EventService.ListenWithArg<CardView>(GameEvent.IG_OnCardSelectionChanged, OnCardSelectionChanged);
+      await base.Start();
     }
 
     void UpdataDesc() {

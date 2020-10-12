@@ -8,6 +8,7 @@ namespace Messiah.UI {
   using UnityEngine.UI;
   using Utility;
   using Logic.GameCoreNS;
+  using System.Threading;
 
   public class CardSelectionView : UIMask {
     static CardSelectionView view;
@@ -23,6 +24,7 @@ namespace Messiah.UI {
     XLua.LuaFunction canchoose;
 
     List<Card> selection;
+    CancellationTokenSource cs;
 
     new async void Start() {
       view = this;
@@ -72,11 +74,13 @@ namespace Messiah.UI {
     public void OnConfirm() {
       cb?.Call(selection);
       UnloadView();
+      if (cs != null) cs.Cancel();
     }
 
     public void CloseView() {
       cb?.Call(null);
       UnloadView();
+      if (cs != null) cs.Cancel();
     }
 
     public static async Task ToggleView(Transform trans, IList<string> cards, string title, int max = -1, XLua.LuaFunction cb = null, XLua.LuaFunction canchoose = null) {
@@ -88,13 +92,20 @@ namespace Messiah.UI {
           await view.rect.DOAnchorPosY(0, 0.2f).AsyncWaitForCompletion();
         } else {
           await UnloadView();
+          return;
         }
       } else {
         view = PrefabManager.Instanciate("CardSelectionView", trans).GetComponent<CardSelectionView>();
         view.SetCards(cards, title);
         view.SetCB(max, cb, canchoose);
       }
-
+      if (max != -1) {
+        view.cs = new CancellationTokenSource();
+        try {
+          await Task.Delay(-1, view.cs.Token);
+        } catch (System.Exception) {
+        }
+      }
     }
 
     public static async Task UnloadView() {

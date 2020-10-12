@@ -25,7 +25,7 @@ namespace Messiah.UI {
     [NonSerialized]
     GameObject buffIcon;
 
-    static List<string> characters = new List<string> { "buff401", "buff402", "buff403", "buff404" };
+    public static List<string> characters = new List<string> { "buff401", "buff402", "buff403", "buff404" };
 
 
     public Buff(string buff, Enum trigger, BuffType type, int maxtime, string icon, string tips, string tipsFunc = null, string args = null) {
@@ -49,6 +49,7 @@ namespace Messiah.UI {
         if (characters.Contains(icon)) trans = GameManager.inGameView.charpanel;
         else trans = GameManager.inGameView.buffpanel;
         buffIcon = PrefabManager.Instanciate("BuffIcon", trans);
+        buffIcon.name = buff;
         var texture = (Texture2D)AtlasManager.GetTexture(icon);
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
         buffIcon.GetComponent<Image>().sprite = sprite;

@@ -60,12 +60,14 @@ namespace Messiah.UI {
       EventService.Listen(GameEvent.IG_OnCostModifiterChanged, luacard.setCardView);
     }
 
-    public async void Dissolve() {
+    public async Task Dissolve(float d = 1, bool reverse = false) {
       var effect = GetComponent<UIDissolve>();
+      effect.reverse = reverse;
+      effect.duration = d;
       effect.enabled = true;
       effect.Play(true);
       await System.Threading.Tasks.Task.Delay((int)(effect.duration * 1000));
-      if (this != null)
+      if (!reverse && this != null)
         Destroy(gameObject);
     }
 

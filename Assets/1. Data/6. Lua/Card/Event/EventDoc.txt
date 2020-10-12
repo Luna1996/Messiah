@@ -14,11 +14,18 @@ states.a = {
   }
 function states.a:choose(choice)
     if choice == self.choices[1] then
-      GameManager.AddCardsToHand({'Building_clinic'})
-      Buff("BuffFrostyRoland",
-      GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-      "buff401","<b>罗兰的祝福</b>\n每回合获得2信仰值")
-      return nil
+      return nil, await(
+          function ()
+            return GameManager.DisplayCard("DocCard", 1)
+          end,
+          function ()
+            GameManager.AddCardsToHand({'Building_clinic'})
+            Buff("BuffFrostyRoland",
+            GameEvent.EnterMainPhase,BuffType.Repeat,-1,
+            "buff401","<b>罗兰的祝福</b>\n每回合获得2信仰值")
+            return delay(1000)
+          end
+        )
     elseif choice==self.choices[2] then
       GameManager.AddResource(ResourceType.Food,20)
       return nil

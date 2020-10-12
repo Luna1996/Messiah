@@ -1,0 +1,14 @@
+require("CharactorCard")
+DocCard = class(CharactorCard, "DocCard")
+local this = DocCard
+
+function this:new()
+  self.frame = "法师牌面"
+  self.name = "爽痕罗兰"
+  self.desc = nil
+end
+
+function this:applyEffect()
+  GameManager.DisplayCard("DocCard")
+  self.base.applyEffect(self)
+end

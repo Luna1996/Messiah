@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 8446934134295882494}
   - component: {fileID: 7816393223762353082}
   - component: {fileID: 7993422836726682753}
+  - component: {fileID: 5000300775902895548}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -316,6 +317,21 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\u96F6\u4E00\u4E8C\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341"
+--- !u!114 &5000300775902895548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862088342067649552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: -5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6198843609699073906
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +606,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194098715759703590, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786446368297847946, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}
+      propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7498098939257441994, guid: cddbad455ac4fa64ba1d18181037cd77, type: 3}

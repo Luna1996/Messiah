@@ -39,8 +39,14 @@ namespace Messiah.UI {
       foreach (var choice in evt.currentState.choices) {
         var btn = PrefabManager.Instanciate("EventChoiceButton", choices);
         btn.GetComponentInChildren<Text>().text = choice;
-        btn.GetComponent<Button>().onClick.AddListener(() => {
-          evt.choose(choice);
+        btn.GetComponent<Button>().onClick.AddListener(async () => {
+          var delay = evt.choose(choice);
+          if (delay != null) {
+            await Close(false);
+            await delay();
+            if (evt.currentState != null)
+              await base.Start();
+          }
           UpdateState();
         });
       }
