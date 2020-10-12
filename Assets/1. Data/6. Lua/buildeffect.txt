@@ -1,5 +1,5 @@
 function Build_house_basic_effect()
-  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 1
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker + 2
 end
 
 function Build_church_01_effect()
@@ -23,7 +23,7 @@ function Build_farm_effect()
 end
 
 function Build_house_01_effect()
-  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker+2
+  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker+5
 end
 
 function Build_house_11_effect()

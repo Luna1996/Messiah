@@ -6,7 +6,7 @@ function this:new()
   self.name = "住宅"
   self.frame = "资源牌面s"
   self.image = "住宅p"
-  self.desc = "消耗石材2\n建造民宅\n城市的人口数量+1"
+  self.desc = "消耗石材2\n建造民宅\n城市的人口数量+2"
   --self.boundingCard={"Pray01","Pray02","Pray02"}
   self.inHand = false
   self.woodc = 2
