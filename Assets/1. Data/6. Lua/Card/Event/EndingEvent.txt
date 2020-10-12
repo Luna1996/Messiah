@@ -6,7 +6,7 @@ for i = 0, getheronames.Length - 1 do
   hasheroes[getheronames[i]] = true
 end
 
-hasheroes.energy = GameManager.GetResource(ResourceType.Mine) >= 50
+hasheroes.energy = GameManager.GetResource(ResourceType.Mine) >= 100
 
 hasheroes.energy = true
 hasheroes.buff402 = true
@@ -18,17 +18,17 @@ states.a = {
   desc = 
     "浓雾之下无人可以幸免……",
   choices = {
-    "最大功率开启灯塔（-50能量）",
+    "最大功率开启灯塔（-100能量）",
   }
 }
 
 if hasheroes.energy == false then
-  states.a.choices = {"我没有这么多能量..."}
+  states.a.choices = {"我没有这么多……（需要100能量）"}
 end
 
 function states.a:choose()
   if hasheroes.energy then
-    GameManager.SubResource(ResourceType.Mine, 50)
+    GameManager.SubResource(ResourceType.Mine, 100)
     return states.b
   else
     GameManager.gameData.maxWorker = 0
