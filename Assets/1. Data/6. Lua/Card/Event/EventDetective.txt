@@ -17,7 +17,7 @@ function states.a:choose(choice)
       GameManager.AddCardsToHand({'Building_research'})
       Buff("BuffAndreTheDetective",
       GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-      "buff402","<b>安德的祝福</b>\n每回合获得1科技点")
+      "buff404","<b>安德的祝福</b>\n每回合获得1科技点")
       return nil
     end
 end

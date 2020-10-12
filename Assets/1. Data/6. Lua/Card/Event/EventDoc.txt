@@ -17,7 +17,7 @@ function states.a:choose(choice)
       GameManager.AddCardsToHand({'Building_clinic'})
       Buff("BuffFrostyRoland",
       GameEvent.EnterMainPhase,BuffType.Repeat,-1,
-      "buff402","<b>罗兰的祝福</b>\n每回合获得2信仰值")
+      "buff401","<b>罗兰的祝福</b>\n每回合获得2信仰值")
       return nil
     elseif choice==self.choices[2] then
       GameManager.AddResource(ResourceType.Food,20)
