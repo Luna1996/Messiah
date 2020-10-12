@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c4e818f735e1c4a9ffbee95faea3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "<b>\u91C7\u7164\u573A</b>"
+  text: "<b>\u80FD\u6E90\u77FF\u573A</b>"
 --- !u!222 &4932628646266775214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4677,7 +4677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c4e818f735e1c4a9ffbee95faea3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "<b>\u91C7\u7164\u573A</b>"
+  text: "<b>\u80FD\u6E90\u77FF\u573A</b>"
 --- !u!222 &8113686680381199965
 CanvasRenderer:
   m_ObjectHideFlags: 0
