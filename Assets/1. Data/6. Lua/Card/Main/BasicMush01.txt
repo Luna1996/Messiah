@@ -8,7 +8,7 @@ function this:new()
   --self.frame = "CardFrame_0"
   self.frame = "资源牌面s"
   self.image = "蘑菇培植1"
-  self.desc = "第3回合,收获10点食物"
+  self.desc = "第3回合,收获20点食物"
 
   self.cost = 1
   self.rounds = 2
@@ -24,6 +24,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     2, "buff507", nil,
-    "Xturn", "2,获得10点食物")
+    "Xturn", "2,获得20点食物")
   GameManager.Discard(self)
 end
