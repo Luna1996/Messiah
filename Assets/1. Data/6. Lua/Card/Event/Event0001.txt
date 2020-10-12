@@ -23,7 +23,7 @@ states.b = {
   desc = 
     "大人，我们的人民每人每天都需要消耗1点食物，"..
     "缺少食物就会使得人民死去，"..
-    "我们随身携带的罐头快要吃完了，必须建造自己的食物来源建筑，才能保证人民生存了，建造我们自己的食物来源吧！<color=red>得到一张建筑：蘑菇农场</color>",
+    "我们随身携带的罐头快要吃完了，必须建造自己的食物来源建筑，才能保证人民生存了，建造我们自己的食物来源吧！",
   choices = {
     "    点击<color=red>食物图标</color>看看    ",
     "    点击<color=red>石材图标</color>看看    ",
@@ -38,7 +38,7 @@ states.c = {
   name = "搜集的情报3",
   image = "事件报道小哥",
   desc = 
-    "大人，刚刚您解锁了一张【蘑菇农场】，打开右下角的抽牌堆查看您现有的手牌。"..
+    "打开右下角的抽牌堆查看您现有的手牌。"..
     "【蘑菇农场】建造完毕可以让你得到1张<蘑菇种植1：种植蘑菇提供食物的卡>。"..
     "【蘑菇农场】的左上角的两个数字，代表了它需要<color=red>3人2天</color>才可以建造完成哦。",
   choices = {
@@ -57,8 +57,7 @@ states.d = {
   desc = 
     "大人，您的子民都相信您可以带领大家生存下去，请您守护您的子民，也请笑纳我的馈赠！请您务必守护他们！",
   choices = {
-    "收到20点能量，20点食物，10点石材，10点钢材！",
-    "我在想你是谁呢？<小哥留下了礼物转身离开了>"
+    "收到20点能量，20点食物，10点石材，10点钢材！"
   }
 }
 
@@ -72,7 +71,7 @@ function states.a:choose(choice)
 
 function states.b:choose(choice)
     if choice == self.choices[7] then
-      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush"})
+      --GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"Building_mush"})
       return states.c
     else
       return states.b

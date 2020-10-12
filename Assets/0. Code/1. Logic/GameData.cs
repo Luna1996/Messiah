@@ -103,7 +103,7 @@ namespace Messiah.Logic {
 
       var testpile = new List<string> { };
       var mustdraw = new List<string> { "BasicFoodPile 3", "BasicMinePile 3",  "BasicWoodPile 3", };
-      var build = new List<string> { "BasicIronPile 3", "Building_house", "Building_mine", "Building_wood", };
+      var build = new List<string> { "BasicIronPile 3", "Building_house", "Building_mine", "Building_wood", "Building_mush"};
       Shuffle(build);
       mustdraw.AddRange(build);
       testpile.AddRange(mustdraw);
