@@ -101,3 +101,7 @@ end
 function Build_wood_effect()
   GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicWood01",})
 end
+
+function Build_wood_01_effect()
+  ReplaceCard("BasicWood01","BasicWood02")
+end

@@ -1,0 +1,29 @@
+Building_wood_01= class(CardBase,"Building_wood_01")
+local this = Building_wood_01
+
+function this:new()
+  self.cardView = nil
+  self.name = "采石升级"
+  self.frame = "资源牌面s"
+  --self.image = "残损义骸"
+  self.image = "采石场pd"
+  self.desc = "消耗12点石材 8点钢材\n升级采石场\n升级你的采石卡"
+  self.inHand = false
+  --self.boundingBuff={}
+  self.cost = 5
+  self.rounds =3
+  self.woodc = 12
+  self.ironc = 8
+end
+
+
+function this:applyEffect()
+  self.cardView:Dissolve()
+  Buff(
+    "Buff_Building_wood_02", 
+    GameEvent.EnterMainPhase, 
+    BuffType.OneShot, 
+    self.rounds, "buff518", nil,
+    "BuildTip", "3, 采石场正在升级")
+end
+

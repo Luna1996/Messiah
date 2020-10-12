@@ -20,6 +20,11 @@ function this:new(arg)
 end
 
 function this:onPlay()
+  if self.build=="住宅" then self.build = Build_house()
+  elseif self.build == "钢厂" then self.build=Build_iron()
+  elseif self.build =="采煤场" then self.build=Build_mine()
+  elseif self.build=="蘑菇" then self.build=Build_mush()
+  elseif self.build=="采石场" then self.build=Build_wood() end
   GameManager.Build(self,self.build)
   _G[self.func]()
 end
