@@ -36,13 +36,14 @@ namespace Messiah.Logic {
 
     public static int[] turneventpool = new int[]{
       0,
-      13,1,11,-1,9,14,11,2,10,-1,12,7,-1,3,11,8,15,12,6,
+      14,1,11,-1,9,15,11,2,10,-1,12,7,-1,3,11,8,16,12,6,
       11,-1,12,-1,11,12,-1,12,6,-1,12,
       4,-1,12,6,12,-1,-1,12,11,-1,-1,-1,
       5,-1,-1,12,6,-1,12,-1,-1,-1,-1,
-      //终局事件here
+      13
     };
     public static string[][] eventpool = new string[][] {
+
        new string[]{"Event0001"},
        
       new string[]{"EventBomb",},new string[]{"EventChurch"},
@@ -50,9 +51,11 @@ namespace Messiah.Logic {
       new string[]{"EventDelCard",},new string[]{"EventDetective"},new string[]{"EventDoc"},
       new string[]{"EventGirl"},new string[]{"EventPirate"},new string[]{"EventPoolBuild"},
       new string[]{"EventPoolTrash1","EventPoolTrash2","EventPoolTrash3","EventPoolTrash4"},
+       new string[]{"EndingEvent"},
       new string[]{"EventPopula1"},
       new string[]{"EventPopula2"},
       new string[]{"EventPopula3"},
+     
     };
 
 
