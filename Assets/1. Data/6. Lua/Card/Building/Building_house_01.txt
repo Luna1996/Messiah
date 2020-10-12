@@ -6,7 +6,7 @@ function this:new()
   self.name = "房舍升级"
   self.frame = "资源牌面s"
   self.image = "住宅pd"
-  self.desc = "消耗石材4,钢铁1\n高级住宅\n城市的人口数量+2"
+  self.desc = "消耗石材4,钢铁1\n高级住宅\n城市的人口数量+5"
   self.woodc = 4
   self.ironc = 1
   self.cost = 2
