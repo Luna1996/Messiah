@@ -16,11 +16,12 @@ namespace Messiah.UI {
 
       float W = Screen.width;
       float H = Screen.height;
+      Rect safe = Screen.safeArea;
       float w = 1080;
       float h = 2400;
-      if (h / w > H / W) {
-        float d = (1 - w * H / (h * W)) / 2;
-        Camera.main.rect = new Rect(d, 0, 1 - 2 * d, 1);
+      if (h / w > safe.height / safe.width) {
+        float d = (1 - w * safe.height / (h * W)) / 2;
+        Camera.main.rect = new Rect(d, safe.x / H, 1 - 2 * d, 1);
       } else {
         float d = (1 - h * W / (w * H)) / 2;
         Camera.main.rect = new Rect(0, d, 1, 1 - 2 * d);
