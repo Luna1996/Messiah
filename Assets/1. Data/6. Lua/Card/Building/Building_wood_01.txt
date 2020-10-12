@@ -20,7 +20,7 @@ end
 function this:applyEffect()
   self.cardView:Dissolve()
   Buff(
-    "Buff_Building_wood_02", 
+    "Buff_Building_wood_01", 
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     self.rounds, "buff518", nil,

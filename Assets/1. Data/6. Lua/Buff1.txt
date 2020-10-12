@@ -301,6 +301,3 @@ function Buff_Building_wood_01(i)
   GameManager.AddCardsToHand({'BuildCard 采石升级,采石场pd,'..location..',Build_wood_01_effect'})
 end
 
-function Build_wood_01_effect()
-  ReplaceCard("BasicWood01","BasicWood02")
-end
