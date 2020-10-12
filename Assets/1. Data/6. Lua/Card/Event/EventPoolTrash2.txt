@@ -19,7 +19,7 @@ function states.a:choose(choice)
       GameManager.AddResource(ResourceType.Faith,30)
       return nil else return states.a end
     elseif choice==self.choices[2] then
-      GameManager.AddCardsToHand({"BasicWoodPile"})
+      GameManager.AddCardsToHand({"BasicWoodPile 3"})
     end
 end
 

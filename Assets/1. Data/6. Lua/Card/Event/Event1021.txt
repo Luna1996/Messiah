@@ -28,7 +28,7 @@ function states.b:choose(choice)
     if GameManager.GetResource(ResourceType.Wood) >=3
     then
       GameManager.SubResource(ResourceType.Wood,3) 
-      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFoodPile"})
+      GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFoodPile 4"})
     end
 
       

@@ -15,7 +15,7 @@ states.a = {
 function states.a:choose(choice)
     if choice == self.choices[1] then
       GameManager.SubResource(ResourceType.Mine,12)
-      GameManager.AddCardsToHand({"BasicFoodPile","BasicFoodPile"})
+      GameManager.AddCardsToHand({"BasicFoodPile 2",})
       return nil
     elseif choice==self.choices[2] then
       GameManager.SubResource(ResourceType.Mine,10)

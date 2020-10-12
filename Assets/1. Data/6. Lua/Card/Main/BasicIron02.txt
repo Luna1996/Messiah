@@ -22,6 +22,7 @@ end
 
 
 function this:applyEffect()
+  EventService.Notify(GameEvent.IG_ResourceCardPlay)
   Buff(
     "Buff_BasicIron02", 
     GameEvent.EnterMainPhase, 

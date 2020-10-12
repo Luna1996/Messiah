@@ -6,7 +6,7 @@ function this:new()
   self.name = "资源祈祷"
   self.frame = "信仰牌面"
   self.image = "祈愿3"
-  self.desc = "消耗10点信仰值\n获得2点能量,2点石材,2点钢铁,2点食物"
+  self.desc = "消耗10点信仰值\n获得4点能量,2点石材,2点钢铁,4点食物"
   self.faithc = 10
 
   self.inHand = false
@@ -18,10 +18,10 @@ function this:onPlay()
   if GameManager.GetResource(ResourceType.Faith) >= 10
   then
     GameManager.SubResource(ResourceType.Faith,10)
-    GameManager.AddResource(ResourceType.Mine,2)
+    GameManager.AddResource(ResourceType.Mine,4)
     GameManager.AddResource(ResourceType.Wood,2)
     GameManager.AddResource(ResourceType.Iron,2)
-    GameManager.AddResource(ResourceType.Food,2)
+    GameManager.AddResource(ResourceType.Food,4)
     GameManager.Discard(self)
   else
     HandView:AddToHand(self.cardView)
