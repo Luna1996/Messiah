@@ -18,7 +18,7 @@ function Build_farm_21_effect()
 end
 
 function Build_farm_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFarm01"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicFarm01",})
 end
 
 function Build_house_01_effect()
@@ -30,7 +30,7 @@ function Build_house_11_effect()
 end
 
 function Build_iron_basic_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicIron01"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicIron01",})
 end
 
 function Build_mine_01_effect()
@@ -62,7 +62,7 @@ function Build_mine_22_effect()
 end
 
 function Build_mine_basic_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMine01"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMine01",})
 end
 
 function Build_mush_01_effect()
@@ -74,7 +74,7 @@ function Build_mush_11_effect()
 end
 
 function Build_mush_basic_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMush01"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicMush01",})
 end
 
 function Build_pub_effect()
@@ -98,5 +98,5 @@ function Build_weatther_21_effect()
 end
 
 function Build_wood_effect()
-  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicWood01"})
+  GameManager.AddCard(DeckType.OriginalDeckAndDrawPile,{"BasicWood01",})
 end

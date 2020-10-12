@@ -1,0 +1,31 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "城市繁荣的馈赠",
+  image = "事件小姑娘",
+  desc = "大人，您有持续增加您的人口吗？",
+  choices = {"当然，达到15人口，抽卡数+1","抱歉，还没达到！"},
+
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+      if GameManager.gameData.maxWorker >=15
+      then
+        GameManager.gameData.drawNum = GameManager.gameData.drawNum + 1
+        GameManager.gameData.keepNum = GameManager.gameData.keepNum+ 1
+        return nil
+      else
+        return states.a
+      end
+    else
+      return nil
+    end
+end
+
+EventPopula3 = Event(states.a)
+-------------------------------------

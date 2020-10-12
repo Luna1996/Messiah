@@ -1,0 +1,23 @@
+-------------------------------------------
+-- EventExample
+
+
+local states ={}
+
+states.a = {
+  name = "城市发展",
+  image = "事件报道小哥",
+  desc = "大人，城市的稳定发展需要人口的支撑，尝试在5回合内达到10人口吧！",
+  choices = {"获得1张住宅"},
+
+}
+
+function states.a:choose(choice)
+    if choice == self.choices[1] then
+        GameManager.AddCardsToHand({"Building_house"})
+        return nil
+    end
+end
+
+EventPopula1 = Event(states.a)
+-------------------------------------

@@ -7,7 +7,6 @@ function this:new()
   self.frame = "资源牌面s"
   self.image = "采煤机p"
   self.desc = "消耗石材3，钢铁2\n开采能源矿石的场所\n卡组中加入1张采能卡"
-  self.boundingCard={"BasicMine01","BasicMine01"}
   self.inHand = false
   --self.boundingBuff={}
 

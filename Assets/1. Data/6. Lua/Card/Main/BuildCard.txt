@@ -25,5 +25,5 @@ function this:onPlay()
 end
 
 function this:getCardFullName()
-  return self.className..' '..self.
+  return self.className..' '..self.name..","..self.image..","..","..self.build..","..self.func
 end
