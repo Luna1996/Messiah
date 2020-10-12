@@ -20,7 +20,7 @@ namespace Messiah.UI {
       float H = Screen.height;
       float w = 1080;
       float h = 2400;
-      if (h / w > H / W) GetComponent<CanvasScaler>().matchWidthOrHeight = 1;
+      if (h / w > Screen.safeArea.height / Screen.safeArea.width) GetComponent<CanvasScaler>().matchWidthOrHeight = 1;
       else GetComponent<CanvasScaler>().matchWidthOrHeight = 0;
 
       EventService.Listen(GameEvent.EnterInGameState, SwitchToInGameView);
