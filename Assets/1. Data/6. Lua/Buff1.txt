@@ -121,18 +121,18 @@ end
 
 
 function Build_house_01(i)
-  local location = Build_house()
+  local location = "住宅"
   GameManager.AddCardToHand('BuildCard 住房扩建,住宅pd,'..location..',Build_house_01_effect')
 end
 
 function Build_house_11(i)
-  local location = Build_house()
+  local location = "住宅"
   GameManager.AddCardToHand('BuildCard 住房装修,住宅pd,'..location..',Build_house_11_effect')
   
 end
 
 function Build_house_basic(i)
-  local location = Build_house()
+  local location = "住宅"
   GameManager.AddCardToHand('BuildCard 住宅建筑,住宅p,'..location..',Build_house_basic_effect')
 end
 
@@ -146,7 +146,7 @@ end
 
 
 function Build_iron_basic(i)
-  local location = Build_iron()
+  local location = "钢厂"
   GameManager.AddCardToHand('BuildCard 钢厂建设,钢厂p,'..location..',Build_iron_basic_effect')
 end
 
@@ -159,13 +159,13 @@ function Build_mine()
 end
 
 function Build_mine_01(i)
-  local location = Build_mine()
+  local location = "采煤场"
   GameManager.AddCardToHand('BuildCard 改进矿机,采煤机pd,'..location..',Build_mine_01_effect')
 end
 
 
 function Build_mine_02(i)
-  local location = Build_mine()
+  local location = "采煤场"
   GameManager.AddCardToHand('BuildCard 管线铺设,采煤机pd,'..location..',Build_mine_02_effect')
 end
 
@@ -178,7 +178,7 @@ end
 
 function Build_mine_21(i)
   
-  local location =Build_iron()
+  local location ="钢厂"
   GameManager.AddCardToHand('BuildCard 联轴运转,钢厂pd,'..location..',Build_mine_21_effect')
   
 end
@@ -195,13 +195,13 @@ function mine_consumption()
 end
 
 function Build_mine_22(i)
-  local location = Build_iron()
+  local location = "钢厂"
   GameManager.AddCardToHand('BuildCard 源能切割器,钢厂pd,'..location..',Build_mine_22_effect')
 end
 
 
 function Build_mine_basic(i)
-  local location = Build_mine()
+  local location = "采煤场"
   GameManager.AddCardToHand('BuildCard 能源矿机,采煤机p,'..location..',Build_mine_basic_effect')
 end
 
@@ -215,19 +215,19 @@ function Build_mush()
 end
 
 function Build_mush_basic(i)
-  local location = Build_mush()
+  local location = "蘑菇"
   GameManager.AddCardToHand('BuildCard 蘑菇农场,蘑菇p,'..location..',Build_mush_basic_effect')
 end
 
 function Build_mush_01(i)
-  local location = Build_mush()
+  local location = "蘑菇"
   GameManager.AddCardToHand('BuildCard 蘑菇水培池,蘑菇pd,'..location..',Build_mush_01_effect')
 end
 
 
 
 function Build_mush_11(i)
-  local location = Build_mush()
+  local location = "蘑菇"
   GameManager.AddCardToHand('BuildCard 孢子实验,蘑菇pd,'..location..',Build_mush_11_effect')
 end
 
@@ -262,21 +262,18 @@ end
 
 function Buff_Building_weather_21(i)
   local location = "RawImage"
-  --有问题
   GameManager.AddCardToHand('BuildCard 天气控制器,气象站pd,'..location..',Build_weather_21_effect')
 end
 
 
 
 function Buff_Building_weather(i)
-  GameManager.Build(nil,"RawImage")
   local location = "RawImage"
   GameManager.AddCardToHand('BuildCard 气象站,气象站p,'..location..',Build_weather_effect')
 end
 
 
 function Buff_Building_research(i)
-  GameManager.Build(nil,"研究站")
   local location = "研究站"
   GameManager.AddCardToHand('BuildCard 研究站,研究所p,'..location..',Build_research_effect')
 end
@@ -295,9 +292,15 @@ function Build_wood()
 end
 
 function Buff_Building_wood(i)
-  local location = Build_wood()
+  local location = "采石场"
   GameManager.AddCardsToHand({'BuildCard 采石场,采石场p,'..location..',Build_wood_effect'})
-  
 end
 
+function Buff_Building_wood_01(i)
+  local location = "采石场"
+  GameManager.AddCardsToHand({'BuildCard 采石升级,采石场pd,'..location..',Build_wood_01_effect'})
+end
 
+function Build_wood_01_effect()
+  ReplaceCard("BasicWood01","BasicWood02")
+end
