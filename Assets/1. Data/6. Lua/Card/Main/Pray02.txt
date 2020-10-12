@@ -14,18 +14,12 @@ end
 
 
 
-function this:onPlay()
-  if GameManager.GetResource(ResourceType.Faith) >= 10
-  then
-    GameManager.SubResource(ResourceType.Faith,10)
+function this:applyEffect()
     GameManager.AddResource(ResourceType.Mine,4)
     GameManager.AddResource(ResourceType.Wood,2)
     GameManager.AddResource(ResourceType.Iron,2)
     GameManager.AddResource(ResourceType.Food,4)
     GameManager.Discard(self)
-  else
-    HandView:AddToHand(self.cardView)
-  end
 
 
 end

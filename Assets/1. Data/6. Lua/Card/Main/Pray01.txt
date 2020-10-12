@@ -13,6 +13,7 @@ end
 
 
 function this:applyEffect()
+  GameManager.Discard(self)
   GameManager.gameData.maxWorker = GameManager.gameData.maxWorker +1
 end
 

@@ -13,6 +13,7 @@ end
 
 
 function this:applyEffect()
+  GameManager.Discard(self)
   GameManager.AddResource(ResourceType.Mine,30)
 end
 
