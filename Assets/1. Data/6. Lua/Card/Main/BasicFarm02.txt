@@ -7,7 +7,7 @@ function this:new()
   self.name = "农作物种植2"
   self.frame = "资源牌面s"
   self.image = "农作物种植2"
-  self.desc = "本回合消耗2点能量\n第3回合开始，收获60点食物"
+  self.desc = "本回合消耗2点能量\n第3回合开始，收获80点食物"
   self.minec = 2
 
   self.cost =2
@@ -20,6 +20,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     2, "buff507", nil,
-    "Xturn", "2,收获60点食物")
+    "Xturn", "2,收获80点食物")
     GameManager.Discard(self)
 end

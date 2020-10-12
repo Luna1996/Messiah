@@ -9,7 +9,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "炼钢2"
-  self.desc = "下回合,获得4点钢铁"
+  self.desc = "下回合,获得6点钢铁"
 
   self.cost = 2
   self.rounds = 1 
@@ -27,6 +27,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     1, "buff505", nil,
-    "Xturn", "1,收获2点钢铁")
+    "Xturn", "1,收获6点钢铁")
   GameManager.Discard(self)
 end

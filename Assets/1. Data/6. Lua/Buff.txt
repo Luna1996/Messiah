@@ -3,55 +3,55 @@ function ExampleBuff(i)
 end
 
 function Buff_BasicFarm01(i)
-  GameManager.AddResource(ResourceType.Food,30)
+  GameManager.AddResource(ResourceType.Food,50)
 end
 
 function Buff_BasicFarm02(i)
-  GameManager.AddResource(ResourceType.Food,60)
+  GameManager.AddResource(ResourceType.Food,80)
 end
 
 function Buff_BasicIron01(i)
-  GameManager.AddResource(ResourceType.Iron,2)
-end
-
-function Buff_BasicIron02(i)
   GameManager.AddResource(ResourceType.Iron,4)
 end
 
-function Buff_BasicMine01(i)
-  GameManager.AddResource(ResourceType.Mine,2)
+function Buff_BasicIron02(i)
+  GameManager.AddResource(ResourceType.Iron,6)
 end
 
-function Buff_BasicMine02(i)
+function Buff_BasicMine01(i)
   GameManager.AddResource(ResourceType.Mine,4)
 end
 
+function Buff_BasicMine02(i)
+  GameManager.AddResource(ResourceType.Mine,6)
+end
+
 function Buff_BasicMush01(i)
-  GameManager.AddResource(ResourceType.Food,10)
+  GameManager.AddResource(ResourceType.Food,20)
 end
 
 function Buff_BasicMush02(i)
-  GameManager.AddResource(ResourceType.Food,30)
+  GameManager.AddResource(ResourceType.Food,40)
 end
 
 function Buff_BasicWood01(i)
-  GameManager.AddResource(ResourceType.Wood,3)
+  GameManager.AddResource(ResourceType.Wood,5)
 end
 
 function Buff_BasicWood02(i)
-  GameManager.AddResource(ResourceType.Wood,6)
+  GameManager.AddResource(ResourceType.Wood,8)
 end
 
 function Buff_Mine_02(i)
-  GameManager.AddResource(ResourceType.Mine,15)
+  GameManager.AddResource(ResourceType.Mine,25)
 end
 
 function Buff_Mush_02(i)
-  GameManager.AddResource(ResourceType.Food,60)
+  GameManager.AddResource(ResourceType.Food,100)
 end
 
 function Buff_Research(i)
-  GameManager.AddResource(ResourceType.Tech,1)
+  GameManager.AddResource(ResourceType.Tech,3)
 end
 
 

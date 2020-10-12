@@ -7,7 +7,7 @@ function this:new()
   self.frame = "资源牌面s"
   --self.frame = "CardFrame_0"
   self.image = "巨型真菌"
-  self.desc = "本回合消耗1点能量\n第4回合，收获60点食物"
+  self.desc = "本回合消耗1点能量\n第4回合，收获100点食物"
   self.cost = 1
   self.rounds = 3
   self.minec = 1
@@ -24,6 +24,6 @@ function this:applyEffect()
     GameEvent.EnterMainPhase, 
     BuffType.OneShot, 
     3, "buff507", nil,
-    "Xturn", "3,收获60点食物")
+    "Xturn", "3,收获100点食物")
   GameManager.Discard(self)
 end
