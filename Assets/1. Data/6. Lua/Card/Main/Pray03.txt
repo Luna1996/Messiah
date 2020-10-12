@@ -3,16 +3,16 @@ local this = Pray01
 --待修改--
 function this:new()
   self.cardView = nil
-  self.name = "生育祈祷"
+  self.name = "神之甘霖"
   self.frame = "信仰牌面"
-  self.image = "神迹"
-  self.desc = "消耗20点信仰值 增加1点人口"
+  self.image = "信仰之愈"
+  self.desc = "消耗30点信仰值 增加30点能量"
   self.inHand = false
-  self.faithc=20
+  self.faithc=30
 end
 
 
 function this:applyEffect()
-  GameManager.gameData.maxWorker = GameManager.gameData.maxWorker +1
+  GameManager.AddResource(ResourceType.Mine,30)
 end
 

@@ -6,7 +6,7 @@ function this:new()
   self.name = "教堂"
   self.frame = "资源牌面s"
   self.image="教堂p"
-  self.desc = "消耗石材10\n建造教堂,收集居民信仰的力量\n回合结束时每位居民提供1点信仰值"
+  self.desc = "消耗石材10\n回合结束时每位居民提供1点信仰值\n可以进行祈祷"
   self.inHand = false
   self.cost =5
   self.rounds =2

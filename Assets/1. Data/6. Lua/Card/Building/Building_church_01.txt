@@ -6,7 +6,7 @@ function this:new()
   self.name = "教堂修缮"
   self.frame = "资源牌面s"
   self.image = "教堂pd"
-  self.desc = "消耗石材10\n加入1张[资源祈祷]-获得资源\n加入1张[信仰祈祷]-获得信仰"
+  self.desc = "消耗石材10\n加入1张[生育祈祷]-获得人口\n加入1张[神之甘霖]-获得能量"
   self.boundingCard={"Pray01","Pray02"}
   self.inHand = false
   self.woodc = 10
