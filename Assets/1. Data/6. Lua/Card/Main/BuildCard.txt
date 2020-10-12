@@ -23,3 +23,7 @@ function this:onPlay()
   GameManager.Build(self,self.build)
   _G[self.func]()
 end
+
+function this:getCardFullName()
+  return self.className..' '..self.
+end
