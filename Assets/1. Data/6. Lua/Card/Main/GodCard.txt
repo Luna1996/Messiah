@@ -19,7 +19,8 @@ function this:onPlay()
   ---GameManager.Build(nil,"研究站")
   --Build_iron()
   --GameManager.gameData.maxWorker = GameManager.gameData.maxWorker-1
+
+  
   HandView:AddToHand(self.cardView)
-  Build_mine_21_effect()
 end
 
