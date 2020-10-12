@@ -46,7 +46,7 @@ end
 
 
 function Buff_Relic306(i)
-  GameManager.SubResource(Resource.Mine,5)
+  GameManager.SubResource(Resource.Mine,2)
 end
 
 function Buff_Relic307(i)
