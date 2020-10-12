@@ -67,6 +67,7 @@ namespace Messiah.UI {
     }
 
     void LogHook(string msg, string stack, LogType type) {
+      debugPanelText.transform.SetAsLastSibling();
       string color = "red";
       switch (type) {
         case LogType.Log: color = "white"; break;

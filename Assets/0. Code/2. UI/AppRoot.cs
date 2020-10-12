@@ -12,7 +12,6 @@ namespace Messiah.UI {
     async void Start() {
       GameManager.appRoot = this;
       DontDestroyOnLoad(gameObject);
-      AutoLogin();
 
       float W = Screen.width;
       float H = Screen.height;
@@ -33,6 +32,8 @@ namespace Messiah.UI {
       await viewManager.SetupDebugPanel();
 #endif
 
+      AutoLogin();
+
       GameCore.Init();
 
       await LuaManager.Init();
@@ -43,9 +44,12 @@ namespace Messiah.UI {
     }
 
     void AutoLogin() {
+      Debug.Log("Start AutoLogin");
       GameCore.userData = UserData.GetLastUserData();
-      if (GameCore.userData == null)
+      if (GameCore.userData == null) {
+        Debug.Log("Create Local User");
         UserData.LocalLogin("localuser");
+      }
     }
   }
 }

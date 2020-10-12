@@ -20,8 +20,3 @@ require('buildeffect')
 
 CostModifiter = 0
 UsageAmountModifier = 0
-
-function test()
-  Debug.Log(1)
-  return delay(1000)
-end

@@ -2,21 +2,25 @@ namespace Messiah.Utility {
   using System;
   using System.IO;
   using System.Runtime.Serialization.Formatters.Binary;
+  using FullSerializer;
   public static class ByteConverter {
-    static BinaryFormatter bf = new BinaryFormatter();
+    private static readonly fsSerializer _serializer = new fsSerializer();
 
-    public static string Serialize(object obj) {
-      using (MemoryStream ms = new MemoryStream()) {
-        bf.Serialize(ms, obj);
-        return Convert.ToBase64String(ms.ToArray());
-      }
+    public static string Serialize<T>(object obj) {
+      fsData data;
+      _serializer.TrySerialize(typeof(T), obj, out data).AssertSuccessWithoutWarnings();
+
+      // emit the data via JSON
+      return fsJsonPrinter.CompressedJson(data);
     }
 
     public static T Deserialize<T>(string str) {
-      var bytes = Convert.FromBase64String(str);
-      using (MemoryStream ms = new MemoryStream(bytes)) {
-        return (T)bf.Deserialize(ms);
-      }
+      fsData data = fsJsonParser.Parse(str);
+
+      object deserialized = null;
+      _serializer.TryDeserialize(data, typeof(T), ref deserialized).AssertSuccessWithoutWarnings();
+
+      return (T)deserialized;
     }
   }
 }

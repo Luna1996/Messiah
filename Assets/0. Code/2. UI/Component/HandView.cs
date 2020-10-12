@@ -53,6 +53,26 @@ namespace Messiah.UI {
       RestoreCardPosition();
     }
 
+    public void RemoveCard(int i) {
+      if (hands.Count == 0) return;
+
+      var cardui = hands[i];
+      hands.RemoveAt(i);
+      if (hands.Count > 0) RestoreCardPosition();
+    }
+
+    public int RemoveCard(Card card) {
+      int i = 0;
+      while (i < hands.Count) {
+        if (hands[i] == card.cardView) {
+          RemoveCard(i);
+          return i;
+        }
+        i++;
+      }
+      return -1;
+    }
+
     public void RestoreCardPosition(float duration = 0.5f) {
       hands = hands.Distinct().ToList();
       var dir = arcData.from;

@@ -53,11 +53,6 @@ static class UtilityTest {
 
   [Test]
   public static void ByteSerializationTest() {
-    Messiah.Logic.UserData t = new Messiah.Logic.UserData();
-    t.username = "你大爷";
-    var str = ByteConverter.Serialize(t);
-    var f = ByteConverter.Deserialize<Messiah.Logic.UserData>(str);
-    Debug.Log(f.username);
   }
 
   [Test]
