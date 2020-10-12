@@ -5,7 +5,7 @@ local this = Nurse
 function this:new()
   self.cardView = nil
   self.name = "看护"
-  self.frame = "CardFrame_1"
+  self.frame = "CardFrame_0"
   self.image = "看护1"
   self.desc = "祈求神明之力，救回迷雾侵染之人\n消耗食物3 能量3 信仰10\n成功概率：50%"
   self.minec=3
