@@ -9,6 +9,7 @@ end
 hasheroes.energy = GameManager.GetResource(ResourceType.Mine) >= 100
 
 hasheroes.energy = true
+hasheroes.buff401 = true
 hasheroes.buff402 = true
 hasheroes.buff403 = true
 hasheroes.buff404 = true
